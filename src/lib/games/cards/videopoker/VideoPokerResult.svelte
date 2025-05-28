@@ -49,7 +49,7 @@
 
   <p class="text-center">Initial cards</p>
   <div class="grid grid-cols-5 gap-1 md:gap-1.5">
-    {#each chosenCardsDebounced.value!.initial as initialCard (initialCard.value)}
+    {#each chosenCardsDebounced.value!.initial as initialCard, n (n)}
       <Card {...initialCard} />
     {/each}
   </div>
@@ -57,7 +57,7 @@
   <div class="mb-6">
     <p class="mt-5 text-center">Coming cards</p>
     <div class="grid grid-cols-5 gap-1 md:gap-1.5">
-      {#each chosenCardsDebounced.value!.coming as comingCard (comingCard.value)}
+      {#each chosenCardsDebounced.value!.coming as comingCard, n (n)}
         <Card {...comingCard} />
       {/each}
     </div>
