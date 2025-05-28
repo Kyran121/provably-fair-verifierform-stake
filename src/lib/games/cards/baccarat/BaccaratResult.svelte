@@ -1,0 +1,83 @@
+<script lang="ts">
+  import { FloatGenerator } from '$lib/generator/FloatGenerator';
+  import { debouncer } from '$lib/debounce.svelte';
+  import type { Seed, Card as TCard } from '$lib/types';
+  import { generateCardDeck } from '$lib/util/cards';
+  import Card from '$lib/games/cards/Card.svelte';
+  import Loader from '$lib/games/Loader.svelte';
+
+  type Result = {
+    initialPlayer: TCard[];
+    initialBanker: TCard[];
+    decider: TCard[];
+  };
+
+  const { formValues }: { formValues: Record<string, unknown> } = $props();
+  const deck = generateCardDeck();
+
+  const seed = $derived<Seed>({
+    clientSeed: formValues.clientseed as string,
+    serverSeed: formValues.serverseed as string,
+    nonce: formValues.nonce as number
+  });
+
+  const chosenCardsDebounced = $derived.by(
+    debouncer(
+      () => seed,
+      (seed) => {
+        const floatGenerator = FloatGenerator(seed);
+        const cards = [];
+        for (let i = 0; i < 6; i++) {
+          cards.push(deck[Math.floor(floatGenerator.next().value * 52)]);
+        }
+        return {
+          initialPlayer: cards.splice(0, 2),
+          initialBanker: cards.splice(0, 2),
+          decider: cards
+        } satisfies Result;
+      },
+      350
+    )
+  );
+</script>
+
+{#if chosenCardsDebounced.debouncing}
+  <Loader />
+{:else}
+  <p data-testid="baccarat-player-result" class="hidden text-center text-base">
+    {chosenCardsDebounced
+      .value!.initialPlayer.map(({ value, suit }) => `${value}-${suit}`)
+      .join(', ')}
+  </p>
+  <p data-testid="baccarat-dealer-result" class="hidden text-center text-base">
+    {chosenCardsDebounced
+      .value!.initialBanker.map(({ value, suit }) => `${value}-${suit}`)
+      .join(', ')}
+  </p>
+  <p data-testid="baccarat-decider-result" class="hidden text-center text-base">
+    {chosenCardsDebounced.value!.decider.map(({ value, suit }) => `${value}-${suit}`).join(', ')}
+  </p>
+
+  <p class="text-center">Initial player cards</p>
+  <div class="grid grid-cols-2 gap-1 md:gap-1.5">
+    {#each chosenCardsDebounced.value!.initialPlayer as card (card.value)}
+      <Card {...card} />
+    {/each}
+  </div>
+
+  <p class="mt-5 text-center">Initial banker cards</p>
+  <div class="grid grid-cols-2 gap-1 md:gap-1.5">
+    {#each chosenCardsDebounced.value!.initialBanker as card (card.value)}
+      <Card {...card} />
+    {/each}
+  </div>
+
+  <div class="mb-6">
+    <p class="mt-5 text-center">Decider cards</p>
+    <div class="grid grid-cols-2 gap-1 md:gap-1.5">
+      {#each chosenCardsDebounced.value!.decider as card (card.value)}
+        <Card {...card} />
+      {/each}
+    </div>
+  </div>
+{/if}
