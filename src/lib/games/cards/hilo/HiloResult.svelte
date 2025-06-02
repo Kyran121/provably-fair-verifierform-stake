@@ -40,7 +40,7 @@
 
   <p class="mt-5 text-center">Order of cards</p>
   <div class="flex gap-1.5 overflow-x-scroll pb-5">
-    {#each chosenCardsDebounced.value! as card (card.value)}
+    {#each chosenCardsDebounced.value! as card, n (n)}
       <div class="w-20 flex-none">
         <Card {...card} />
       </div>

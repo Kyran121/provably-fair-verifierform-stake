@@ -4,6 +4,8 @@
   import BlueSamuraiIcon from '$lib/games/bluesamurai/BlueSamuraiIcon.svelte';
   import probabilities from '$lib/assets/bluesamurai/bluesamurai-probabilities.json';
   import { innerTileProbabilitySummed, outerTileProbabilitySummed } from '$lib/util/bluesamurai';
+  import { BTN_BG_COLOR, TEXT_HIGHLIGHT_COLOR } from '$lib/constants';
+  import ContentBlock from '../layout/ContentBlock.svelte';
 
   let showProbabilityTableExplanation = $state(false);
 </script>
@@ -14,13 +16,13 @@
   >
 </p>
 
-<div class="bg-gray-200 p-5 text-xs text-gray-500 dark:bg-gray-800 dark:text-gray-400">
+<ContentBlock className="p-5 text-xs">
   <button
     onclick={() => (showProbabilityTableExplanation = !showProbabilityTableExplanation)}
     class={[
       'm-auto mb-3 block px-5 py-1.5 text-sm font-medium text-white focus:ring-0 focus:outline-none',
-      'bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
-    ]}>Click to find out more</button
+      BTN_BG_COLOR
+    ]}>Click to {showProbabilityTableExplanation ? 'hide' : 'find out more'}</button
   >
   {#if showProbabilityTableExplanation}
     <div
@@ -100,7 +102,7 @@
               </td>
             {/each}
           </tr>
-          <tr class="text-blue-500">
+          <tr class={TEXT_HIGHLIGHT_COLOR}>
             <th class="sticky left-0 z-10 bg-gray-300 p-2 text-left opacity-85 dark:bg-gray-700"
               >inner reel tile probability (summed)</th
             >
@@ -120,7 +122,7 @@
               </td>
             {/each}
           </tr>
-          <tr class="text-blue-500">
+          <tr class={TEXT_HIGHLIGHT_COLOR}>
             <th class="sticky left-0 z-10 bg-gray-300 p-2 text-left opacity-85 dark:bg-gray-700"
               >outer reel tile probability (summed)</th
             >
@@ -137,4 +139,4 @@
       </table>
     </div>
   </div>
-</div>
+</ContentBlock>

@@ -7,6 +7,7 @@
   import KenoResultStep from '$lib/games/keno/KenoResultStep.svelte';
   import ResultTabs from '$lib/games/ResultTabs.svelte';
   import Loader from '$lib/games/Loader.svelte';
+  import ContentBlock from '../layout/ContentBlock.svelte';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
@@ -39,10 +40,12 @@
     {:else}
       {@const items = fisherYateItemsDebounced.value!}
 
-      <p class="mb-7 bg-gray-200 p-2 text-center text-base dark:bg-gray-700">
-        Keno numbers drawn in the order shown below. Click a number to find out how it was generated
-        using stake's provably fair algorithm
-      </p>
+      <ContentBlock className="mb-7 p-2 text-center text-base text-gray-900 dark:text-white">
+        <p>
+          Keno numbers drawn in the order shown below. Click a number to find out how it was
+          generated using stake's provably fair algorithm
+        </p>
+      </ContentBlock>
 
       <ResultTabs {seed} {items} bind:resultIndex />
 

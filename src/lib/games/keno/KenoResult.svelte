@@ -5,6 +5,7 @@
   import KenoBoard from '$lib/games/keno/KenoBoard.svelte';
   import { fisherYates } from '$lib/util/shuffle-impl/fisherYates';
   import Loader from '$lib/games/Loader.svelte';
+  import { TEXT_HIGHLIGHT_COLOR } from '$lib/constants';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
@@ -34,7 +35,7 @@
   <Loader />
 {:else}
   <p data-testid="keno-result" class="hidden text-center text-base">
-    keno numbers are:<br /><span class="text-xl text-blue-500"
+    keno numbers are:<br /><span class="text-xl {TEXT_HIGHLIGHT_COLOR}"
       >{chosenNumbersDebounced.value!.join(', ')}</span
     >
   </p>

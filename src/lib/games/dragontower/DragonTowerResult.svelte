@@ -2,7 +2,7 @@
   import { FloatGenerator } from '$lib/generator/FloatGenerator';
   import { debouncer } from '$lib/debounce.svelte';
   import type { DragonTowerDifficulty, DragonTowerSeed } from '$lib/types';
-  import { DRAGON_TOWER_LEVEL_MAP } from '$lib/constants';
+  import { BG_COLOR, BG_COLOR_GRAY, DRAGON_TOWER_LEVEL_MAP } from '$lib/constants';
   import { fisherYates } from '$lib/util/shuffle-impl/fisherYates';
   import eggIcon from '$lib/assets/dragontower/icons/egg-100x100-white.png';
   import skullIcon from '$lib/assets/dragontower/icons/skull-100x100-white.png';
@@ -70,12 +70,12 @@
             {#each [...Array(config.size).keys()] as i (i)}
               {@const isEgg = eggs.includes!(i)}
               <div
-                class={[
-                  'relative mb-1 flex h-10 justify-center',
-                  isEgg ? 'bg-gray-400 dark:bg-gray-600' : 'bg-red-400 dark:bg-red-500'
-                ]}
+                class={['relative mb-1 flex h-10 justify-center', isEgg ? BG_COLOR_GRAY : BG_COLOR]}
               >
-                <Indicator text={i} bgColorClass={isEgg ? 'bg-green-400 dark:bg-green-600' : ''} />
+                <Indicator
+                  text={i}
+                  bgColorClass={isEgg ? 'bg-gray-500 dark:bg-gray-700 text-white' : ''}
+                />
 
                 <img
                   class="relative scale-80 object-scale-down"

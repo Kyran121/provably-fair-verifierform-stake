@@ -1,14 +1,12 @@
 <script lang="ts">
+  import { BG_COLOR, BG_COLOR_GRAY, BG_COLOR_RED } from '$lib/constants';
+
   const { chosenNumber }: { chosenNumber: number } = $props();
 
   const redNumbers = new Set([1, 3, 5, 7, 9, 12, 14, 16, 18, 21, 23, 25, 27, 28, 30, 32, 34, 36]);
 
   const getColorClass = (n: number) =>
-    n === chosenNumber
-      ? 'bg-blue-400 dark:bg-blue-500 font-bold'
-      : redNumbers.has(n)
-        ? 'dark:bg-gray-600 bg-gray-400'
-        : 'bg-red-500';
+    n === chosenNumber ? BG_COLOR : redNumbers.has(n) ? BG_COLOR_GRAY : BG_COLOR_RED;
 
   const columns: number[] = [];
   for (let i = 0; i <= 2; i++) {

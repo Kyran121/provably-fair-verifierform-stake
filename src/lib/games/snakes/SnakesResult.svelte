@@ -3,7 +3,12 @@
   import { debouncer } from '$lib/debounce.svelte';
   import type { SnakesDifficulty, SnakesSeed } from '$lib/types';
   import paylines from '$lib/assets/snakes/snakes-paylines.json';
-  import { SNAKES_MULTIPLIER_SHIFT_MAP } from '$lib/constants';
+  import {
+    BG_COLOR,
+    BG_COLOR_GRAY,
+    SNAKES_MULTIPLIER_SHIFT_MAP,
+    TEXT_HIGHLIGHT_COLOR
+  } from '$lib/constants';
   import snakeIcon from '$lib/assets/snakes/icons/snake-50x50-white.png';
   import DiceIcon from '$lib/games/snakes/DiceIcon.svelte';
   import Loader from '$lib/games/Loader.svelte';
@@ -73,7 +78,7 @@
   {@const multiShifts = SNAKES_MULTIPLIER_SHIFT_MAP[seed.difficulty]}
 
   <p data-testid="snake-result" class="mb-3 text-center text-base">
-    best multi is <span class="text-xl text-blue-500">{best.toFixed(2)}x</span>
+    best multi is <span class="text-xl {TEXT_HIGHLIGHT_COLOR}">{best.toFixed(2)}x</span>
   </p>
 
   <div class="grid grid-cols-5 gap-1 sm:gap-1.5">
@@ -82,7 +87,7 @@
         <div
           class={[
             'flex h-15 w-full items-center justify-center',
-            result === 0 ? 'bg-red-500 dark:bg-red-700' : 'bg-gray-300 dark:bg-gray-500'
+            result === 0 ? BG_COLOR : BG_COLOR_GRAY
           ]}
         >
           {#if result === 0}

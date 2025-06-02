@@ -60,21 +60,21 @@
 
   <p class="text-center">Initial player cards</p>
   <div class="grid grid-cols-2 gap-1 sm:gap-1.5">
-    {#each chosenCardsDebounced.value!.initialDealer as card (card.value)}
+    {#each chosenCardsDebounced.value!.initialDealer as card, n (n)}
       <Card {...card} />
     {/each}
   </div>
 
   <p class="mt-5 text-center">Initial dealer cards</p>
   <div class="grid grid-cols-2 gap-1 sm:gap-1">
-    {#each chosenCardsDebounced.value!.initialPlayer as card (card.value)}
+    {#each chosenCardsDebounced.value!.initialPlayer as card, n (n)}
       <Card {...card} />
     {/each}
   </div>
 
   <p class="mt-5 text-center">Remaing cards in deck</p>
   <div class="flex gap-1.5 overflow-x-scroll pb-5">
-    {#each chosenCardsDebounced.value!.remaining as card (card.value)}
+    {#each chosenCardsDebounced.value!.remaining as card, n (n)}
       <div class="w-20 flex-none">
         <Card {...card} />
       </div>

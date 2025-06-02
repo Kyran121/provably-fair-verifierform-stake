@@ -9,6 +9,7 @@
   import { isLeftOuterReelSamurais, isRightOuterReelSamurais } from '$lib/util/bluesamurai';
   import Indicator from '$lib/games/Indicator.svelte';
   import BlueSamuraiIcon from '$lib/games/bluesamurai/BlueSamuraiIcon.svelte';
+  import { BG_COLOR, BG_COLOR_BLUE, BTN_BG_COLOR, BTN_BG_COLOR_BLUE } from '$lib/constants';
 
   const { round, focused }: { round: BlueSamuraiRound; focused?: number } = $props();
 
@@ -59,14 +60,14 @@
 {/if}
 
 {#if round.specialRound}
-  <p class="mb-2 bg-purple-400 text-center italic dark:bg-purple-600">
+  <p class="mb-2 text-center italic {BG_COLOR_BLUE}">
     special round ({round.specialSpin}/5)
   </p>
-  <p class="mb-2 bg-blue-400 text-center italic dark:bg-blue-600">
+  <p class="mb-2 text-center italic {BG_COLOR}">
     bonus paused ({round.bonusSpin - 1}/{round.totalBonusRounds})
   </p>
 {:else if round.bonusSpin! > 0}
-  <p class="mb-2 bg-blue-400 text-center italic dark:bg-blue-600">
+  <p class="mb-2 text-center italic {BG_COLOR}">
     bonus round ({round.bonusSpin}/{round.totalBonusRounds})
   </p>
 {/if}
@@ -87,7 +88,7 @@
           class={[
             'relative mb-1',
             focused !== undefined && focused === index! - 1
-              ? 'bg-yellow-500 dark:bg-yellow-700'
+              ? 'bg-purple-300 dark:bg-purple-500'
               : (round.specialRound && round.stuckSamurais?.has(index! + 2)) ||
                   icon === BlueSamuraiIconT.SAMURAI
                 ? 'border-2 border-blue-500 dark:border-blue-700 ' +

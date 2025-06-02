@@ -1,9 +1,11 @@
 <script lang="ts">
   import reels from '$lib/assets/scarabspins-tomeoflife/slot-reels.json';
+  import { BG_COLOR } from '$lib/constants';
   import Indicator from '$lib/games/Indicator.svelte';
   import { ScarabSpinsTomeOfLifeIcon } from '$lib/types';
   import { scrollToCenterVertically } from '$lib/util/scroll-impl/scrollToCenterVertically';
   import { type Component } from 'svelte';
+  import ContentBlock from '../layout/ContentBlock.svelte';
 
   const {
     floats,
@@ -41,15 +43,13 @@
   });
 </script>
 
-<div class="mt-5 mb-7 bg-gray-200 p-5 text-center text-base dark:bg-gray-700">
+<ContentBlock className="mt-5 mb-7 p-5 text-center text-base dark:text-white">
   <p class="mb-2 text-lg">Symbol Ordering</p>
   <button
     onclick={() => (scrollable = !scrollable)}
     class={[
       'm-auto mb-3 block px-5 py-1.5 text-sm font-medium text-white focus:ring-0 focus:outline-none',
-      scrollable
-        ? 'bg-red-700 hover:bg-red-800 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800'
-        : 'bg-green-700 hover:bg-green-800 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800'
+      BG_COLOR
     ]}>{scrollable ? 'Disable' : 'Enable'} Reel Scrolling</button
   >
   <div class="grid grid-cols-5">
@@ -70,7 +70,7 @@
             <IconComponent icon={reel.slice(-1) as unknown as ScarabSpinsTomeOfLifeIcon} />
             <Indicator
               text={`${nn === 4 ? 41 : 30}/${reel.length}`}
-              bgColorClass="bg-gray-300 dark:bg-gray-500"
+              bgColorClass="bg-gray-300 dark:bg-gray-500 dark:text-gray-200"
             />
           </div>
           {#each reel as icon, n (n)}
@@ -79,17 +79,20 @@
               <Indicator
                 text={`${n + 1}/${reel.length}`}
                 bgColorClass={n === reelCenterPositions[nn]
-                  ? 'bg-green-400 dark:bg-green-700'
-                  : 'bg-gray-300 dark:bg-gray-500'}
+                  ? BG_COLOR
+                  : 'bg-gray-300 dark:bg-gray-500 dark:text-gray-200'}
               />
             </div>
           {/each}
           <div class="relative mb-2">
             <IconComponent icon={reel[0] as unknown as ScarabSpinsTomeOfLifeIcon} />
-            <Indicator text={`1/${reel.length}`} bgColorClass="bg-gray-300 dark:bg-gray-500" />
+            <Indicator
+              text={`1/${reel.length}`}
+              bgColorClass="bg-gray-300 dark:bg-gray-500 dark:text-gray-200"
+            />
           </div>
         </div>
       </div>
     {/each}
   </div>
-</div>
+</ContentBlock>

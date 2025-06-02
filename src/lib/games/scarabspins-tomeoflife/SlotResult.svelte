@@ -7,6 +7,13 @@
   import SlotBoard from '$lib/games/scarabspins-tomeoflife/SlotBoard.svelte';
   import { type Component } from 'svelte';
   import Loader from '$lib/games/Loader.svelte';
+  import {
+    BG_COLOR,
+    BTN_BG_COLOR,
+    BTN_BG_COLOR_GREEN,
+    BTN_BG_COLOR_GREEN_SELECTED,
+    BTN_BG_COLOR_SELECTED
+  } from '$lib/constants';
 
   const {
     formValues,
@@ -53,7 +60,7 @@
 
     <div class="mb-3 flex justify-center">
       <span class="mr-3 inline-flex items-center gap-1">
-        <span class="inline-block h-3 w-3 rounded-full bg-blue-500"></span>
+        <span class="inline-block h-3 w-3 rounded-full {BG_COLOR}"></span>
         <span>Bonus Spin</span>
       </span>
       <span class="inline-flex items-center gap-1">
@@ -66,11 +73,9 @@
       {seed}
       items={allRounds.map((_, i) => ({ chosen: i + 1 }))}
       tabNameModifier={(v) => `spin<br>${v}`}
-      tabSelectedClassModifier={(n) => (!allRounds[n].retrigger ? 'bg-blue-950' : 'bg-green-800')}
-      tabClassModifier={(n) =>
-        !allRounds[n].retrigger
-          ? 'bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
-          : 'bg-green-600 hover:bg-green-700 focus:ring-green-500 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800'}
+      tabSelectedClassModifier={(n) =>
+        !allRounds[n].retrigger ? BTN_BG_COLOR_SELECTED : BTN_BG_COLOR_GREEN_SELECTED}
+      tabClassModifier={(n) => (!allRounds[n].retrigger ? BTN_BG_COLOR : BTN_BG_COLOR_GREEN)}
       bind:resultIndex={slotRound}
     />
   {:else}

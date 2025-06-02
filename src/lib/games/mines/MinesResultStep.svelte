@@ -1,5 +1,8 @@
 <script lang="ts">
   import type { FisherYatesItem } from '$lib/types';
+  import ContentBlock from '../layout/ContentBlock.svelte';
+  import HighlightLink from '../layout/HighlightLink.svelte';
+  import HighlightText from '../layout/HighlightText.svelte';
 
   const {
     stepNumber,
@@ -25,16 +28,10 @@
   <p class="text-base">Transform float into mine number</p>
   <p class="mb-5 text-sm text-gray-500 dark:text-gray-400">
     see <span class="font-bold">Mines</span> section on the
-    <a
-      class="text-blue-500 hover:underline"
-      target="_blank"
-      href="https://stake.com/provably-fair/game-events">game events</a
-    > page
+    <HighlightLink href="https://stake.com/provably-fair/game-events">game events</HighlightLink> page
   </p>
 
-  <div
-    class="bg-gray-200 p-5 text-left font-mono text-xs text-gray-500 dark:bg-gray-800 dark:text-gray-400"
-  >
+  <ContentBlock className="p-5 text-left font-mono text-xs">
     <p>mineSquares = 25</p>
     <p class="mt-4">previousMines = {`[${previousNumbers.join(', ')}]`}</p>
     <p class="mt-4">
@@ -43,31 +40,30 @@
     <p class="mt-4">float = {float.toFixed(12)}</p>
     <p class="mt-4">mineIndex</p>
     <p>
-      = floor(<span class="font-bold text-blue-500">&lbrace;float&rbrace;</span> * (<span
-        class="font-bold text-blue-500">&lbrace;mineSquares&rbrace;</span
+      = floor(<HighlightText>&lbrace;float&rbrace;</HighlightText> * (<HighlightText
+        >&lbrace;mineSquares&rbrace;</HighlightText
       >
       -
-      <span class="font-bold text-blue-500">&lbrace;resultIndex&rbrace;</span>))
+      <HighlightText>&lbrace;resultIndex&rbrace;</HighlightText>))
     </p>
     <p>
-      = floor(<span class="font-bold text-blue-500">{float.toFixed(12)}</span> * (<span
-        class="font-bold text-blue-500">25</span
+      = floor(<HighlightText>{float.toFixed(12)}</HighlightText> * (<HighlightText>25</HighlightText
       >
       -
-      <span class="font-bold text-blue-500">{resultIndex}</span>))
+      <HighlightText>{resultIndex}</HighlightText>))
     </p>
     <p>= {chosenIndex}</p>
     <p class="mt-4">mineNumber</p>
     <p>
-      = <span class="font-bold text-blue-500">&lbrace;minesBoardWithoutPreviousMines[</span>
+      = <HighlightText>&lbrace;minesBoardWithoutPreviousMines[</HighlightText>
     </p>
-    <p class="indent-4 font-bold text-blue-500">minesIndex</p>
-    <p class="font-bold text-blue-500">]&rbrace;</p>
+    <p class="indent-4"><HighlightText>minesIndex</HighlightText></p>
+    <p><HighlightText>]&rbrace;</HighlightText></p>
     <p>
-      = <span class="font-bold text-blue-500">&lbrace;minesBoardWithoutPreviousMines[</span>
+      = <HighlightText>&lbrace;minesBoardWithoutPreviousMines[</HighlightText>
     </p>
-    <p class="indent-4 font-bold text-blue-500">{chosenIndex}</p>
-    <p class="font-bold text-blue-500">]&rbrace;</p>
+    <p class="indent-4"><HighlightText>{chosenIndex}</HighlightText></p>
+    <p><HighlightText>]&rbrace;</HighlightText></p>
     <p>= {chosen}</p>
-  </div>
+  </ContentBlock>
 </div>

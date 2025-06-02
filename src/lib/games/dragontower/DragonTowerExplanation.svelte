@@ -1,5 +1,12 @@
 <script lang="ts">
-  import { DRAGON_TOWER_LEVEL_MAP } from '$lib/constants';
+  import {
+    BG_COLOR,
+    BTN_BG_COLOR,
+    BTN_BG_COLOR_GRAY,
+    BTN_BG_COLOR_GRAY_SELECTED,
+    BTN_BG_COLOR_SELECTED,
+    DRAGON_TOWER_LEVEL_MAP
+  } from '$lib/constants';
   import { debouncer } from '$lib/debounce.svelte';
   import { FloatGenerator } from '$lib/generator/FloatGenerator';
   import type { DragonTowerDifficulty, DragonTowerSeed, FisherYatesItem } from '$lib/types';
@@ -8,6 +15,7 @@
   import ResultTabs from '$lib/games/ResultTabs.svelte';
   import DragonTowerResultStep from '$lib/games/dragontower/DragonTowerResultStep.svelte';
   import Loader from '$lib/games/Loader.svelte';
+  import ContentBlock from '../layout/ContentBlock.svelte';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
@@ -47,7 +55,7 @@
     {:else}
       {@const items = fisherYateItemsDebounced.value!}
 
-      <div class="mb-7 bg-gray-200 p-2 text-center text-base dark:bg-gray-700">
+      <ContentBlock className="mb-7 p-2 pb-4 text-center text-base text-gray-900 dark:text-white">
         <p class="text-lg">Note</p>
         <p class="mb-4 text-sm">
           For each of the 9 rows, starting from the first row, we use the Fisher-Yates algorithm to
@@ -62,7 +70,7 @@
           select 3 unique egg positions. This process is repeated for each of the remaining 8 rows.
           A demonstration of this is shown below.
         </p>
-      </div>
+      </ContentBlock>
 
       <ResultTabs
         {seed}
@@ -70,11 +78,11 @@
         bind:resultIndex
         tabNameModifier={(chosen, n) => `row ${Math.floor(n / config.count) + 1}<br>${chosen}`}
         tabSelectedClassModifier={(n) =>
-          Math.floor(n / config.count) % 2 === 0 ? 'bg-blue-950' : 'bg-gray-800'}
-        tabClassModifier={(n) =>
           Math.floor(n / config.count) % 2 === 0
-            ? 'bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
-            : 'bg-gray-500 hover:bg-gray-600 focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800'}
+            ? BTN_BG_COLOR_SELECTED
+            : BTN_BG_COLOR_GRAY_SELECTED}
+        tabClassModifier={(n) =>
+          Math.floor(n / config.count) % 2 === 0 ? BTN_BG_COLOR : BTN_BG_COLOR_GRAY}
       />
 
       {@const item = items[resultIndex]}

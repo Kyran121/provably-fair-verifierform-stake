@@ -2,6 +2,9 @@
   import type { Card, Item } from '$lib/types';
   import CardSuitIcon from '$lib/games/cards/CardSuitIcon.svelte';
   import { generateCardDeck } from '$lib/util/cards';
+  import HighlightLink from '$lib/games/layout/HighlightLink.svelte';
+  import HighlightText from '$lib/games/layout/HighlightText.svelte';
+  import ContentBlock from '../layout/ContentBlock.svelte';
 
   const deck = generateCardDeck();
 
@@ -20,16 +23,10 @@
   <p class="text-base">Transform float into card</p>
   <p class="mb-5 text-sm text-gray-500 dark:text-gray-400">
     see <span class="font-bold">Blackjack, Hilo & Baccarat</span> section on the
-    <a
-      class="text-blue-500 hover:underline"
-      target="_blank"
-      href="https://stake.com/provably-fair/game-events">game events</a
-    > page
+    <HighlightLink href="https://stake.com/provably-fair/game-events">game events</HighlightLink> page
   </p>
 
-  <div
-    class="bg-gray-200 p-5 text-left font-mono text-xs text-gray-500 dark:bg-gray-800 dark:text-gray-400"
-  >
+  <ContentBlock className="p-5 text-left font-mono text-xs">
     <p>deckSize = 52</p>
     <p class="mt-4">
       deck = [
@@ -38,7 +35,7 @@
           class={[
             'mr-1 mb-1 inline-block border-1 p-1 dark:border-none',
             n === chosenIndex
-              ? 'border-gray-400 bg-blue-300 dark:bg-blue-500'
+              ? 'border-gray-400 bg-purple-300 dark:bg-purple-500 dark:text-white'
               : 'border-gray-400 bg-gray-300 dark:bg-gray-700'
           ]}
           >({n}) {value}
@@ -52,20 +49,20 @@
     <p class="mt-4">float = {float.toFixed(12)}</p>
     <p class="mt-4">cardIndex</p>
     <p>
-      = floor(<span class="font-bold text-blue-500">&lbrace;float&rbrace;</span> *
-      <span class="font-bold text-blue-500">&lbrace;deckSize&rbrace;</span>)
+      = floor(<HighlightText>&lbrace;float&rbrace;</HighlightText> *
+      <HighlightText>&lbrace;deckSize&rbrace;</HighlightText>)
     </p>
     <p>
-      = floor(<span class="font-bold text-blue-500">{float.toFixed(12)}</span> *
-      <span class="font-bold text-blue-500">52</span>)
+      = floor(<HighlightText>{float.toFixed(12)}</HighlightText> *
+      <HighlightText>52</HighlightText>)
     </p>
     <p>= {chosenIndex}</p>
     <p class="mt-4">card</p>
     <p>
-      = <span class="font-bold text-blue-500">&lbrace;deck[cardIndex]&rbrace;</span>
+      = <HighlightText>&lbrace;deck[cardIndex]&rbrace;</HighlightText>
     </p>
     <p>
-      = <span class="font-bold text-blue-500">&lbrace;deck[{chosenIndex}]&rbrace;</span>
+      = <HighlightText>&lbrace;deck[{chosenIndex}]&rbrace;</HighlightText>
     </p>
     <p>
       = <span
@@ -77,5 +74,5 @@
         ></span
       >
     </p>
-  </div>
+  </ContentBlock>
 </div>

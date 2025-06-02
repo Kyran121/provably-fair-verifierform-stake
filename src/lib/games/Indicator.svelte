@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { BG_COLOR } from '$lib/constants';
   import { IndicatorPosition } from '$lib/types';
 
   let {
@@ -21,7 +22,7 @@
     'absolute right-0 flex h-5 items-center justify-center',
     position === IndicatorPosition.BOTTOM_RIGHT ? 'right-0 bottom-0' : 'top-0 left-0',
     textClass ?? 'text-center text-sm',
-    bgColorClass ?? 'bg-green-400 dark:bg-green-700',
+    bgColorClass ?? BG_COLOR,
     widthClass ?? 'w-10'
   ]}
 >

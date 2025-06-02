@@ -8,6 +8,7 @@
   import ResultTabs from '$lib/games/ResultTabs.svelte';
   import { shuffle } from '$lib/util/shuffle-impl/shuffle';
   import Loader from '$lib/games/Loader.svelte';
+  import ContentBlock from '../layout/ContentBlock.svelte';
 
   const { formValues, count = 52 }: { formValues: Record<string, unknown>; count?: number } =
     $props();
@@ -40,10 +41,12 @@
     {:else}
       {@const items = chosenCardsDebounced.value!}
 
-      <p class="mb-7 bg-gray-200 p-2 text-center text-base dark:bg-gray-700">
-        Cards drawn in the order shown below. Click a card to find out how it was generated using
-        stake's provably fair algorithm
-      </p>
+      <ContentBlock className="mb-7 p-2 text-center text-base text-gray-900 dark:text-white">
+        <p>
+          Cards drawn in the order shown below. Click a card to find out how it was generated using
+          stake's provably fair algorithm
+        </p>
+      </ContentBlock>
 
       <ResultTabs {seed} {items} bind:resultIndex />
 

@@ -6,6 +6,7 @@
   import { encode as toHex } from '@stablelib/hex';
   import { SHA256 } from '@stablelib/sha256';
   import Loader from '$lib/games/Loader.svelte';
+  import { TEXT_HIGHLIGHT_COLOR } from '$lib/constants';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
@@ -33,7 +34,7 @@
   <Loader />
 {:else}
   <p data-testid="slide-result" class="text-center text-base">
-    slide stopped at <span class="text-xl text-blue-500"
+    slide stopped at <span class="text-xl {TEXT_HIGHLIGHT_COLOR}"
       >{slideStopPointDebounced.value!.toFixed(2)}x</span
     >
   </p>

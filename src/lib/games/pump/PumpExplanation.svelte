@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { PUMP_DIFFICULTY_TO_SLICE } from '$lib/constants';
+  import { BG_COLOR, BG_COLOR_GRAY, PUMP_DIFFICULTY_TO_SLICE } from '$lib/constants';
   import { debouncer } from '$lib/debounce.svelte';
   import { FloatGenerator } from '$lib/generator/FloatGenerator';
   import type { PumpDifficulty, PumpSeed } from '$lib/types';
@@ -8,6 +8,8 @@
   import Loader from '$lib/games/Loader.svelte';
   import ResultTabs from '$lib/games/ResultTabs.svelte';
   import PumpMultiplierStep from '$lib/games/pump/PumpMultiplierStep.svelte';
+  import HighlightText from '../layout/HighlightText.svelte';
+  import ContentBlock from '../layout/ContentBlock.svelte';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
@@ -51,20 +53,22 @@
         <p class="text-base">Create an array with 25 indexes</p>
       </div>
 
-      <p
-        class="bg-gray-200 p-5 font-mono text-xs break-all text-gray-500 dark:bg-gray-800 dark:text-gray-400"
-      >
-        indexes = [
-        <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-        {@html Array.from({ length: 25 })
-          .map(
-            (_v, i) =>
-              '<span class="mr-1 mb-1 inline-block border-1 border-gray-400 bg-gray-300 p-1 dark:border-none dark:bg-gray-700">' +
-              i +
-              '</span>'
-          )
-          .join('')}]
-      </p>
+      <ContentBlock className="p-5 font-mono text-xs break-all">
+        <p>
+          indexes = [
+          <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+          {@html Array.from({ length: 25 })
+            .map(
+              (_v, i) =>
+                '<span class="mr-1 mb-1 inline-block border-1 bg-gray-300 p-1 dark:border-none dark:text-gray-300 ' +
+                BG_COLOR_GRAY +
+                '">' +
+                i +
+                '</span>'
+            )
+            .join('')}]
+        </p>
+      </ContentBlock>
 
       <div class="mt-5 text-center">
         <p class="mb-2 text-xl">Step 2</p>
@@ -78,19 +82,17 @@
               class={[
                 'mt-2 mr-2 inline-block p-1 text-gray-500',
                 difficulty === seed.difficulty
-                  ? 'bg-blue-200 dark:bg-blue-500 dark:text-white'
+                  ? BG_COLOR + ' dark:text-white'
                   : 'bg-gray-200  dark:bg-gray-800 dark:text-gray-400'
               ]}>{difficulty} - {slice}</span
             >
           {/each}
         </p>
         <p class="mb-5 text-sm text-gray-500 dark:text-gray-400">
-          Pump payline has <span class="font-bold text-blue-500"
-            >25 - ({slice} - 1) = {25 - (slice - 1)}</span
-          >
+          Pump payline has <HighlightText>25 - ({slice} - 1) = {25 - (slice - 1)}</HighlightText>
           increasing multipliers. To get the max multiplier, as you will see from step 3, the minimum
           {slice > 1 ? `of the ${slice} random indexes` : 'index'} has to be
-          <span class="font-bold text-blue-500">{maxIndex}</span>
+          <HighlightText>{maxIndex}</HighlightText>
         </p>
       </div>
 
@@ -110,22 +112,24 @@
         </p>
       </div>
 
-      <p
-        class="mt-3 bg-gray-200 p-5 font-mono text-xs break-all text-gray-500 dark:bg-gray-800 dark:text-gray-400"
-      >
-        maxPayoutIndex = min(
-        <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-        {@html items
-          .map((item) => item.chosen)
-          .map(
-            (v) =>
-              '<span class="mr-1 mb-1 inline-block border-1 border-gray-400 bg-gray-300 p-1 dark:border-none dark:bg-gray-700">' +
-              v +
-              '</span>'
-          )
-          .join('')}
-        ) = {payoutIndex}
-      </p>
+      <ContentBlock className="mt-3 p-5 font-mono text-xs break-all">
+        <p>
+          maxPayoutIndex = min(
+          <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+          {@html items
+            .map((item) => item.chosen)
+            .map(
+              (v) =>
+                '<span class="mr-1 mb-1 inline-block border-1 border-gray-400 p-1 dark:border-none dark:text-gray-300 ' +
+                BG_COLOR_GRAY +
+                '">' +
+                v +
+                '</span>'
+            )
+            .join('')}
+          ) = {payoutIndex}
+        </p>
+      </ContentBlock>
     {/if}
   </div>
 </div>

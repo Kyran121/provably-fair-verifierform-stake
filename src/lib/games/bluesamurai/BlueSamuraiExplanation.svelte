@@ -5,10 +5,22 @@
   import { FloatGenerator } from '$lib/generator/FloatGenerator';
   import { simulateRounds } from '$lib/util/bluesamurai';
   import Loader from '$lib/games/Loader.svelte';
-  import ResultTabs from '../ResultTabs.svelte';
-  import BlueSamuraiBoard from './BlueSamuraiBoard.svelte';
-  import FloatGenerationStep from '../FloatGenerationStep.svelte';
-  import BlueSamuraiIcon from './BlueSamuraiIcon.svelte';
+  import ResultTabs from '$lib/games/ResultTabs.svelte';
+  import BlueSamuraiBoard from '$lib/games/bluesamurai/BlueSamuraiBoard.svelte';
+  import FloatGenerationStep from '$lib/games/FloatGenerationStep.svelte';
+  import BlueSamuraiIcon from '$lib/games/bluesamurai/BlueSamuraiIcon.svelte';
+  import {
+    BTN_BG_COLOR,
+    BTN_BG_COLOR_BLUE,
+    BTN_BG_COLOR_BLUE_SELECTED,
+    BTN_BG_COLOR_GREEN,
+    BTN_BG_COLOR_GREEN_SELECTED,
+    BTN_BG_COLOR_RED,
+    BTN_BG_COLOR_RED_SELECTED,
+    BTN_BG_COLOR_SELECTED,
+    TEXT_HIGHLIGHT_COLOR
+  } from '$lib/constants';
+  import ContentBlock from '../layout/ContentBlock.svelte';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
@@ -85,21 +97,22 @@
             `spin<br>${items[n].round}<br>position<br>${items[n].symbol.index + (items[n].specialRound ? -2 : 1)}<br>symbol<br>${chosen}`}
           tabSelectedClassModifier={(n) =>
             items[n].retrigger && items[n].retriggerType === BlueSamuraiRetriggerType.SPECIAL
-              ? 'bg-red-900'
+              ? BTN_BG_COLOR_RED_SELECTED
               : !items[n].retrigger && !items[n].retriggerType && items[n].specialRound
-                ? 'bg-purple-950'
+                ? BTN_BG_COLOR_BLUE_SELECTED
                 : items[n].retrigger && items[n].retriggerType === BlueSamuraiRetriggerType.BONUS
-                  ? 'bg-green-900'
-                  : 'bg-blue-950'}
+                  ? BTN_BG_COLOR_GREEN_SELECTED
+                  : BTN_BG_COLOR_SELECTED}
           tabClassModifier={(n) =>
             items[n].retrigger && items[n].retriggerType === BlueSamuraiRetriggerType.SPECIAL
-              ? 'bg-red-600 hover:bg-red-700 focus:ring-red-500 dark:bg-red-700 dark:hover:bg-red-800 dark:focus:ring-red-800'
+              ? BTN_BG_COLOR_RED
               : !items[n].retrigger && !items[n].retriggerType && items[n].specialRound
-                ? 'bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800 ' +
+                ? BTN_BG_COLOR_BLUE +
+                  ' ' +
                   (items[n].stuckSamurais?.has(items[n].symbol.index!) ? 'opacity-50' : '')
                 : items[n].retrigger && items[n].retriggerType === BlueSamuraiRetriggerType.BONUS
-                  ? 'bg-green-600 hover:bg-green-700 focus:ring-green-500 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800'
-                  : 'bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'}
+                  ? BTN_BG_COLOR_GREEN
+                  : BTN_BG_COLOR}
         />
 
         <BlueSamuraiBoard {round} focused={symbolIndex + (round.specialRound ? -3 : 0)} />
@@ -115,9 +128,7 @@
           Convert float to symbol using <b>Float &rarr; Symbol Correlation Table</b>
         </p>
 
-        <div
-          class="bg-gray-200 p-5 text-center text-sm text-gray-500 dark:bg-gray-800 dark:text-gray-400"
-        >
+        <ContentBlock className="p-5 text-center text-sm">
           <p>
             according to the <b>Float &rarr; Symbol Correlation Table</b>, the first symbol where
             <span class="font-mono">{float.toFixed(12)}</span> is less than or equal to the summed probability
@@ -130,22 +141,22 @@
             </div>
             <div class="m-auto">
               <p class="text-center font-mono">
-                <span class="mt-1 block text-blue-500"
+                <span class="mt-1 block {TEXT_HIGHLIGHT_COLOR}"
                   >previous summed probability:<br />{symbol.min?.getValue()}</span
                 >
                 <span class="mt-1 block">{float.toFixed(12)}</span>
-                <span class="mt-1 block text-blue-500"
+                <span class="mt-1 block {TEXT_HIGHLIGHT_COLOR}"
                   >summed probability:<br />{symbol.max?.getValue()}</span
                 >
               </p>
             </div>
             <div class="m-auto">
               <p class="font-mono">
-                reel type:<br /><span class="text-blue-500">{symbol.reelType}</span>
+                reel type:<br /><span class={TEXT_HIGHLIGHT_COLOR}>{symbol.reelType}</span>
               </p>
             </div>
           </div>
-        </div>
+        </ContentBlock>
       </div>
     {/if}
   </div>

@@ -5,7 +5,7 @@
   import { encode as toUInt8Array } from '@stablelib/utf8';
   import { encode as toHex } from '@stablelib/hex';
   import { SHA256 } from '@stablelib/sha256';
-  import { CRASH_SEED } from '$lib/constants';
+  import { CRASH_SEED, TEXT_HIGHLIGHT_COLOR } from '$lib/constants';
   import Loader from '$lib/games/Loader.svelte';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
@@ -33,7 +33,7 @@
   <Loader />
 {:else}
   <p data-testid="crash-result" class="text-center text-base">
-    you crashed at <span class="text-xl text-blue-500"
+    you crashed at <span class="text-xl {TEXT_HIGHLIGHT_COLOR}"
       >{crashPointDebounced.value!.toFixed(2)}x</span
     >
   </p>

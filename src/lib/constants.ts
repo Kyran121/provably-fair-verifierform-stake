@@ -5,6 +5,37 @@ import type {
   SnakesDifficulty
 } from '$lib/types';
 
+export const TEXT_HIGHLIGHT_COLOR = 'text-purple-500 dark:text-purple-400';
+export const STEP_CONTAINER_BG_COLOR = 'bg-gray-200 dark:bg-gray-800';
+export const STEP_CONTAINER_TEXT_COLOR = 'text-gray-500 dark:text-gray-400';
+
+//purple
+export const BG_COLOR = 'bg-purple-500 text-white';
+export const BTN_BG_COLOR = 'bg-purple-500 hover:bg-purple-600';
+export const BTN_BG_COLOR_SELECTED = 'bg-purple-900';
+
+//gray
+export const BG_COLOR_GRAY = 'dark:bg-gray-600 bg-gray-400';
+export const BTN_BG_COLOR_GRAY =
+  'dark:bg-gray-600 dark:hover:bg-gray-700 bg-gray-400 dark:bg-gray-500';
+export const BTN_BG_COLOR_GRAY_SELECTED = 'bg-gray-800';
+
+//green
+export const BG_COLOR_GREEN = 'bg-green-600';
+export const BTN_BG_COLOR_GREEN = 'bg-green-600 hover:bg-green-700';
+export const BTN_BG_COLOR_GREEN_SELECTED = 'bg-green-900';
+
+//blue
+export const BG_COLOR_BLUE = 'bg-blue-700 dark:bg-blue-600 text-white';
+export const BTN_BG_COLOR_BLUE =
+  'bg-blue-700 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700';
+export const BTN_BG_COLOR_BLUE_SELECTED = 'bg-blue-950';
+
+//red
+export const BG_COLOR_RED = 'bg-red-600 dark:bg-red-700 dark:text-white';
+export const BTN_BG_COLOR_RED = 'bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800';
+export const BTN_BG_COLOR_RED_SELECTED = 'bg-red-900';
+
 export const CRASH_SEED = '0000000000000000001b34dc6a1e86083f95500b096231436e9b25cbdd0075c4';
 export const SLIDE_SEEDS = [
   '0000000000000000000b20f796f5421cac95c4efb06c6bbf6408d6f9b5d7b9dc',

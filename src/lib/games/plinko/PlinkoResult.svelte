@@ -5,6 +5,7 @@
   import { getDirections, getPayout } from '$lib/util/plinko';
   import paylines from '$lib/assets/plinko-paylines.json';
   import Loader from '$lib/games/Loader.svelte';
+  import { BG_COLOR, BG_COLOR_GRAY } from '$lib/constants';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
@@ -39,12 +40,7 @@
   <div class="grid auto-cols-auto grid-flow-col gap-2 pb-1">
     {#each payline as multi, n (n)}
       <div
-        class={[
-          'col p-2 text-center',
-          multi === payoutDebounced.value!
-            ? 'bg-blue-400 font-bold dark:bg-blue-500'
-            : 'bg-gray-200 dark:bg-gray-700'
-        ]}
+        class={['col p-2 text-center', multi === payoutDebounced.value! ? BG_COLOR : BG_COLOR_GRAY]}
       >
         {multi}x
       </div>

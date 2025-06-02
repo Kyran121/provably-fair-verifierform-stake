@@ -7,6 +7,9 @@
   import PlinkoDirectionStep from '$lib/games/plinko/PlinkoDirectionStep.svelte';
   import ResultTabs from '$lib/games/ResultTabs.svelte';
   import Loader from '$lib/games/Loader.svelte';
+  import ContentBlock from '../layout/ContentBlock.svelte';
+  import { BG_COLOR, BG_COLOR_GRAY } from '$lib/constants';
+  import HighlightText from '../layout/HighlightText.svelte';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
@@ -61,10 +64,12 @@
       </div>
 
       <div class="mt-3 border-1 border-gray-400 p-5">
-        <p class="mb-7 bg-gray-200 p-2 text-center text-base dark:bg-gray-700">
-          {seed.rows} directions drawn in the order shown below. Click a direction to find out how it
-          was generated using stake's provably fair algorithm
-        </p>
+        <ContentBlock className="mb-7 p-2 text-center text-base text-gray-900 dark:text-white">
+          <p>
+            {seed.rows} directions drawn in the order shown below. Click a direction to find out how
+            it was generated using stake's provably fair algorithm
+          </p>
+        </ContentBlock>
 
         <ResultTabs {seed} items={directions} bind:resultIndex />
 
@@ -82,14 +87,12 @@
         <p class="text-base">Use directions to calculate payout</p>
       </div>
 
-      <div
-        class="mt-5 bg-gray-200 p-5 text-left font-mono text-xs text-gray-500 dark:bg-gray-800 dark:text-gray-400"
-      >
+      <ContentBlock className="mt-5 p-5 text-left font-mono text-xs">
         <p>
           payline = [
           {#each payoutExplanation.payline as multi, n (n)}
             <span
-              class="mr-1 mb-1 inline-block border-1 border-gray-400 bg-gray-300 p-1 dark:border-none dark:bg-gray-700"
+              class="mr-1 mb-1 inline-block border-1 border-gray-400 p-1 dark:border-none {BG_COLOR_GRAY} dark:text-gray-300"
             >
               {multi}x
             </span>
@@ -100,7 +103,7 @@
           directions = [
           {#each payoutExplanation.directions as { chosen }, n (n)}
             <span
-              class="mr-1 mb-1 inline-block border-1 border-gray-400 bg-gray-300 p-1 dark:border-none dark:bg-gray-700"
+              class="mr-1 mb-1 inline-block border-1 border-gray-400 p-1 dark:border-none {BG_COLOR_GRAY} dark:text-gray-300"
             >
               {chosen}
             </span>
@@ -109,7 +112,7 @@
         </p>
         <p class="mt-4">
           firstDirection = <span
-            class="mr-1 mb-1 inline-block border-1 border-gray-400 bg-gray-300 p-1 dark:border-none dark:bg-gray-700"
+            class="mr-1 mb-1 inline-block border-1 border-gray-400 p-1 dark:border-none {BG_COLOR_GRAY} dark:text-gray-300"
             >{firstDirection.chosen}</span
           >
         </p>
@@ -121,8 +124,8 @@
               class={[
                 'mr-1 mb-1 inline-block border-1  p-1 dark:border-none',
                 chosen !== firstDirection.chosen
-                  ? 'bg-blue-300 dark:bg-blue-500'
-                  : 'border-gray-400 bg-gray-300 dark:bg-gray-700'
+                  ? BG_COLOR
+                  : 'border-gray-400 ' + BG_COLOR_GRAY + ' dark:text-gray-300'
               ]}
             >
               {chosen}
@@ -137,8 +140,8 @@
               class={[
                 'mr-1 mb-1 inline-block border-1  p-1 dark:border-none',
                 chosen !== firstDirection.chosen
-                  ? 'bg-blue-300 dark:bg-blue-500'
-                  : 'border-gray-400 bg-gray-300 dark:bg-gray-700'
+                  ? BG_COLOR
+                  : 'border-gray-400' + BG_COLOR_GRAY + ' dark:text-gray-300'
               ]}
             >
               {chosen}
@@ -149,17 +152,13 @@
         <p>= {turnsInOppositeDirection}</p>
         <p class="mt-4">payout</p>
         <p>
-          = <span class="font-bold text-blue-500"
-            >&lbrace;payline[turnsInOppositeDirection]&rbrace;</span
-          >
+          = <HighlightText>&lbrace;payline[turnsInOppositeDirection]&rbrace;</HighlightText>
         </p>
         <p>
-          = <span class="font-bold text-blue-500"
-            >&lbrace;payline[{turnsInOppositeDirection}]&rbrace;</span
-          >
+          = <HighlightText>&lbrace;payline[{turnsInOppositeDirection}]&rbrace;</HighlightText>
         </p>
         <p>= {payoutExplanation.payout}x</p>
-      </div>
+      </ContentBlock>
     {/if}
   </div>
 </div>

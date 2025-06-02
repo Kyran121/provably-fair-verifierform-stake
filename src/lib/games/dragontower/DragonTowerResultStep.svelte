@@ -1,5 +1,7 @@
 <script lang="ts">
   import type { DragonTowerDifficultyConfig, FisherYatesItem } from '$lib/types';
+  import HighlightLink from '../layout/HighlightLink.svelte';
+  import HighlightText from '../layout/HighlightText.svelte';
 
   const {
     stepNumber,
@@ -27,11 +29,7 @@
   <p class="text-base">Transform float into egg index</p>
   <p class="mb-5 text-sm text-gray-500 dark:text-gray-400">
     see <span class="font-bold">Dragon Tower</span> section on the
-    <a
-      class="text-blue-500 hover:underline"
-      target="_blank"
-      href="https://stake.com/provably-fair/game-events">game events</a
-    > page
+    <HighlightLink href="https://stake.com/provably-fair/game-events">game events</HighlightLink> page
   </p>
 
   <div
@@ -46,36 +44,32 @@
     <p class="mt-4">float = {float.toFixed(12)}</p>
     <p class="mt-4">eggIndex</p>
     <p>
-      = floor(<span class="font-bold text-blue-500">&lbrace;float&rbrace;</span> * (<span
-        class="font-bold text-blue-500">&lbrace;rowSize&rbrace;</span
+      = floor(<HighlightText>&lbrace;float&rbrace;</HighlightText> * (<HighlightText
+        >&lbrace;rowSize&rbrace;</HighlightText
       >
-      - (<span class="font-bold text-blue-500">&lbrace;resultIndex&rbrace;</span> %
-      <span class="font-bold text-blue-500">&lbrace;eggsToChoose&rbrace;</span>)))
+      - (<HighlightText>&lbrace;resultIndex&rbrace;</HighlightText> %
+      <HighlightText>&lbrace;eggsToChoose&rbrace;</HighlightText>)))
     </p>
     <p>
-      = floor(<span class="font-bold text-blue-500">{float.toFixed(12)}</span> * (<span
-        class="font-bold text-blue-500">{config.size}</span
+      = floor(<HighlightText>{float.toFixed(12)}</HighlightText> * (<HighlightText
+        >{config.size}</HighlightText
       >
-      - (<span class="font-bold text-blue-500">{resultIndex}</span> %
-      <span class="font-bold text-blue-500">{config.count}</span>)))
+      - (<HighlightText>{resultIndex}</HighlightText> %
+      <HighlightText>{config.count}</HighlightText>)))
     </p>
     <p>
-      = floor(<span class="font-bold text-blue-500">{float.toFixed(12)}</span> * (<span
-        class="font-bold text-blue-500">{config.size}</span
+      = floor(<HighlightText>{float.toFixed(12)}</HighlightText> * (<HighlightText
+        >{config.size}</HighlightText
       >
       - {resultIndex % config.count}))
     </p>
     <p>= {chosenIndex}</p>
     <p class="mt-4">egg</p>
     <p>
-      = <span class="font-bold text-blue-500"
-        >&lbrace;eggsWithoutPreviousIndexes[eggIndex]&rbrace;</span
-      >
+      = <HighlightText>&lbrace;eggsWithoutPreviousIndexes[eggIndex]&rbrace;</HighlightText>
     </p>
     <p>
-      = <span class="font-bold text-blue-500"
-        >&lbrace;eggsWithoutPreviousIndexes[{chosenIndex}]&rbrace;</span
-      >
+      = <HighlightText>&lbrace;eggsWithoutPreviousIndexes[{chosenIndex}]&rbrace;</HighlightText>
     </p>
     <p>= {chosen}</p>
   </div>

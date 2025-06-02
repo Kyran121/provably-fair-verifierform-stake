@@ -3,6 +3,7 @@
   import { debouncer } from '$lib/debounce.svelte';
   import type { Seed } from '$lib/types';
   import Loader from '$lib/games/Loader.svelte';
+  import { TEXT_HIGHLIGHT_COLOR } from '$lib/constants';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
@@ -32,7 +33,7 @@
   <Loader />
 {:else}
   <p data-testid="limbo-result" class="text-center text-base">
-    you crashed at <span class="text-xl text-blue-500"
+    you crashed at <span class="text-xl {TEXT_HIGHLIGHT_COLOR}"
       >{crashPointDebounced.value!.toFixed(2)}x</span
     >
   </p>

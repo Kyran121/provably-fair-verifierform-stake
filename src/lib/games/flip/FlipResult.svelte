@@ -3,6 +3,7 @@
   import { debouncer } from '$lib/debounce.svelte';
   import { CoinFlip, type Seed } from '$lib/types';
   import Loader from '$lib/games/Loader.svelte';
+  import { BG_COLOR, BG_COLOR_GRAY } from '$lib/constants';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
@@ -41,14 +42,7 @@
 
   <div class="mb-1 grid grid-cols-5 gap-1 sm:grid-cols-10 md:gap-1.5 dark:text-white">
     {#each flips as flip, i (i)}
-      <div
-        class={[
-          'text-center',
-          flip === CoinFlip.TAIL
-            ? 'bg-blue-300 dark:bg-blue-500'
-            : 'bg-orange-500 dark:bg-orange-600'
-        ]}
-      >
+      <div class={['text-center', flip === CoinFlip.TAIL ? BG_COLOR : BG_COLOR_GRAY]}>
         ({i + 1})<br />{flip}
       </div>
     {/each}

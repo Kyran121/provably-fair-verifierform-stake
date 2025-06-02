@@ -10,6 +10,15 @@
   import { type Component } from 'svelte';
   import SymbolOrderSlotBoard from '$lib/games/scarabspins-tomeoflife/SymbolOrderSlotBoard.svelte';
   import Loader from '$lib/games/Loader.svelte';
+  import {
+    BG_COLOR,
+    BG_COLOR_GRAY,
+    BTN_BG_COLOR,
+    BTN_BG_COLOR_GRAY,
+    BTN_BG_COLOR_GRAY_SELECTED,
+    BTN_BG_COLOR_SELECTED
+  } from '$lib/constants';
+  import ContentBlock from '../layout/ContentBlock.svelte';
 
   const {
     formValues,
@@ -48,7 +57,7 @@
   {@const floats = floatsDebounced.value!}
   {@const float = floats[resultIndex]}
 
-  <div class="mt-5 mb-7 bg-gray-200 p-5 text-center text-base dark:bg-gray-700">
+  <ContentBlock className="mt-5 mb-7 p-5 text-center text-base dark:text-white">
     <p class="text-lg">How it works</p>
     <p class="mb-4 text-sm">
       Slot features 5 reels of symbols. The first 4 reels each contain 30 symbols, while the final
@@ -64,7 +73,7 @@
       <b>15 additional spins</b>. If any of these bonus rounds also result in 3 scatters, another 15
       spins are granted—up to a maximum of <b>180 total rounds</b>.
     </p>
-  </div>
+  </ContentBlock>
 
   <p class="text-center text-lg">Float &rarr; Reel Position Process</p>
   <p class="mb-5 text-center text-sm">
@@ -77,11 +86,9 @@
     bind:resultIndex
     tabNameModifier={(chosen, n) =>
       `round ${Math.floor(n / 5) + 1}<br>pos<br>${(chosen as number) + 1}`}
-    tabSelectedClassModifier={(n) => (Math.floor(n / 5) % 2 === 0 ? 'bg-blue-950' : 'bg-gray-800')}
-    tabClassModifier={(n) =>
-      Math.floor(n / 5) % 2 === 0
-        ? 'bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
-        : 'bg-gray-500 hover:bg-gray-600 focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800'}
+    tabSelectedClassModifier={(n) =>
+      Math.floor(n / 5) % 2 === 0 ? BTN_BG_COLOR_SELECTED : BTN_BG_COLOR_GRAY_SELECTED}
+    tabClassModifier={(n) => (Math.floor(n / 5) % 2 === 0 ? BTN_BG_COLOR : BTN_BG_COLOR_GRAY)}
   />
 
   <SymbolOrderSlotBoard {floats} {resultIndex} {IconComponent} />

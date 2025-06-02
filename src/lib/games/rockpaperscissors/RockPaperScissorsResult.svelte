@@ -3,6 +3,7 @@
   import { debouncer } from '$lib/debounce.svelte';
   import { RockPaperScissorsOutcome, type Seed } from '$lib/types';
   import Loader from '$lib/games/Loader.svelte';
+  import { BG_COLOR_GRAY } from '$lib/constants';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
@@ -44,7 +45,7 @@
   <div class="mb-5">
     <div class="grid grid-cols-6 gap-1 md:grid-cols-7 md:gap-1.5">
       {#each results as result, i (i)}
-        <div class="col bg-gray-200 text-center dark:bg-gray-700">
+        <div class="col text-center {BG_COLOR_GRAY}">
           <span class="text-xs">({i + 1})</span><br />
           {result}
         </div>

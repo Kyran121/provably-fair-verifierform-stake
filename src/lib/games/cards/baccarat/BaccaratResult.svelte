@@ -60,14 +60,14 @@
 
   <p class="text-center">Initial player cards</p>
   <div class="grid grid-cols-2 gap-1 md:gap-1.5">
-    {#each chosenCardsDebounced.value!.initialPlayer as card (card.value)}
+    {#each chosenCardsDebounced.value!.initialPlayer as card, n (n)}
       <Card {...card} />
     {/each}
   </div>
 
   <p class="mt-5 text-center">Initial banker cards</p>
   <div class="grid grid-cols-2 gap-1 md:gap-1.5">
-    {#each chosenCardsDebounced.value!.initialBanker as card (card.value)}
+    {#each chosenCardsDebounced.value!.initialBanker as card, n (n)}
       <Card {...card} />
     {/each}
   </div>
@@ -75,7 +75,7 @@
   <div class="mb-6">
     <p class="mt-5 text-center">Decider cards</p>
     <div class="grid grid-cols-2 gap-1 md:gap-1.5">
-      {#each chosenCardsDebounced.value!.decider as card (card.value)}
+      {#each chosenCardsDebounced.value!.decider as card, n (n)}
         <Card {...card} />
       {/each}
     </div>

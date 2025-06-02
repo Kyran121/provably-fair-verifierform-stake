@@ -3,6 +3,7 @@
   import { ScarabSpinsTomeOfLifeIcon, type ScarabSpinsTomeOfLifeRound } from '$lib/types';
   import reels from '$lib/assets/scarabspins-tomeoflife/slot-reels.json';
   import Indicator from '$lib/games/Indicator.svelte';
+  import { BG_COLOR_GRAY } from '$lib/constants';
 
   const {
     round,
@@ -40,10 +41,7 @@
       ]}
     >
       <IconComponent {icon} />
-      <Indicator
-        text={`${previousIndex + 1}/${reelSize}`}
-        bgColorClass="bg-gray-300 dark:bg-gray-500"
-      />
+      <Indicator text={`${previousIndex + 1}/${reelSize}`} bgColorClass={BG_COLOR_GRAY} />
     </div>
   {/each}
 
@@ -79,10 +77,7 @@
       ]}
     >
       <IconComponent {icon} />
-      <Indicator
-        text={`${nextIndex + 1}/${reelSize}`}
-        bgColorClass="bg-gray-300 dark:bg-gray-500"
-      />
+      <Indicator text={`${nextIndex + 1}/${reelSize}`} bgColorClass={BG_COLOR_GRAY} />
     </div>
   {/each}
 </div>

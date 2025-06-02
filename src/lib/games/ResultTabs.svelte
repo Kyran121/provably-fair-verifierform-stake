@@ -1,6 +1,7 @@
 <script lang="ts">
   import { type Card } from '$lib/types';
   import CardSuitIcon from '$lib/games/cards/CardSuitIcon.svelte';
+  import { BTN_BG_COLOR, BTN_BG_COLOR_SELECTED } from '$lib/constants';
 
   let {
     seed,
@@ -55,10 +56,10 @@
           n === resultIndex
             ? tabSelectedClassModifier
               ? tabSelectedClassModifier(n)
-              : 'bg-blue-950'
+              : BTN_BG_COLOR_SELECTED
             : tabClassModifier
               ? tabClassModifier(n)
-              : 'bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+              : BTN_BG_COLOR
         ]}
         data-resultindex={n}
         onclick={handleResultClick}

@@ -1,5 +1,13 @@
 <script lang="ts">
-  import { SNAKES_MULTIPLIER_SHIFT_MAP } from '$lib/constants';
+  import {
+    BG_COLOR,
+    BG_COLOR_GRAY,
+    BTN_BG_COLOR,
+    BTN_BG_COLOR_GRAY,
+    BTN_BG_COLOR_GRAY_SELECTED,
+    BTN_BG_COLOR_SELECTED,
+    SNAKES_MULTIPLIER_SHIFT_MAP
+  } from '$lib/constants';
   import { debouncer } from '$lib/debounce.svelte';
   import { FloatGenerator } from '$lib/generator/FloatGenerator';
   import type { SnakesDifficulty, SnakesSeed } from '$lib/types';
@@ -10,6 +18,7 @@
   import paylines from '$lib/assets/snakes/snakes-paylines.json';
   import { chunk } from '$lib/util/array/chunk';
   import Loader from '$lib/games/Loader.svelte';
+  import ContentBlock from '../layout/ContentBlock.svelte';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
@@ -46,7 +55,7 @@
       {@const selectedRoll = rolls[resultIndex]}
       {@const multiShiftMap = SNAKES_MULTIPLIER_SHIFT_MAP[seed.difficulty]}
 
-      <div class="mb-7 bg-gray-200 p-2 text-center text-base dark:bg-gray-700">
+      <ContentBlock className="mb-7 p-2 text-center text-base dark:text-white">
         <p class="text-lg">How it works</p>
         <p class="mb-4 text-sm">
           The Snakes game consists of two dice, a payline of 11 slots (each slot being either a
@@ -69,7 +78,7 @@
         <p class="text-sm">Total multiplier = 1x</p>
         <p class="text-sm">Roll #1 = Pawn lands on 1.30x, total multiplier is 1.30x</p>
         <p class="pb-2 text-sm">Roll #2 = Pawn lands on snake, total multiplier forfeited</p>
-      </div>
+      </ContentBlock>
 
       <div class="mt-5 mb-2 text-center">
         <p class="mb-2 text-xl">Step 1</p>
@@ -88,11 +97,8 @@
           bind:resultIndex
           tabNameModifier={(chosen, n) => `turn ${Math.floor(n / 2) + 1}<br>${chosen}`}
           tabSelectedClassModifier={(n) =>
-            Math.floor(n / 2) % 2 === 0 ? 'bg-blue-950' : 'bg-gray-800'}
-          tabClassModifier={(n) =>
-            Math.floor(n / 2) % 2 === 0
-              ? 'bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
-              : 'bg-gray-500 hover:bg-gray-600 focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800'}
+            Math.floor(n / 2) % 2 === 0 ? BTN_BG_COLOR_SELECTED : BTN_BG_COLOR_GRAY_SELECTED}
+          tabClassModifier={(n) => (Math.floor(n / 2) % 2 === 0 ? BTN_BG_COLOR : BTN_BG_COLOR_GRAY)}
         />
 
         <FloatGenerationStep stepNumber={1.1} {resultIndex} {seed} float={selectedRoll.float} />
@@ -111,24 +117,18 @@
         <div class="mt-5 grid grid-cols-5 text-gray-500 italic dark:text-gray-400">
           {#each Object.entries(SNAKES_MULTIPLIER_SHIFT_MAP) as [difficulty, config], n (n)}
             {#each Object.entries(config) as [fromMulti, toMulti], n (n)}
-              <div
-                class={[
-                  difficulty === seed.difficulty ? 'font-bold text-blue-400 dark:text-blue-500' : ''
-                ]}
-              >
+              <div class={[difficulty === seed.difficulty ? 'font-bold ' + BG_COLOR : '']}>
                 {difficulty}<br />{parseFloat(fromMulti).toFixed(2)}x &rarr; {toMulti.toFixed(2)}x
               </div>
             {/each}
           {/each}
         </div>
-        <div
-          class="mt-5 bg-gray-200 p-5 text-left font-mono text-xs text-gray-500 dark:bg-gray-800 dark:text-gray-400"
-        >
+        <ContentBlock className="mt-5 p-5 text-left font-mono text-xs">
           <p class="mb-4">
             payline = [
             {#each payline as multi, n (n)}
               <span
-                class="mr-1 mb-1 inline-block border-1 border-gray-400 bg-gray-300 p-1 dark:border-none dark:bg-gray-700"
+                class="mr-1 mb-1 inline-block border-1 border-gray-400 p-1 dark:border-none {BG_COLOR_GRAY} dark:text-gray-300"
               >
                 ({n + 1}) {multi.toFixed(2)}x
               </span>
@@ -144,8 +144,8 @@
                     class={[
                       'mr-1 mb-1 inline-block border-1 p-1 dark:border-none',
                       multi in multiShiftMap
-                        ? 'border-blue-400 bg-blue-300 dark:bg-blue-500'
-                        : 'border-gray-400 bg-gray-300 dark:bg-gray-700'
+                        ? 'border-purple-400 ' + BG_COLOR
+                        : 'border-gray-400 ' + BG_COLOR_GRAY + ' dark:text-gray-300'
                     ]}
                   >
                     ({nn + 1}) {(multiShiftMap[multi] || multi).toFixed(2)}x
@@ -165,7 +165,7 @@
               ).toFixed(2)}x
             </p>
           {/each}
-        </div>
+        </ContentBlock>
       </div>
     {/if}
   </div>

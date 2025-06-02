@@ -6,6 +6,16 @@
   import ResultTabs from '$lib/games/ResultTabs.svelte';
   import BlueSamuraiBoard from '$lib/games/bluesamurai/BlueSamuraiBoard.svelte';
   import Loader from '$lib/games/Loader.svelte';
+  import {
+    BTN_BG_COLOR,
+    BTN_BG_COLOR_BLUE,
+    BTN_BG_COLOR_BLUE_SELECTED,
+    BTN_BG_COLOR_GREEN,
+    BTN_BG_COLOR_GREEN_SELECTED,
+    BTN_BG_COLOR_RED,
+    BTN_BG_COLOR_RED_SELECTED,
+    BTN_BG_COLOR_SELECTED
+  } from '$lib/constants';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
@@ -48,22 +58,22 @@
 
     <div class="mt-3 mb-1 flex justify-center text-sm sm:text-base">
       <span class="mr-3 inline-flex items-center gap-1">
-        <span class="inline-block h-3 w-3 rounded-full bg-blue-500"></span>
+        <span class="inline-block h-3 w-3 rounded-full {BTN_BG_COLOR}"></span>
         <span>Bonus Spin</span>
       </span>
       <span class="inline-flex items-center gap-1">
-        <span class="inline-block h-3 w-3 rounded-full bg-green-500"></span>
+        <span class="inline-block h-3 w-3 rounded-full {BTN_BG_COLOR_GREEN}"></span>
         <span>Bonus Trigger <span class="text-xs sm:text-sm">(+10 spins)</span></span>
       </span>
     </div>
 
     <div class="mb-5 flex justify-center text-sm sm:text-base">
       <span class="mr-3 inline-flex items-center gap-1">
-        <span class="inline-block h-3 w-3 rounded-full bg-purple-500"></span>
+        <span class="inline-block h-3 w-3 rounded-full {BTN_BG_COLOR_BLUE}"></span>
         <span>Special Round</span>
       </span>
       <span class="inline-flex items-center gap-1">
-        <span class="inline-block h-3 w-3 rounded-full bg-red-500"></span>
+        <span class="inline-block h-3 w-3 rounded-full {BTN_BG_COLOR_RED}"></span>
         <span>Special Round Trigger <span class="text-xs sm:text-sm">(+5 spins)</span></span>
       </span>
     </div>
@@ -74,22 +84,22 @@
       tabNameModifier={(v) => `spin<br>${v}`}
       tabSelectedClassModifier={(n) =>
         allRounds[n].retrigger && allRounds[n].retriggerType === BlueSamuraiRetriggerType.SPECIAL
-          ? 'bg-red-900'
+          ? BTN_BG_COLOR_RED_SELECTED
           : !allRounds[n].retrigger && !allRounds[n].retriggerType && allRounds[n].specialRound
-            ? 'bg-purple-950'
+            ? BTN_BG_COLOR_BLUE_SELECTED
             : allRounds[n].retrigger &&
                 allRounds[n].retriggerType === BlueSamuraiRetriggerType.BONUS
-              ? 'bg-green-900'
-              : 'bg-blue-950'}
+              ? BTN_BG_COLOR_GREEN_SELECTED
+              : BTN_BG_COLOR_SELECTED}
       tabClassModifier={(n) =>
         allRounds[n].retrigger && allRounds[n].retriggerType === BlueSamuraiRetriggerType.SPECIAL
-          ? 'bg-red-600 hover:bg-red-700 focus:ring-red-500 dark:bg-red-700 dark:hover:bg-red-800 dark:focus:ring-red-800'
+          ? BTN_BG_COLOR_RED
           : !allRounds[n].retrigger && !allRounds[n].retriggerType && allRounds[n].specialRound
-            ? 'bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800'
+            ? BTN_BG_COLOR_BLUE
             : allRounds[n].retrigger &&
                 allRounds[n].retriggerType === BlueSamuraiRetriggerType.BONUS
-              ? 'bg-green-600 hover:bg-green-700 focus:ring-green-500 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800'
-              : 'bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'}
+              ? BTN_BG_COLOR_GREEN
+              : BTN_BG_COLOR}
       bind:resultIndex={slotRound}
     />
   {:else}

@@ -4,7 +4,7 @@
   import type { PumpDifficulty, PumpSeed } from '$lib/types';
   import paylines from '$lib/assets/pump-paylines.json';
   import { fisherYates } from '$lib/util/shuffle-impl/fisherYates';
-  import { PUMP_DIFFICULTY_TO_SLICE } from '$lib/constants';
+  import { BG_COLOR, PUMP_DIFFICULTY_TO_SLICE } from '$lib/constants';
   import Loader from '$lib/games/Loader.svelte';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
@@ -51,10 +51,7 @@
   <div class="flex gap-1 overflow-x-scroll pb-5 md:gap-1.5">
     {#each payline as multi, i (i)}
       {#if multi === multiDebounced.value!}
-        <div
-          class="col bg-blue-400 p-2 text-center font-bold dark:bg-blue-500"
-          bind:this={selectedEl}
-        >
+        <div class="col p-2 text-center font-bold {BG_COLOR}" bind:this={selectedEl}>
           <span class="text-xs">({i})</span>
           {multi.toFixed(2)}x
         </div>
