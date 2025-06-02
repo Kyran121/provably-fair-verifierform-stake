@@ -62,7 +62,7 @@
 
       <div class="mt-4 text-center">
         <p class="mb-2 text-xl">Need To Know</p>
-        <ul class="list-disc text-left text-sm text-gray-600 dark:text-white">
+        <ul class="list-disc p-5 text-left text-sm text-gray-600 dark:text-white">
           <li class="mb-2">
             A bonus game is triggered when 3 or more scatter symbols appear on the inner three
             reels.
