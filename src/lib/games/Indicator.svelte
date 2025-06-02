@@ -19,7 +19,7 @@
 
 <div
   class={[
-    'absolute right-0 flex h-5 items-center justify-center',
+    'absolute right-0 z-1 flex h-5 items-center justify-center opacity-80',
     position === IndicatorPosition.BOTTOM_RIGHT ? 'right-0 bottom-0' : 'top-0 left-0',
     textClass ?? 'text-center text-sm',
     bgColorClass ?? BG_COLOR,

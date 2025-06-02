@@ -129,21 +129,21 @@
             <tr class="border-b border-gray-300 dark:border-gray-700">
               <th
                 scope="row"
-                class="px-6 py-4 font-medium whitespace-nowrap text-gray-900 dark:text-white"
+                class="px-4 py-4 font-medium whitespace-nowrap text-gray-900 sm:px-6 dark:text-white"
                 >hex</th
               >
               {#each hexes! as hex}
-                <td class="px-6 py-4 font-mono">{hex}</td>
+                <td class="px-4 py-4 font-mono sm:px-6">{hex}</td>
               {/each}
             </tr>
             <tr class="border-none">
               <th
                 scope="row"
-                class="px-6 py-4 font-medium whitespace-nowrap text-gray-900 dark:text-white"
+                class="px-4 py-4 font-medium whitespace-nowrap text-gray-900 sm:px-6 dark:text-white"
                 >byte</th
               >
               {#each bytes! as byte}
-                <td class="px-6 py-4 font-mono">{byte}</td>
+                <td class="px-4 py-4 font-mono sm:px-6">{byte}</td>
               {/each}
             </tr>
           </tbody>

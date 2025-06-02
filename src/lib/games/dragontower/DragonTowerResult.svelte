@@ -72,10 +72,12 @@
               <div
                 class={['relative mb-1 flex h-10 justify-center', isEgg ? BG_COLOR_GRAY : BG_COLOR]}
               >
-                <Indicator
-                  text={i}
-                  bgColorClass={isEgg ? 'bg-gray-500 dark:bg-gray-700 text-white' : ''}
-                />
+                {#if isEgg}
+                  <Indicator
+                    text={i}
+                    bgColorClass={isEgg ? 'bg-gray-500 dark:bg-gray-700 text-white' : ''}
+                  />
+                {/if}
 
                 <img
                   class="relative scale-80 object-scale-down"
