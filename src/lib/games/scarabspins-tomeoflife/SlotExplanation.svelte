@@ -57,7 +57,7 @@
   {@const floats = floatsDebounced.value!}
   {@const float = floats[resultIndex]}
 
-  <ContentBlock className="mt-5 mb-7 p-5 text-center text-base dark:text-white">
+  <ContentBlock className="mt-5 mb-7 p-5 text-center text-base dark:text-white text-black">
     <p class="text-lg">How it works</p>
     <p class="mb-4 text-sm">
       Slot features 5 reels of symbols. The first 4 reels each contain 30 symbols, while the final
