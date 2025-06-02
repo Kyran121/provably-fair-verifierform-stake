@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BG_COLOR, BG_COLOR_GRAY, BG_COLOR_RED } from '$lib/constants';
+  import { BG_COLOR, BG_COLOR_GRAY, BG_COLOR_GREEN, BG_COLOR_RED } from '$lib/constants';
 
   const { chosenNumber }: { chosenNumber: number } = $props();
 
@@ -22,9 +22,7 @@
     <div
       class={[
         'flex h-[calc(3*2.5rem+2*0.25rem)] w-[1.5rem] items-center justify-center md:w-[2.5rem]',
-        chosenNumber === 0
-          ? 'bg-blue-400 font-bold dark:bg-blue-500'
-          : 'bg-green-600 dark:bg-green-800'
+        chosenNumber === 0 ? BG_COLOR : BG_COLOR_GREEN
       ]}
     >
       0

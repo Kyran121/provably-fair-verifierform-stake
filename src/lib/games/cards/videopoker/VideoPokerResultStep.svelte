@@ -43,7 +43,7 @@
           class={[
             'mr-1 mb-1 inline-block border-1 p-1 dark:border-none',
             n === chosenIndex
-              ? 'border-gray-400 bg-blue-300 dark:bg-blue-500'
+              ? 'border-gray-400 bg-purple-300 dark:bg-purple-500'
               : 'border-gray-400 bg-gray-300 dark:bg-gray-700'
           ]}
           >({n}) {value}

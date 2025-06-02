@@ -4,6 +4,7 @@
   import type { Seed } from '$lib/types';
   import RouletteBoard from '$lib/games/roulette/RouletteBoard.svelte';
   import Loader from '$lib/games/Loader.svelte';
+  import { TEXT_HIGHLIGHT_COLOR } from '$lib/constants';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
@@ -29,7 +30,8 @@
   <Loader />
 {:else}
   <p data-testid="roulette-result" class="text-center text-base">
-    roulette ball landed on <span class="text-xl text-blue-500">{chosenNumberDebounced.value!}</span
+    roulette ball landed on <span class="text-xl {TEXT_HIGHLIGHT_COLOR}"
+      >{chosenNumberDebounced.value!}</span
     >
   </p>
   <RouletteBoard chosenNumber={chosenNumberDebounced.value!} />

@@ -35,7 +35,7 @@
   <Loader />
 {:else}
   <p data-testid="mines-result" class="hidden text-center text-base">
-    mines are:<br /><span class="text-xl text-blue-500"
+    mines are:<br /><span class="text-xl text-purple-500"
       >{chosenMinesDebounced.value!.join(', ')}</span
     >
   </p>

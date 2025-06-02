@@ -45,7 +45,7 @@
   <Loader />
 {:else}
   <p data-testid="pump-result" class="hidden text-center text-base">
-    popped at <span class="text-xl text-blue-500">{multiDebounced.value!.toFixed(2)}x</span>
+    popped at <span class="text-xl text-purple-500">{multiDebounced.value!.toFixed(2)}x</span>
   </p>
 
   <div class="flex gap-1 overflow-x-scroll pb-5 md:gap-1.5">
