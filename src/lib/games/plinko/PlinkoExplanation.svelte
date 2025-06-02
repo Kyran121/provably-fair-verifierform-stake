@@ -92,7 +92,7 @@
           payline = [
           {#each payoutExplanation.payline as multi, n (n)}
             <span
-              class="mr-1 mb-1 inline-block border-1 border-gray-400 p-1 dark:border-none {BG_COLOR_GRAY} dark:text-gray-300"
+              class="mr-1 mb-1 inline-block p-1 dark:border-none {BG_COLOR_GRAY} text-white dark:text-gray-300"
             >
               {multi}x
             </span>
@@ -103,7 +103,7 @@
           directions = [
           {#each payoutExplanation.directions as { chosen }, n (n)}
             <span
-              class="mr-1 mb-1 inline-block border-1 border-gray-400 p-1 dark:border-none {BG_COLOR_GRAY} dark:text-gray-300"
+              class="mr-1 mb-1 inline-block p-1 dark:border-none {BG_COLOR_GRAY} text-white dark:text-gray-300"
             >
               {chosen}
             </span>
@@ -112,7 +112,7 @@
         </p>
         <p class="mt-4">
           firstDirection = <span
-            class="mr-1 mb-1 inline-block border-1 border-gray-400 p-1 dark:border-none {BG_COLOR_GRAY} dark:text-gray-300"
+            class="mr-1 mb-1 inline-block p-1 dark:border-none {BG_COLOR_GRAY} text-white dark:text-gray-300"
             >{firstDirection.chosen}</span
           >
         </p>
@@ -122,10 +122,10 @@
           {#each payoutExplanation.directions as { chosen }, n (n)}
             <span
               class={[
-                'mr-1 mb-1 inline-block border-1  p-1 dark:border-none',
+                'mr-1 mb-1 inline-block p-1 dark:border-none',
                 chosen !== firstDirection.chosen
                   ? BG_COLOR
-                  : 'border-gray-400 ' + BG_COLOR_GRAY + ' dark:text-gray-300'
+                  : BG_COLOR_GRAY + ' text-white dark:text-gray-300'
               ]}
             >
               {chosen}
@@ -138,10 +138,10 @@
           {#each oppositeDirectionEntries as { chosen }, n (n)}
             <span
               class={[
-                'mr-1 mb-1 inline-block border-1  p-1 dark:border-none',
+                'mr-1 mb-1 inline-block p-1 dark:border-none',
                 chosen !== firstDirection.chosen
                   ? BG_COLOR
-                  : 'border-gray-400' + BG_COLOR_GRAY + ' dark:text-gray-300'
+                  : BG_COLOR_GRAY + ' text-white dark:text-gray-300'
               ]}
             >
               {chosen}

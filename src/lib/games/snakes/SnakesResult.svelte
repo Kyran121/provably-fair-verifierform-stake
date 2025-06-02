@@ -87,7 +87,7 @@
         <div
           class={[
             'flex h-15 w-full items-center justify-center',
-            result === 0 ? BG_COLOR : BG_COLOR_GRAY
+            result === 0 ? BG_COLOR : 'bg-gray-300 dark:bg-gray-600'
           ]}
         >
           {#if result === 0}

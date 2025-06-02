@@ -41,7 +41,10 @@
       ]}
     >
       <IconComponent {icon} />
-      <Indicator text={`${previousIndex + 1}/${reelSize}`} bgColorClass={BG_COLOR_GRAY} />
+      <Indicator
+        text={`${previousIndex + 1}/${reelSize}`}
+        bgColorClass="bg-gray-300 dark:bg-gray-600"
+      />
     </div>
   {/each}
 
@@ -77,7 +80,10 @@
       ]}
     >
       <IconComponent {icon} />
-      <Indicator text={`${nextIndex + 1}/${reelSize}`} bgColorClass={BG_COLOR_GRAY} />
+      <Indicator
+        text={`${nextIndex + 1}/${reelSize}`}
+        bgColorClass="bg-gray-300 dark:bg-gray-600"
+      />
     </div>
   {/each}
 </div>

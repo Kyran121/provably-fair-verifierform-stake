@@ -42,7 +42,9 @@
 
   <div class="mb-1 grid grid-cols-5 gap-1 sm:grid-cols-10 md:gap-1.5 dark:text-white">
     {#each flips as flip, i (i)}
-      <div class={['text-center', flip === CoinFlip.TAIL ? BG_COLOR : BG_COLOR_GRAY]}>
+      <div
+        class={['text-center', flip === CoinFlip.TAIL ? BG_COLOR : 'bg-gray-300 dark:bg-gray-600']}
+      >
         ({i + 1})<br />{flip}
       </div>
     {/each}

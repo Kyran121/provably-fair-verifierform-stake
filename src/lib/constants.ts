@@ -18,7 +18,7 @@ export const BTN_BG_COLOR_SELECTED = 'bg-purple-900';
 export const BG_COLOR_GRAY = 'dark:bg-gray-600 bg-gray-400';
 export const BTN_BG_COLOR_GRAY =
   'dark:bg-gray-600 dark:hover:bg-gray-700 bg-gray-400 dark:bg-gray-500';
-export const BTN_BG_COLOR_GRAY_SELECTED = 'bg-gray-800';
+export const BTN_BG_COLOR_GRAY_SELECTED = 'bg-gray-700 dark:bg-gray-800';
 
 //green
 export const BG_COLOR_GREEN = 'bg-green-600';

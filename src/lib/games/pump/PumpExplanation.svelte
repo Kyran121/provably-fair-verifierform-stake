@@ -60,7 +60,7 @@
           {@html Array.from({ length: 25 })
             .map(
               (_v, i) =>
-                '<span class="mr-1 mb-1 inline-block border-1 bg-gray-300 p-1 dark:border-none dark:text-gray-300 ' +
+                '<span class="mr-1 mb-1 inline-block bg-gray-300 p-1 text-white dark:text-gray-300 ' +
                 BG_COLOR_GRAY +
                 '">' +
                 i +
@@ -120,7 +120,7 @@
             .map((item) => item.chosen)
             .map(
               (v) =>
-                '<span class="mr-1 mb-1 inline-block border-1 border-gray-400 p-1 dark:border-none dark:text-gray-300 ' +
+                '<span class="mr-1 mb-1 inline-block border-1 border-gray-400 p-1 dark:border-none text-white dark:text-gray-300 ' +
                 BG_COLOR_GRAY +
                 '">' +
                 v +

@@ -40,7 +40,10 @@
   <div class="grid auto-cols-auto grid-flow-col gap-2 pb-1">
     {#each payline as multi, n (n)}
       <div
-        class={['col p-2 text-center', multi === payoutDebounced.value! ? BG_COLOR : BG_COLOR_GRAY]}
+        class={[
+          'col p-2 text-center',
+          multi === payoutDebounced.value! ? BG_COLOR : 'bg-gray-300 dark:bg-gray-600'
+        ]}
       >
         {multi}x
       </div>

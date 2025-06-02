@@ -60,7 +60,9 @@
         <span
           class={[
             'mr-1 mb-1 inline-block border-1 p-1 dark:border-none',
-            n === chosenIndex ? BG_COLOR : 'border-gray-400 bg-gray-300 dark:bg-gray-700'
+            n === chosenIndex
+              ? 'bg-purple-300 dark:bg-purple-500'
+              : 'border-gray-400 bg-gray-300 dark:bg-gray-700'
           ]}
           >({n}) {value}
           <span class="hidden dark:inline"><CardSuitIcon {suit} small={true} /></span><span

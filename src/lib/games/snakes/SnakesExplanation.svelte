@@ -55,7 +55,7 @@
       {@const selectedRoll = rolls[resultIndex]}
       {@const multiShiftMap = SNAKES_MULTIPLIER_SHIFT_MAP[seed.difficulty]}
 
-      <ContentBlock className="mb-7 p-2 text-center text-base dark:text-white">
+      <ContentBlock className="mb-7 p-2 text-center text-base text-black dark:text-white">
         <p class="text-lg">How it works</p>
         <p class="mb-4 text-sm">
           The Snakes game consists of two dice, a payline of 11 slots (each slot being either a
@@ -128,7 +128,7 @@
             payline = [
             {#each payline as multi, n (n)}
               <span
-                class="mr-1 mb-1 inline-block border-1 border-gray-400 p-1 dark:border-none {BG_COLOR_GRAY} dark:text-gray-300"
+                class="mr-1 mb-1 inline-block border-1 border-gray-400 p-1 dark:border-none {BG_COLOR_GRAY} text-white dark:text-gray-300"
               >
                 ({n + 1}) {multi.toFixed(2)}x
               </span>
@@ -145,7 +145,7 @@
                       'mr-1 mb-1 inline-block border-1 p-1 dark:border-none',
                       multi in multiShiftMap
                         ? 'border-purple-400 ' + BG_COLOR
-                        : 'border-gray-400 ' + BG_COLOR_GRAY + ' dark:text-gray-300'
+                        : 'border-gray-400 ' + BG_COLOR_GRAY + ' text-white dark:text-gray-300'
                     ]}
                   >
                     ({nn + 1}) {(multiShiftMap[multi] || multi).toFixed(2)}x

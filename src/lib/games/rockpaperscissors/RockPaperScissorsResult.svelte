@@ -45,7 +45,7 @@
   <div class="mb-5">
     <div class="grid grid-cols-6 gap-1 md:grid-cols-7 md:gap-1.5">
       {#each results as result, i (i)}
-        <div class="col text-center {BG_COLOR_GRAY}">
+        <div class="col bg-gray-300 text-center dark:bg-gray-600">
           <span class="text-xs">({i + 1})</span><br />
           {result}
         </div>

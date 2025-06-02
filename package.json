@@ -57,6 +57,7 @@
     "immutable": "^5.1.2",
     "js-big-decimal": "^2.2.0",
     "provably-fair-verifierform-lib": "link:../provably-fair-verifierform-lib",
+    "tailwind-merge": "^3.3.0",
     "zod": "^3.24.4"
   }
 }

@@ -39,7 +39,9 @@
       <div
         class={[
           'col p-2 text-center',
-          multi === payoutDebounced.value! ? 'font-bold ' + BG_COLOR : BG_COLOR_GRAY
+          multi === payoutDebounced.value!
+            ? 'font-bold ' + BG_COLOR
+            : 'bg-gray-300 dark:bg-gray-600'
         ]}
       >
         {multi}x
