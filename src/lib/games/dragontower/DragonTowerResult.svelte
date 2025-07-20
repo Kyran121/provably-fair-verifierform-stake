@@ -73,10 +73,7 @@
                 class={['relative mb-1 flex h-10 justify-center', isEgg ? BG_COLOR_GRAY : BG_COLOR]}
               >
                 {#if isEgg}
-                  <Indicator
-                    text={i}
-                    bgColorClass={isEgg ? 'bg-gray-500 dark:bg-gray-700 text-white' : ''}
-                  />
+                  <Indicator text={i} bgColorClass="bg-gray-500 dark:bg-gray-700 text-white" />
                 {/if}
 
                 <img
