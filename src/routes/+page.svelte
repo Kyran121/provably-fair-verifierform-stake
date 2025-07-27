@@ -46,7 +46,7 @@
     pump: pumpGameDefinition,
     rockpaperscissors: rockPaperScissorsGameDefinition,
     roulette: rouletteGameDefinition,
-    scarabsspins: scarabSpinsGameDefinition,
+    scarabspins: scarabSpinsGameDefinition,
     slide: slideGameDefinition,
     snakes: snakesGameDefinition,
     tomeoflife: tomeOfLifeGameDefinition,
