@@ -34,7 +34,14 @@
   const multis = $derived(paylines[seed.difficulty]);
 
   const colorHexList = ['#0e202c', '#213843', '#fcc101', '#fb6120', '#fb053f', '#24e700'];
-  const colorClasses = colorHexList.map((color) => `bg-[${color}]`);
+  const colorClasses = [
+    'bg-[#0e202c]',
+    'bg-[#213843]',
+    'bg-[#fcc101]',
+    'bg-[#fb6120]',
+    'bg-[#fb053f]',
+    'bg-[#24e700]'
+  ];
 
   const DIFFICULTY_TO_DARTBOARD: Record<DartsDifficulty, Component<{ ref?: SVGElement }>> = {
     easy: dartboardEasy,
