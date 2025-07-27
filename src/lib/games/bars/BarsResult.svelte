@@ -29,8 +29,9 @@
         for (let i = 0; i < 30; i++) {
           const float = floatGenerator.next().value;
           const payline = paylines[seed.difficulty];
-          const multi = getPayout(payline, float) / seed.barCount;
-          multis.push(multi);
+          const multiNotDivided = getPayout(payline, float);
+          const multi = multiNotDivided / seed.barCount;
+          multis.push({ multi, multiNotDivided });
         }
         return multis;
       },
@@ -47,11 +48,11 @@
   <div class="mt-5 mb-5 rounded-lg dark:bg-gray-900 dark:text-white">
     <!-- Number Grid -->
     <div class="grid grid-cols-5 gap-1 md:gap-1.5">
-      {#each result as multi, n (n)}
+      {#each result as { multi, multiNotDivided }, n (n)}
         <div
           class={[
             'flex aspect-square h-10 w-full items-center justify-center',
-            getColorClass(multi)
+            getColorClass(multiNotDivided)
           ]}
         >
           {multi.toFixed(2)}x
