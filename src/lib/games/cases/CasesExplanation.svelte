@@ -4,8 +4,9 @@
   import FloatGenerationStep from '$lib/games/FloatGenerationStep.svelte';
   import { debouncer } from '$lib/debounce.svelte';
   import CasesResultStep from '$lib/games/cases/CasesResultStep.svelte';
-  import { getPayout } from '$lib/util/cases';
   import Loader from '$lib/games/Loader.svelte';
+  import paylines from '$lib/assets/cases-paylines.json';
+  import { getPayout } from '$lib/util/payout';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
@@ -27,7 +28,8 @@
       (seed) => {
         const floatGenerator = FloatGenerator(seed);
         const float = floatGenerator.next().value;
-        const payout = getPayout(seed, float);
+        const payline = paylines[seed.difficulty];
+        const payout = getPayout(payline, float);
         return { float, payout } satisfies Result;
       },
       350

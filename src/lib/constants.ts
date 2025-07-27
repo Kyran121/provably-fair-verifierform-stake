@@ -21,7 +21,7 @@ export const BTN_BG_COLOR_GRAY =
 export const BTN_BG_COLOR_GRAY_SELECTED = 'bg-gray-700 dark:bg-gray-800';
 
 //green
-export const BG_COLOR_GREEN = 'bg-green-600';
+export const BG_COLOR_GREEN = 'bg-green-500 dark:bg-green-600';
 export const BTN_BG_COLOR_GREEN = 'bg-green-600 hover:bg-green-700';
 export const BTN_BG_COLOR_GREEN_SELECTED = 'bg-green-900';
 
@@ -35,6 +35,9 @@ export const BTN_BG_COLOR_BLUE_SELECTED = 'bg-blue-950';
 export const BG_COLOR_RED = 'bg-red-600 dark:bg-red-700 dark:text-white';
 export const BTN_BG_COLOR_RED = 'bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800';
 export const BTN_BG_COLOR_RED_SELECTED = 'bg-red-900';
+
+//gold
+export const BG_COLOR_GOLD = 'bg-[#FFD700]';
 
 export const CRASH_SEED = '0000000000000000001b34dc6a1e86083f95500b096231436e9b25cbdd0075c4';
 export const SLIDE_SEEDS = [

@@ -12,7 +12,13 @@
   const HEX_CHARS_IN_HMAC = 64;
   const HEX_CHARS_FOR_FLOAT = 8;
 
-  const { stepNumber, resultIndex, seed, float }: FloatExplanationStepProps = $props();
+  const {
+    stepNumber,
+    resultIndex,
+    seed,
+    float,
+    hideStepNumber = false
+  }: FloatExplanationStepProps = $props();
 
   const round = $derived(Math.floor(resultIndex / HEX_CHARS_FOR_FLOAT));
   const cursor = $derived((resultIndex * HEX_CHARS_FOR_FLOAT) % HEX_CHARS_IN_HMAC);
@@ -32,7 +38,9 @@
 {#key cursor}
   <div transition:fade={{ duration: 200 }}>
     <div class="text-center">
-      <p class="mb-2 text-xl">Step {stepNumber}</p>
+      {#if !hideStepNumber}
+        <p class="mb-2 text-xl">Step {stepNumber}</p>
+      {/if}
       <p class="text-base">Extract float based on client seed, server seed, and nonce</p>
       <p class="mb-7 text-sm text-gray-500 dark:text-gray-400">
         Refer to scripts on the <HighlightLink href="https://stake.com/provably-fair/implementation"

@@ -93,6 +93,17 @@ export enum CoinFlip {
   TAIL = 'tails'
 }
 
+export enum DartsDifficulty {
+  EASY = 'easy',
+  MEDIUM = 'medium',
+  HARD = 'hard',
+  EXPERT = 'expert'
+}
+
+export interface DartsSeed extends Seed {
+  difficulty: DartsDifficulty;
+}
+
 export enum CasesDifficulty {
   EASY = 'easy',
   MEDIUM = 'medium',
@@ -102,6 +113,18 @@ export enum CasesDifficulty {
 
 export interface CasesSeed extends Seed {
   difficulty: CasesDifficulty;
+}
+
+export enum BarsDifficulty {
+  EASY = 'easy',
+  MEDIUM = 'medium',
+  HARD = 'hard',
+  EXPERT = 'expert'
+}
+
+export interface BarsSeed extends Seed {
+  difficulty: BarsDifficulty;
+  barCount: number;
 }
 
 export enum SnakesDifficulty {
@@ -175,6 +198,7 @@ export interface FloatExplanationStepProps {
   resultIndex: number;
   float: number;
   seed: Seed;
+  hideStepNumber?: boolean;
 }
 
 export type Item<T> = Omit<FisherYatesItem<T>, 'chosenIndexes'>;
@@ -222,3 +246,5 @@ export enum RockPaperScissorsOutcome {
   PAPER = 'paper',
   SCISSORS = 'scissors'
 }
+
+export type RGB = [number, number, number];

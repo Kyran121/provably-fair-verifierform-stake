@@ -1,10 +1,12 @@
 <script lang="ts">
   import { VerifierForm, type GameDefinition } from 'provably-fair-verifierform-lib';
   import { gameDefinition as baccaratGameDefinition } from '$lib/games/cards/baccarat';
+  import { gameDefinition as barsGameDefinition } from '$lib/games/bars';
   import { gameDefinition as blackjackGameDefinition } from '$lib/games/cards/blackjack';
   import { gameDefinition as blueSamuraiGameDefinition } from '$lib/games/bluesamurai';
   import { gameDefinition as casesGameDefinition } from '$lib/games/cases';
   import { gameDefinition as crashGameDefinition } from '$lib/games/multiplayer/crash';
+  import { gameDefinition as dartsGameDefinition } from '$lib/games/darts';
   import { gameDefinition as diamondsGameDefinition } from '$lib/games/diamonds';
   import { gameDefinition as diceGameDefinition } from '$lib/games/dice';
   import { gameDefinition as dragonTowerGameDefinition } from '$lib/games/dragontower';
@@ -26,10 +28,12 @@
 
   const games: Record<string, GameDefinition> = {
     baccarat: baccaratGameDefinition,
+    bars: barsGameDefinition,
     blackjack: blackjackGameDefinition,
     bluesamurai: blueSamuraiGameDefinition,
     cases: casesGameDefinition,
     crash: crashGameDefinition,
+    darts: dartsGameDefinition,
     diamonds: diamondsGameDefinition,
     dice: diceGameDefinition,
     dragontower: dragonTowerGameDefinition,

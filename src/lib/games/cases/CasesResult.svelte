@@ -2,9 +2,10 @@
   import { FloatGenerator } from '$lib/generator/FloatGenerator';
   import { debouncer } from '$lib/debounce.svelte';
   import type { CasesDifficulty, CasesSeed } from '$lib/types';
-  import { getPayout } from '$lib/util/cases';
   import Loader from '$lib/games/Loader.svelte';
   import { TEXT_HIGHLIGHT_COLOR } from '$lib/constants';
+  import paylines from '$lib/assets/cases-paylines.json';
+  import { getPayout } from '$lib/util/payout';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
@@ -21,7 +22,8 @@
       (seed) => {
         const floatGenerator = FloatGenerator(seed);
         const float = floatGenerator.next().value;
-        return getPayout(seed, float);
+        const payline = paylines[seed.difficulty];
+        return getPayout(payline, float);
       },
       350
     )
