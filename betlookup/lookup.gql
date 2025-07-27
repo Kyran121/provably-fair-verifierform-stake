@@ -1,0 +1,68 @@
+query BetLookup($iid: String) {
+  bet(iid: $iid) {
+    bet {
+      ... on MultiplayerCrashBet {
+        crashGame: game {
+          seed {
+            seed
+          }
+          hash {
+            hash
+          }
+        }
+      }
+      ... on MultiplayerSlideBet {
+        slideGame: game {
+          seed {
+            seed
+          }
+          hash {
+            hash
+          }
+        }
+      }
+      ... on CasinoBet {
+        game
+        clientSeed {
+          seed
+        }
+        serverSeed {
+          seed
+        }
+        nonce
+        state {
+          ... on CasinoGameCases {
+            casesDifficulty: difficulty
+          }
+          ... on CasinoGamePump {
+            pumpDifficulty: difficulty
+          }
+          ... on CasinoGameMines {
+            minesCount
+          }
+          ... on CasinoGameDragonTower {
+            dragonTowerDifficulty: difficulty
+          }
+          ... on CasinoGameDarts {
+            dartsDifficulty: difficulty
+          }
+          ... on CasinoGameBars {
+            barsDifficulty: difficulty
+            barsTiles: tiles
+          }
+          ... on CasinoGamePlinko {
+            plinkoRisk: risk
+            plinkoRows: rows
+          }
+          ... on CasinoGameSnakes {
+            snakesDifficulty: difficulty
+          }
+          ... on CasinoGameWheel {
+            wheelRisk: risk
+            wheelSegments: segments
+          }
+        }
+      }
+    }
+  }
+}

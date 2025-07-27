@@ -27,6 +27,10 @@
   import { gameDefinition as tomeOfLifeGameDefinition } from '$lib/games/scarabspins-tomeoflife/tomeoflife';
   import { gameDefinition as videoPokerGameDefinition } from '$lib/games/cards/videopoker';
   import { gameDefinition as wheelGameDefinition } from '$lib/games/wheel';
+  import BetLookup from '$lib/games/BetLookup.svelte';
+  import { TEXT_HIGHLIGHT_COLOR } from '$lib/constants';
+
+  let betLookupVisible = $state(false);
 
   const games: Record<string, GameDefinition> = {
     baccarat: baccaratGameDefinition,
@@ -59,4 +63,15 @@
   };
 </script>
 
+<div class="relative mx-auto max-w-xl">
+  <button
+    class="absolute top-3 right-5 {TEXT_HIGHLIGHT_COLOR} hover:underline"
+    onclick={() => (betLookupVisible = true)}>Bet Lookup?</button
+  >
+</div>
+
 <VerifierForm {games} />
+
+{#if betLookupVisible}
+  <BetLookup onClose={() => (betLookupVisible = false)} />
+{/if}
