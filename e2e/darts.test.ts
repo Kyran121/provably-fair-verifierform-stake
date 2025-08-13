@@ -19,7 +19,7 @@ const hardTestCases = getTestCases('hard');
 const expertTestCases = getTestCases('expert');
 
 test('dart test cases', async ({ page }) => {
-  await page.goto('/?game=darts');
+  await page.goto('/?game=darts&delay=0');
 
   page.on('console', (msg) => {
     console.log(`[browser console] ${msg.type()}: ${msg.text()}`);
