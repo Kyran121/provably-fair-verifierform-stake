@@ -1,0 +1,2002 @@
+[
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 0,
+    "difficulty": "easy",
+    "rotation": 0.32,
+    "distance": 0.891,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 1,
+    "difficulty": "easy",
+    "rotation": 0.185,
+    "distance": 0.096,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 2,
+    "difficulty": "easy",
+    "rotation": 0.295,
+    "distance": 0.316,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 3,
+    "difficulty": "easy",
+    "rotation": 0.633,
+    "distance": 0.584,
+    "pixelColor": "#fb053f",
+    "multiplier": 2.7
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 4,
+    "difficulty": "easy",
+    "rotation": 0.146,
+    "distance": 0.165,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 5,
+    "difficulty": "easy",
+    "rotation": 0.934,
+    "distance": 0.85,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 6,
+    "difficulty": "easy",
+    "rotation": 0.659,
+    "distance": 0.844,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 7,
+    "difficulty": "easy",
+    "rotation": 0.625,
+    "distance": 0.474,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 8,
+    "difficulty": "easy",
+    "rotation": 0.785,
+    "distance": 0.689,
+    "pixelColor": "#fcc101",
+    "multiplier": 1.2
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 9,
+    "difficulty": "easy",
+    "rotation": 0.73,
+    "distance": 0.796,
+    "pixelColor": "#fb6120",
+    "multiplier": 1.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 10,
+    "difficulty": "easy",
+    "rotation": 0.393,
+    "distance": 0.31,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 11,
+    "difficulty": "easy",
+    "rotation": 0.613,
+    "distance": 0.515,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 12,
+    "difficulty": "easy",
+    "rotation": 0.746,
+    "distance": 0.733,
+    "pixelColor": "#fb6120",
+    "multiplier": 1.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 13,
+    "difficulty": "easy",
+    "rotation": 0.774,
+    "distance": 0.818,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 14,
+    "difficulty": "easy",
+    "rotation": 0.649,
+    "distance": 0.698,
+    "pixelColor": "#fb053f",
+    "multiplier": 2.7
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 15,
+    "difficulty": "easy",
+    "rotation": 0.881,
+    "distance": 0.105,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 16,
+    "difficulty": "easy",
+    "rotation": 0.588,
+    "distance": 0.774,
+    "pixelColor": "#fcc101",
+    "multiplier": 1.2
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 17,
+    "difficulty": "easy",
+    "rotation": 0.914,
+    "distance": 0.971,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 18,
+    "difficulty": "easy",
+    "rotation": 0.674,
+    "distance": 0.104,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 19,
+    "difficulty": "easy",
+    "rotation": 0.262,
+    "distance": 0.957,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 20,
+    "difficulty": "easy",
+    "rotation": 0.528,
+    "distance": 0.986,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 21,
+    "difficulty": "easy",
+    "rotation": 0.736,
+    "distance": 0.068,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 22,
+    "difficulty": "easy",
+    "rotation": 0.172,
+    "distance": 0.679,
+    "pixelColor": "#fb053f",
+    "multiplier": 2.7
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 23,
+    "difficulty": "easy",
+    "rotation": 0.755,
+    "distance": 0.711,
+    "pixelColor": "#fb6120",
+    "multiplier": 1.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 24,
+    "difficulty": "easy",
+    "rotation": 0.37,
+    "distance": 0.332,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 25,
+    "difficulty": "easy",
+    "rotation": 0.69,
+    "distance": 0.639,
+    "pixelColor": "#fcc101",
+    "multiplier": 1.2
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 26,
+    "difficulty": "easy",
+    "rotation": 0.645,
+    "distance": 0.74,
+    "pixelColor": "#fb053f",
+    "multiplier": 2.7
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 27,
+    "difficulty": "easy",
+    "rotation": 0.459,
+    "distance": 0.598,
+    "pixelColor": "#fcc101",
+    "multiplier": 1.2
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 28,
+    "difficulty": "easy",
+    "rotation": 0.99,
+    "distance": 0.983,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 29,
+    "difficulty": "easy",
+    "rotation": 0.268,
+    "distance": 0.098,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 30,
+    "difficulty": "easy",
+    "rotation": 0.865,
+    "distance": 0.562,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 31,
+    "difficulty": "easy",
+    "rotation": 0.257,
+    "distance": 0.259,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 32,
+    "difficulty": "easy",
+    "rotation": 0.349,
+    "distance": 0.572,
+    "pixelColor": "#fcc101",
+    "multiplier": 1.2
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 33,
+    "difficulty": "easy",
+    "rotation": 0.369,
+    "distance": 0.546,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 34,
+    "difficulty": "easy",
+    "rotation": 0.072,
+    "distance": 0.005,
+    "pixelColor": "#24e700",
+    "multiplier": 8.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 35,
+    "difficulty": "easy",
+    "rotation": 0.818,
+    "distance": 0.12,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 36,
+    "difficulty": "easy",
+    "rotation": 0.824,
+    "distance": 0.614,
+    "pixelColor": "#fcc101",
+    "multiplier": 1.2
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 37,
+    "difficulty": "easy",
+    "rotation": 0.185,
+    "distance": 0.42,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 38,
+    "difficulty": "easy",
+    "rotation": 0.005,
+    "distance": 0.4,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 39,
+    "difficulty": "easy",
+    "rotation": 0.104,
+    "distance": 0.506,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 40,
+    "difficulty": "easy",
+    "rotation": 0.685,
+    "distance": 0.543,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 41,
+    "difficulty": "easy",
+    "rotation": 0.859,
+    "distance": 0.465,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 42,
+    "difficulty": "easy",
+    "rotation": 0.165,
+    "distance": 0.299,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 43,
+    "difficulty": "easy",
+    "rotation": 0.622,
+    "distance": 0.014,
+    "pixelColor": "#24e700",
+    "multiplier": 8.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 44,
+    "difficulty": "easy",
+    "rotation": 0.266,
+    "distance": 0.539,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 45,
+    "difficulty": "easy",
+    "rotation": 0.439,
+    "distance": 0.416,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 46,
+    "difficulty": "easy",
+    "rotation": 0.617,
+    "distance": 0.805,
+    "pixelColor": "#fb053f",
+    "multiplier": 2.7
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 47,
+    "difficulty": "easy",
+    "rotation": 0.403,
+    "distance": 0.779,
+    "pixelColor": "#fb053f",
+    "multiplier": 2.7
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 48,
+    "difficulty": "easy",
+    "rotation": 0.234,
+    "distance": 0.354,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 49,
+    "difficulty": "easy",
+    "rotation": 0.932,
+    "distance": 0.408,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 50,
+    "difficulty": "easy",
+    "rotation": 0.577,
+    "distance": 0.23,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 51,
+    "difficulty": "easy",
+    "rotation": 0.521,
+    "distance": 0.805,
+    "pixelColor": "#fb6120",
+    "multiplier": 1.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 52,
+    "difficulty": "easy",
+    "rotation": 0.216,
+    "distance": 0.013,
+    "pixelColor": "#24e700",
+    "multiplier": 8.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 53,
+    "difficulty": "easy",
+    "rotation": 0.779,
+    "distance": 0.427,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 54,
+    "difficulty": "easy",
+    "rotation": 0.447,
+    "distance": 0.081,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 55,
+    "difficulty": "easy",
+    "rotation": 0.498,
+    "distance": 0.269,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 56,
+    "difficulty": "easy",
+    "rotation": 0.579,
+    "distance": 0.88,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 57,
+    "difficulty": "easy",
+    "rotation": 0.765,
+    "distance": 0.137,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 58,
+    "difficulty": "easy",
+    "rotation": 0.796,
+    "distance": 0.319,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 59,
+    "difficulty": "easy",
+    "rotation": 0.083,
+    "distance": 0.402,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 60,
+    "difficulty": "easy",
+    "rotation": 0.318,
+    "distance": 0.684,
+    "pixelColor": "#fb6120",
+    "multiplier": 1.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 61,
+    "difficulty": "easy",
+    "rotation": 0.435,
+    "distance": 0.612,
+    "pixelColor": "#fb053f",
+    "multiplier": 2.7
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 62,
+    "difficulty": "easy",
+    "rotation": 0.347,
+    "distance": 0.813,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 63,
+    "difficulty": "easy",
+    "rotation": 0.448,
+    "distance": 0.508,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 64,
+    "difficulty": "easy",
+    "rotation": 0.334,
+    "distance": 0.141,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 65,
+    "difficulty": "easy",
+    "rotation": 0.793,
+    "distance": 0.593,
+    "pixelColor": "#fcc101",
+    "multiplier": 1.2
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 66,
+    "difficulty": "easy",
+    "rotation": 0.075,
+    "distance": 0.489,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 67,
+    "difficulty": "easy",
+    "rotation": 0.826,
+    "distance": 0.387,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 68,
+    "difficulty": "easy",
+    "rotation": 0.582,
+    "distance": 0.956,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 69,
+    "difficulty": "easy",
+    "rotation": 0.885,
+    "distance": 0.58,
+    "pixelColor": "#fb6120",
+    "multiplier": 1.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 70,
+    "difficulty": "easy",
+    "rotation": 0.205,
+    "distance": 0.473,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 71,
+    "difficulty": "easy",
+    "rotation": 0.203,
+    "distance": 0.689,
+    "pixelColor": "#fb053f",
+    "multiplier": 2.7
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 72,
+    "difficulty": "easy",
+    "rotation": 0.995,
+    "distance": 0.904,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 73,
+    "difficulty": "easy",
+    "rotation": 0.511,
+    "distance": 0.13,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 74,
+    "difficulty": "easy",
+    "rotation": 0.916,
+    "distance": 0.899,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 75,
+    "difficulty": "easy",
+    "rotation": 0.653,
+    "distance": 0.984,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 76,
+    "difficulty": "easy",
+    "rotation": 0.528,
+    "distance": 0.839,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 77,
+    "difficulty": "easy",
+    "rotation": 0.973,
+    "distance": 0.905,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 78,
+    "difficulty": "easy",
+    "rotation": 0.016,
+    "distance": 0.164,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 79,
+    "difficulty": "easy",
+    "rotation": 0.345,
+    "distance": 0.048,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 80,
+    "difficulty": "easy",
+    "rotation": 0.116,
+    "distance": 0.133,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 81,
+    "difficulty": "easy",
+    "rotation": 0.407,
+    "distance": 0.178,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 82,
+    "difficulty": "easy",
+    "rotation": 0.171,
+    "distance": 0.386,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 83,
+    "difficulty": "easy",
+    "rotation": 0.779,
+    "distance": 0.597,
+    "pixelColor": "#fcc101",
+    "multiplier": 1.2
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 84,
+    "difficulty": "easy",
+    "rotation": 0.93,
+    "distance": 0.518,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 85,
+    "difficulty": "easy",
+    "rotation": 0.252,
+    "distance": 0.985,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 86,
+    "difficulty": "easy",
+    "rotation": 0.193,
+    "distance": 0.202,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 87,
+    "difficulty": "easy",
+    "rotation": 0.287,
+    "distance": 0.587,
+    "pixelColor": "#fb6120",
+    "multiplier": 1.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 88,
+    "difficulty": "easy",
+    "rotation": 0.423,
+    "distance": 0.51,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 89,
+    "difficulty": "easy",
+    "rotation": 0.863,
+    "distance": 0.196,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 90,
+    "difficulty": "easy",
+    "rotation": 0.984,
+    "distance": 0.805,
+    "pixelColor": "#fb053f",
+    "multiplier": 2.7
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 91,
+    "difficulty": "easy",
+    "rotation": 0.648,
+    "distance": 0.982,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 92,
+    "difficulty": "easy",
+    "rotation": 0.682,
+    "distance": 0.344,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 93,
+    "difficulty": "easy",
+    "rotation": 0.725,
+    "distance": 0.07,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 94,
+    "difficulty": "easy",
+    "rotation": 0.449,
+    "distance": 0.882,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 95,
+    "difficulty": "easy",
+    "rotation": 0.348,
+    "distance": 0.054,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 96,
+    "difficulty": "easy",
+    "rotation": 0.169,
+    "distance": 0.997,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 97,
+    "difficulty": "easy",
+    "rotation": 0.596,
+    "distance": 0.775,
+    "pixelColor": "#fcc101",
+    "multiplier": 1.2
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 98,
+    "difficulty": "easy",
+    "rotation": 0.299,
+    "distance": 0.834,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 99,
+    "difficulty": "easy",
+    "rotation": 0.559,
+    "distance": 0.918,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 100,
+    "difficulty": "easy",
+    "rotation": 0.4,
+    "distance": 0.945,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 101,
+    "difficulty": "easy",
+    "rotation": 0.021,
+    "distance": 0.13,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 102,
+    "difficulty": "easy",
+    "rotation": 0.787,
+    "distance": 0.315,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 103,
+    "difficulty": "easy",
+    "rotation": 0.386,
+    "distance": 0.269,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 104,
+    "difficulty": "easy",
+    "rotation": 0.629,
+    "distance": 0.828,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 105,
+    "difficulty": "easy",
+    "rotation": 0.086,
+    "distance": 0.622,
+    "pixelColor": "#fb6120",
+    "multiplier": 1.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 106,
+    "difficulty": "easy",
+    "rotation": 0.614,
+    "distance": 0.529,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 107,
+    "difficulty": "easy",
+    "rotation": 0.91,
+    "distance": 0.312,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 108,
+    "difficulty": "easy",
+    "rotation": 0.526,
+    "distance": 0.735,
+    "pixelColor": "#fb6120",
+    "multiplier": 1.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 109,
+    "difficulty": "easy",
+    "rotation": 0.854,
+    "distance": 0.003,
+    "pixelColor": "#24e700",
+    "multiplier": 8.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 110,
+    "difficulty": "easy",
+    "rotation": 0.733,
+    "distance": 0.401,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 111,
+    "difficulty": "easy",
+    "rotation": 0.472,
+    "distance": 0.277,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 112,
+    "difficulty": "easy",
+    "rotation": 0.832,
+    "distance": 0.878,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 113,
+    "difficulty": "easy",
+    "rotation": 0.384,
+    "distance": 0.306,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 114,
+    "difficulty": "easy",
+    "rotation": 0.78,
+    "distance": 0.072,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 115,
+    "difficulty": "easy",
+    "rotation": 0.932,
+    "distance": 0.472,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 116,
+    "difficulty": "easy",
+    "rotation": 0.755,
+    "distance": 0.382,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 117,
+    "difficulty": "easy",
+    "rotation": 0.196,
+    "distance": 0.836,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 118,
+    "difficulty": "easy",
+    "rotation": 0.289,
+    "distance": 0.494,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 119,
+    "difficulty": "easy",
+    "rotation": 0.88,
+    "distance": 0.509,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 120,
+    "difficulty": "easy",
+    "rotation": 0.794,
+    "distance": 0.367,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 121,
+    "difficulty": "easy",
+    "rotation": 0.143,
+    "distance": 0.074,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 122,
+    "difficulty": "easy",
+    "rotation": 0.899,
+    "distance": 0.11,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 123,
+    "difficulty": "easy",
+    "rotation": 0.048,
+    "distance": 0.606,
+    "pixelColor": "#fcc101",
+    "multiplier": 1.2
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 124,
+    "difficulty": "easy",
+    "rotation": 0.931,
+    "distance": 0.3,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 125,
+    "difficulty": "easy",
+    "rotation": 0.83,
+    "distance": 0.694,
+    "pixelColor": "#fcc101",
+    "multiplier": 1.2
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 126,
+    "difficulty": "easy",
+    "rotation": 0.64,
+    "distance": 0.874,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 127,
+    "difficulty": "easy",
+    "rotation": 0.564,
+    "distance": 0.28,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 128,
+    "difficulty": "easy",
+    "rotation": 0.403,
+    "distance": 0.773,
+    "pixelColor": "#fb053f",
+    "multiplier": 2.7
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 129,
+    "difficulty": "easy",
+    "rotation": 0.501,
+    "distance": 0.079,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 130,
+    "difficulty": "easy",
+    "rotation": 0.265,
+    "distance": 0.536,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 131,
+    "difficulty": "easy",
+    "rotation": 0.119,
+    "distance": 0.92,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 132,
+    "difficulty": "easy",
+    "rotation": 0.129,
+    "distance": 0.68,
+    "pixelColor": "#fcc101",
+    "multiplier": 1.2
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 133,
+    "difficulty": "easy",
+    "rotation": 0.98,
+    "distance": 0.505,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 134,
+    "difficulty": "easy",
+    "rotation": 0.39,
+    "distance": 0.692,
+    "pixelColor": "#fb053f",
+    "multiplier": 2.7
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 135,
+    "difficulty": "easy",
+    "rotation": 0.705,
+    "distance": 0.801,
+    "pixelColor": "#fcc101",
+    "multiplier": 1.2
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 136,
+    "difficulty": "easy",
+    "rotation": 0.356,
+    "distance": 0.406,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 137,
+    "difficulty": "easy",
+    "rotation": 0.707,
+    "distance": 0.129,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 138,
+    "difficulty": "easy",
+    "rotation": 0.386,
+    "distance": 0.149,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 139,
+    "difficulty": "easy",
+    "rotation": 0.187,
+    "distance": 0.842,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 140,
+    "difficulty": "easy",
+    "rotation": 0.997,
+    "distance": 0.059,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 141,
+    "difficulty": "easy",
+    "rotation": 0.771,
+    "distance": 0.005,
+    "pixelColor": "#24e700",
+    "multiplier": 8.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 142,
+    "difficulty": "easy",
+    "rotation": 0.278,
+    "distance": 0.974,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 143,
+    "difficulty": "easy",
+    "rotation": 0.858,
+    "distance": 0.692,
+    "pixelColor": "#fb6120",
+    "multiplier": 1.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 144,
+    "difficulty": "easy",
+    "rotation": 0.779,
+    "distance": 0.498,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 145,
+    "difficulty": "easy",
+    "rotation": 0.681,
+    "distance": 0.491,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 146,
+    "difficulty": "easy",
+    "rotation": 0.969,
+    "distance": 0.134,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 147,
+    "difficulty": "easy",
+    "rotation": 0.036,
+    "distance": 0.324,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 148,
+    "difficulty": "easy",
+    "rotation": 0.394,
+    "distance": 0.911,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 149,
+    "difficulty": "easy",
+    "rotation": 0.881,
+    "distance": 0.396,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 150,
+    "difficulty": "easy",
+    "rotation": 0.974,
+    "distance": 0.6,
+    "pixelColor": "#fb053f",
+    "multiplier": 2.7
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 151,
+    "difficulty": "easy",
+    "rotation": 0.085,
+    "distance": 0.087,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 152,
+    "difficulty": "easy",
+    "rotation": 0.291,
+    "distance": 0.604,
+    "pixelColor": "#fb6120",
+    "multiplier": 1.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 153,
+    "difficulty": "easy",
+    "rotation": 0.77,
+    "distance": 0.334,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 154,
+    "difficulty": "easy",
+    "rotation": 0.998,
+    "distance": 0.403,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 155,
+    "difficulty": "easy",
+    "rotation": 0.184,
+    "distance": 0.227,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 156,
+    "difficulty": "easy",
+    "rotation": 0.985,
+    "distance": 0.316,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 157,
+    "difficulty": "easy",
+    "rotation": 0.918,
+    "distance": 0.358,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 158,
+    "difficulty": "easy",
+    "rotation": 0.417,
+    "distance": 0.17,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 159,
+    "difficulty": "easy",
+    "rotation": 0.397,
+    "distance": 0.122,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 160,
+    "difficulty": "easy",
+    "rotation": 0.578,
+    "distance": 0.58,
+    "pixelColor": "#fcc101",
+    "multiplier": 1.2
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 161,
+    "difficulty": "easy",
+    "rotation": 0.062,
+    "distance": 0.534,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 162,
+    "difficulty": "easy",
+    "rotation": 0.567,
+    "distance": 0.714,
+    "pixelColor": "#fcc101",
+    "multiplier": 1.2
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 163,
+    "difficulty": "easy",
+    "rotation": 0.93,
+    "distance": 0.093,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 164,
+    "difficulty": "easy",
+    "rotation": 0.149,
+    "distance": 0.842,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 165,
+    "difficulty": "easy",
+    "rotation": 0.484,
+    "distance": 0.872,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 166,
+    "difficulty": "easy",
+    "rotation": 0.198,
+    "distance": 0.409,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 167,
+    "difficulty": "easy",
+    "rotation": 0.349,
+    "distance": 0.227,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 168,
+    "difficulty": "easy",
+    "rotation": 0.546,
+    "distance": 0.302,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 169,
+    "difficulty": "easy",
+    "rotation": 0.773,
+    "distance": 0.466,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 170,
+    "difficulty": "easy",
+    "rotation": 0.759,
+    "distance": 0.274,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 171,
+    "difficulty": "easy",
+    "rotation": 0.567,
+    "distance": 0.491,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 172,
+    "difficulty": "easy",
+    "rotation": 0.346,
+    "distance": 0.765,
+    "pixelColor": "#fcc101",
+    "multiplier": 1.2
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 173,
+    "difficulty": "easy",
+    "rotation": 0.927,
+    "distance": 0.053,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 174,
+    "difficulty": "easy",
+    "rotation": 0.611,
+    "distance": 0.572,
+    "pixelColor": "#fb053f",
+    "multiplier": 2.7
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 175,
+    "difficulty": "easy",
+    "rotation": 0.313,
+    "distance": 0.527,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 176,
+    "difficulty": "easy",
+    "rotation": 0.637,
+    "distance": 0.586,
+    "pixelColor": "#fb053f",
+    "multiplier": 2.7
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 177,
+    "difficulty": "easy",
+    "rotation": 0.635,
+    "distance": 0.445,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 178,
+    "difficulty": "easy",
+    "rotation": 0.169,
+    "distance": 0.907,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 179,
+    "difficulty": "easy",
+    "rotation": 0.136,
+    "distance": 0.622,
+    "pixelColor": "#fcc101",
+    "multiplier": 1.2
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 180,
+    "difficulty": "easy",
+    "rotation": 0.085,
+    "distance": 0.451,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 181,
+    "difficulty": "easy",
+    "rotation": 0.394,
+    "distance": 0.626,
+    "pixelColor": "#fb053f",
+    "multiplier": 2.7
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 182,
+    "difficulty": "easy",
+    "rotation": 0.125,
+    "distance": 0.203,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 183,
+    "difficulty": "easy",
+    "rotation": 0.128,
+    "distance": 0.486,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 184,
+    "difficulty": "easy",
+    "rotation": 0.864,
+    "distance": 0.015,
+    "pixelColor": "#24e700",
+    "multiplier": 8.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 185,
+    "difficulty": "easy",
+    "rotation": 0.263,
+    "distance": 0.272,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 186,
+    "difficulty": "easy",
+    "rotation": 0.867,
+    "distance": 0.122,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 187,
+    "difficulty": "easy",
+    "rotation": 0.32,
+    "distance": 0.195,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 188,
+    "difficulty": "easy",
+    "rotation": 0.396,
+    "distance": 0.053,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 189,
+    "difficulty": "easy",
+    "rotation": 0.159,
+    "distance": 0.108,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 190,
+    "difficulty": "easy",
+    "rotation": 0.49,
+    "distance": 0.182,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 191,
+    "difficulty": "easy",
+    "rotation": 0.241,
+    "distance": 0.42,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 192,
+    "difficulty": "easy",
+    "rotation": 0.707,
+    "distance": 0.328,
+    "pixelColor": "#213843",
+    "multiplier": 0.8
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 193,
+    "difficulty": "easy",
+    "rotation": 0.878,
+    "distance": 0.176,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 194,
+    "difficulty": "easy",
+    "rotation": 0.591,
+    "distance": 0.704,
+    "pixelColor": "#fcc101",
+    "multiplier": 1.2
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 195,
+    "difficulty": "easy",
+    "rotation": 0.273,
+    "distance": 0.872,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 196,
+    "difficulty": "easy",
+    "rotation": 0.723,
+    "distance": 0.871,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 197,
+    "difficulty": "easy",
+    "rotation": 0.032,
+    "distance": 0.579,
+    "pixelColor": "#fcc101",
+    "multiplier": 1.2
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 198,
+    "difficulty": "easy",
+    "rotation": 0.368,
+    "distance": 0.182,
+    "pixelColor": "#0e202c",
+    "multiplier": 0.5
+  },
+  {
+    "clientSeed": "2Gb-U__XyD",
+    "serverSeed": "fad1d904fc884b817775353e8969741728d50b509cfdb0e2d854730ee21e446e",
+    "nonce": 199,
+    "difficulty": "easy",
+    "rotation": 0.239,
+    "distance": 0.631,
+    "pixelColor": "#fcc101",
+    "multiplier": 1.2
+  }
+]

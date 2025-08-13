@@ -1,0 +1,38 @@
+EASY DARTBOARD COLOR DETECTION LOGIC
+
+in this SVG the “wedge band” (the ring from r=375 to r=450) isn’t fully covered by red/orange paths; the base yellow ring (#FFC000) shows through in many angular gaps. So the wedge band can be **red**, **orange**, **or yellow** depending on the angle.
+
+Here’s a precise, deterministic way to return the color from just (rotation, normalizedDistance):
+
+1. Radius from normalized distance
+   Outer radius = 575.5, and normalized distance spans 0..0.5 (center → edge), so:
+
+* `r = 2 * normalizedDistance * 575.5`
+
+2. Radial bands (inner → outer)
+
+* `r ≤ 62.5` → **#00E701** (green bull)
+* `62.5 < r ≤ 275` → **#0F212E**
+* `275 < r ≤ 375` → **#213743**
+* `375 < r ≤ 450` → **wedge band (use step 3)**
+* `450 < r ≤ 500` → **#0F212E**
+* `500 < r ≤ 520` → **#071824**
+* `520 < r ≤ 575.5` → **#2F4553**
+
+3. Wedge band angular color (red/orange/yellow)
+   Define degrees with 0° at top, increasing clockwise:
+
+* `deg = (rotation % 1) * 360`
+
+Partition the circle into 18 equal 20° bins, centered at 10°, 30°, …, 350°:
+
+* `bin = floor(((deg + 10) % 360) / 20)`  // 0..17, centers at 10 + 20\*bin
+
+Now map bins to colors (derived from the SVG path endpoints at 20° increments):
+
+* **Orange #FF6020** for bins `{1, 5, 9, 13, 15}`  → centers at 30°, 110°, 190°, 270°, 310°
+* **Red #FF003F** for bins `{3, 7, 11, 17}`       → centers at 70°, 150°, 230°, 350°
+* **Yellow #FFC000** for all other bins            → the uncovered gaps in between
+
+That’s it. If you send me `(rotation, normalizedDistance)`, I’ll run this logic and tell you the exact hex color (and a friendly name).
+

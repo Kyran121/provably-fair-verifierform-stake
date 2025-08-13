@@ -1,11 +1,7 @@
-<script lang="ts">
-  let { ref = $bindable() }: { ref?: SVGElement } = $props();
-</script>
-
 <svg viewBox="0 0 1151 1151" fill="none" xmlns="http://www.w3.org/2000/svg">
   <circle cx="575.5" cy="575.5" r="575.5" fill="#2F4553" />
   <circle cx="575" cy="576" r="520" fill="#071824" />
-  <circle bind:this={ref} cx="575" cy="576" r="500" fill="#0F212E" />
+  <circle cx="575" cy="576" r="500" fill="#0F212E" />
   <circle cx="575" cy="576" r="450" fill="#FFC000" />
   <mask
     id="mask0_21277_2872"
