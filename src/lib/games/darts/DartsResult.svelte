@@ -20,7 +20,7 @@
     multi: number;
   }
 
-  const { formValues }: { formValues: Record<string, unknown>; delay?: number } = $props();
+  const { formValues }: { formValues: Record<string, unknown> } = $props();
 
   const seed = $derived<DartsSeed>({
     clientSeed: formValues.clientseed as string,
@@ -66,7 +66,7 @@
           multi
         } satisfies Result;
       },
-      0
+      (formValues.delay as number) || 350
     )
   );
 
