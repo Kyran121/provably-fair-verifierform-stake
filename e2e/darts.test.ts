@@ -70,5 +70,9 @@ test('dart test cases', async ({ page }) => {
 
     const multiResult = page.getByTestId('multi');
     await expect(multiResult).toContainText('' + multiplier);
+
+    console.log(
+      `passed (clientSeed=${clientSeed} serverSeed=${serverSeed} nonce=${nonce} difficulty=${difficulty})`
+    );
   }
 });
