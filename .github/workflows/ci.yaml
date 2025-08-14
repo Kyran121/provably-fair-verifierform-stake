@@ -32,6 +32,9 @@ jobs:
           # Create a secret named PRIVATE_REPOS_READ_TOKEN in the *app* repo
           token: ${{ secrets.PRIVATE_LIB_READ_TOKEN }}
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -40,9 +43,6 @@ jobs:
           cache-dependency-path: |
             stake/pnpm-lock.yaml
             provably-fair-verifierform-lib/pnpm-lock.yaml
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
 
       # Install & build the lib first (so app can link to its built output if needed)
       - name: Install lib dependencies
