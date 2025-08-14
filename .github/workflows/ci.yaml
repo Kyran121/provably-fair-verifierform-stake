@@ -26,7 +26,7 @@ jobs:
       - name: Checkout lib repository (private)
         uses: actions/checkout@v4
         with:
-          repository: your-org/provably-fair-verifierform-lib
+          repository: Kyran121/provably-fair-verifierform-lib
           path: provably-fair-verifierform-lib
           # If the lib is in a different org or requires extra perms, provide a PAT with repo:read
           # Create a secret named PRIVATE_REPOS_READ_TOKEN in the *app* repo
