@@ -29,6 +29,12 @@ export default defineConfig({
           exclude: ['tests/**/*.svelte.{test,spec}.{js,ts}']
         }
       }
-    ]
+    ],
+    coverage: {
+      enabled: true,
+      reporter: ['html', 'json-summary'],
+      include: ['**/src/lib/**'],
+      exclude: ['**/src/lib/assets/**']
+    }
   }
 });
