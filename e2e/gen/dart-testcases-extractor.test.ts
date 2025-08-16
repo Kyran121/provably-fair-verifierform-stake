@@ -63,9 +63,7 @@ test.use({
   storageState: 'storageState.json'
 });
 
-test.describe.configure({ mode: 'parallel' });
-
-test('extract dart testcases ', async ({ page }, testInfo) => {
+test('extract dart testcases from stake', async ({ page }, testInfo) => {
   // console.log('visiting stake provably fair page with query params:');
   // console.log('\tgame:\t\tdarts');
   // console.log('\tclientSeed:\t' + CLIENT_SEED);

@@ -24,9 +24,10 @@ export default defineConfig({
         extends: './vite.config.ts',
         test: {
           name: 'server',
+          //testTimeout: 100_000, (to run gen tests)
           environment: 'node',
           include: ['tests/**/*.{test,spec}.{js,ts}'],
-          exclude: ['tests/**/*.svelte.{test,spec}.{js,ts}']
+          exclude: ['tests/**/*.svelte.{test,spec}.{js,ts}', 'tests/**/gen/**']
         }
       }
     ],
