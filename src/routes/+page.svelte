@@ -16,6 +16,7 @@
   import { gameDefinition as limboGameDefinition } from '$lib/games/limbo';
   import { gameDefinition as minesGameDefinition } from '$lib/games/mines';
   import { gameDefinition as plinkoGameDefinition } from '$lib/games/plinko';
+  import { gameDefinition as primediceGameDefinition } from '$lib/games/primedice';
   import { gameDefinition as pumpGameDefinition } from '$lib/games/pump';
   import { gameDefinition as rockPaperScissorsGameDefinition } from '$lib/games/rockpaperscissors';
   import { gameDefinition as rouletteGameDefinition } from '$lib/games/roulette';
@@ -43,6 +44,7 @@
     limbo: limboGameDefinition,
     mines: minesGameDefinition,
     plinko: plinkoGameDefinition,
+    primedice: primediceGameDefinition,
     pump: pumpGameDefinition,
     rockpaperscissors: rockPaperScissorsGameDefinition,
     roulette: rouletteGameDefinition,
