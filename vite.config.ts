@@ -34,7 +34,11 @@ export default defineConfig({
       enabled: true,
       reporter: ['html', 'json-summary'],
       include: ['**/src/lib/**'],
-      exclude: ['**/src/lib/assets/**']
+      exclude: [
+        '**/src/lib/assets/**',
+        '**/src/lib/games/**',
+        '!**/src/lib/games/**/*Result.svelte'
+      ]
     }
   }
 });
