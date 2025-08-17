@@ -1,6 +1,6 @@
 import { FloatGenerator } from '$lib/generator/FloatGenerator';
 import { it } from 'vitest';
-import cards from '$lib/assets/packs/packs-paylines.json';
+import cards from '$lib/assets/packs/packs-payline.json';
 
 it('will not stop betting until all 240 asset paths are discovered', () => {
   const clientSeed = '2Gb-U__XyD';

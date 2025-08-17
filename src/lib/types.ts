@@ -257,3 +257,9 @@ export enum RockPaperScissorsOutcome {
 }
 
 export type RGB = [number, number, number];
+
+export type PacksCard = {
+  cardId: number;
+  min: number;
+  multiplier: number;
+};

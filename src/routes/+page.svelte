@@ -15,6 +15,7 @@
   import { gameDefinition as kenoGameDefinition } from '$lib/games/keno';
   import { gameDefinition as limboGameDefinition } from '$lib/games/limbo';
   import { gameDefinition as minesGameDefinition } from '$lib/games/mines';
+  import { gameDefinition as packsGameDefinition } from '$lib/games/packs';
   import { gameDefinition as plinkoGameDefinition } from '$lib/games/plinko';
   import { gameDefinition as primediceGameDefinition } from '$lib/games/primedice';
   import { gameDefinition as pumpGameDefinition } from '$lib/games/pump';
@@ -43,6 +44,7 @@
     keno: kenoGameDefinition,
     limbo: limboGameDefinition,
     mines: minesGameDefinition,
+    packs: packsGameDefinition,
     plinko: plinkoGameDefinition,
     primedice: primediceGameDefinition,
     pump: pumpGameDefinition,
