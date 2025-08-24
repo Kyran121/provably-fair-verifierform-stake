@@ -51,7 +51,7 @@
   <div class="flex gap-1 overflow-x-scroll pb-5 md:gap-1.5">
     {#each payline as multi, i (i)}
       {#if multi === multiDebounced.value!}
-        <div class="col p-2 text-center font-bold {BG_COLOR}" bind:this={selectedEl}>
+        <div class="col p-2 text-center {BG_COLOR}" bind:this={selectedEl}>
           <span class="text-xs">({i})</span>
           {multi.toFixed(2)}x
         </div>
