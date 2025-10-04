@@ -5,6 +5,7 @@
   import { gameDefinition as blackjackGameDefinition } from '$lib/games/cards/blackjack';
   import { gameDefinition as blueSamuraiGameDefinition } from '$lib/games/bluesamurai';
   import { gameDefinition as casesGameDefinition } from '$lib/games/cases';
+  import { gameDefinition as chickenGameDefinition } from '$lib/games/chicken';
   import { gameDefinition as crashGameDefinition } from '$lib/games/multiplayer/crash';
   import { gameDefinition as dartsGameDefinition } from '$lib/games/darts';
   import { gameDefinition as diamondsGameDefinition } from '$lib/games/diamonds';
@@ -34,6 +35,7 @@
     blackjack: blackjackGameDefinition,
     bluesamurai: blueSamuraiGameDefinition,
     cases: casesGameDefinition,
+    chicken: chickenGameDefinition,
     crash: crashGameDefinition,
     darts: dartsGameDefinition,
     diamonds: diamondsGameDefinition,

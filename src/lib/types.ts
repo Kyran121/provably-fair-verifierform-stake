@@ -159,6 +159,17 @@ export interface PumpSeed extends Seed {
   difficulty: PumpDifficulty;
 }
 
+export enum ChickenDifficulty {
+  EASY = 'easy',
+  MEDIUM = 'medium',
+  HARD = 'hard',
+  EXPERT = 'expert'
+}
+
+export interface ChickenSeed extends Seed {
+  difficulty: ChickenDifficulty;
+}
+
 export interface DragonTowerDifficultyConfig {
   count: number;
   size: number;

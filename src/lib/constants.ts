@@ -1,4 +1,5 @@
 import type {
+  ChickenDifficulty,
   DartsColor,
   DartsDifficulty,
   DragonTowerDifficulty,
@@ -46,7 +47,13 @@ export const SLIDE_SEEDS = [
   '0000000000000000000b20f796f5421cac95c4efb06c6bbf6408d6f9b5d7b9dc',
   '00000000000000000000644330e1340fc6e894a95c37060bdd180ed11d068944'
 ];
-export const PUMP_DIFFICULTY_TO_SLICE: Record<PumpDifficulty, number> = {
+export const PUMP_DIFFICULTY_TO_SLICE: Record<ChickenDifficulty, number> = {
+  easy: 1,
+  medium: 3,
+  hard: 5,
+  expert: 10
+};
+export const CHICKEN_DIFFICULTY_TO_SLICE: Record<PumpDifficulty, number> = {
   easy: 1,
   medium: 3,
   hard: 5,
