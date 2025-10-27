@@ -25,6 +25,7 @@
   import { gameDefinition as scarabSpinsGameDefinition } from '$lib/games/scarabspins-tomeoflife/scarabspins';
   import { gameDefinition as slideGameDefinition } from '$lib/games/multiplayer/slide';
   import { gameDefinition as snakesGameDefinition } from '$lib/games/snakes';
+  import { gameDefinition as tarotGameDefinition } from '$lib/games/tarot';
   import { gameDefinition as tomeOfLifeGameDefinition } from '$lib/games/scarabspins-tomeoflife/tomeoflife';
   import { gameDefinition as videoPokerGameDefinition } from '$lib/games/cards/videopoker';
   import { gameDefinition as wheelGameDefinition } from '$lib/games/wheel';
@@ -55,6 +56,7 @@
     scarabspins: scarabSpinsGameDefinition,
     slide: slideGameDefinition,
     snakes: snakesGameDefinition,
+    tarot: tarotGameDefinition,
     tomeoflife: tomeOfLifeGameDefinition,
     videopoker: videoPokerGameDefinition,
     wheel: wheelGameDefinition
