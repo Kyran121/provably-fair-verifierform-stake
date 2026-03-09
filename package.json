@@ -60,7 +60,7 @@
     "@stablelib/utf8": "^2.0.1",
     "immutable": "^5.1.3",
     "js-big-decimal": "^2.2.0",
-    "provably-fair-verifierform-lib": "link:../provably-fair-verifierform-lib",
+    "provably-fair-verifierform-lib": "link:./provably-fair-verifierform-lib",
     "tailwind-merge": "^3.3.1",
     "zod": "^3.25.76"
   },

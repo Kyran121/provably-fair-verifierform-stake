@@ -1,0 +1,3 @@
+[submodule "provably-fair-verifierform-lib"]
+	path = provably-fair-verifierform-lib
+	url = git@github.com:Kyran121/provably-fair-verifierform-lib.git
