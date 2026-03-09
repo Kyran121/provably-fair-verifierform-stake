@@ -295,3 +295,10 @@ export enum TarotArcanaType {
   MINOR = 'minor',
   MAJOR = 'major'
 }
+
+// Drill
+export interface DrillResult {
+  float: number;
+  multiplier: number;
+  drillIndex: number;
+}

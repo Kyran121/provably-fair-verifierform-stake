@@ -11,6 +11,7 @@
   import { gameDefinition as diamondsGameDefinition } from '$lib/games/diamonds';
   import { gameDefinition as diceGameDefinition } from '$lib/games/dice';
   import { gameDefinition as dragonTowerGameDefinition } from '$lib/games/dragontower';
+  import { gameDefinition as drillGameDefinition } from '$lib/games/drill';
   import { gameDefinition as flipGameDefinition } from '$lib/games/flip';
   import { gameDefinition as hiloGameDefinition } from '$lib/games/cards/hilo';
   import { gameDefinition as kenoGameDefinition } from '$lib/games/keno';
@@ -42,6 +43,7 @@
     diamonds: diamondsGameDefinition,
     dice: diceGameDefinition,
     dragontower: dragonTowerGameDefinition,
+    drill: drillGameDefinition,
     flip: flipGameDefinition,
     hilo: hiloGameDefinition,
     keno: kenoGameDefinition,
