@@ -35,6 +35,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build library
+        run: |
+          cd provably-fair-verifierform-lib
+          pnpm install --frozen-lockfile
+          pnpm run prepack
+
       - name: Build
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
