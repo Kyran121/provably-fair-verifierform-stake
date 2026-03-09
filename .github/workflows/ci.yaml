@@ -16,21 +16,10 @@ jobs:
       # packages: read   # only needed if you ever pull from a private registry
 
     steps:
-      # Check out the SvelteKit app into ./stake (so ../provably-fair-verifierform-lib resolves correctly)
-      - name: Checkout app repository
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          path: stake
-
-      # Check out the private lib as a sibling at ./provably-fair-verifierform-lib
-      - name: Checkout lib repository (private)
-        uses: actions/checkout@v4
-        with:
-          repository: Kyran121/provably-fair-verifierform-lib
-          path: provably-fair-verifierform-lib
-          # If the lib is in a different org or requires extra perms, provide a PAT with repo:read
-          # Create a secret named PRIVATE_REPOS_READ_TOKEN in the *app* repo
-          token: ${{ secrets.PRIVATE_LIB_READ_TOKEN }}
+          submodules: true
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -41,46 +30,35 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: pnpm
-          cache-dependency-path: |
-            stake/pnpm-lock.yaml
-            provably-fair-verifierform-lib/pnpm-lock.yaml
+          cache: 'pnpm'
 
-      # Install & build the lib first (so app can link to its built output if needed)
-      - name: Install lib dependencies
+      - name: Install dependencies
         run: pnpm install --frozen-lockfile
-        working-directory: provably-fair-verifierform-lib
 
-      - name: Build lib
-        run: pnpm build
-        working-directory: provably-fair-verifierform-lib
-
-      # Now install the app; the "link:../provably-fair-verifierform-lib" resolves to the sibling folder
-      - name: Install app dependencies
-        run: pnpm install --frozen-lockfile
-        working-directory: stake
+      - name: Build library
+        run: |
+          cd provably-fair-verifierform-lib
+          pnpm install --frozen-lockfile
+          pnpm run prepack
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
-        working-directory: stake
 
       - name: Run Unit Tests with Coverage
         run: npm run test:unit -- --coverage.enabled --coverage.reporter=json-summary
-        working-directory: stake
 
       - name: Run E2E Tests
         run: npm run test:e2e
-        working-directory: stake
 
       # Generate coverage badges (paths aligned with upload steps)
       - name: Generate Lines Coverage Badge
         uses: wjervis7/vitest-badge-action@v1.0.0
         with:
           result-type: lines
-          summary-path: stake/coverage/coverage-summary.json
-          badge-path: stake/coverage/lines-badge-stake.svg
+          summary-path: coverage/coverage-summary.json
+          badge-path: coverage/lines-badge.svg
           badge-text: 'Lines Coverage'
-          vitest-config-path: stake/vite.config.ts
+          vitest-config-path: vite.config.ts
           gist-token: ${{ secrets.GIST_TOKEN }}
           gist-url: https://gist.github.com/Kyran121/3297558a26163acee4e360d24d9ea776
 
@@ -88,10 +66,10 @@ jobs:
         uses: wjervis7/vitest-badge-action@v1.0.0
         with:
           result-type: branches
-          summary-path: stake/coverage/coverage-summary.json
-          badge-path: stake/coverage/branches-badge-stake.svg
+          summary-path: coverage/coverage-summary.json
+          badge-path: coverage/branches-badge.svg
           badge-text: 'Branches Coverage'
-          vitest-config-path: stake/vite.config.ts
+          vitest-config-path: vite.config.ts
           gist-token: ${{ secrets.GIST_TOKEN }}
           gist-url: https://gist.github.com/Kyran121/3297558a26163acee4e360d24d9ea776
 
@@ -99,10 +77,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage-badge-lines
-          path: stake/coverage/lines-badge-stake.svg
+          path: coverage/lines-badge.svg
 
       - name: Upload Branches Coverage Badge Artifact
         uses: actions/upload-artifact@v4
         with:
           name: coverage-badge-branches
-          path: stake/coverage/branches-badge-stake.svg
+          path: coverage/branches-badge.svg
