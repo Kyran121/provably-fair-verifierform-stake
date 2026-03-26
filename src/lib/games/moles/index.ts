@@ -16,7 +16,7 @@ export const gameDefinition: GameDefinition = {
     ...CLIENT_SEED_SERVER_SEED_NONCE_CONTROLS,
     {
       id: 'molescount',
-      name: 'molesCount',
+      name: 'molescount',
       label: 'Moles Count',
       type: 'number',
       required: true,
