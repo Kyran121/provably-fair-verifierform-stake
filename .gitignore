@@ -10,6 +10,9 @@ node_modules
 /build
 build.zip
 
+# Playwright
+.playwright-mcp
+
 # OS
 .DS_Store
 Thumbs.db

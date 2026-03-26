@@ -6,6 +6,11 @@ import devtoolsJson from 'vite-plugin-devtools-json';
 
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit(), devtoolsJson()],
+  server: {
+    fs: {
+      allow: ['./provably-fair-verifierform-lib']
+    }
+  },
   test: {
     workspace: [
       {

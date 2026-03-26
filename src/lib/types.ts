@@ -302,3 +302,8 @@ export interface DrillResult {
   multiplier: number;
   drillIndex: number;
 }
+
+// Moles
+export interface MolesSeed extends Seed {
+  molesCount: number;
+}
