@@ -19,7 +19,7 @@
     clientSeed: formValues.clientseed as string,
     serverSeed: formValues.serverseed as string,
     nonce: formValues.nonce as number,
-    molesCount: formValues.molesCount as number
+    molesCount: formValues.molescount as number
   });
 
   const roundsDebounced = $derived.by(
