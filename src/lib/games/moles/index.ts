@@ -10,7 +10,7 @@ import { z } from 'zod';
 export const gameDefinition: GameDefinition = {
   name: 'Moles',
   schema: CLIENT_SEED_SERVER_SEED_NONCE_SCHEMA.extend({
-    molesCount: z.number().min(1).max(6)
+    molescount: z.number().min(1).max(6)
   }),
   controls: [
     ...CLIENT_SEED_SERVER_SEED_NONCE_CONTROLS,
