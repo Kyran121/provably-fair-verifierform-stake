@@ -9,9 +9,12 @@ node_modules
 /.svelte-kit
 /build
 build.zip
+/*/generated
+
 
 # Playwright
 .playwright-mcp
+playwright-user-data
 
 # OS
 .DS_Store

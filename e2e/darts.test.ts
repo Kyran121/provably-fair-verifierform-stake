@@ -3,20 +3,17 @@ import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
-const getTestCases = (difficulty: string) => {
+const getTestCases = () => {
   // __dirname equivalent in ESM
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
 
   // Read file relative to the test file
-  const filePath = path.join(__dirname, 'testfiles', 'darts', `darts-${difficulty}-testcases.json`);
+  const filePath = path.join(__dirname, 'testfiles', 'darts-all-testcases.json');
   return JSON.parse(readFileSync(filePath, 'utf-8'));
 };
 
-const easyTestCases = getTestCases('easy');
-const mediumTestCases = getTestCases('medium');
-const hardTestCases = getTestCases('hard');
-const expertTestCases = getTestCases('expert');
+const testCases = getTestCases();
 
 test('dart test cases', async ({ page }) => {
   await page.goto('/?game=darts&delay=0');
@@ -25,12 +22,7 @@ test('dart test cases', async ({ page }) => {
     console.log(`[browser console] ${msg.type()}: ${msg.text()}`);
   });
 
-  for (const testCase of [
-    ...easyTestCases,
-    ...mediumTestCases,
-    ...hardTestCases,
-    ...expertTestCases
-  ]) {
+  for (const testCase of testCases) {
     const {
       clientSeed,
       serverSeed,
@@ -58,12 +50,12 @@ test('dart test cases', async ({ page }) => {
     const nonceInput = page.getByLabel('Nonce*');
     await nonceInput.fill('' + nonce);
 
-    // wait for result
+    // wait for result - use toFixed(3) to match displayed precision
     const rotationResult = page.getByTestId('rotation');
-    await expect(rotationResult).toContainText('' + rotation);
+    await expect(rotationResult).toContainText(rotation.toFixed(3));
 
     const distanceResult = page.getByTestId('distance');
-    await expect(distanceResult).toContainText('' + distance);
+    await expect(distanceResult).toContainText(distance.toFixed(3));
 
     const pixelColorResult = page.getByTestId('pixelColor');
     await expect(pixelColorResult).toContainText(pixelColor);
