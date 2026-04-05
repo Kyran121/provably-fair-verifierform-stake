@@ -5,6 +5,7 @@
   import { fisherYates } from '$lib/util/shuffle-impl/fisherYates';
   import MinesBoard from '$lib/games/mines/MinesBoard.svelte';
   import Loader from '$lib/games/Loader.svelte';
+  import ContentBlock from '$lib/games/layout/ContentBlock.svelte';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
@@ -34,11 +35,11 @@
 {#if chosenMinesDebounced.debouncing}
   <Loader />
 {:else}
-  <p data-testid="mines-result" class="hidden text-center text-base">
-    mines are:<br /><span class="text-xl text-purple-500"
-      >{chosenMinesDebounced.value!.join(', ')}</span
-    >
+  <p data-testid="mines-result" class="hidden">
+    {chosenMinesDebounced.value!.join(', ')}
   </p>
 
-  <MinesBoard chosenMines={chosenMinesDebounced.value!} />
+  <ContentBlock className="p-4">
+    <MinesBoard chosenMines={chosenMinesDebounced.value!} />
+  </ContentBlock>
 {/if}

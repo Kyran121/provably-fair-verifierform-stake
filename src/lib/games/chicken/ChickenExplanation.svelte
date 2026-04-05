@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BG_COLOR, BG_COLOR_GRAY, CHICKEN_DIFFICULTY_TO_SLICE } from '$lib/constants';
+  import { BG_COLOR, CHICKEN_DIFFICULTY_TO_SLICE } from '$lib/constants';
   import { debouncer } from '$lib/debounce.svelte';
   import { FloatGenerator } from '$lib/generator/FloatGenerator';
   import type { ChickenDifficulty, ChickenSeed } from '$lib/types';
@@ -7,7 +7,7 @@
   import FloatGenerationStep from '$lib/games/FloatGenerationStep.svelte';
   import Loader from '$lib/games/Loader.svelte';
   import ResultTabs from '$lib/games/ResultTabs.svelte';
-  import PumpMultiplierStep from '$lib/games/pump/PumpMultiplierStep.svelte';
+  import ChickenMultiplierStep from '$lib/games/chicken/ChickenMultiplierStep.svelte';
   import HighlightText from '../layout/HighlightText.svelte';
   import ContentBlock from '../layout/ContentBlock.svelte';
 
@@ -48,87 +48,132 @@
       {@const payoutIndex = Math.min(...items.map((item) => item.chosen))}
       {@const maxIndex = 20 - slice}
 
-      <div class="mt-5 mb-2 text-center">
-        <p class="mb-2 text-xl">Step 1</p>
-        <p class="text-base">Create an array with 20 indexes</p>
-      </div>
-
-      <ContentBlock className="p-5 font-mono text-xs break-all">
-        <p>
-          indexes = [
-          <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-          {@html Array.from({ length: 20 })
-            .map(
-              (_v, i) =>
-                '<span class="mr-1 mb-1 inline-block bg-gray-300 p-1 text-white dark:text-gray-300 ' +
-                BG_COLOR_GRAY +
-                '">' +
-                i +
-                '</span>'
-            )
-            .join('')}]
+      <!-- Header banner -->
+      <ContentBlock
+        className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400"
+      >
+        <p class="font-medium">
+          <span class="text-blue-600 dark:text-blue-400"
+            >Crash point is determined by Fisher-Yates shuffle.</span
+          >
+          The minimum random index chosen is the max safe payline index.
         </p>
       </ContentBlock>
 
-      <div class="mt-5 text-center">
-        <p class="mb-2 text-xl">Step 2</p>
-        <p class="text-base">
+      <!-- Step 1 -->
+      <ContentBlock className="mb-6 p-5">
+        <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">
+          Step 1 — Indexes Array
+        </p>
+        <p class="mb-3 text-gray-700 dark:text-gray-300">Create an array with 20 indexes</p>
+        <div class="flex flex-wrap gap-1 font-mono text-xs">
+          {#each Array.from({ length: 20 }) as _, i (i)}
+            <span
+              class="inline-flex items-center justify-center rounded border-2 border-gray-200 bg-gray-50 px-2 py-1 font-semibold text-gray-600 ring-2 ring-transparent dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400"
+            >
+              {i}
+            </span>
+          {/each}
+        </div>
+      </ContentBlock>
+
+      <!-- Step 2 -->
+      <ContentBlock className="mb-6 p-5">
+        <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">
+          Step 2 — Fisher-Yates Shuffle
+        </p>
+        <p class="mb-3 text-gray-700 dark:text-gray-300">
           Extract {slice} random index{slice > 1 ? 'es' : ''} from array using fisher-yates
         </p>
-        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
-          A different amount of indexes are needed based on difficulty:<br />
-          {#each Object.entries(CHICKEN_DIFFICULTY_TO_SLICE) as [difficulty, slice], n (n)}
-            <span
-              class={[
-                'mt-2 mr-2 inline-block p-1 text-gray-500',
-                difficulty === seed.difficulty
-                  ? BG_COLOR + ' dark:text-white'
-                  : 'bg-gray-200  dark:bg-gray-800 dark:text-gray-400'
-              ]}>{difficulty} - {slice}</span
-            >
-          {/each}
+        <p class="mb-3 text-sm text-gray-500 dark:text-gray-400">
+          Indexes needed per difficulty:
+          <span class="mt-1 flex flex-wrap gap-1.5">
+            {#each Object.entries(CHICKEN_DIFFICULTY_TO_SLICE) as [difficulty, sliceVal], n (n)}
+              <span
+                class={[
+                  'inline-block rounded px-2 py-0.5 text-xs font-medium',
+                  difficulty === seed.difficulty
+                    ? BG_COLOR + ' text-white dark:text-white'
+                    : 'bg-gray-200 text-gray-500 dark:bg-gray-700 dark:text-gray-400'
+                ]}>{difficulty} — {sliceVal}</span
+              >
+            {/each}
+          </span>
         </p>
-        <p class="mb-5 text-sm text-gray-500 dark:text-gray-400">
-          Pump payline has <HighlightText>20 - ({slice} - 1) = {20 - (slice - 1)}</HighlightText>
-          increasing multipliers. To get the max multiplier, as you will see from step 3, the minimum
-          {slice > 1 ? `of the ${slice} random indexes` : 'index'} has to be
-          <HighlightText>{maxIndex}</HighlightText>
+        <p class="mb-1 text-sm text-gray-500 dark:text-gray-400">
+          Chicken payline has <HighlightText>20 - ({slice} - 1) = {20 - (slice - 1)}</HighlightText>
+          multipliers. Max multiplier requires the minimum {slice > 1
+            ? `of the ${slice} random indexes`
+            : 'index'} to be
+          <HighlightText>{maxIndex}</HighlightText>.
         </p>
-      </div>
+      </ContentBlock>
 
-      <div class="mt-3 border-1 border-gray-400 p-5">
+      <!-- Step 2 sub-steps -->
+      <ContentBlock className="mb-6 p-5 overflow-visible">
         {#if seed.difficulty !== 'easy'}
-          <ResultTabs {seed} {items} bind:resultIndex />
+          <ResultTabs
+            {seed}
+            {items}
+            bind:resultIndex
+            tabWidthClass="w-12"
+            tabClassModifier={(n) =>
+              'rounded border-2 border-gray-300 bg-gray-100 p-1.5 text-gray-500 opacity-70 ' +
+              'hover:border-purple-300 hover:opacity-80 ring-2 ring-transparent ' +
+              'dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 !outline-none'}
+            tabSelectedClassModifier={(n) =>
+              'rounded border-2 border-purple-500 bg-purple-100 font-bold text-purple-700 opacity-100 ' +
+              'shadow-lg ring-2 ring-purple-400 z-10 ' +
+              'dark:border-purple-400 dark:bg-purple-900/30 dark:text-purple-400 dark:ring-purple-400 !outline-none'}
+          />
         {/if}
-        <FloatGenerationStep stepNumber={2.1} {resultIndex} {seed} float={item.float} />
-        <PumpMultiplierStep stepNumber={2.2} {resultIndex} {...item} />
-      </div>
+        <FloatGenerationStep
+          stepNumber={2.1}
+          {resultIndex}
+          {seed}
+          float={item.float}
+          contentBlockClassName="py-6"
+        />
+        <ChickenMultiplierStep
+          stepNumber={2.2}
+          {resultIndex}
+          {...item}
+          contentBlockClassName="py-6"
+        />
+      </ContentBlock>
 
-      <div class="mt-4 text-center">
-        <p class="mb-2 text-xl">Step 3</p>
-        <p class="text-base">Max payout index = (minimum of random indexes)</p>
-        <p class="text-sm text-gray-500 dark:text-gray-400">
-          Refer to result below form for payline - index is shown above the multiplier
+      <!-- Step 3 -->
+      <ContentBlock className="mb-6 p-5">
+        <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">
+          Step 3 — Max Payout Index
         </p>
-      </div>
-
-      <ContentBlock className="mt-3 p-5 font-mono text-xs break-all">
-        <p>
-          maxPayoutIndex = min(
-          <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-          {@html items
-            .map((item) => item.chosen)
-            .map(
-              (v) =>
-                '<span class="mr-1 mb-1 inline-block border-1 border-gray-400 p-1 dark:border-none text-white dark:text-gray-300 ' +
-                BG_COLOR_GRAY +
-                '">' +
-                v +
-                '</span>'
-            )
-            .join('')}
-          ) = {payoutIndex}
+        <p class="mb-1 text-gray-700 dark:text-gray-300">
+          Max payout index = minimum of random indexes
         </p>
+        <p class="mb-4 text-xs text-gray-500 dark:text-gray-400">
+          Refer to the result below — the payline index is shown above each multiplier
+        </p>
+        <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">
+          Random Indexes
+        </p>
+        <div class="mb-4 flex flex-wrap gap-1 font-mono text-xs">
+          {#each items.map((i) => i.chosen) as v (v)}
+            <span
+              class="inline-flex items-center justify-center rounded border-2 border-gray-200 bg-gray-50 px-2 py-1 font-semibold text-gray-600 ring-2 ring-transparent dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400"
+            >
+              {v}
+            </span>
+          {/each}
+        </div>
+        <p class="mb-2 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">Result</p>
+        <div class="flex items-center gap-2 font-mono text-xs">
+          <span class="text-gray-500 dark:text-gray-400">maxPayoutIndex =</span>
+          <span
+            class="rounded border-2 border-green-500 bg-green-50 px-3 py-1.5 font-bold text-green-800 ring-2 ring-green-400 dark:border-green-400 dark:bg-green-900/30 dark:text-green-300 dark:ring-green-500"
+          >
+            {payoutIndex}
+          </span>
+        </div>
       </ContentBlock>
     {/if}
   </div>

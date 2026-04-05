@@ -2,10 +2,12 @@
   import { debouncer } from '$lib/debounce.svelte';
   import { FloatGenerator } from '$lib/generator/FloatGenerator';
   import type { DartsDifficulty, DartsSeed } from '$lib/types';
-  import FloatGenerationStep from '../FloatGenerationStep.svelte';
-  import ContentBlock from '../layout/ContentBlock.svelte';
-  import Loader from '../Loader.svelte';
-  import ResultTabs from '../ResultTabs.svelte';
+  import { colorForDart, multiForDart } from '$lib/util/darts';
+  import FloatGenerationStep from '$lib/games/FloatGenerationStep.svelte';
+  import DartsMultiplierStep from '$lib/games/darts/DartsMultiplierStep.svelte';
+  import ContentBlock from '$lib/games/layout/ContentBlock.svelte';
+  import Loader from '$lib/games/Loader.svelte';
+  import ResultTabs from '$lib/games/ResultTabs.svelte';
 
   let resultIndex = $state(0);
 
@@ -23,47 +25,83 @@
       () => seed,
       (seed) => {
         const floatGenerator = FloatGenerator(seed);
-        return [{ float: floatGenerator.next().value }, { float: floatGenerator.next().value }];
+        const rotation = floatGenerator.next().value;
+        const distance = floatGenerator.next().value;
+        return [
+          { float: rotation, label: 'rotation' },
+          { float: distance, label: 'distance' }
+        ];
       },
       350
     )
   );
 </script>
 
-<div class="mt-8 border-0 text-center dark:text-white">
+<div class="mt-5 border-0 text-center dark:text-white">
   <div id="step-content" class="pb-4 text-left text-sm dark:bg-gray-900 dark:text-white">
     {#if floatsDebounced.debouncing}
       <Loader />
     {:else}
       {@const items = floatsDebounced.value!}
+      {@const rotation = items[0].float}
+      {@const distance = items[1].float}
+      {@const normalisedDistance = Math.sqrt(distance) / 2}
+      {@const colorHex = colorForDart(seed.difficulty, rotation, normalisedDistance)}
+      {@const multi = multiForDart(seed.difficulty, colorHex)}
 
+      <!-- Header banner -->
       <ContentBlock
-        className="mt-5 mb-7 p-2 pb-4 text-center text-base text-gray-900 dark:text-white"
+        className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400"
       >
-        <p class="mb-2 text-lg">Explanation</p>
-        <p class="text-sm">
-          The position of the dart is generated with 2 floats, one for the rotation and one for the
-          distance from the center. The distance is normalized to a range of 0 to 0.5, where 0 is
-          the center and 0.5 is the edge of the dartboard. The rotation is a float value between 0
-          and 1, where 0 is the top of the dartboard and 0.5 is the bottom.
+        <p class="font-medium">
+          <span class="text-blue-600 dark:text-blue-400"
+            >Dart position is determined by 2 floats.</span
+          >
+          The first sets the rotation, the second sets the distance from centre.
         </p>
       </ContentBlock>
 
-      <ResultTabs
-        {seed}
-        items={items.map((item) => ({ chosen: item.float.toFixed(3) }))}
-        bind:resultIndex
-      />
+      <!-- Float tabs + Step 1 -->
+      <ContentBlock className="mb-6 p-5 overflow-visible">
+        <ResultTabs
+          {seed}
+          items={items.map((item) => ({ chosen: item.label }))}
+          bind:resultIndex
+          tabWidthClass="w-20"
+          tabClassModifier={(n) =>
+            'rounded border-2 border-gray-300 bg-gray-100 p-1.5 text-gray-500 opacity-70 ' +
+            'hover:border-blue-300 hover:opacity-80 ring-2 ring-transparent ' +
+            'dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 !outline-none'}
+          tabSelectedClassModifier={(n) =>
+            'rounded border-2 border-blue-500 bg-blue-100 font-bold text-blue-700 opacity-100 ' +
+            'shadow-lg ring-2 ring-blue-400 z-10 ' +
+            'dark:border-blue-400 dark:bg-blue-900/30 dark:text-blue-400 dark:ring-blue-400 !outline-none'}
+        />
 
-      {@const selectedItem = items[resultIndex]}
+        {@const selectedItem = items[resultIndex]}
 
-      <FloatGenerationStep
-        stepNumber={1}
-        {resultIndex}
-        {seed}
-        float={selectedItem.float}
-        hideStepNumber={true}
-      />
+        <FloatGenerationStep
+          stepNumber={1}
+          {resultIndex}
+          {seed}
+          float={selectedItem.float}
+          contentBlockClassName="py-6"
+        />
+      </ContentBlock>
+
+      <!-- Step 2 — Zone & Multiplier -->
+      <ContentBlock className="mb-6 p-5">
+        <DartsMultiplierStep
+          stepNumber={2}
+          {rotation}
+          {distance}
+          {normalisedDistance}
+          {colorHex}
+          {multi}
+          difficulty={seed.difficulty}
+          contentBlockClassName="py-6"
+        />
+      </ContentBlock>
     {/if}
   </div>
 </div>

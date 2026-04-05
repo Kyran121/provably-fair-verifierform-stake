@@ -5,8 +5,10 @@
   const { value, suit }: { value: string; suit: CardSuit } = $props();
 </script>
 
-<div class="mt-2 grid grid-cols-2 gap-1 bg-gray-200 md:gap-1.5 dark:bg-gray-700">
-  <div class="flex items-center justify-center">{value}</div>
+<div
+  class="flex h-24 flex-col items-center justify-center rounded-lg border-2 border-gray-300 bg-white p-3 shadow-md transition-transform dark:border-gray-600 dark:bg-gray-800"
+>
+  <div class="mb-1 text-2xl font-bold">{value}</div>
   <div class="hidden dark:block">
     <CardSuitIcon {suit} />
   </div>

@@ -24,6 +24,7 @@ export interface BlueSamuraiRound {
   specialRound: boolean;
   specialSpin?: number;
   stuckSamurais?: OrderedSet<number>;
+  newlyLockedSamurais?: OrderedSet<number>;
   symbols: BlueSamuraiSymbol[];
   bonusSpin: number;
   totalBonusRounds: number;
@@ -134,6 +135,7 @@ export enum BarsDifficulty {
 export interface BarsSeed extends Seed {
   difficulty: BarsDifficulty;
   barCount: number;
+  selectedBars?: string;
 }
 
 export enum SnakesDifficulty {
@@ -219,6 +221,7 @@ export interface FloatExplanationStepProps {
   float: number;
   seed: Seed;
   hideStepNumber?: boolean;
+  contentBlockClassName?: string;
 }
 
 export type Item<T> = Omit<FisherYatesItem<T>, 'chosenIndexes'>;

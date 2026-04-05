@@ -58,23 +58,33 @@
     {chosenCardsDebounced.value!.decider.map(({ value, suit }) => `${value}-${suit}`).join(', ')}
   </p>
 
-  <p class="text-center">Initial player cards</p>
-  <div class="grid grid-cols-2 gap-1 md:gap-1.5">
-    {#each chosenCardsDebounced.value!.initialPlayer as card, n (n)}
-      <Card {...card} />
-    {/each}
-  </div>
-
-  <p class="mt-5 text-center">Initial banker cards</p>
-  <div class="grid grid-cols-2 gap-1 md:gap-1.5">
-    {#each chosenCardsDebounced.value!.initialBanker as card, n (n)}
-      <Card {...card} />
-    {/each}
+  <div class="mt-5 mb-6">
+    <p class="mb-3 text-center text-lg font-semibold text-blue-600 dark:text-blue-400">
+      Initial Player Cards
+    </p>
+    <div class="grid grid-cols-2 gap-2 md:gap-3">
+      {#each chosenCardsDebounced.value!.initialPlayer as card, n (n)}
+        <Card {...card} />
+      {/each}
+    </div>
   </div>
 
   <div class="mb-6">
-    <p class="mt-5 text-center">Decider cards</p>
-    <div class="grid grid-cols-2 gap-1 md:gap-1.5">
+    <p class="mb-3 text-center text-lg font-semibold text-green-600 dark:text-green-400">
+      Initial Banker Cards
+    </p>
+    <div class="grid grid-cols-2 gap-2 md:gap-3">
+      {#each chosenCardsDebounced.value!.initialBanker as card, n (n)}
+        <Card {...card} />
+      {/each}
+    </div>
+  </div>
+
+  <div class="mb-6">
+    <p class="mb-3 text-center text-lg font-semibold text-purple-600 dark:text-purple-400">
+      Decider Cards
+    </p>
+    <div class="grid grid-cols-2 gap-2 md:gap-3">
       {#each chosenCardsDebounced.value!.decider as card, n (n)}
         <Card {...card} />
       {/each}

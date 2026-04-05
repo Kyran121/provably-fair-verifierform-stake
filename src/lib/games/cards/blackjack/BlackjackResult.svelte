@@ -58,26 +58,38 @@
     {chosenCardsDebounced.value!.remaining.map(({ value, suit }) => `${value}-${suit}`).join(', ')}
   </p>
 
-  <p class="text-center">Initial player cards</p>
-  <div class="grid grid-cols-2 gap-1 sm:gap-1.5">
-    {#each chosenCardsDebounced.value!.initialDealer as card, n (n)}
-      <Card {...card} />
-    {/each}
-  </div>
-
-  <p class="mt-5 text-center">Initial dealer cards</p>
-  <div class="grid grid-cols-2 gap-1 sm:gap-1">
-    {#each chosenCardsDebounced.value!.initialPlayer as card, n (n)}
-      <Card {...card} />
-    {/each}
-  </div>
-
-  <p class="mt-5 text-center">Remaing cards in deck</p>
-  <div class="flex gap-1.5 overflow-x-scroll pb-5">
-    {#each chosenCardsDebounced.value!.remaining as card, n (n)}
-      <div class="w-20 flex-none">
+  <div class="mt-5 mb-6">
+    <p class="mb-3 text-center text-lg font-semibold text-blue-600 dark:text-blue-400">
+      Initial player cards
+    </p>
+    <div class="grid grid-cols-2 gap-1 sm:gap-1.5">
+      {#each chosenCardsDebounced.value!.initialDealer as card, n (n)}
         <Card {...card} />
-      </div>
-    {/each}
+      {/each}
+    </div>
+  </div>
+
+  <div class="mb-6">
+    <p class="mb-3 text-center text-lg font-semibold text-green-600 dark:text-green-400">
+      Initial dealer cards
+    </p>
+    <div class="grid grid-cols-2 gap-1 sm:gap-1">
+      {#each chosenCardsDebounced.value!.initialPlayer as card, n (n)}
+        <Card {...card} />
+      {/each}
+    </div>
+  </div>
+
+  <div class="mb-6">
+    <p class="mb-3 text-center text-lg font-semibold text-purple-600 dark:text-purple-400">
+      Remaing cards in deck
+    </p>
+    <div class="flex gap-1.5 overflow-x-scroll pb-5">
+      {#each chosenCardsDebounced.value!.remaining as card, n (n)}
+        <div class="w-20 flex-none">
+          <Card {...card} />
+        </div>
+      {/each}
+    </div>
   </div>
 {/if}

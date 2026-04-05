@@ -6,7 +6,6 @@
   import MolesBoard from '$lib/games/moles/MolesBoard.svelte';
   import Loader from '$lib/games/Loader.svelte';
   import ContentBlock from '$lib/games/layout/ContentBlock.svelte';
-  import { BG_COLOR } from '$lib/constants';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
@@ -66,24 +65,24 @@
   </p>
 
   <ContentBlock className="p-4">
-    <div class="flex flex-col gap-6">
+    <div class="flex flex-col gap-4">
       <!-- Board display -->
       <MolesBoard molePositions={rounds[selectedRound]} />
 
-      <!-- Round navigation buttons -->
-      <div class="flex flex-wrap justify-center gap-2">
+      <!-- Round navigation — wrapping strip -->
+      <div class="mt-3 flex flex-wrap justify-center gap-2">
         {#each rounds as _, roundIndex}
           <button
             type="button"
             class={[
-              'rounded px-3 py-2 text-sm font-medium transition-colors md:px-4 md:text-base',
+              'rounded border px-3.5 py-1.5 text-sm font-medium transition-all',
               selectedRound === roundIndex
-                ? BG_COLOR + ' text-white'
-                : 'bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500'
+                ? 'border-purple-500 bg-purple-100 font-bold text-purple-700 shadow-sm ring-2 ring-purple-400 dark:border-purple-400 dark:bg-purple-900/30 dark:text-purple-400 dark:ring-purple-500'
+                : 'border-gray-300 bg-white text-gray-600 hover:bg-gray-100 hover:text-purple-700 hover:ring-2 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400'
             ]}
             onclick={() => (selectedRound = roundIndex)}
           >
-            {roundIndex + 1}
+            R{roundIndex + 1}
           </button>
         {/each}
       </div>

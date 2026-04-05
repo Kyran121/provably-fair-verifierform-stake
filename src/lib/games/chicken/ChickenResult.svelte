@@ -4,8 +4,9 @@
   import type { ChickenDifficulty, ChickenSeed } from '$lib/types';
   import paylines from '$lib/assets/chicken-paylines.json';
   import { fisherYates } from '$lib/util/shuffle-impl/fisherYates';
-  import { BG_COLOR, CHICKEN_DIFFICULTY_TO_SLICE } from '$lib/constants';
+  import { CHICKEN_DIFFICULTY_TO_SLICE } from '$lib/constants';
   import Loader from '$lib/games/Loader.svelte';
+  import ContentBlock from '$lib/games/layout/ContentBlock.svelte';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
@@ -34,7 +35,7 @@
         const deathIndex = Math.min(
           ...fisherYates(floatGenerator, indexes, slice).map((item) => item.chosen)
         );
-        return deathIndex - 1 < 0 ? 1 : payline[deathIndex - 1];
+        return payline[deathIndex];
       },
       350
     )
@@ -44,23 +45,68 @@
 {#if multiDebounced.debouncing}
   <Loader />
 {:else}
-  <p data-testid="pump-result" class="hidden text-center text-base">
-    highest payout <span class="text-xl text-purple-500">{multiDebounced.value!.toFixed(2)}x</span>
+  {@const maxMulti = multiDebounced.value!}
+  {@const maxIndex = payline.indexOf(maxMulti)}
+  {@const deathMulti = maxIndex + 1 < payline.length ? payline[maxIndex + 1] : null}
+
+  <p data-testid="pump-result" class="hidden">
+    {maxMulti.toFixed(2)}x
   </p>
 
-  <div class="flex gap-1 overflow-x-scroll pb-5 md:gap-1.5">
-    {#each payline as multi, i (i)}
-      {#if multi === multiDebounced.value!}
-        <div class="col p-2 text-center {BG_COLOR}" bind:this={selectedEl}>
-          <span class="text-xs">({i})</span>
-          {multi.toFixed(2)}x
-        </div>
-      {:else}
-        <div class="col bg-gray-200 p-2 text-center dark:bg-gray-700">
-          <span class="text-xs">({i})</span>
-          {multi.toFixed(2)}x
-        </div>
+  <ContentBlock className="p-4">
+    <!-- Legend -->
+    <div class="mb-2 flex flex-wrap items-center gap-3 text-xs text-gray-500 dark:text-gray-400">
+      <span class="flex items-center gap-1">
+        <span
+          class="inline-block h-3 w-3 rounded border-2 border-green-500 bg-green-50 dark:border-green-400 dark:bg-green-900/30"
+        ></span>
+        Max achievable
+      </span>
+      {#if deathMulti !== null}
+        <span class="flex items-center gap-1">
+          <span
+            class="inline-block h-3 w-3 rounded border-2 border-red-500 bg-red-50 dark:border-red-400 dark:bg-red-900/30"
+          ></span>
+          Death point
+        </span>
       {/if}
-    {/each}
-  </div>
+    </div>
+
+    <!-- Payline strip -->
+    <div class="flex gap-1 overflow-x-auto pt-2 pb-2 md:gap-1.5">
+      {#each payline as multi, i (i)}
+        {@const isMax = multi === maxMulti}
+        {@const isDeath = deathMulti !== null && i === maxIndex + 1}
+        {#if isMax}
+          <div
+            class="flex w-auto flex-col items-center justify-center rounded border-2 border-green-500 bg-green-50 px-2 py-2 text-center ring-2 ring-green-400 transition-all dark:border-green-400 dark:bg-green-900/30 dark:ring-green-500"
+            bind:this={selectedEl}
+          >
+            <span class="text-[10px] font-semibold text-green-600 dark:text-green-400">✓ MAX</span>
+            <span class="text-xs font-bold whitespace-nowrap text-green-800 dark:text-green-300"
+              >{multi.toFixed(2)}x</span
+            >
+          </div>
+        {:else if isDeath}
+          <div
+            class="flex w-auto flex-col items-center justify-center rounded border-2 border-red-400 bg-red-50 px-2 py-2 text-center ring-2 ring-red-300 transition-all dark:border-red-500 dark:bg-red-900/20 dark:ring-red-500"
+          >
+            <span class="text-[10px] font-semibold text-red-500 dark:text-red-400">💀</span>
+            <span class="text-xs font-bold whitespace-nowrap text-red-600 dark:text-red-400"
+              >{multi.toFixed(2)}x</span
+            >
+          </div>
+        {:else}
+          <div
+            class="flex w-auto flex-col items-center justify-center rounded border-2 border-gray-200 bg-gray-50 px-2 py-2 text-center ring-2 ring-transparent transition-all dark:border-gray-600 dark:bg-gray-800"
+          >
+            <span class="text-[10px] text-gray-400 dark:text-gray-500">({i})</span>
+            <span class="text-xs font-bold whitespace-nowrap text-gray-600 dark:text-gray-400"
+              >{multi.toFixed(2)}x</span
+            >
+          </div>
+        {/if}
+      {/each}
+    </div>
+  </ContentBlock>
 {/if}

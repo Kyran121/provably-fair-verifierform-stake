@@ -1,12 +1,11 @@
 <script lang="ts">
-  import { BG_COLOR, BG_COLOR_GRAY, BG_COLOR_GREEN, BG_COLOR_RED } from '$lib/constants';
-
   const { chosenNumber }: { chosenNumber: number } = $props();
 
-  const redNumbers = new Set([1, 3, 5, 7, 9, 12, 14, 16, 18, 21, 23, 25, 27, 28, 30, 32, 34, 36]);
-
-  const getColorClass = (n: number) =>
-    n === chosenNumber ? BG_COLOR : redNumbers.has(n) ? BG_COLOR_GRAY : BG_COLOR_RED;
+  const getColorClass = (n: number) => {
+    if (n === chosenNumber)
+      return 'border-2 border-purple-500 bg-purple-100 font-bold text-purple-700 ring-2 ring-purple-400 dark:border-purple-400 dark:bg-purple-900/30 dark:text-purple-400 dark:ring-purple-500 z-10 scale-110 shadow-md';
+    return 'border border-gray-300 bg-gray-50 text-gray-700 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300';
+  };
 
   const columns: number[] = [];
   for (let i = 0; i <= 2; i++) {
@@ -21,8 +20,10 @@
   <div class="flex flex-col">
     <div
       class={[
-        'flex h-[calc(3*2.5rem+2*0.25rem)] w-[1.5rem] items-center justify-center md:w-[2.5rem]',
-        chosenNumber === 0 ? BG_COLOR : BG_COLOR_GREEN
+        'flex h-[calc(3*2.5rem+2*0.25rem)] w-[1.5rem] items-center justify-center rounded transition-all md:w-[2.5rem]',
+        chosenNumber === 0
+          ? 'border-2 border-purple-500 bg-purple-100 font-bold text-purple-700 shadow-md ring-2 ring-purple-400 dark:border-purple-400 dark:bg-purple-900/30 dark:text-purple-400 dark:ring-purple-500'
+          : 'border border-gray-300 bg-gray-50 text-gray-700 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300'
       ]}
     >
       0
@@ -33,7 +34,10 @@
   <div class="grid flex-1 grid-cols-12 gap-1 md:gap-1.5">
     {#each columns as col, n (n)}
       <div
-        class={['flex aspect-square h-full w-full items-center justify-center', getColorClass(col)]}
+        class={[
+          'flex aspect-square h-full w-full items-center justify-center rounded transition-all',
+          getColorClass(col)
+        ]}
       >
         {col}
       </div>

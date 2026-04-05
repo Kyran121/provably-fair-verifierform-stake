@@ -63,6 +63,7 @@ export function simulateRounds(floatGenerator: Generator<number, number, number>
     let retriggerType = undefined;
     const specialRound = specialRounds > 0;
     let scatters = 0;
+    const stuckSamuraisBefore = stuckSamurais;
     for (let i = 0; i < 18; i++) {
       const outerReel = i < 3 || i > 14;
       //float not generated for outer reels on special rounds
@@ -109,6 +110,7 @@ export function simulateRounds(floatGenerator: Generator<number, number, number>
       bonusSpin,
       specialSpin: specialRound ? 5 - specialRounds + 1 : undefined,
       stuckSamurais: specialRound ? stuckSamurais : undefined,
+      newlyLockedSamurais: specialRound ? stuckSamurais.subtract(stuckSamuraisBefore) : undefined,
       totalBonusRounds,
       symbols
     });
@@ -150,7 +152,7 @@ function findSymbol(float: number, innerOrOuter: BlueSamuraiReelType): SymbolDat
   for (let i = 0; i < probabilities.length; i++) {
     if (new bigDecimal(float).compareTo(probabilities[i].max) < 0) {
       symbol = probabilities[i].symbol as BlueSamuraiIcon;
-      min = probabilities[i - 1]?.max || 0;
+      min = probabilities[i - 1]?.max || new bigDecimal(0);
       max = probabilities[i].max;
       break;
     }

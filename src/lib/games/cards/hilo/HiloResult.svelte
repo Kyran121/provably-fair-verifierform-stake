@@ -38,12 +38,16 @@
     {chosenCardsDebounced.value!.map(({ value, suit }) => `${value}-${suit}`).join(', ')}
   </p>
 
-  <p class="mt-5 text-center">Order of cards</p>
-  <div class="flex gap-1.5 overflow-x-scroll pb-5">
-    {#each chosenCardsDebounced.value! as card, n (n)}
-      <div class="w-20 flex-none">
-        <Card {...card} />
-      </div>
-    {/each}
+  <div class="mt-5 mb-6">
+    <p class="mb-3 text-center text-lg font-semibold text-blue-600 dark:text-blue-400">
+      Order of cards
+    </p>
+    <div class="flex gap-1.5 overflow-x-scroll pb-5">
+      {#each chosenCardsDebounced.value! as card, n (n)}
+        <div class="w-20 flex-none">
+          <Card {...card} />
+        </div>
+      {/each}
+    </div>
   </div>
 {/if}

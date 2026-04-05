@@ -3,13 +3,11 @@
     type BlueSamuraiRound,
     type BlueSamuraiSymbol,
     BlueSamuraiIcon as BlueSamuraiIconT,
-    BlueSamuraiRetriggerType,
-    IndicatorPosition
+    BlueSamuraiRetriggerType
   } from '$lib/types';
   import { isLeftOuterReelSamurais, isRightOuterReelSamurais } from '$lib/util/bluesamurai';
-  import Indicator from '$lib/games/Indicator.svelte';
   import BlueSamuraiIcon from '$lib/games/bluesamurai/BlueSamuraiIcon.svelte';
-  import { BG_COLOR, BG_COLOR_BLUE, BTN_BG_COLOR, BTN_BG_COLOR_BLUE } from '$lib/constants';
+  import { BTN_BG_COLOR, BTN_BG_COLOR_BLUE } from '$lib/constants';
 
   const { round, focused }: { round: BlueSamuraiRound; focused?: number } = $props();
 
@@ -49,10 +47,10 @@
 {#if round.retrigger}
   <p
     class={[
-      'mb-2 text-center italic',
+      'mb-2 rounded border-2 px-3 py-1 text-center text-xs font-semibold',
       round.retriggerType === BlueSamuraiRetriggerType.BONUS
-        ? 'bg-green-400 dark:bg-green-600'
-        : 'bg-red-400 dark:bg-red-600'
+        ? 'border-green-500 bg-green-100 text-green-700 dark:border-green-400 dark:bg-green-900/30 dark:text-green-400'
+        : 'border-red-500 bg-red-100 text-red-700 dark:border-red-400 dark:bg-red-900/30 dark:text-red-400'
     ]}
   >
     +{round.retriggerType === BlueSamuraiRetriggerType.BONUS ? '10 bonus' : '5 special round'} spins
@@ -60,50 +58,55 @@
 {/if}
 
 {#if round.specialRound}
-  <p class="mb-2 text-center italic {BG_COLOR_BLUE}">
+  <p
+    class="mb-2 rounded border-2 border-blue-500 bg-blue-100 px-3 py-1 text-center text-xs font-semibold text-blue-700 dark:border-blue-400 dark:bg-blue-900/30 dark:text-blue-400"
+  >
     special round ({round.specialSpin}/5)
   </p>
-  <p class="mb-2 text-center italic {BG_COLOR}">
+  <p
+    class="mb-2 rounded border-2 border-purple-500 bg-purple-100 px-3 py-1 text-center text-xs font-semibold text-purple-700 dark:border-purple-400 dark:bg-purple-900/30 dark:text-purple-400"
+  >
     bonus paused ({round.bonusSpin - 1}/{round.totalBonusRounds})
   </p>
 {:else if round.bonusSpin! > 0}
-  <p class="mb-2 text-center italic {BG_COLOR}">
+  <p
+    class="mb-2 rounded border-2 border-purple-500 bg-purple-100 px-3 py-1 text-center text-xs font-semibold text-purple-700 dark:border-purple-400 dark:bg-purple-900/30 dark:text-purple-400"
+  >
     bonus round ({round.bonusSpin}/{round.totalBonusRounds})
   </p>
 {/if}
 
-<div class="grid grid-cols-5 gap-1">
+<div class="mt-3 grid grid-cols-5 gap-1">
   {#each reels as reel, nn (nn)}
     <div class="m-auto">
       {#each reel as { index, icon }, n (n)}
         {@const textClass =
-          (round.retriggerType === BlueSamuraiRetriggerType.SPECIAL &&
-            isSpecialRoundTriggerIcon(index!)) ||
-          (round.retriggerType === BlueSamuraiRetriggerType.BONUS &&
-            icon === BlueSamuraiIconT.SCATTER)
-            ? 'text-white'
-            : 'text-gray-700 dark:text-white'}
+          round.retriggerType === BlueSamuraiRetriggerType.SPECIAL &&
+          isSpecialRoundTriggerIcon(index!)
+            ? 'text-blue-700 dark:text-blue-300'
+            : round.retriggerType === BlueSamuraiRetriggerType.BONUS &&
+                icon === BlueSamuraiIconT.SCATTER
+              ? 'text-green-700 dark:text-green-300'
+              : 'text-gray-700 dark:text-gray-300'}
 
         <div
           class={[
-            'relative mb-1',
+            'relative mb-1 rounded border-2',
             focused !== undefined && focused === index! - 1
-              ? 'bg-purple-300 dark:bg-purple-500'
+              ? 'border-purple-400 bg-purple-100 dark:border-purple-500 dark:bg-purple-900/30'
               : (round.specialRound && round.stuckSamurais?.has(index! + 2)) ||
                   icon === BlueSamuraiIconT.SAMURAI
-                ? 'border-2 border-blue-500 dark:border-blue-700 ' +
-                  ((round.retrigger &&
+                ? (round.retrigger &&
                     round.retriggerType === BlueSamuraiRetriggerType.SPECIAL &&
                     isSpecialRoundTriggerIcon(index!)) ||
                   round.specialRound
-                    ? 'bg-blue-600 dark:bg-blue-700'
-                    : 'bg-gray-200 dark:bg-gray-700')
+                  ? 'border-blue-500 bg-blue-100 dark:border-blue-400 dark:bg-blue-900/30'
+                  : 'border-blue-300 bg-blue-50 dark:border-blue-600 dark:bg-blue-900/20'
                 : icon === BlueSamuraiIconT.SCATTER
-                  ? 'border-2 border-green-700 dark:border-green-800 ' +
-                    (round.retrigger && round.retriggerType === BlueSamuraiRetriggerType.BONUS
-                      ? 'bg-green-600 dark:bg-green-700'
-                      : 'bg-gray-200 dark:bg-gray-700')
-                  : 'bg-gray-200 dark:bg-gray-700'
+                  ? round.retrigger && round.retriggerType === BlueSamuraiRetriggerType.BONUS
+                    ? 'border-green-500 bg-green-100 dark:border-green-400 dark:bg-green-900/30'
+                    : 'border-green-300 bg-green-50 dark:border-green-600 dark:bg-green-900/20'
+                  : 'border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-800'
           ]}
         >
           <BlueSamuraiIcon
@@ -112,19 +115,12 @@
               : icon}
           />
 
-          <Indicator
-            text={round.specialRound &&
-            (nn === 0 || nn === 4 || round.stuckSamurais?.has(index! + 2))
-              ? BlueSamuraiIconT.SAMURAI + ' &#128274;'
-              : icon}
-            position={IndicatorPosition.BOTTOM_LEFT}
-            textClass={`text-xs text-center italic ${textClass}`}
-            bgColorClass=""
-            widthClass=""
-          />
-
           {#if index}
-            <Indicator text={index} bgColorClass="bg-gray-300 dark:bg-gray-500" />
+            <span
+              class="mt-0.5 mb-2 block text-center text-[11px] leading-none text-gray-400 dark:text-gray-300"
+            >
+              {index}
+            </span>
           {/if}
         </div>
       {/each}

@@ -3,7 +3,6 @@
   import { debouncer } from '$lib/debounce.svelte';
   import type { CasesDifficulty, CasesSeed } from '$lib/types';
   import Loader from '$lib/games/Loader.svelte';
-  import { TEXT_HIGHLIGHT_COLOR } from '$lib/constants';
   import paylines from '$lib/assets/cases-paylines.json';
   import { getPayout } from '$lib/util/payout';
 
@@ -33,7 +32,14 @@
 {#if multiDebounced.debouncing}
   <Loader />
 {:else}
-  <p data-testid="cases-result" class="text-center text-base">
-    you hit <span class="text-xl {TEXT_HIGHLIGHT_COLOR}">{multiDebounced.value!.toFixed(2)}x</span>
-  </p>
+  <div data-testid="cases-result" class="text-center text-base">
+    <p class="mb-3 text-sm text-gray-500 dark:text-gray-400">Payout multiplier</p>
+    <div
+      class="inline-flex min-w-[100px] flex-col items-center justify-center rounded border-2 border-green-500 bg-green-50 px-6 py-4 shadow-lg dark:border-green-400 dark:bg-green-900/20"
+    >
+      <span class="text-3xl font-bold text-gray-800 dark:text-gray-100"
+        >{multiDebounced.value!.toFixed(2)}x</span
+      >
+    </div>
+  </div>
 {/if}

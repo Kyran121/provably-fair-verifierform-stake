@@ -4,4 +4,4 @@
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 </script>
 
-<CardExplanation {formValues} count={6} colorScheme="baccarat" />
+<CardExplanation {formValues} colorScheme="hilo" />

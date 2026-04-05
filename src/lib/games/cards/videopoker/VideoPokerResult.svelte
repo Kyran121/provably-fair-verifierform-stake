@@ -47,15 +47,21 @@
     {chosenCardsDebounced.value!.coming.map(({ value, suit }) => `${value}-${suit}`).join(', ')}
   </p>
 
-  <p class="text-center">Initial cards</p>
-  <div class="grid grid-cols-5 gap-1 md:gap-1.5">
-    {#each chosenCardsDebounced.value!.initial as initialCard, n (n)}
-      <Card {...initialCard} />
-    {/each}
+  <div class="mt-5 mb-6">
+    <p class="mb-3 text-center text-lg font-semibold text-blue-600 dark:text-blue-400">
+      Initial hand
+    </p>
+    <div class="grid grid-cols-5 gap-1 md:gap-1.5">
+      {#each chosenCardsDebounced.value!.initial as initialCard, n (n)}
+        <Card {...initialCard} />
+      {/each}
+    </div>
   </div>
 
   <div class="mb-6">
-    <p class="mt-5 text-center">Coming cards</p>
+    <p class="mb-3 text-center text-lg font-semibold text-green-600 dark:text-green-400">
+      Coming cards
+    </p>
     <div class="grid grid-cols-5 gap-1 md:gap-1.5">
       {#each chosenCardsDebounced.value!.coming as comingCard, n (n)}
         <Card {...comingCard} />

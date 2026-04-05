@@ -11,7 +11,8 @@ export const gameDefinition: GameDefinition = {
   name: 'Bars',
   schema: CLIENT_SEED_SERVER_SEED_NONCE_SCHEMA.extend({
     difficulty: z.enum(['easy', 'medium', 'hard', 'expert']),
-    barcount: z.number().min(1).max(5)
+    barcount: z.number().min(1).max(5),
+    selectedbars: z.string().optional()
   }),
   controls: [
     ...CLIENT_SEED_SERVER_SEED_NONCE_CONTROLS,
@@ -33,6 +34,15 @@ export const gameDefinition: GameDefinition = {
         min: 1,
         max: 5
       }
+    },
+    {
+      id: 'selectedbars',
+      name: 'selectedbars',
+      label: 'Selected Bars',
+      type: 'text',
+      required: false,
+      syncToUrl: true,
+      hide: () => true
     }
   ],
   ResultComponent: BarsResult,
