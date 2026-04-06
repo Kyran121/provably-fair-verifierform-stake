@@ -4,7 +4,7 @@
   import type { Seed } from '$lib/types';
   import Loader from '$lib/games/Loader.svelte';
   import PacksCard from './PacksCard.svelte';
-  import { TEXT_HIGHLIGHT_COLOR } from '$lib/constants';
+  import { TEXT_HIGHLIGHT_COLOR } from '$lib/config';
   import { findCard } from '$lib/util/packs';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();

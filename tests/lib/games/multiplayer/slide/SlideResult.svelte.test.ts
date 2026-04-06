@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { render } from '@testing-library/svelte';
 import SlideResult from '$lib/games/multiplayer/slide/SlideResult.svelte';
-import { SLIDE_SEEDS } from '$lib/constants';
+import { SLIDE_SEEDS } from '$lib/config';
 
 describe('SlideResult', () => {
   beforeEach(() => {

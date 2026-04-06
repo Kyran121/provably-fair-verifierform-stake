@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { CrashIntGenerationStepProps } from '$lib/types';
-  import { CRASH_SEED } from '$lib/constants';
+  import { CRASH_SEED } from '$lib/config';
   import IntGenerationStep from '$lib/games/multiplayer/IntGenerationStep.svelte';
 
   const { stepNumber, seed, hmac }: CrashIntGenerationStepProps = $props();

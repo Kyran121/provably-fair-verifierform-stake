@@ -1,7 +1,7 @@
 <script lang="ts">
   import { type Card } from '$lib/types';
   import CardSuitIcon from '$lib/games/cards/CardSuitIcon.svelte';
-  import { BTN_BG_COLOR, BTN_BG_COLOR_SELECTED } from '$lib/constants';
+  import { BTN_BG_COLOR, BTN_BG_COLOR_SELECTED } from '$lib/config';
 
   let {
     seed,

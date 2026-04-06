@@ -17,7 +17,7 @@
     BTN_BG_COLOR_GRAY,
     BTN_BG_COLOR_GRAY_SELECTED,
     BTN_BG_COLOR_SELECTED
-  } from '$lib/constants';
+  } from '$lib/config';
   import ContentBlock from '../layout/ContentBlock.svelte';
 
   const {

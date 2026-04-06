@@ -1,6 +1,6 @@
 <script lang="ts">
   import reels from '$lib/assets/scarabspins-tomeoflife/slot-reels.json';
-  import { BG_COLOR } from '$lib/constants';
+  import { BG_COLOR } from '$lib/config';
   import Indicator from '$lib/games/Indicator.svelte';
   import { ScarabSpinsTomeOfLifeIcon } from '$lib/types';
   import { scrollToCenterVertically } from '$lib/util/scroll-impl/scrollToCenterVertically';

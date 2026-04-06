@@ -1,6 +1,6 @@
 <script lang="ts">
   import paylines from '$lib/assets/wheel-paylines.json';
-  import { BG_COLOR } from '$lib/constants';
+  import { BG_COLOR } from '$lib/config';
   import type { WheelSeed } from '$lib/types';
   import ContentBlock from '../layout/ContentBlock.svelte';
   import HighlightLink from '../layout/HighlightLink.svelte';

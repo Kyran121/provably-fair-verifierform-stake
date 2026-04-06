@@ -8,7 +8,7 @@
   import ResultTabs from '$lib/games/ResultTabs.svelte';
   import Loader from '$lib/games/Loader.svelte';
   import ContentBlock from '../layout/ContentBlock.svelte';
-  import { BG_COLOR, BG_COLOR_GRAY } from '$lib/constants';
+  import { BG_COLOR, BG_COLOR_GRAY } from '$lib/config';
   import HighlightText from '../layout/HighlightText.svelte';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();

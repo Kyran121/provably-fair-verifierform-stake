@@ -5,7 +5,7 @@
   import { getDirections, getPayout } from '$lib/util/plinko';
   import paylines from '$lib/assets/plinko-paylines.json';
   import Loader from '$lib/games/Loader.svelte';
-  import { BG_COLOR, BG_COLOR_GRAY } from '$lib/constants';
+  import { BG_COLOR, BG_COLOR_GRAY } from '$lib/config';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 

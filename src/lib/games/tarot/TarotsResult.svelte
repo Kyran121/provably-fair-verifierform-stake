@@ -5,7 +5,7 @@
 	import { TarotArcanaType as ArcanaType } from '$lib/types';
 	import Loader from '$lib/games/Loader.svelte';
 	import TarotsCard from './TarotsCard.svelte';
-	import { TEXT_HIGHLIGHT_COLOR } from '$lib/constants';
+	import { TEXT_HIGHLIGHT_COLOR } from '$lib/config';
 	import { findCard } from '$lib/util/tarot';
 
 	const { formValues }: { formValues: Record<string, unknown> } = $props();

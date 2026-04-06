@@ -4,7 +4,7 @@
   import type { PumpDifficulty, PumpSeed } from '$lib/types';
   import paylines from '$lib/assets/pump-paylines.json';
   import { fisherYates } from '$lib/util/shuffle-impl/fisherYates';
-  import { BG_COLOR, PUMP_DIFFICULTY_TO_SLICE } from '$lib/constants';
+  import { BG_COLOR, PUMP_DIFFICULTY_TO_SLICE } from '$lib/config';
   import Loader from '$lib/games/Loader.svelte';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();

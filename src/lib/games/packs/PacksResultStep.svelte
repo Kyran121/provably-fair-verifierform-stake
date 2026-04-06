@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { TEXT_HIGHLIGHT_COLOR } from '$lib/constants';
+  import { TEXT_HIGHLIGHT_COLOR } from '$lib/config';
   import ContentBlock from '../layout/ContentBlock.svelte';
   import PacksCard from './PacksCard.svelte';
   import type { PacksCard as PacksCardT } from '$lib/types';

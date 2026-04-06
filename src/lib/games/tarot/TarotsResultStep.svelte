@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { TEXT_HIGHLIGHT_COLOR } from '$lib/constants';
+	import { TEXT_HIGHLIGHT_COLOR } from '$lib/config';
 	import ContentBlock from '../layout/ContentBlock.svelte';
 	import TarotsCard from './TarotsCard.svelte';
 	import type { TarotCard, TarotArcanaType } from '$lib/types';

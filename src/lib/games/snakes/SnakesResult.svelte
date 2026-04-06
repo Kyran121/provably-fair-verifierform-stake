@@ -8,7 +8,7 @@
     BG_COLOR_GRAY,
     SNAKES_MULTIPLIER_SHIFT_MAP,
     TEXT_HIGHLIGHT_COLOR
-  } from '$lib/constants';
+  } from '$lib/config';
   import snakeIcon from '$lib/assets/snakes/icons/snake-50x50-white.png';
   import DiceIcon from '$lib/games/snakes/DiceIcon.svelte';
   import Loader from '$lib/games/Loader.svelte';

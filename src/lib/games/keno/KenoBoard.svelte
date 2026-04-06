@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BG_COLOR } from '$lib/constants';
+  import { BG_COLOR } from '$lib/config';
 
   const { chosenNumbers }: { chosenNumbers: number[] } = $props();
   const chosenNumbersLookup = $derived(new Set(chosenNumbers));

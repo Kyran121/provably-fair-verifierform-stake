@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import SlideExplanation from '$lib/games/multiplayer/slide/SlideExplanation.svelte';
 import SlideResult from '$lib/games/multiplayer/slide/SlideResult.svelte';
-import { SLIDE_SEEDS } from '$lib/constants';
+import { SLIDE_SEEDS } from '$lib/config';
 import type { GameDefinition } from 'provably-fair-verifierform-lib';
 
 export const gameDefinition: GameDefinition = {

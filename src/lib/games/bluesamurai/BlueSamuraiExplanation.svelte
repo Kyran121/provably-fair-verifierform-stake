@@ -12,7 +12,7 @@
   import FloatGenerationStep from '$lib/games/FloatGenerationStep.svelte';
   import BlueSamuraiIcon from '$lib/games/bluesamurai/BlueSamuraiIcon.svelte';
   import ContentBlock from '$lib/games/layout/ContentBlock.svelte';
-  import { TEXT_HIGHLIGHT_COLOR } from '$lib/constants';
+  import { TEXT_HIGHLIGHT_COLOR } from '$lib/config';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 

@@ -3,7 +3,7 @@
   import { debouncer } from '$lib/debounce.svelte';
   import { RockPaperScissorsOutcome, type Seed } from '$lib/types';
   import Loader from '$lib/games/Loader.svelte';
-  import { BG_COLOR_GRAY } from '$lib/constants';
+  import { BG_COLOR_GRAY } from '$lib/config';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 

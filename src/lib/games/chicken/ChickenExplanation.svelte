@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BG_COLOR, CHICKEN_DIFFICULTY_TO_SLICE } from '$lib/constants';
+  import { BG_COLOR, CHICKEN_DIFFICULTY_TO_SLICE } from '$lib/config';
   import { debouncer } from '$lib/debounce.svelte';
   import { FloatGenerator } from '$lib/generator/FloatGenerator';
   import type { ChickenDifficulty, ChickenSeed } from '$lib/types';

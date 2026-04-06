@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
-  import { TEXT_HIGHLIGHT_COLOR } from '$lib/constants';
+  import { TEXT_HIGHLIGHT_COLOR } from '$lib/config';
 
   const { className, children }: { className?: string; children: Snippet } = $props();
 </script>

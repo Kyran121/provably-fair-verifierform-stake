@@ -6,7 +6,7 @@
     BTN_BG_COLOR_GRAY_SELECTED,
     BTN_BG_COLOR_SELECTED,
     DRAGON_TOWER_LEVEL_MAP
-  } from '$lib/constants';
+  } from '$lib/config';
   import { debouncer } from '$lib/debounce.svelte';
   import { FloatGenerator } from '$lib/generator/FloatGenerator';
   import type { DragonTowerDifficulty, DragonTowerSeed, FisherYatesItem } from '$lib/types';

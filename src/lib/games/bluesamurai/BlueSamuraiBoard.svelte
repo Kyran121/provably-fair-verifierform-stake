@@ -7,7 +7,7 @@
   } from '$lib/types';
   import { isLeftOuterReelSamurais, isRightOuterReelSamurais } from '$lib/util/bluesamurai';
   import BlueSamuraiIcon from '$lib/games/bluesamurai/BlueSamuraiIcon.svelte';
-  import { BTN_BG_COLOR, BTN_BG_COLOR_BLUE } from '$lib/constants';
+  import { BTN_BG_COLOR, BTN_BG_COLOR_BLUE } from '$lib/config';
 
   const { round, focused }: { round: BlueSamuraiRound; focused?: number } = $props();
 

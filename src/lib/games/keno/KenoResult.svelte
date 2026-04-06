@@ -5,7 +5,7 @@
   import KenoBoard from '$lib/games/keno/KenoBoard.svelte';
   import { fisherYates } from '$lib/util/shuffle-impl/fisherYates';
   import Loader from '$lib/games/Loader.svelte';
-  import { TEXT_HIGHLIGHT_COLOR } from '$lib/constants';
+  import { TEXT_HIGHLIGHT_COLOR } from '$lib/config';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 

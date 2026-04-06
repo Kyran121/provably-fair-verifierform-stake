@@ -3,7 +3,7 @@
   import { ScarabSpinsTomeOfLifeIcon, type ScarabSpinsTomeOfLifeRound } from '$lib/types';
   import reels from '$lib/assets/scarabspins-tomeoflife/slot-reels.json';
   import Indicator from '$lib/games/Indicator.svelte';
-  import { BG_COLOR_GRAY } from '$lib/constants';
+  import { BG_COLOR_GRAY } from '$lib/config';
 
   const {
     round,

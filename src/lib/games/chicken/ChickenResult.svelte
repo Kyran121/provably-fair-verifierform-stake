@@ -4,7 +4,7 @@
   import type { ChickenDifficulty, ChickenSeed } from '$lib/types';
   import paylines from '$lib/assets/chicken-paylines.json';
   import { fisherYates } from '$lib/util/shuffle-impl/fisherYates';
-  import { CHICKEN_DIFFICULTY_TO_SLICE } from '$lib/constants';
+  import { CHICKEN_DIFFICULTY_TO_SLICE } from '$lib/config';
   import Loader from '$lib/games/Loader.svelte';
   import ContentBlock from '$lib/games/layout/ContentBlock.svelte';
 

@@ -4,7 +4,7 @@
   import type { Risk, WheelSeed } from '$lib/types';
   import paylines from '$lib/assets/wheel-paylines.json';
   import Loader from '$lib/games/Loader.svelte';
-  import { BG_COLOR } from '$lib/constants';
+  import { BG_COLOR } from '$lib/config';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 

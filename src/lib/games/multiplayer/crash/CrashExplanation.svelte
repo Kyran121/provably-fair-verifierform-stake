@@ -3,7 +3,7 @@
   import { SHA256 } from '@stablelib/sha256';
   import { encode as toUInt8Array } from '@stablelib/utf8';
   import { encode as toHex } from '@stablelib/hex';
-  import { CRASH_SEED } from '$lib/constants';
+  import { CRASH_SEED } from '$lib/config';
   import type { CrashSeed } from '$lib/types';
   import { debouncer } from '$lib/debounce.svelte';
   import CrashIntGenerationStep from '$lib/games/multiplayer/crash/CrashIntGenerationStep.svelte';

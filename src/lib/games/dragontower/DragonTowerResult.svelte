@@ -2,7 +2,7 @@
   import { FloatGenerator } from '$lib/generator/FloatGenerator';
   import { debouncer } from '$lib/debounce.svelte';
   import type { DragonTowerDifficulty, DragonTowerSeed } from '$lib/types';
-  import { BG_COLOR, BG_COLOR_GRAY, DRAGON_TOWER_LEVEL_MAP } from '$lib/constants';
+  import { BG_COLOR, BG_COLOR_GRAY, DRAGON_TOWER_LEVEL_MAP } from '$lib/config';
   import { fisherYates } from '$lib/util/shuffle-impl/fisherYates';
   import eggIcon from '$lib/assets/dragontower/icons/egg-100x100-white.png';
   import skullIcon from '$lib/assets/dragontower/icons/skull-100x100-white.png';

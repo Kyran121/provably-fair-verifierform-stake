@@ -13,7 +13,7 @@
     BTN_BG_COLOR_GREEN,
     BTN_BG_COLOR_GREEN_SELECTED,
     BTN_BG_COLOR_SELECTED
-  } from '$lib/constants';
+  } from '$lib/config';
 
   const {
     formValues,

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { DARTS_COLOR_TO_MULTI } from '$lib/constants';
+  import { DARTS_COLOR_TO_MULTI } from '$lib/config';
   import { colorForDart } from '$lib/util/darts';
   import type { DartsDifficulty } from '$lib/types';
   import ContentBlock from '$lib/games/layout/ContentBlock.svelte';

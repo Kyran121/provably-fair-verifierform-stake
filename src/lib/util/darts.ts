@@ -1,4 +1,4 @@
-import { DARTS_COLOR_TO_MULTI } from '$lib/constants';
+import { DARTS_COLOR_TO_MULTI } from '$lib/config';
 import { DartsColor, DartsDifficulty } from '$lib/types';
 
 export function multiForDart(difficulty: DartsDifficulty, color: DartsColor) {

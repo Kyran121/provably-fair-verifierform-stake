@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BG_COLOR } from '$lib/constants';
+  import { BG_COLOR } from '$lib/config';
   import { IndicatorPosition } from '$lib/types';
 
   let {
