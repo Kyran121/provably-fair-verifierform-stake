@@ -1,54 +1,32 @@
 <script lang="ts">
-  import { debouncer } from '$lib/debounce.svelte';
-  import { FloatGenerator } from '$lib/generator/FloatGenerator';
-  import type { DartsDifficulty, DartsSeed } from '$lib/types';
-  import { colorForDart, multiForDart } from '$lib/util/darts';
+  import type { DartsSeed } from '$lib/types';
   import FloatGenerationStep from '$lib/games/FloatGenerationStep.svelte';
   import DartsMultiplierStep from '$lib/games/darts/DartsMultiplierStep.svelte';
   import ContentBlock from '$lib/games/layout/ContentBlock.svelte';
   import Loader from '$lib/games/Loader.svelte';
   import ResultTabs from '$lib/games/ResultTabs.svelte';
+  import { useDartsThrow } from '$lib/composables';
 
   let resultIndex = $state(0);
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
-
-  let seed = $derived<DartsSeed>({
-    clientSeed: formValues.clientseed as string,
-    serverSeed: formValues.serverseed as string,
-    nonce: formValues.nonce as number,
-    difficulty: formValues.difficulty as DartsDifficulty
-  });
-
-  const floatsDebounced = $derived.by(
-    debouncer(
-      () => seed,
-      (seed) => {
-        const floatGenerator = FloatGenerator(seed);
-        const rotation = floatGenerator.next().value;
-        const distance = floatGenerator.next().value;
-        return [
-          { float: rotation, label: 'rotation' },
-          { float: distance, label: 'distance' }
-        ];
-      },
-      350
-    )
+  const dartsThrow = useDartsThrow(() => formValues);
+  const dartsSeed = $derived(dartsThrow.seed as DartsSeed);
+  const floatItems = $derived(
+    dartsThrow.result
+      ? [
+          { float: dartsThrow.result.rotation, label: 'rotation' },
+          { float: dartsThrow.result.distance, label: 'distance' }
+        ]
+      : null
   );
 </script>
 
 <div class="mt-5 border-0 text-center dark:text-white">
   <div id="step-content" class="pb-4 text-left text-sm dark:bg-gray-900 dark:text-white">
-    {#if floatsDebounced.debouncing}
+    {#if dartsThrow.isCalculating || !dartsThrow.result || !floatItems}
       <Loader />
     {:else}
-      {@const items = floatsDebounced.value!}
-      {@const rotation = items[0].float}
-      {@const distance = items[1].float}
-      {@const normalisedDistance = Math.sqrt(distance) / 2}
-      {@const colorHex = colorForDart(seed.difficulty, rotation, normalisedDistance)}
-      {@const multi = multiForDart(seed.difficulty, colorHex)}
-
       <!-- Header banner -->
       <ContentBlock
         className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400"
@@ -64,8 +42,8 @@
       <!-- Float tabs + Step 1 -->
       <ContentBlock className="mb-6 p-5 overflow-visible">
         <ResultTabs
-          {seed}
-          items={items.map((item) => ({ chosen: item.label }))}
+          seed={dartsThrow.seed!}
+          items={floatItems.map((item) => ({ chosen: item.label }))}
           bind:resultIndex
           tabWidthClass="w-20"
           tabClassModifier={(n) =>
@@ -78,12 +56,12 @@
             'dark:border-blue-400 dark:bg-blue-900/30 dark:text-blue-400 dark:ring-blue-400 !outline-none'}
         />
 
-        {@const selectedItem = items[resultIndex]}
+        {@const selectedItem = floatItems[resultIndex]}
 
         <FloatGenerationStep
           stepNumber={1}
           {resultIndex}
-          {seed}
+          seed={dartsThrow.seed!}
           float={selectedItem.float}
           contentBlockClassName="py-6"
         />
@@ -93,12 +71,12 @@
       <ContentBlock className="mb-6 p-5">
         <DartsMultiplierStep
           stepNumber={2}
-          {rotation}
-          {distance}
-          {normalisedDistance}
-          {colorHex}
-          {multi}
-          difficulty={seed.difficulty}
+          rotation={dartsThrow.result.rotation}
+          distance={dartsThrow.result.distance}
+          normalisedDistance={dartsThrow.result.normalisedDistance}
+          colorHex={dartsThrow.result.colorHex}
+          multi={dartsThrow.result.multi}
+          difficulty={dartsSeed.difficulty}
           contentBlockClassName="py-6"
         />
       </ContentBlock>

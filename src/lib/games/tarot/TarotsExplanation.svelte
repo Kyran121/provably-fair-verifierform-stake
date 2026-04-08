@@ -1,96 +1,77 @@
 <script lang="ts">
-	import type { TarotCard, TarotSeed, TarotArcanaType, TarotDifficulty } from '$lib/types';
-	import { TarotArcanaType as ArcanaType } from '$lib/types';
-	import { FloatGenerator } from '$lib/generator/FloatGenerator';
-	import { debouncer } from '$lib/debounce.svelte';
-	import Loader from '$lib/games/Loader.svelte';
-	import TarotsTable from './TarotsTable.svelte';
-	import ResultTabs from '../ResultTabs.svelte';
-	import { findCard } from '$lib/util/tarot';
-	import ContentBlock from '../layout/ContentBlock.svelte';
-	import FloatGenerationStep from '../FloatGenerationStep.svelte';
-	import TarotsResultStep from './TarotsResultStep.svelte';
+  import type { TarotSeed } from '$lib/types';
+  import Loader from '$lib/games/Loader.svelte';
+  import ResultTabs from '../ResultTabs.svelte';
+  import ContentBlock from '../layout/ContentBlock.svelte';
+  import FloatGenerationStep from '../FloatGenerationStep.svelte';
+  import TarotsResultStep from './TarotsResultStep.svelte';
+  import { useTarotsCards } from '$lib/composables';
+  import { getTarotTabClass, getTarotTabSelectedClass } from '$lib/util/tarot';
 
-	const { formValues }: { formValues: Record<string, unknown> } = $props();
+  const { formValues }: { formValues: Record<string, unknown> } = $props();
 
-	let resultIndex = $state(0);
-
-	let seed = $derived<TarotSeed>({
-		clientSeed: formValues.clientseed as string,
-		serverSeed: formValues.serverseed as string,
-		nonce: formValues.nonce as number,
-		difficulty: formValues.difficulty as TarotDifficulty
-	});
-
-	interface CardResult {
-		float: number;
-		card: TarotCard;
-		arcanaType: TarotArcanaType;
-		cardNumber: number;
-	}
-
-	const resultsDebounced = $derived.by(
-		debouncer(
-			() => seed,
-			(seed) => {
-				const floatGenerator = FloatGenerator(seed);
-				const results: CardResult[] = [];
-
-				// Card 1: Minor Arcana
-				const float1 = floatGenerator.next().value;
-				const card1 = findCard(float1, seed.difficulty, ArcanaType.MINOR);
-				if (card1)
-					results.push({ float: float1, card: card1, arcanaType: ArcanaType.MINOR, cardNumber: 1 });
-
-				// Card 2: Major Arcana
-				const float2 = floatGenerator.next().value;
-				const card2 = findCard(float2, seed.difficulty, ArcanaType.MAJOR);
-				if (card2)
-					results.push({ float: float2, card: card2, arcanaType: ArcanaType.MAJOR, cardNumber: 2 });
-
-				// Card 3: Minor Arcana
-				const float3 = floatGenerator.next().value;
-				const card3 = findCard(float3, seed.difficulty, ArcanaType.MINOR);
-				if (card3)
-					results.push({ float: float3, card: card3, arcanaType: ArcanaType.MINOR, cardNumber: 3 });
-
-				return results;
-			},
-			350
-		)
-	);
+  let resultIndex = $state(0);
+  const tarots = useTarotsCards(() => formValues);
 </script>
 
 <div class="mt-5 border-0 text-center dark:text-white">
-	<div id="step-content" class="pb-4 text-left text-sm dark:bg-gray-900 dark:text-white">
-		{#if resultsDebounced.debouncing}
-			<Loader />
-		{:else}
-			{@const results = resultsDebounced.value!}
+  <div id="step-content" class="pb-4 text-left text-sm dark:bg-gray-900 dark:text-white">
+    {#if tarots.isCalculating || !tarots.items}
+      <Loader />
+    {:else}
+      {@const tarotSeed = tarots.seed! as TarotSeed}
 
-			<TarotsTable difficulty={seed.difficulty} />
+      <!-- Header banner -->
+      <ContentBlock
+        className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-purple-500 dark:border-purple-400"
+      >
+        <p class="font-medium">
+          <span class="text-purple-600 dark:text-purple-400"
+            >Tarot cards are selected using float values mapped to correlation tables.</span
+          >
+          Each card has a multiplier determined by the difficulty and arcana type.
+        </p>
+      </ContentBlock>
 
-			<ContentBlock className="mb-7 p-2 text-center text-base text-gray-900 dark:text-white">
-				<p>
-					Cards selected in the order shown below. Click a card to find out how it was selected
-					using stake's provably fair algorithm
-				</p>
-			</ContentBlock>
+      <!-- Step 1 -->
+      <ContentBlock className="mb-6 p-5">
+        <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">
+          Step 1 — Generate Cards
+        </p>
+        <p class="mb-3 text-gray-700 dark:text-gray-300">
+          Generate {tarots.items.length} card{tarots.items.length > 1 ? 's' : ''} from seed
+        </p>
+      </ContentBlock>
 
-			<ResultTabs
-				{seed}
-				items={results.map((result) => ({ chosen: result.cardNumber }))}
-				bind:resultIndex
-				tabNameModifier={(_chosen, n) => `${results[n].card.multiplier}x`}
-			/>
+      <!-- Step 1 sub-steps -->
+      <ContentBlock className="mb-6 p-5 overflow-visible">
+        <ResultTabs
+          seed={tarots.seed!}
+          items={tarots.items.map((_item, n) => ({ chosen: n + 1 }))}
+          bind:resultIndex
+          tabNameModifier={(_chosen, n) => `${tarots.items![n].card.multiplier}x`}
+          tabClassModifier={(n) => getTarotTabClass(n)}
+          tabSelectedClassModifier={(n) => getTarotTabSelectedClass(n)}
+        />
 
-			{@const selectedItem = results[resultIndex]}
-			{@const float = selectedItem.float}
-			{@const card = selectedItem.card}
-			{@const arcanaType = selectedItem.arcanaType}
+        {@const selectedItem = tarots.items[resultIndex]}
 
-			<FloatGenerationStep stepNumber={1} {resultIndex} {seed} {float} />
-			<TarotsResultStep {float} {card} {arcanaType} />
-		{/if}
-	</div>
+        <FloatGenerationStep
+          stepNumber={1.1}
+          {resultIndex}
+          seed={tarots.seed!}
+          float={selectedItem.float}
+          contentBlockClassName="py-6"
+        />
+        <TarotsResultStep
+          stepNumber={1.2}
+          float={selectedItem.float}
+          card={selectedItem.card}
+          arcanaType={selectedItem.arcanaType}
+          difficulty={tarotSeed.difficulty}
+          contentBlockClassName="py-6"
+        />
+      </ContentBlock>
+    {/if}
+  </div>
 </div>

@@ -1,7 +1,8 @@
 <script lang="ts">
   import type { Card, FisherYatesItem } from '$lib/types';
+  import CardDeckGrid from '$lib/games/cards/CardDeckGrid.svelte';
   import CardSuitIcon from '$lib/games/cards/CardSuitIcon.svelte';
-  import { generateCardDeck } from '$lib/util/cards';
+  import { generateCardDeck, CARD_COLOR_BLUE, type CardColor } from '$lib/util/cards';
   import HighlightLink from '$lib/games/layout/HighlightLink.svelte';
   import HighlightText from '$lib/games/layout/HighlightText.svelte';
   import ContentBlock from '$lib/games/layout/ContentBlock.svelte';
@@ -13,25 +14,11 @@
     chosen,
     chosenIndex,
     chosenIndexes,
-    color = {
-      bg: 'bg-blue-100 dark:bg-blue-900/30',
-      border: 'border-blue-500 dark:border-blue-400',
-      ring: 'ring-blue-500 dark:ring-blue-400',
-      resultBorder: 'border-blue-500 dark:border-blue-400',
-      resultBg: 'bg-blue-50 dark:bg-blue-900/20',
-      label: 'blue'
-    }
+    color = CARD_COLOR_BLUE
   }: {
     stepNumber: number;
     resultIndex: number;
-    color?: {
-      bg: string;
-      border: string;
-      ring: string;
-      resultBorder: string;
-      resultBg: string;
-      label: string;
-    };
+    color?: CardColor;
   } & FisherYatesItem<Card> = $props();
 
   const { previousCards, deckMinusPreviousCards } = $derived.by(() => {
@@ -45,7 +32,7 @@
   <p class="mb-2 text-2xl font-semibold">Step {stepNumber}</p>
   <p class="mb-2 text-lg">Transform float into card</p>
   <p class="mb-5 text-sm text-gray-500 dark:text-gray-400">
-    see <span class="font-bold">Video Poker</span> section on the
+    See <span class="font-bold">Video Poker</span> section on the
     <HighlightLink href="https://stake.com/provably-fair/game-events">game events</HighlightLink> page
   </p>
 
@@ -53,6 +40,9 @@
     <!-- Constants -->
     <div class="mb-6 border-b border-gray-300 pb-4 dark:border-gray-600">
       <p class="mb-2 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">Constants</p>
+      <p class="leading-relaxed">
+        resultIndex = <span class="font-bold text-blue-600 dark:text-blue-400">{resultIndex}</span>
+      </p>
       <p class="leading-relaxed">
         deckSize = <span class="font-bold text-blue-600 dark:text-blue-400">52</span>
       </p>
@@ -86,32 +76,12 @@
     </div>
 
     <!-- Remaining Deck -->
-    <div class="mb-6 border-b border-gray-300 pb-4 dark:border-gray-600">
-      <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">
-        Remaining Deck ({deckMinusPreviousCards.length} cards)
-      </p>
-      <div class="grid grid-cols-13 gap-1 text-xs">
-        {#each deckMinusPreviousCards as { value, suit }, n (n)}
-          <button
-            class={[
-              'flex min-w-0 flex-col items-center justify-center rounded border p-1.5 transition-all',
-              n === chosenIndex
-                ? `z-10 scale-110 font-bold shadow-lg ring-2 ${color.border} ${color.bg} ${color.ring}`
-                : 'border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-800'
-            ]}
-            disabled
-          >
-            <span class="text-[11px] text-gray-500 dark:text-gray-400">{n}</span>
-            <span class="font-semibold">{value}</span>
-            <span class="hidden dark:inline"><CardSuitIcon {suit} small={true} /></span>
-            <span class="inline dark:hidden"><CardSuitIcon {suit} small={true} dark={true} /></span>
-          </button>
-        {/each}
-      </div>
-      <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
-        Selected card is highlighted in {color.label}
-      </p>
-    </div>
+    <CardDeckGrid
+      cards={deckMinusPreviousCards}
+      {chosenIndex}
+      {color}
+      label="Remaining Deck ({deckMinusPreviousCards.length} cards)"
+    />
 
     <!-- Float Value -->
     <div class="mb-6 border-b border-gray-300 pb-4 dark:border-gray-600">
@@ -151,10 +121,10 @@
       </p>
       <p class="leading-relaxed">card</p>
       <p class="leading-relaxed">
-        = <HighlightText>&lbrace;deckWithoutPreviousCards[cardIndex]&rbrace;</HighlightText>
+        = <HighlightText>&lbrace;remainingDeck[cardIndex]&rbrace;</HighlightText>
       </p>
       <p class="leading-relaxed">
-        = <HighlightText>&lbrace;deckWithoutPreviousCards[{chosenIndex}]&rbrace;</HighlightText>
+        = <HighlightText>&lbrace;remainingDeck[{chosenIndex}]&rbrace;</HighlightText>
       </p>
       <div class="mt-4 flex items-center gap-2">
         <span class="leading-relaxed">=</span>

@@ -1,84 +1,43 @@
 <script lang="ts">
-  import { FloatGenerator } from '$lib/generator/FloatGenerator';
-  import { debouncer } from '$lib/debounce.svelte';
-  import type { MolesSeed } from '$lib/types';
-  import { fisherYates } from '$lib/util/shuffle-impl/fisherYates';
+  import { useMolesRounds } from '$lib/composables';
   import MolesBoard from '$lib/games/moles/MolesBoard.svelte';
   import Loader from '$lib/games/Loader.svelte';
   import ContentBlock from '$lib/games/layout/ContentBlock.svelte';
+  import { MOLES_ROUND_CLASS, MOLES_ROUND_SELECTED_CLASS } from '$lib/util/moles';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
+  const moles = useMolesRounds(() => formValues);
 
   let selectedRound = $state(0);
 
-  const seed = $derived<MolesSeed>({
-    clientSeed: formValues.clientseed as string,
-    serverSeed: formValues.serverseed as string,
-    nonce: formValues.nonce as number,
-    molesCount: formValues.molescount as number
-  });
-
-  const molesRoundsDebounced = $derived.by(
-    debouncer(
-      () => seed,
-      (seed) => {
-        const maxRounds = seed.molesCount === 1 ? 8 : 9;
-        const rounds: number[][] = [];
-
-        for (let round = 0; round < maxRounds; round++) {
-          // Each round uses molesCount floats, each float uses 4 bytes
-          const cursor = round * seed.molesCount * 4;
-          const floatGenerator = FloatGenerator({
-            ...seed,
-            cursor
-          });
-
-          const holes = Array.from({ length: 7 }).map((_v, i) => i);
-          const molePositions = fisherYates(floatGenerator, holes, seed.molesCount)
-            .map((item) => item.chosen)
-            .sort((a, b) => a - b);
-
-          rounds.push(molePositions);
-        }
-
-        return rounds;
-      },
-      350
-    )
-  );
-
-  // Reset selected round when seed changes or rounds change
+  // Reset selected round when rounds change
   $effect(() => {
-    if (molesRoundsDebounced.value) {
+    if (moles.rounds) {
       selectedRound = 0;
     }
   });
 </script>
 
-{#if molesRoundsDebounced.debouncing}
+{#if moles.isCalculating}
   <Loader />
 {:else}
-  {@const rounds = molesRoundsDebounced.value!}
-
   <p data-testid="moles-result" class="hidden">
-    {JSON.stringify(rounds)}
+    {JSON.stringify(moles.rounds!)}
   </p>
 
   <ContentBlock className="p-4">
     <div class="flex flex-col gap-4">
       <!-- Board display -->
-      <MolesBoard molePositions={rounds[selectedRound]} />
+      <MolesBoard molePositions={moles.rounds![selectedRound].map((item) => item.chosen)} />
 
       <!-- Round navigation — wrapping strip -->
       <div class="mt-3 flex flex-wrap justify-center gap-2">
-        {#each rounds as _, roundIndex}
+        {#each moles.rounds! as _, roundIndex}
           <button
             type="button"
             class={[
               'rounded border px-3.5 py-1.5 text-sm font-medium transition-all',
-              selectedRound === roundIndex
-                ? 'border-purple-500 bg-purple-100 font-bold text-purple-700 shadow-sm ring-2 ring-purple-400 dark:border-purple-400 dark:bg-purple-900/30 dark:text-purple-400 dark:ring-purple-500'
-                : 'border-gray-300 bg-white text-gray-600 hover:bg-gray-100 hover:text-purple-700 hover:ring-2 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400'
+              selectedRound === roundIndex ? MOLES_ROUND_SELECTED_CLASS : MOLES_ROUND_CLASS
             ]}
             onclick={() => (selectedRound = roundIndex)}
           >

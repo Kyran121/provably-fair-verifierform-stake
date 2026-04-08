@@ -1,0 +1,25 @@
+Observation 1: ResultTabs Component Reuse Analysis
+==================================================
+
+COMPLETED: Refactored Flip and RPS Explanation components to use ResultTabs
+
+Files Changed:
+- src/lib/games/flip/FlipExplanation.svelte
+- src/lib/games/rockpaperscissors/RockPaperScissorsExplanation.svelte
+
+Changes Made:
+✓ Replaced duplicated tab markup with ResultTabs component
+✓ Used existing utility functions from src/lib/util/flip.ts and src/lib/util/rps.ts
+✓ Maintained identical visual appearance and behavior
+✓ Reduced code duplication (~15 lines removed per file)
+✓ All type checks pass
+
+Benefits:
+- Consistent tab behavior across all games
+- Easier to maintain (changes to tab behavior only need to happen in one place)
+- Automatic scroll handling for long lists
+- Proper keyboard navigation and accessibility from ResultTabs component
+
+Note: Both util files (flip.ts and rps.ts) already existed with proper styling functions.
+The ResultTabs component was already being used by 12+ other games (cards, slots, pump, chicken, etc.)
+Result components correctly show non-interactive summaries, not changed.

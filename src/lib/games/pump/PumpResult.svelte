@@ -1,66 +1,70 @@
 <script lang="ts">
-  import { FloatGenerator } from '$lib/generator/FloatGenerator';
-  import { debouncer } from '$lib/debounce.svelte';
-  import type { PumpDifficulty, PumpSeed } from '$lib/types';
-  import paylines from '$lib/assets/pump-paylines.json';
-  import { fisherYates } from '$lib/util/shuffle-impl/fisherYates';
-  import { BG_COLOR, PUMP_DIFFICULTY_TO_SLICE } from '$lib/config';
+  import { usePumpMultiplier } from '$lib/composables';
   import Loader from '$lib/games/Loader.svelte';
+  import ContentBlock from '$lib/games/layout/ContentBlock.svelte';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
+  const pump = usePumpMultiplier(() => formValues);
 
-  const seed = $derived<PumpSeed>({
-    clientSeed: formValues.clientseed as string,
-    serverSeed: formValues.serverseed as string,
-    nonce: formValues.nonce as number,
-    difficulty: formValues.difficulty as PumpDifficulty
-  });
-
-  const payline = $derived(paylines[seed.difficulty]);
-
-  let selectedEl: HTMLDivElement | null = $state(null);
-
-  $effect(() => {
-    selectedEl?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-  });
-
-  const multiDebounced = $derived.by(
-    debouncer(
-      () => seed,
-      (seed) => {
-        const floatGenerator = FloatGenerator(seed);
-        const slice = PUMP_DIFFICULTY_TO_SLICE[seed.difficulty];
-        const indexes = Array.from({ length: 25 }).map((_v, i) => i);
-        const pumpIndex = Math.min(
-          ...fisherYates(floatGenerator, indexes, slice).map((item) => item.chosen)
-        );
-        return payline[pumpIndex];
-      },
-      350
-    )
+  // The death index is the minimum chosen position across all Fisher-Yates draws.
+  // Stake uses 1-based positions, so we add 1 to each chosen value before finding min.
+  // payline[deathIndex - 1] is the max achievable multiplier.
+  const deathIndex = $derived(
+    pump.items ? Math.min(...pump.items.map((item) => item.chosen + 1)) : -1
+  );
+  const maxMulti = $derived(
+    deathIndex > pump.payline.length
+      ? null
+      : deathIndex > 0
+        ? pump.payline[deathIndex - 1]
+        : pump.payline[0]
   );
 </script>
 
-{#if multiDebounced.debouncing}
+{#if pump.isCalculating}
   <Loader />
 {:else}
-  <p data-testid="pump-result" class="hidden text-center text-base">
-    popped at <span class="text-xl text-purple-500">{multiDebounced.value!.toFixed(2)}x</span>
-  </p>
+  {@const maxIndex = maxMulti ? pump.payline.indexOf(maxMulti) : null}
+  {@const deathMulti =
+    maxIndex && maxIndex + 1 < pump.payline.length ? pump.payline[maxIndex + 1] : null}
 
-  <div class="flex gap-1 overflow-x-scroll pb-5 md:gap-1.5">
-    {#each payline as multi, i (i)}
-      {#if multi === multiDebounced.value!}
-        <div class="col p-2 text-center {BG_COLOR}" bind:this={selectedEl}>
-          <span class="text-xs">({i})</span>
-          {multi.toFixed(2)}x
-        </div>
-      {:else}
-        <div class="col bg-gray-200 p-2 text-center dark:bg-gray-700">
-          <span class="text-xs">({i})</span>
-          {multi.toFixed(2)}x
+  <ContentBlock className="p-4">
+    <!-- Legend -->
+    <div class="mb-3 flex flex-wrap items-center gap-3 text-xs text-gray-500 dark:text-gray-400">
+      <span class="flex items-center gap-1">
+        <span
+          class="inline-block h-3 w-3 rounded border-2 border-green-500 bg-green-50 dark:border-green-400 dark:bg-green-900/30"
+        ></span>
+        Max achievable
+      </span>
+      {#if deathMulti !== null}
+        <span class="flex items-center gap-1">
+          <span
+            class="inline-block h-3 w-3 rounded border-2 border-red-500 bg-red-50 dark:border-red-400 dark:bg-red-900/30"
+          ></span>
+          Death point
+        </span>
+      {/if}
+    </div>
+
+    <!-- Simplified result boxes -->
+    <div class="flex gap-2">
+      <div
+        class="flex flex-1 items-center justify-center rounded border-2 border-green-500 bg-green-50 px-4 py-3 text-center ring-2 ring-green-400 dark:border-green-400 dark:bg-green-900/30 dark:ring-green-500"
+      >
+        <span class="text-lg font-bold text-green-800 dark:text-green-300"
+          >{maxMulti?.toFixed(2)}x</span
+        >
+      </div>
+      {#if deathMulti !== null}
+        <div
+          class="flex flex-1 items-center justify-center rounded border-2 border-red-400 bg-red-50 px-4 py-3 text-center ring-2 ring-red-300 dark:border-red-500 dark:bg-red-900/20 dark:ring-red-500"
+        >
+          <span class="text-lg font-bold text-red-600 dark:text-red-400"
+            >{deathMulti.toFixed(2)}x</span
+          >
         </div>
       {/if}
-    {/each}
-  </div>
+    </div>
+  </ContentBlock>
 {/if}

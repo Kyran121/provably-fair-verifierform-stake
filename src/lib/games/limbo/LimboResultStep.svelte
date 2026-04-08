@@ -2,10 +2,13 @@
   import ContentBlock from '../layout/ContentBlock.svelte';
   import HighlightLink from '../layout/HighlightLink.svelte';
   import HighlightText from '../layout/HighlightText.svelte';
+  import { LIMBO_MAX_INT, LIMBO_HOUSE_EDGE } from '$lib/util/limbo';
 
   const { stepNumber, float }: { stepNumber: number; float: number } = $props();
-  const floatInt = $derived(Math.floor(float * 16777216));
-  const crashPoint = $derived(Math.floor((16777216 / (floatInt + 1)) * (1 - 0.01) * 100) / 100);
+  const floatInt = $derived(Math.floor(float * LIMBO_MAX_INT));
+  const crashPoint = $derived(
+    Math.floor((LIMBO_MAX_INT / (floatInt + 1)) * (1 - LIMBO_HOUSE_EDGE) * 100) / 100
+  );
 </script>
 
 <div class="mt-7 text-center">
@@ -19,18 +22,20 @@
   <ContentBlock className="p-6 text-left font-mono text-sm">
     <!-- Constants -->
     <div class="mb-6 border-b border-gray-300 pb-4 dark:border-gray-600">
-      <p class="mb-2 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">Constants</p>
+      <p class="mb-2 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">Constants</p>
       <p class="leading-relaxed">
-        maxInt = <span class="font-bold text-blue-600 dark:text-blue-400">16777216</span>
+        maxInt = <span class="font-bold text-blue-600 dark:text-blue-400">{LIMBO_MAX_INT}</span>
       </p>
       <p class="leading-relaxed">
-        houseEdge = <span class="font-bold text-blue-600 dark:text-blue-400">0.01</span>
+        houseEdge = <span class="font-bold text-blue-600 dark:text-blue-400"
+          >{LIMBO_HOUSE_EDGE}</span
+        >
       </p>
     </div>
 
     <!-- Float Value -->
     <div class="mb-6 border-b border-gray-300 pb-4 dark:border-gray-600">
-      <p class="mb-2 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">Float Value</p>
+      <p class="mb-2 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">Float Value</p>
       <p class="leading-relaxed">
         float = <span class="font-bold text-blue-600 dark:text-blue-400">{float.toFixed(12)}</span>
       </p>
@@ -38,7 +43,7 @@
 
     <!-- Calculate Crash Point -->
     <div class="mb-4">
-      <p class="mb-2 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">
+      <p class="mb-2 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">
         Calculate Crash Point
       </p>
       <p class="leading-relaxed">crashPoint</p>
@@ -51,17 +56,20 @@
         >) * 100) / 100
       </p>
       <p class="leading-relaxed">
-        = floor(<HighlightText>16777216</HighlightText> / (floor(<HighlightText
+        = floor(<HighlightText>{LIMBO_MAX_INT}</HighlightText> / (floor(<HighlightText
           >{float.toFixed(12)}</HighlightText
         >
-        * <HighlightText>16777216</HighlightText>) + 1) * (1 - <HighlightText>0.01</HighlightText>)
-        * 100) / 100
+        * <HighlightText>{LIMBO_MAX_INT}</HighlightText>) + 1) * (1 - <HighlightText
+          >{LIMBO_HOUSE_EDGE}</HighlightText
+        >) * 100) / 100
       </p>
       <p class="leading-relaxed">
-        = floor(<HighlightText>16777216</HighlightText> / (<HighlightText>{floatInt}</HighlightText>
-        + 1) * <HighlightText>0.99</HighlightText> * 100) / 100
+        = floor(<HighlightText>{LIMBO_MAX_INT}</HighlightText> / (<HighlightText
+          >{floatInt}</HighlightText
+        >
+        + 1) * <HighlightText>{1 - LIMBO_HOUSE_EDGE}</HighlightText> * 100) / 100
       </p>
-      <p class="leading-relaxed font-bold">
+      <p class="font-bold leading-relaxed">
         = <span class="text-green-600 dark:text-green-400">{crashPoint.toFixed(2)}x</span>
       </p>
     </div>

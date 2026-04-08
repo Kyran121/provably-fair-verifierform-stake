@@ -23,8 +23,6 @@ export function getClosestColor(targetHex: string, colorHexList: string[]): stri
 }
 
 export function hexToRgb(hex: string): RGB {
-  // console.log('hex=', hex);
-
   const sanitized = hex.replace(/^#/, '');
   if (sanitized.length !== 6) {
     throw new Error(`Invalid hex color: ${hex}`);

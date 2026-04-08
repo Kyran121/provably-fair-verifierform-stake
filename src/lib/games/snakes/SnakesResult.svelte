@@ -1,111 +1,82 @@
 <script lang="ts">
-  import { FloatGenerator } from '$lib/generator/FloatGenerator';
-  import { debouncer } from '$lib/debounce.svelte';
-  import type { SnakesDifficulty, SnakesSeed } from '$lib/types';
-  import paylines from '$lib/assets/snakes/snakes-paylines.json';
-  import {
-    BG_COLOR,
-    BG_COLOR_GRAY,
-    SNAKES_MULTIPLIER_SHIFT_MAP,
-    TEXT_HIGHLIGHT_COLOR
-  } from '$lib/config';
+  import { useSnakesSteps } from '$lib/composables';
+  import { BG_COLOR } from '$lib/config';
   import snakeIcon from '$lib/assets/snakes/icons/snake-50x50-white.png';
   import DiceIcon from '$lib/games/snakes/DiceIcon.svelte';
   import Loader from '$lib/games/Loader.svelte';
-
-  type Step = {
-    die: number[];
-    result: number;
-  };
-
-  type Result = {
-    best: number;
-    steps: Step[];
-  };
+  import ContentBlock from '../layout/ContentBlock.svelte';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
-
-  const seed = $derived<SnakesSeed>({
-    clientSeed: formValues.clientseed as string,
-    serverSeed: formValues.serverseed as string,
-    nonce: formValues.nonce as number,
-    difficulty: formValues.difficulty as SnakesDifficulty
-  });
-
-  const payline = $derived(paylines[seed.difficulty]);
-
-  const multiShiftMap = $derived(SNAKES_MULTIPLIER_SHIFT_MAP[seed.difficulty]);
-
-  const resultDebounced = $derived.by(
-    debouncer(
-      () => seed,
-      (seed) => {
-        const floatGenerator = FloatGenerator(seed);
-        const steps = [];
-        let best = 1;
-        for (let i = 0; i < 5; i++) {
-          const die = [];
-          let result = 0;
-          for (let j = 0; j < 2; j++) {
-            const dice = Math.floor(floatGenerator.next().value * 6) + 1;
-            die.push(dice);
-            result += dice;
-          }
-          steps.push({ die, result: payline[result - 2] });
-        }
-        let n = 0;
-        for (const step of steps) {
-          if (step.result === 0) {
-            break;
-          }
-          best *= n > 0 && multiShiftMap[step.result] ? multiShiftMap[step.result] : step.result;
-          n++;
-        }
-        best = Math.floor(best * 100) / 100;
-        return { best, steps } satisfies Result;
-      },
-      350
-    )
-  );
+  const snakes = useSnakesSteps(() => formValues);
 </script>
 
-{#if resultDebounced.debouncing}
+{#if snakes.isCalculating}
   <Loader />
 {:else}
-  {@const result = resultDebounced.value!}
-  {@const steps = result.steps}
-  {@const best = result.best}
-  {@const multiShifts = SNAKES_MULTIPLIER_SHIFT_MAP[seed.difficulty]}
+  {@const steps = snakes.result!.steps}
+  {@const best = snakes.result!.best}
+  {@const isBusted = best === 0}
 
-  <p data-testid="snake-result" class="mb-3 text-center text-base">
-    best multi is <span class="text-xl {TEXT_HIGHLIGHT_COLOR}">{best.toFixed(2)}x</span>
-  </p>
-
-  <div class="grid grid-cols-5 gap-1 sm:gap-1.5">
-    {#each steps as { die, result }, n (n)}
-      <div>
-        <div
-          class={[
-            'flex h-15 w-full items-center justify-center',
-            result === 0 ? BG_COLOR : 'bg-gray-300 dark:bg-gray-600'
-          ]}
-        >
-          {#if result === 0}
-            <img class="relative scale-80 object-scale-down" src={snakeIcon} alt="snake" />
-          {:else}
-            <p class="text-base">
-              {n > 0 && result in multiShifts ? multiShifts[result].toFixed(2) : result.toFixed(2)}x
-            </p>
-          {/if}
-        </div>
-        <div class="grid grid-cols-2 bg-gray-400 dark:bg-gray-700">
-          {#each die as roll, n (n)}
-            <div>
-              <DiceIcon {roll} />
-            </div>
-          {/each}
+  <ContentBlock className="p-4">
+    <div class="flex items-center justify-center">
+      <div
+        class="flex items-center justify-center rounded border-2 px-6 py-4 {isBusted
+          ? 'border-red-500 bg-red-50 dark:border-red-400 dark:bg-red-900/30'
+          : 'border-green-500 bg-green-50 dark:border-green-400 dark:bg-green-900/30'}"
+      >
+        <div class="flex flex-col items-center gap-1">
+          <span
+            class="text-xs font-medium {isBusted
+              ? 'text-red-600 dark:text-red-400'
+              : 'text-green-600 dark:text-green-400'}"
+          >
+            Best Multiplier
+          </span>
+          <span
+            data-testid="snake-result"
+            class="text-2xl font-bold {isBusted
+              ? 'text-red-800 dark:text-red-300'
+              : 'text-green-800 dark:text-green-300'}"
+          >
+            {best.toFixed(2)}x
+          </span>
         </div>
       </div>
-    {/each}
-  </div>
+    </div>
+  </ContentBlock>
+
+  <ContentBlock className="mt-4 p-4">
+    <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">Turn Results</p>
+    <div class="grid grid-cols-5 gap-1 sm:gap-1.5">
+      {#each steps as { die, result: stepResult }, n (n)}
+        <div>
+          <div
+            class={[
+              'flex h-15 w-full items-center justify-center rounded-t border-2',
+              stepResult === 0
+                ? 'border-red-500 bg-red-100 dark:border-red-400 dark:bg-red-900/30'
+                : 'border-gray-300 bg-gray-100 dark:border-gray-600 dark:bg-gray-800'
+            ]}
+          >
+            {#if stepResult === 0}
+              <img class="relative scale-80 object-scale-down" src={snakeIcon} alt="snake" />
+            {:else}
+              <p class="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                {n > 0 && stepResult in snakes.multiShiftMap
+                  ? snakes.multiShiftMap[stepResult].toFixed(2)
+                  : stepResult.toFixed(2)}x
+              </p>
+            {/if}
+          </div>
+          <div class="grid grid-cols-2 rounded-b border-2 border-t-0 border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-800">
+            {#each die as roll, n (n)}
+              <div>
+                <DiceIcon {roll} />
+              </div>
+            {/each}
+          </div>
+        </div>
+      {/each}
+    </div>
+  </ContentBlock>
 {/if}

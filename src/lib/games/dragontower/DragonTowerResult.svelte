@@ -1,91 +1,93 @@
 <script lang="ts">
-  import { FloatGenerator } from '$lib/generator/FloatGenerator';
-  import { debouncer } from '$lib/debounce.svelte';
-  import type { DragonTowerDifficulty, DragonTowerSeed } from '$lib/types';
-  import { BG_COLOR, BG_COLOR_GRAY, DRAGON_TOWER_LEVEL_MAP } from '$lib/config';
-  import { fisherYates } from '$lib/util/shuffle-impl/fisherYates';
-  import eggIcon from '$lib/assets/dragontower/icons/egg-100x100-white.png';
-  import skullIcon from '$lib/assets/dragontower/icons/skull-100x100-white.png';
+  import { useDragonTowerLevels } from '$lib/composables';
+  import type { DragonTowerDifficulty } from '$lib/types';
+  import { DRAGON_TOWER_COL_CLASS } from '$lib/util/dragontower';
+  import eggIconWhite from '$lib/assets/dragontower/icons/egg-100x100-white.png';
+  import eggIconGray from '$lib/assets/dragontower/icons/egg-100x100-gray.png';
+  import skullIconWhite from '$lib/assets/dragontower/icons/skull-100x100-white.png';
+  import skullIconGray from '$lib/assets/dragontower/icons/skull-100x100-gray.png';
   import Indicator from '$lib/games/Indicator.svelte';
   import Loader from '$lib/games/Loader.svelte';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
+  const dragonTower = useDragonTowerLevels(() => formValues);
 
-  const seed = $derived<DragonTowerSeed>({
-    clientSeed: formValues.clientseed as string,
-    serverSeed: formValues.serverseed as string,
-    nonce: formValues.nonce as number,
-    difficulty: formValues.difficulty as DragonTowerDifficulty
+  const difficulty = $derived(formValues.difficulty as DragonTowerDifficulty);
+
+  // Rebuild 9-row egg grid from flat FisherYates items
+  const results = $derived.by(() => {
+    if (!dragonTower.items) return null;
+    const rows: number[][] = [];
+    for (let row = 0; row < 9; row++) {
+      rows.push(
+        dragonTower.items
+          .slice(row * dragonTower.config.count, (row + 1) * dragonTower.config.count)
+          .map((item) => item.chosen)
+      );
+    }
+    return rows;
   });
-
-  const config = $derived(DRAGON_TOWER_LEVEL_MAP[seed.difficulty]);
-
-  const colClass: Record<DragonTowerDifficulty, string> = {
-    easy: 'grid-cols-4',
-    medium: 'grid-cols-3',
-    hard: 'grid-cols-2',
-    expert: 'grid-cols-3',
-    master: 'grid-cols-4'
-  };
-
-  const resultsDebounced = $derived.by(
-    debouncer(
-      () => seed,
-      (seed) => {
-        const floatGenerator = FloatGenerator(seed);
-        const results: number[][] = [];
-        for (let i = 0; i < 9; i++) {
-          const allIndexes = Array.from({ length: config.size }).map((_v, i) => i);
-          const eggIndexes = fisherYates(floatGenerator, allIndexes, config.count).map(
-            (item) => item.chosen
-          );
-          results.unshift(eggIndexes);
-        }
-        return results;
-      },
-      350
-    )
-  );
 </script>
 
-{#if resultsDebounced.debouncing}
+{#if dragonTower.isCalculating}
   <Loader />
 {:else}
-  {@const results = resultsDebounced.value!}
-
   <p data-testid="dragontower-result" class="hidden text-center text-base">
-    {JSON.stringify(results)}
+    {JSON.stringify(results!)}
   </p>
 
-  <div>
-    {#each results as eggs, n (n)}
-      <div class="flex gap-1">
-        <div
-          class="flex h-10 w-10 items-center justify-center bg-gray-300 sm:w-16 dark:bg-gray-700"
-        >
-          {9 - n}
-        </div>
-        <div class="flex-1">
-          <div class={['grid gap-1', colClass[seed.difficulty]]}>
-            {#each [...Array(config.size).keys()] as i (i)}
-              {@const isEgg = eggs.includes!(i)}
-              <div
-                class={['relative mb-1 flex h-10 justify-center', isEgg ? BG_COLOR_GRAY : BG_COLOR]}
-              >
-                {#if isEgg}
-                  <Indicator text={i} bgColorClass="bg-gray-500 dark:bg-gray-700 text-white" />
-                {/if}
+  <div class="text-center">
+    <p class="mb-3 text-sm text-gray-500 dark:text-gray-400">Egg positions by level</p>
+    <p class="mb-4 text-xs text-gray-400 dark:text-gray-500">
+      Difficulty: <span class="font-semibold text-gray-600 capitalize dark:text-gray-300"
+        >{difficulty}</span
+      >
+    </p>
 
-                <img
-                  class="relative scale-80 object-scale-down"
-                  src={isEgg ? eggIcon : skullIcon}
-                  alt={isEgg ? 'egg' : 'skull'}
-                />
-              </div>
-            {/each}
+    <div class="space-y-2">
+      {#each results! as eggs, n (n)}
+        <div class="flex gap-2">
+          <div
+            class="flex h-12 w-16 flex-col items-center justify-center rounded border border-gray-300 bg-gray-100 text-xs font-semibold text-gray-700 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300"
+          >
+            <span class="text-[10px] text-gray-500 dark:text-gray-400">Level</span>
+            <span class="text-sm">{9 - n}</span>
+          </div>
+          <div class="flex-1">
+            <div class={['grid gap-2', DRAGON_TOWER_COL_CLASS[difficulty]]}>
+              {#each [...Array(dragonTower.config.size).keys()] as i (i)}
+                {@const isEgg = eggs.includes(i)}
+                <div
+                  class={[
+                    'relative flex h-12 items-center justify-center rounded border-2 transition-all',
+                    isEgg
+                      ? 'border-green-400 bg-green-50 dark:border-green-500 dark:bg-green-900/20'
+                      : 'border-red-400 bg-red-50 dark:border-red-500 dark:bg-red-900/20'
+                  ]}
+                >
+                  {#if isEgg}
+                    <Indicator
+                      text={i}
+                      bgColorClass="bg-green-600 dark:bg-green-700 text-white text-xs"
+                    />
+                  {/if}
+
+                  <img
+                    class="relative h-8 w-8 object-contain opacity-90 dark:hidden"
+                    src={isEgg ? eggIconGray : skullIconGray}
+                    alt={isEgg ? 'egg' : 'skull'}
+                  />
+                  <img
+                    class="relative hidden h-8 w-8 object-contain opacity-90 dark:block"
+                    src={isEgg ? eggIconWhite : skullIconWhite}
+                    alt={isEgg ? 'egg' : 'skull'}
+                  />
+                </div>
+              {/each}
+            </div>
           </div>
         </div>
-      </div>
-    {/each}
+      {/each}
+    </div>
   </div>
 {/if}

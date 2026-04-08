@@ -1,6 +1,7 @@
 <script lang="ts">
   import { type Card } from '$lib/types';
   import CardSuitIcon from '$lib/games/cards/CardSuitIcon.svelte';
+  import ScrollableContainer from '$lib/games/layout/ScrollableContainer.svelte';
   import { BTN_BG_COLOR, BTN_BG_COLOR_SELECTED } from '$lib/config';
 
   let {
@@ -11,7 +12,11 @@
     grayCardIcon = false,
     tabNameModifier,
     tabSelectedClassModifier,
-    tabClassModifier
+    tabClassModifier,
+    gradientFromColor,
+    gradientViaColor,
+    gradientFromColorDark,
+    gradientViaColorDark
   }: {
     seed: unknown;
     items: { chosen: unknown }[];
@@ -20,6 +25,10 @@
     tabNameModifier?: (chosen: unknown, i: number) => string;
     tabSelectedClassModifier?: (i: number) => string;
     tabClassModifier?: (i: number) => string;
+    gradientFromColor?: string;
+    gradientViaColor?: string;
+    gradientFromColorDark?: string;
+    gradientViaColorDark?: string;
     resultIndex: number;
   } = $props();
 
@@ -49,7 +58,14 @@
   }
 </script>
 
-<div class="mb-2 overflow-x-auto overflow-y-visible" style="padding: 6px 6px 0 4px;">
+<ScrollableContainer
+  className="mb-2"
+  innerClassName="p-1.5 pb-0"
+  {gradientFromColor}
+  {gradientViaColor}
+  {gradientFromColorDark}
+  {gradientViaColorDark}
+>
   <div class="flex gap-2 pb-5" style="min-width: max-content;">
     {#each items as { chosen }, n (n)}
       <div class={['flex-none overflow-visible', tabWidthClass]}>
@@ -66,7 +82,7 @@
           ]}
           data-resultindex={n}
           onclick={handleResultClick}
-          ><span class="block text-xs">({n + 1})</span>{#if isCard(chosen)}<span class="block"
+          ><span class="block whitespace-nowrap text-xs">({n + 1})</span>{#if isCard(chosen)}<span class="block"
               >{chosen.value}</span
             ><span class="block"
               ><CardSuitIcon suit={chosen.suit} small={true} dark={grayCardIcon} /></span
@@ -78,4 +94,4 @@
       </div>
     {/each}
   </div>
-</div>
+</ScrollableContainer>

@@ -24,11 +24,11 @@
   import { gameDefinition as pumpGameDefinition } from '$lib/games/pump';
   import { gameDefinition as rockPaperScissorsGameDefinition } from '$lib/games/rockpaperscissors';
   import { gameDefinition as rouletteGameDefinition } from '$lib/games/roulette';
-  import { gameDefinition as scarabSpinsGameDefinition } from '$lib/games/scarabspins-tomeoflife/scarabspins';
+  import { gameDefinition as scarabSpinsGameDefinition } from '$lib/games/slots/scarabspins';
   import { gameDefinition as slideGameDefinition } from '$lib/games/multiplayer/slide';
   import { gameDefinition as snakesGameDefinition } from '$lib/games/snakes';
   import { gameDefinition as tarotGameDefinition } from '$lib/games/tarot';
-  import { gameDefinition as tomeOfLifeGameDefinition } from '$lib/games/scarabspins-tomeoflife/tomeoflife';
+  import { gameDefinition as tomeOfLifeGameDefinition } from '$lib/games/slots/tomeoflife';
   import { gameDefinition as videoPokerGameDefinition } from '$lib/games/cards/videopoker';
   import { gameDefinition as wheelGameDefinition } from '$lib/games/wheel';
 

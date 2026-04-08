@@ -1,5 +1,5 @@
 import { FloatGenerator } from '$lib/generator/FloatGenerator';
-import { fisherYates } from '$lib/util/shuffle-impl/fisherYates';
+import { fisherYates } from '$lib/util/fisherYates';
 import { describe, test, expect } from 'vitest';
 
 describe('fisherYates', () => {

@@ -1,172 +1,201 @@
 <script lang="ts">
-  import {
-    BG_COLOR,
-    BG_COLOR_GRAY,
-    BTN_BG_COLOR,
-    BTN_BG_COLOR_GRAY,
-    BTN_BG_COLOR_GRAY_SELECTED,
-    BTN_BG_COLOR_SELECTED,
-    SNAKES_MULTIPLIER_SHIFT_MAP
-  } from '$lib/config';
-  import { debouncer } from '$lib/debounce.svelte';
-  import { FloatGenerator } from '$lib/generator/FloatGenerator';
-  import type { SnakesDifficulty, SnakesSeed } from '$lib/types';
-  import { shuffle } from '$lib/util/shuffle-impl/shuffle';
+  import { BG_COLOR, BG_COLOR_GRAY, SNAKES_MULTIPLIER_SHIFT_MAP } from '$lib/config';
   import FloatGenerationStep from '$lib/games/FloatGenerationStep.svelte';
-  import ResultTabs from '$lib/games/ResultTabs.svelte';
   import SnakesDiceRollStep from '$lib/games/snakes/SnakesDiceRollStep.svelte';
-  import paylines from '$lib/assets/snakes/snakes-paylines.json';
-  import { chunk } from '$lib/util/array/chunk';
+  import { chunk } from '$lib/util/array';
   import Loader from '$lib/games/Loader.svelte';
   import ContentBlock from '../layout/ContentBlock.svelte';
+  import ScrollableContainer from '$lib/games/layout/ScrollableContainer.svelte';
+  import { useSnakesSteps } from '$lib/composables';
+  import { getSnakesTabClass, getSnakesTabSelectedClass } from '$lib/util/snakes';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
   let resultIndex = $state(0);
+  const snakes = useSnakesSteps(() => formValues);
 
-  const seed = $derived<SnakesSeed>({
-    clientSeed: formValues.clientseed as string,
-    serverSeed: formValues.serverseed as string,
-    nonce: formValues.nonce as number,
-    difficulty: formValues.difficulty as SnakesDifficulty
+  // Group rolls by turn (2 dice per turn)
+  const turnGroups = $derived.by(() => {
+    if (!snakes.rolls) return [];
+    return chunk(snakes.rolls, 2);
   });
-
-  const payline = $derived(paylines[seed.difficulty]);
-
-  const rollsDebounced = $derived.by(
-    debouncer(
-      () => seed,
-      (seed) => {
-        const floatGenerator = FloatGenerator(seed);
-        const rollOptions = Array.from({ length: 6 }).map((_v, i) => i + 1);
-        return shuffle(floatGenerator, rollOptions, 10);
-      },
-      350
-    )
-  );
 </script>
 
 <div class="mt-5 border-0 text-center dark:text-white">
   <div id="step-content" class="pb-4 text-left text-sm dark:bg-gray-900 dark:text-white">
-    {#if rollsDebounced.debouncing}
+    {#if snakes.isCalculating || !snakes.rolls}
       <Loader />
     {:else}
-      {@const rolls = rollsDebounced.value!}
-      {@const selectedRoll = rolls[resultIndex]}
-      {@const multiShiftMap = SNAKES_MULTIPLIER_SHIFT_MAP[seed.difficulty]}
+      {@const selectedRoll = snakes.rolls[resultIndex]}
 
-      <ContentBlock className="mb-7 p-2 text-center text-base text-black dark:text-white">
-        <p class="text-lg">How it works</p>
-        <p class="mb-4 text-sm">
-          The Snakes game consists of two dice, a payline of 11 slots (each slot being either a
-          multiplier or a snake), and a pawn. The configuration of the payline varies depending on
-          the selected difficulty. You start with a total multiplier of 1x. You are given up to five
-          rolls of the dice. On each turn, the pawn starts on the play button, and the number of
-          spots it moves through the payline is equal to the sum of the dice rolls minus one. If the
-          pawn lands on a snake, the total multiplier is forfeited. However, if it lands on a
-          multiplier, that multiplier is applied to the total multiplier.
+      <!-- Header banner -->
+      <ContentBlock
+        className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-orange-500 dark:border-orange-400"
+      >
+        <p class="font-medium">
+          <span class="text-orange-600 dark:text-orange-400"
+            >Snakes outcome is determined by dice rolls and payline positions.</span
+          >
+          The pawn moves through the payline based on dice sums, landing on multipliers or snakes.
         </p>
-        <p class="bold mb-2 border-t-1 border-gray-400 pt-3 text-base">Example #1 - not busted</p>
-        <p class="text-sm">Total multiplier = 1x</p>
-        <p class="text-sm">Roll #1 = Pawn lands on 1.30x, total multiplier is 1.30x</p>
-        <p class="text-sm">Roll #2 = Pawn lands on 1.10x, total multiplier is 1.43x</p>
-        <p class="text-sm">Roll #3 = Pawn lands on 1.08x, total multiplier is 1.54x</p>
-        <p class="text-sm">Roll #4 = Pawn lands on 1.20x, total multiplier is 1.85x</p>
-        <p class="pb-5 text-sm">Roll #5 = Pawn lands on 1.20x, total multiplier is 2.22x</p>
-
-        <p class="bold mb-2 border-t-1 border-gray-400 pt-3 text-base">Example #2 - busted</p>
-        <p class="text-sm">Total multiplier = 1x</p>
-        <p class="text-sm">Roll #1 = Pawn lands on 1.30x, total multiplier is 1.30x</p>
-        <p class="pb-2 text-sm">Roll #2 = Pawn lands on snake, total multiplier forfeited</p>
       </ContentBlock>
 
-      <div class="mt-5 mb-2 text-center">
-        <p class="mb-2 text-xl">Step 1</p>
-        <p class="text-base">Compute the dice rolls for all 5 turns</p>
-      </div>
-
-      <div class="mt-3 border-1 border-gray-400 p-5">
-        <p class="mb-7 bg-gray-200 p-2 text-center text-base dark:bg-gray-700">
-          Roll results drawn in the order shown below. Click a roll result to find out how it was
-          generated using stake's provably fair algorithm
+      <!-- Step 1 -->
+      <ContentBlock className="mb-6 p-5">
+        <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">
+          Step 1 — Generate Dice Rolls
         </p>
+        <p class="mb-3 text-gray-700 dark:text-gray-300">
+          Compute the dice rolls for all 5 turns (10 total rolls)
+        </p>
+      </ContentBlock>
 
-        <ResultTabs
-          {seed}
-          items={rolls}
-          bind:resultIndex
-          tabNameModifier={(chosen, n) => `turn ${Math.floor(n / 2) + 1}<br>${chosen}`}
-          tabSelectedClassModifier={(n) =>
-            Math.floor(n / 2) % 2 === 0 ? BTN_BG_COLOR_SELECTED : BTN_BG_COLOR_GRAY_SELECTED}
-          tabClassModifier={(n) => (Math.floor(n / 2) % 2 === 0 ? BTN_BG_COLOR : BTN_BG_COLOR_GRAY)}
+      <!-- Step 1 sub-steps -->
+      <ScrollableContainer className="mb-7" innerClassName="p-1.5 pb-0">
+        <div class="flex gap-4 pb-5" style="min-width: max-content;">
+          {#each turnGroups as turnRolls, turnIndex}
+            <div class="flex flex-col gap-1">
+              <span
+                class="mb-1 text-center font-sans text-xs font-semibold text-gray-500 dark:text-gray-400"
+              >
+                Turn {turnIndex + 1}
+              </span>
+              <div class="flex gap-1.5">
+                {#each turnRolls as roll, dieIndex}
+                  {@const rollIndex = turnIndex * 2 + dieIndex}
+                  <button
+                    type="button"
+                    class={[
+                      'flex w-12 flex-col items-center justify-center overflow-visible rounded border p-1.5 text-sm font-medium transition-all',
+                      rollIndex === resultIndex
+                        ? getSnakesTabSelectedClass(rollIndex)
+                        : getSnakesTabClass(rollIndex)
+                    ]}
+                    onclick={() => (resultIndex = rollIndex)}
+                  >
+                    <span class="block text-[10px]">({rollIndex + 1})</span>
+                    <span class="block font-bold">{roll.chosen}</span>
+                  </button>
+                {/each}
+              </div>
+            </div>
+          {/each}
+        </div>
+      </ScrollableContainer>
+
+      <ContentBlock className="mb-6 p-5">
+        <FloatGenerationStep
+          stepNumber={1.1}
+          {resultIndex}
+          seed={snakes.seed!}
+          float={selectedRoll.float}
+          contentBlockClassName="py-6"
         />
+        <SnakesDiceRollStep stepNumber={1.2} {...selectedRoll} contentBlockClassName="py-6" />
+      </ContentBlock>
 
-        <FloatGenerationStep stepNumber={1.1} {resultIndex} {seed} float={selectedRoll.float} />
-        <SnakesDiceRollStep stepNumber={1.2} {...selectedRoll} />
-      </div>
-
-      <div class="mt-5 mb-2 text-center">
-        <p class="mb-2 text-xl">Step 2</p>
-        <p class="text-base">
+      <!-- Step 2 -->
+      <ContentBlock className="mb-6 p-5">
+        <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">
+          Step 2 — Calculate Turn Outcomes
+        </p>
+        <p class="mb-3 text-gray-700 dark:text-gray-300">
           Calculate the outcome of each turn using the sum of that turn's dice rolls
         </p>
-        <p class="text-sm text-gray-500 italic dark:text-gray-400">
+        <p class="mb-4 text-xs text-gray-500 dark:text-gray-400">
           NOTE: Given the pawn lands on a multiplier after the first turn, the lowest multiplier in
-          the payline will increase slightly for the remaining turns:
+          the payline will increase slightly for the remaining turns
         </p>
-        <div class="mt-5 grid grid-cols-5 text-gray-500 italic dark:text-gray-400">
+
+        <!-- Multiplier shift map -->
+        <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">
+          Multiplier Shifts by Difficulty
+        </p>
+        <div class="mb-6 grid grid-cols-5 gap-2 text-xs">
           {#each Object.entries(SNAKES_MULTIPLIER_SHIFT_MAP) as [difficulty, config], n (n)}
             {#each Object.entries(config) as [fromMulti, toMulti], n (n)}
-              <div class={[difficulty === seed.difficulty ? 'font-bold ' + BG_COLOR : '']}>
-                {difficulty}<br />{parseFloat(fromMulti).toFixed(2)}x &rarr; {toMulti.toFixed(2)}x
+              <div
+                class="rounded border-2 px-2 py-1 {difficulty === snakes.seed?.difficulty
+                  ? 'border-orange-500 bg-orange-50 font-semibold text-orange-700 dark:border-orange-400 dark:bg-orange-900/30 dark:text-orange-400'
+                  : 'border-gray-300 bg-gray-100 text-gray-600 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400'}"
+              >
+                <div class="font-medium">{difficulty}</div>
+                <div class="font-mono">
+                  {parseFloat(fromMulti).toFixed(2)}x → {toMulti.toFixed(2)}x
+                </div>
               </div>
             {/each}
           {/each}
         </div>
-        <ContentBlock className="mt-5 p-5 text-left font-mono text-xs">
-          <p class="mb-4">
-            payline = [
-            {#each payline as multi, n (n)}
-              <span
-                class="mr-1 mb-1 inline-block border-1 border-gray-400 p-1 dark:border-none {BG_COLOR_GRAY} text-white dark:text-gray-300"
-              >
-                ({n + 1}) {multi.toFixed(2)}x
-              </span>
-            {/each} ]
-          </p>
 
-          {#each chunk(rolls, 2) as [roll1, roll2], n (n)}
+        <!-- Calculation -->
+        <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">Calculation</p>
+        <ContentBlock className="p-4 text-left font-mono text-sm">
+          <!-- Initial payline -->
+          <div class="mb-6 border-b border-gray-300 pb-4 dark:border-gray-600">
+            <p class="mb-2 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">
+              Initial Payline
+            </p>
+            <p class="leading-relaxed">
+              payline = [
+              {#each snakes.payline as multi, n (n)}
+                <span
+                  class="mb-1 mr-1 inline-block rounded border-2 border-gray-200 bg-gray-50 px-2 py-1 text-xs font-semibold text-gray-600 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400"
+                >
+                  ({n + 1}) {multi.toFixed(2)}x
+                </span>
+              {/each}
+              ]
+            </p>
+          </div>
+
+          {#each chunk(snakes.rolls, 2) as [roll1, roll2], n (n)}
             {#if n === 1}
-              <p class="mb-4">
-                payline = [
-                {#each payline as multi, nn (nn)}
-                  <span
-                    class={[
-                      'mr-1 mb-1 inline-block border-1 p-1 dark:border-none',
-                      multi in multiShiftMap
-                        ? 'border-purple-400 ' + BG_COLOR
-                        : 'border-gray-400 ' + BG_COLOR_GRAY + ' text-white dark:text-gray-300'
-                    ]}
-                  >
-                    ({nn + 1}) {(multiShiftMap[multi] || multi).toFixed(2)}x
-                  </span>
-                {/each} ]
-              </p>
+              <!-- Updated payline after first turn -->
+              <div class="mb-6 border-b border-gray-300 pb-4 dark:border-gray-600">
+                <p class="mb-2 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">
+                  Updated Payline (after turn 1)
+                </p>
+                <p class="leading-relaxed">
+                  payline = [
+                  {#each snakes.payline as multi, nn (nn)}
+                    <span
+                      class={[
+                        'mb-1 mr-1 inline-block rounded border-2 px-2 py-1 text-xs font-semibold',
+                        multi in snakes.multiShiftMap
+                          ? 'border-orange-500 bg-orange-50 text-orange-700 dark:border-orange-400 dark:bg-orange-900/30 dark:text-orange-400'
+                          : 'border-gray-200 bg-gray-50 text-gray-600 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400'
+                      ]}
+                    >
+                      ({nn + 1}) {(snakes.multiShiftMap[multi] || multi).toFixed(2)}x
+                    </span>
+                  {/each}
+                  ]
+                </p>
+              </div>
             {/if}
 
-            <p>
-              turn{n + 1} = payline[{roll1.chosen} + {roll2.chosen} - 1]
-            </p>
-            <p>turn{n + 1} = payline[{roll1.chosen + roll2.chosen - 1}]</p>
-            <p class="mb-4">
-              turn{n + 1} = {(
-                multiShiftMap[payline[roll1.chosen + roll2.chosen - 2]] ||
-                payline[roll1.chosen + roll2.chosen - 2]
-              ).toFixed(2)}x
-            </p>
+            <!-- Turn calculation -->
+            <div class="mb-4 {n < chunk(snakes.rolls, 2).length - 1 ? 'border-b border-gray-300 pb-4 dark:border-gray-600' : ''}">
+              <p class="mb-1 leading-relaxed">
+                turn{n + 1} = payline[{roll1.chosen} + {roll2.chosen} - 1]
+              </p>
+              <p class="mb-1 leading-relaxed">
+                turn{n + 1} = payline[{roll1.chosen + roll2.chosen - 1}]
+              </p>
+              <p class="leading-relaxed">
+                turn{n + 1} =
+                <span class="font-bold text-blue-600 dark:text-blue-400">
+                  {(
+                    snakes.multiShiftMap[snakes.payline[roll1.chosen + roll2.chosen - 2]] ||
+                    snakes.payline[roll1.chosen + roll2.chosen - 2]
+                  ).toFixed(2)}x
+                </span>
+              </p>
+            </div>
           {/each}
         </ContentBlock>
-      </div>
+      </ContentBlock>
     {/if}
   </div>
 </div>

@@ -1,53 +1,38 @@
 <script lang="ts">
-  import { FloatGenerator } from '$lib/generator/FloatGenerator';
-  import { debouncer } from '$lib/debounce.svelte';
-  import { RockPaperScissorsOutcome, type Seed } from '$lib/types';
+  import { useRpsOutcome } from '$lib/composables';
+  import { RockPaperScissorsOutcome } from '$lib/types';
   import Loader from '$lib/games/Loader.svelte';
-  import { BG_COLOR_GRAY } from '$lib/config';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
-
-  const seed = $derived<Seed>({
-    clientSeed: formValues.clientseed as string,
-    serverSeed: formValues.serverseed as string,
-    nonce: formValues.nonce as number
-  });
-
-  const outcomes = Object.values(RockPaperScissorsOutcome);
-
-  const resultsDebounced = $derived.by(
-    debouncer(
-      () => seed,
-      (seed) => {
-        const floatGenerator = FloatGenerator(seed);
-        const results: RockPaperScissorsOutcome[] = [];
-        for (let i = 0; i < 20; i++) {
-          results.push(outcomes[Math.floor(floatGenerator.next().value * 3)]);
-        }
-        return results;
-      },
-      350
-    )
-  );
+  const rpsOutcome = useRpsOutcome(() => formValues);
+  const results = $derived(rpsOutcome.items?.map((item) => item.chosen) ?? null);
 </script>
 
-{#if resultsDebounced.debouncing}
+{#if rpsOutcome.isCalculating}
   <Loader />
 {:else}
-  {@const results = resultsDebounced.value!}
-
   <p data-testid="rockpaperscissors-result" class="hidden text-center text-base">
-    {results}
+    {results!}
   </p>
 
-  <p class="mb-3 text-center">first 20 rounds</p>
+  <div class="text-center">
+    <p class="mb-3 text-sm text-gray-500 dark:text-gray-400">First 20 rounds</p>
+    <p class="mb-4 text-xs text-gray-400 dark:text-gray-500">Each round shows position and outcome</p>
 
-  <div class="mb-5">
-    <div class="grid grid-cols-6 gap-1 md:grid-cols-7 md:gap-1.5">
-      {#each results as result, i (i)}
-        <div class="col bg-gray-300 text-center dark:bg-gray-600">
-          <span class="text-xs">({i + 1})</span><br />
-          {result}
+    <div class="mb-5 flex flex-wrap justify-center gap-1.5">
+      {#each results! as result, i (i)}
+        <div
+          class={[
+            'rounded border-2 px-2 py-1.5 text-center text-sm transition-all',
+            result === RockPaperScissorsOutcome.ROCK
+              ? 'border-gray-500 bg-gray-100 text-gray-700 dark:border-gray-400 dark:bg-gray-800 dark:text-gray-300'
+              : result === RockPaperScissorsOutcome.PAPER
+                ? 'border-blue-400 bg-blue-50 text-blue-700 dark:border-blue-500 dark:bg-blue-900/20 dark:text-blue-400'
+                : 'border-red-400 bg-red-50 text-red-700 dark:border-red-500 dark:bg-red-900/20 dark:text-red-400'
+          ]}
+        >
+          <span class="block text-[10px] opacity-70">({i + 1})</span>
+          <span class="block font-bold">{result}</span>
         </div>
       {/each}
     </div>

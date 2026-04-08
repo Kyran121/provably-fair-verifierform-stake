@@ -1,52 +1,28 @@
 <script lang="ts">
-  import { debouncer } from '$lib/debounce.svelte';
-  import { FloatGenerator } from '$lib/generator/FloatGenerator';
-  import type { Risk, PlinkoSeed } from '$lib/types';
-  import { getDirections, getPayout } from '$lib/util/plinko';
-  import paylines from '$lib/assets/plinko-paylines.json';
+  import { usePlinkoPayout } from '$lib/composables';
   import Loader from '$lib/games/Loader.svelte';
-  import { BG_COLOR, BG_COLOR_GRAY } from '$lib/config';
+  import ContentBlock from '$lib/games/layout/ContentBlock.svelte';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
-
-  const seed = $derived<PlinkoSeed>({
-    clientSeed: formValues.clientseed as string,
-    serverSeed: formValues.serverseed as string,
-    nonce: formValues.nonce as number,
-    risk: formValues.risk as Risk,
-    rows: formValues.rows as number
-  });
-
-  const payline = $derived([
-    ...new Set(paylines[seed.rows as unknown as keyof typeof paylines][seed.risk])
-  ]);
-
-  const payoutDebounced = $derived.by(
-    debouncer(
-      () => seed,
-      (seed) => {
-        const floatGenerator = FloatGenerator(seed);
-        const directions = getDirections(floatGenerator, seed.rows);
-        return getPayout(seed.risk, seed.rows, directions);
-      },
-      350
-    )
-  );
+  const plinko = usePlinkoPayout(() => formValues);
 </script>
 
-{#if payoutDebounced.debouncing}
+{#if plinko.isCalculating}
   <Loader />
 {:else}
-  <div class="grid auto-cols-auto grid-flow-col gap-2 pb-1">
-    {#each payline as multi, n (n)}
+  <ContentBlock className="p-4">
+    <!-- Result display -->
+    <div class="flex items-center justify-center">
       <div
-        class={[
-          'col p-2 text-center',
-          multi === payoutDebounced.value! ? BG_COLOR : 'bg-gray-300 dark:bg-gray-600'
-        ]}
+        class="flex items-center justify-center rounded border-2 border-green-500 bg-green-50 px-6 py-4 text-center ring-2 ring-green-400 dark:border-green-400 dark:bg-green-900/30 dark:ring-green-500"
       >
-        {multi}x
+        <div class="flex flex-col items-center gap-1">
+          <span class="text-xs font-medium text-green-600 dark:text-green-400">Payout</span>
+          <span class="text-2xl font-bold text-green-800 dark:text-green-300"
+            >{plinko.payout}x</span
+          >
+        </div>
       </div>
-    {/each}
-  </div>
+    </div>
+  </ContentBlock>
 {/if}

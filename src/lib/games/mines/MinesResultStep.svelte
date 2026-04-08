@@ -37,6 +37,9 @@
     <div class="mb-6 border-b border-gray-300 pb-4 dark:border-gray-600">
       <p class="mb-2 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">Constants</p>
       <p class="leading-relaxed">
+        resultIndex = <span class="font-bold text-blue-600 dark:text-blue-400">{resultIndex}</span>
+      </p>
+      <p class="leading-relaxed">
         mineSquares = <span class="font-bold text-blue-600 dark:text-blue-400">25</span>
       </p>
     </div>

@@ -1,6 +1,11 @@
 <script lang="ts">
   import { DARTS_COLOR_TO_MULTI } from '$lib/config';
-  import { colorForDart } from '$lib/util/darts';
+  import {
+    DARTS_COLOR_LABELS,
+    WEDGE_BIN_COLORS,
+    getThresholdRows,
+    getMatchedRowIndex
+  } from '$lib/util/darts';
   import type { DartsDifficulty } from '$lib/types';
   import ContentBlock from '$lib/games/layout/ContentBlock.svelte';
   import HighlightLink from '$lib/games/layout/HighlightLink.svelte';
@@ -26,185 +31,19 @@
     contentBlockClassName?: string;
   } = $props();
 
-  const colorLabels: Record<string, string> = {
-    '#24e700': 'Green',
-    '#fb053f': 'Red',
-    '#fcc101': 'Yellow',
-    '#fb6120': 'Orange',
-    '#213843': 'Light Gray',
-    '#0e202c': 'Dark Gray'
-  };
-
-  const multisForDifficulty = $derived(DARTS_COLOR_TO_MULTI[difficulty]);
-
   const r = $derived(normalisedDistance * 1000);
   const deg = $derived((((rotation % 1) + 1) % 1) * 360);
   const wedgeBin = $derived(Math.floor(deg / 20));
 
-  const colorLabel = $derived(colorLabels[colorHex] ?? colorHex);
+  const colorLabel = $derived(DARTS_COLOR_LABELS[colorHex] ?? colorHex);
 
   const isWedgeZone = $derived(
     colorHex === '#fb6120' || colorHex === '#fb053f' || colorHex === '#fcc101'
   );
 
-  // Per-difficulty wedge bin → color mappings (18 bins, each covers 20°)
-  const WEDGE_BIN_COLORS: Record<DartsDifficulty, string[]> = {
-    easy: [
-      /* 0 */ '#fcc101',
-      /* 1 */ '#fb6120',
-      /* 2 */ '#fcc101',
-      /* 3 */ '#fb053f',
-      /* 4 */ '#fcc101',
-      /* 5 */ '#fb6120',
-      /* 6 */ '#fcc101',
-      /* 7 */ '#fb053f',
-      /* 8 */ '#fcc101',
-      /* 9 */ '#fb6120',
-      /* 10 */ '#fcc101',
-      /* 11 */ '#fb053f',
-      /* 12 */ '#fcc101',
-      /* 13 */ '#fb6120',
-      /* 14 */ '#fcc101',
-      /* 15 */ '#fb6120',
-      /* 16 */ '#fcc101',
-      /* 17 */ '#fb053f'
-    ],
-    medium: [
-      /* 0 */ '#fcc101',
-      /* 1 */ '#fb6120',
-      /* 2 */ '#fcc101',
-      /* 3 */ '#fb053f',
-      /* 4 */ '#fcc101',
-      /* 5 */ '#fb6120',
-      /* 6 */ '#fcc101',
-      /* 7 */ '#fb053f',
-      /* 8 */ '#fcc101',
-      /* 9 */ '#fb6120',
-      /* 10 */ '#fcc101',
-      /* 11 */ '#fb053f',
-      /* 12 */ '#fcc101',
-      /* 13 */ '#fb6120',
-      /* 14 */ '#fcc101',
-      /* 15 */ '#fb6120',
-      /* 16 */ '#fcc101',
-      /* 17 */ '#fb053f'
-    ],
-    hard: [
-      /* 0 */ '#fcc101',
-      /* 1 */ '#fb6120',
-      /* 2 */ '#fcc101',
-      /* 3 */ '#fb6120',
-      /* 4 */ '#fcc101',
-      /* 5 */ '#fb053f',
-      /* 6 */ '#fcc101',
-      /* 7 */ '#fb6120',
-      /* 8 */ '#fcc101',
-      /* 9 */ '#fb6120',
-      /* 10 */ '#fcc101',
-      /* 11 */ '#fb053f',
-      /* 12 */ '#fcc101',
-      /* 13 */ '#fb6120',
-      /* 14 */ '#fcc101',
-      /* 15 */ '#fb6120',
-      /* 16 */ '#fcc101',
-      /* 17 */ '#fb053f'
-    ],
-    expert: [
-      /* 0 */ '#fcc101',
-      /* 1 */ '#fb6120',
-      /* 2 */ '#fcc101',
-      /* 3 */ '#fcc101',
-      /* 4 */ '#fb053f',
-      /* 5 */ '#fcc101',
-      /* 6 */ '#fcc101',
-      /* 7 */ '#fb6120',
-      /* 8 */ '#fcc101',
-      /* 9 */ '#fcc101',
-      /* 10 */ '#fb6120',
-      /* 11 */ '#fcc101',
-      /* 12 */ '#fcc101',
-      /* 13 */ '#fb053f',
-      /* 14 */ '#fcc101',
-      /* 15 */ '#fcc101',
-      /* 16 */ '#fb6120',
-      /* 17 */ '#fcc101'
-    ]
-  };
-
   const wedgeBinColors = $derived(WEDGE_BIN_COLORS[difficulty]);
-
-  // Radial threshold rows per difficulty: { label, condition, color, isWedge }
-  type ThresholdRow = { label: string; condition: string; color: string; isWedge?: boolean };
-
-  function getThresholdRows(diff: DartsDifficulty, wedgeColor: string): ThresholdRow[] {
-    if (diff === 'easy')
-      return [
-        { label: 'Green', condition: 'r ≤ 62.5', color: '#24e700' },
-        { label: 'Dark Gray', condition: '62.5 < r ≤ 275', color: '#0e202c' },
-        { label: 'Light Gray', condition: '275 < r ≤ 375', color: '#213843' },
-        { label: 'Wedge', condition: '375 < r < 450', color: wedgeColor, isWedge: true },
-        { label: 'Dark Gray', condition: 'r ≥ 450', color: '#0e202c' }
-      ];
-    if (diff === 'medium')
-      return [
-        { label: 'Green', condition: 'r ≤ 50', color: '#24e700' },
-        { label: 'Dark Gray', condition: '50 < r ≤ 225', color: '#0e202c' },
-        { label: 'Light Gray', condition: '225 < r ≤ 350', color: '#213843' },
-        { label: 'Wedge', condition: '350 < r < 400', color: wedgeColor, isWedge: true },
-        { label: 'Dark Gray', condition: 'r ≥ 400', color: '#0e202c' }
-      ];
-    if (diff === 'hard')
-      return [
-        { label: 'Green', condition: 'r ≤ 30', color: '#24e700' },
-        { label: 'Dark Gray', condition: '30 < r ≤ 200', color: '#0e202c' },
-        { label: 'Light Gray', condition: '200 < r ≤ 330', color: '#213843' },
-        { label: 'Wedge', condition: '330 < r < 375', color: wedgeColor, isWedge: true },
-        { label: 'Dark Gray', condition: 'r ≥ 375', color: '#0e202c' }
-      ];
-    // expert
-    return [
-      { label: 'Green', condition: 'r ≤ 10', color: '#24e700' },
-      { label: 'Dark Gray', condition: '10 < r ≤ 250', color: '#0e202c' },
-      { label: 'Light Gray', condition: '250 < r ≤ 355', color: '#213843' },
-      { label: 'Wedge', condition: '355 < r < 375', color: wedgeColor, isWedge: true },
-      { label: 'Dark Gray', condition: 'r ≥ 375', color: '#0e202c' }
-    ];
-  }
-
   const thresholdRows = $derived(getThresholdRows(difficulty, colorHex));
-
-  // Find which row index actually matches by evaluating conditions against r
-  const matchedRowIndex = $derived.by(() => {
-    const rows = thresholdRows;
-    const rv = r;
-    if (difficulty === 'easy') {
-      if (rv <= 62.5) return 0;
-      if (rv <= 275) return 1;
-      if (rv <= 375) return 2;
-      if (rv < 450) return 3; // wedge
-      return 4;
-    }
-    if (difficulty === 'medium') {
-      if (rv <= 50) return 0;
-      if (rv <= 225) return 1;
-      if (rv <= 350) return 2;
-      if (rv < 400) return 3; // wedge
-      return 4;
-    }
-    if (difficulty === 'hard') {
-      if (rv <= 30) return 0;
-      if (rv <= 200) return 1;
-      if (rv <= 330) return 2;
-      if (rv < 375) return 3; // wedge
-      return 4;
-    }
-    // expert
-    if (rv <= 10) return 0;
-    if (rv <= 250) return 1;
-    if (rv <= 355) return 2;
-    if (rv < 375) return 3; // wedge
-    return 4;
-  });
+  const matchedRowIndex = $derived(getMatchedRowIndex(difficulty, r));
 </script>
 
 <div class="mt-7 text-center">
@@ -292,7 +131,7 @@
                   style="background: {row.color}"
                 ></span>
                 <span class={isMatch ? 'font-bold text-gray-900 dark:text-white' : ''}>
-                  {colorLabels[row.color] ?? row.color}
+                  {DARTS_COLOR_LABELS[row.color] ?? row.color}
                 </span>
                 {#if isMatch}
                   <span class="font-sans font-bold text-green-600 dark:text-green-400">✓</span>

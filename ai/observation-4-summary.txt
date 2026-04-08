@@ -1,0 +1,49 @@
+Observation 4: Horizontal Scroll Containers - Visual Indicators
+================================================================
+
+COMPLETED: Added visual scroll indicators to all horizontally scrollable containers
+
+New Component Created:
+- src/lib/games/layout/ScrollableContainer.svelte
+  - Interactive scroll buttons with circular badge design
+  - Click and hold to continuously scroll left/right
+  - SVG chevron arrows (< and >) in elevated circular buttons
+  - Gradient fade backgrounds for visual depth
+  - Visual feedback: purple highlight when actively scrolling
+  - Hover states to indicate interactivity
+  - Cursor changes to pointer over buttons
+  - Auto-detects when content is scrollable
+  - Shows/hides buttons based on scroll position
+  - Touch-friendly for mobile devices
+  - Smooth 60fps scrolling animation
+  - Auto-stops when releasing or moving away from button
+  - Responsive to window resize and content changes
+  - Accessibility with ARIA labels
+  - Dark mode support
+
+Files Updated:
+- src/lib/games/ResultTabs.svelte
+  - Now uses ScrollableContainer wrapper
+  - Benefits all games that use ResultTabs (14+ games)
+
+- src/lib/games/pump/PumpResult.svelte
+  - Replaced overflow-x-scroll with ScrollableContainer
+
+- src/lib/games/bluesamurai/components/BlueSamuraiFloatToSymbolTable.svelte
+  - Wrapped probability table in ScrollableContainer
+
+Benefits:
+✓ Visual cues show when content is scrollable (left/right gradient fades)
+✓ Improves UX by making scrollable areas more discoverable
+✓ Indicators disappear when at start/end of scroll
+✓ Works with existing scroll-to-center behaviors
+✓ Consistent pattern across all scrollable areas
+✓ Zero breaking changes - purely additive
+
+Implementation Details:
+- Uses ResizeObserver to detect container size changes
+- Gradient fades are pointer-events: none to not interfere with interactions
+- Updates on scroll events (passive listeners for performance)
+- Configurable via showScrollIndicators prop (defaults to true)
+
+All type checks pass ✓

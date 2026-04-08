@@ -13,24 +13,30 @@
   } & Item<CoinFlip> = $props();
 </script>
 
-<div class="mt-5 text-center">
-  <p class="mb-2 text-xl">Step {stepNumber}</p>
-  <p class="text-base">Transform float into flip</p>
+<div class="mt-7 text-center">
+  <p class="mb-2 text-2xl font-semibold">Step {stepNumber}</p>
+  <p class="mb-2 text-lg">Transform float into flip</p>
   <p class="mb-5 text-sm text-gray-500 dark:text-gray-400">
-    formula taken from <span class="font-bold">Flip</span> section on the
+    See <span class="font-bold">Flip</span> section on the
     <HighlightLink href="https://stake.com/provably-fair/game-events">game events</HighlightLink> page
   </p>
 
-  <ContentBlock className="p-5 text-left font-mono text-xs">
-    <p>flipSides = [ TAILS, HEADS ]</p>
+  <ContentBlock className="p-6 text-left font-mono text-sm">
+    <div class="mb-6 border-b border-gray-300 pb-4 dark:border-gray-600">
+      <p class="mb-2 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">Constants</p>
+      <p class="leading-relaxed">flipSides = [ TAILS, HEADS ]</p>
+    </div>
 
-    <p class="mt-4">float = {float.toFixed(12)}</p>
+    <div class="mb-6 border-b border-gray-300 pb-4 dark:border-gray-600">
+      <p class="mb-2 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">Float Value</p>
+      <p class="leading-relaxed">float = <span class="font-bold text-blue-600 dark:text-blue-400">{float.toFixed(12)}</span></p>
+    </div>
 
-    <p class="mt-4">flip</p>
-    <p>
-      = <HighlightText>&lbrace;flipSlides[float &lt;= 0.5 ? 0 : 1]</HighlightText>
-    </p>
-    <p>= <HighlightText>&lbrace;flipSlides[{float <= 0.5 ? 0 : 1}]</HighlightText></p>
-    <p>= {chosen.toUpperCase()}</p>
+    <div class="mb-4">
+      <p class="mb-2 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">Calculate Flip</p>
+      <p class="leading-relaxed">flip = <HighlightText>flipSides[float &lt;= 0.5 ? 0 : 1]</HighlightText></p>
+      <p class="leading-relaxed">= <HighlightText>flipSides[{float <= 0.5 ? 0 : 1}]</HighlightText></p>
+      <p class="leading-relaxed font-bold">= <span class="text-blue-600 dark:text-blue-400">{chosen.toUpperCase()}</span></p>
+    </div>
   </ContentBlock>
 </div>

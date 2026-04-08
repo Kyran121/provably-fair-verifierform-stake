@@ -1,51 +1,36 @@
 <script lang="ts">
-  import { FloatGenerator } from '$lib/generator/FloatGenerator';
-  import { debouncer } from '$lib/debounce.svelte';
-  import type { Seed } from '$lib/types';
   import Loader from '$lib/games/Loader.svelte';
   import PacksCard from './PacksCard.svelte';
-  import { TEXT_HIGHLIGHT_COLOR } from '$lib/config';
-  import { findCard } from '$lib/util/packs';
+  import { usePacksCards } from '$lib/composables';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
-
-  const seed = $derived<Seed>({
-    clientSeed: formValues.clientseed as string,
-    serverSeed: formValues.serverseed as string,
-    nonce: formValues.nonce as number
-  });
-
-  const cardsDebounced = $derived.by(
-    debouncer(
-      () => seed,
-      (seed) => {
-        const floatGenerator = FloatGenerator(seed);
-        const cards = [];
-        for (let i = 0; i < 5; i++) {
-          cards.push(findCard(floatGenerator.next().value));
-        }
-        return cards;
-      },
-      350
-    )
-  );
+  const packs = usePacksCards(() => formValues);
+  const cards = $derived(packs.items?.map((item) => item.card) ?? null);
 </script>
 
-{#if cardsDebounced.debouncing}
+{#if packs.isCalculating}
   <Loader />
 {:else}
-  {@const cards = cardsDebounced.value!}
-  {@const totalMulti = cards.reduce((a, b) => a + b!.multiplier, 0)}
+  {@const totalMulti = cards!.reduce((a, b) => a + b!.multiplier, 0)}
 
-  <p data-testid="packs-result" class="mb-5 text-center text-base">
-    won <span class="text-xl {TEXT_HIGHLIGHT_COLOR}">{totalMulti.toFixed(2)}x</span>
+  <p data-testid="packs-result" class="hidden text-center text-base">
+    {totalMulti.toFixed(2)}x
   </p>
 
-  <div class="grid grid-cols-3 gap-3">
-    {#each cards as card, i (i)}
-      <div>
-        <PacksCard cardId={card!.cardId} />
-      </div>
-    {/each}
+  <div class="text-center">
+    <p class="mb-3 text-sm text-gray-500 dark:text-gray-400">Three cards drawn from pack</p>
+    <p class="mb-4 text-xs text-gray-400 dark:text-gray-500">
+      Total multiplier: <span class="font-semibold text-blue-600 dark:text-blue-400"
+        >{totalMulti.toFixed(2)}x</span
+      >
+    </p>
+
+    <div class="grid grid-cols-3 gap-3">
+      {#each cards! as card, i (i)}
+        <div>
+          <PacksCard cardId={card!.cardId} />
+        </div>
+      {/each}
+    </div>
   </div>
 {/if}

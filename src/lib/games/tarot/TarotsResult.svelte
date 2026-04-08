@@ -1,77 +1,45 @@
 <script lang="ts">
-	import { FloatGenerator } from '$lib/generator/FloatGenerator';
-	import { debouncer } from '$lib/debounce.svelte';
-	import type { TarotSeed, TarotCard, TarotDifficulty, TarotArcanaType } from '$lib/types';
-	import { TarotArcanaType as ArcanaType } from '$lib/types';
-	import Loader from '$lib/games/Loader.svelte';
-	import TarotsCard from './TarotsCard.svelte';
-	import { TEXT_HIGHLIGHT_COLOR } from '$lib/config';
-	import { findCard } from '$lib/util/tarot';
+  import { TarotArcanaType as ArcanaType } from '$lib/types';
+  import Loader from '$lib/games/Loader.svelte';
+  import TarotsCard from './TarotsCard.svelte';
+  import ContentBlock from '../layout/ContentBlock.svelte';
+  import { useTarotsCards } from '$lib/composables';
 
-	const { formValues }: { formValues: Record<string, unknown> } = $props();
-
-	const seed = $derived<TarotSeed>({
-		clientSeed: formValues.clientseed as string,
-		serverSeed: formValues.serverseed as string,
-		nonce: formValues.nonce as number,
-		difficulty: formValues.difficulty as TarotDifficulty
-	});
-
-	interface CardResult {
-		card: TarotCard;
-		arcanaType: TarotArcanaType;
-		float: number;
-	}
-
-	const cardsDebounced = $derived.by(
-		debouncer(
-			() => seed,
-			(seed) => {
-				const floatGenerator = FloatGenerator(seed);
-				const cards: CardResult[] = [];
-
-				// Card 1: Minor Arcana
-				const float1 = floatGenerator.next().value;
-				const card1 = findCard(float1, seed.difficulty, ArcanaType.MINOR);
-				if (card1) cards.push({ card: card1, arcanaType: ArcanaType.MINOR, float: float1 });
-
-				// Card 2: Major Arcana
-				const float2 = floatGenerator.next().value;
-				const card2 = findCard(float2, seed.difficulty, ArcanaType.MAJOR);
-				if (card2) cards.push({ card: card2, arcanaType: ArcanaType.MAJOR, float: float2 });
-
-				// Card 3: Minor Arcana
-				const float3 = floatGenerator.next().value;
-				const card3 = findCard(float3, seed.difficulty, ArcanaType.MINOR);
-				if (card3) cards.push({ card: card3, arcanaType: ArcanaType.MINOR, float: float3 });
-
-				return cards;
-			},
-			350
-		)
-	);
+  const { formValues }: { formValues: Record<string, unknown> } = $props();
+  const tarots = useTarotsCards(() => formValues);
 </script>
 
-{#if cardsDebounced.debouncing}
-	<Loader />
+{#if tarots.isCalculating}
+  <Loader />
 {:else}
-	{@const cards = cardsDebounced.value!}
-	{@const totalMulti = cards.reduce((a, b) => a * b.card.multiplier, 1)}
+  {@const totalMulti = tarots.items!.reduce((a, b) => a * b.card.multiplier, 1)}
 
-	<p data-testid="tarot-result" class="mb-5 text-center text-base">
-		won <span class="text-xl {TEXT_HIGHLIGHT_COLOR}">{totalMulti.toFixed(2)}x</span>
-	</p>
+  <ContentBlock className="p-4">
+    <div class="flex items-center justify-center">
+      <div
+        class="flex items-center justify-center rounded border-2 border-green-500 bg-green-50 px-6 py-4 dark:border-green-400 dark:bg-green-900/30"
+      >
+        <div class="flex flex-col items-center gap-1">
+          <span class="text-xs font-medium text-green-600 dark:text-green-400">
+            Total Multiplier
+          </span>
+          <span
+            data-testid="tarot-result"
+            class="text-2xl font-bold text-green-800 dark:text-green-300"
+          >
+            {totalMulti.toFixed(2)}x
+          </span>
+        </div>
+      </div>
+    </div>
+  </ContentBlock>
 
-	<div class="grid grid-cols-3 gap-3">
-		{#each cards as { card, arcanaType }, i (i)}
-			<div>
-				<div class="mb-2 text-center text-sm font-semibold">
-					{arcanaType === ArcanaType.MINOR ? 'Minor' : 'Major'} Arcana
-				</div>
-				<div class="aspect-[2/3]">
-					<TarotsCard {arcanaType} multiplier={card.multiplier} />
-				</div>
-			</div>
-		{/each}
-	</div>
+  <ContentBlock className="mt-4 p-4">
+    <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">Cards Drawn</p>
+    <div class="grid grid-cols-3 gap-3">
+      {#each tarots.items! as { card, arcanaType }, i (i)}
+        <TarotsCard {arcanaType} multiplier={card.multiplier} />
+      {/each}
+    </div>
+  </ContentBlock>
 {/if}

@@ -1,0 +1,61 @@
+Yes. For **Svelte components**, the cleanest approach is usually:
+
+**keep components focused on rendering + simple interaction, and move real logic out.**
+
+For modern Svelte, I’d use these rules:
+
+1. **One component, one job.**
+   If a component is handling UI, data shaping, async fetching, form rules, and cross-component coordination, it is already too big. Split “smart/container” concerns from “presentational” concerns. This is not a Svelte-only rule, but it maps well to Svelte’s component model. ([Svelte][1])
+
+2. **Use `$state` for local mutable UI state, `$derived` for computed values, and keep `$derived` side-effect free.**
+   Svelte’s docs explicitly position `$state` as reactive local state and `$derived` as derived computation that should not contain side effects. That gives you a very clean separation between “state I own” and “values computed from it.” ([Svelte][2])
+
+3. **Use `$effect` sparingly.**
+   `$effect` is for side effects after the DOM updates, not for ordinary data flow. If something can be expressed as derived state, prefer `$derived`; reserve `$effect` for things like subscriptions, DOM integration, timers, and cleanup. ([Svelte][3])
+
+4. **Prefer one-way data flow.**
+   Svelte supports `bind:`, and component props can be made bindable, but the docs warn not to overuse bindable props because it makes data flow harder to reason about. In practice, pass props down and callbacks up unless two-way binding is genuinely simpler. ([Svelte][4])
+
+5. **Prefer callback props over legacy-style component event dispatching in Svelte 5 code.**
+   The current docs note that `createEventDispatcher` is legacy-oriented and recommend callback props and/or `$host()` instead. For clean components, this usually means explicit handlers like `onSave`, `onCancel`, `onChange`. ([Svelte][5])
+
+6. **Do not reach for stores too early.**
+   The Svelte docs now say that with runes, many uses of stores have diminished. So for cleanliness, keep state local first, then extract shared state only when multiple parts of the app truly need it. ([Svelte][6])
+
+7. **Use composition instead of giant configurable components.**
+   Snippets in Svelte 5 are a strong fit when you need reusable layout shells without turning everything into a huge prop-driven mega-component. That usually keeps components smaller and easier to test. ([Svelte][7])
+
+A practical structure that tends to stay clean is:
+
+* **Component**: markup, local UI state, event wiring
+* **Utility/helper**: pure formatting/parsing/transform logic
+* **Composable/module** (`.svelte.ts` / `.ts`): reusable behavior or state orchestration
+* **Service/API layer**: network and persistence
+
+A good smell test is this:
+
+* If it can be unit-tested without rendering, it probably does **not** belong inside the component.
+* If the component file is hard to scan top-to-bottom in under a minute, it is probably doing too much.
+* If a child both mutates parent state and fires multiple side effects, the data flow is probably too tangled.
+
+For your **SvelteKit + TypeScript + runes** setup, my default advice would be:
+
+* keep pages thin
+* keep components mostly presentational
+* move business logic into plain TS modules
+* use `$derived` heavily
+* use `$effect` rarely
+* avoid overusing `bind:`
+* prefer explicit callback props
+
+A very clean target is: **the component should read like a UI story, not like an application service.**
+
+If you want, I can turn this into a **concrete component checklist** for your verifier project.
+
+[1]: https://svelte.dev/docs/svelte/best-practices?utm_source=chatgpt.com "Best practices • Svelte Docs"
+[2]: https://svelte.dev/docs/svelte/%24state?utm_source=chatgpt.com "$state • Svelte Docs"
+[3]: https://svelte.dev/docs/svelte/%24effect?utm_source=chatgpt.com "$effect • Svelte Docs"
+[4]: https://svelte.dev/docs/svelte/bind?utm_source=chatgpt.com "bind: • Svelte Docs"
+[5]: https://svelte.dev/docs/svelte/svelte?utm_source=chatgpt.com "SvelteComponent"
+[6]: https://svelte.dev/docs/svelte/stores?utm_source=chatgpt.com "Stores • Svelte Docs"
+[7]: https://svelte.dev/docs/svelte/snippet?utm_source=chatgpt.com "Snippets"

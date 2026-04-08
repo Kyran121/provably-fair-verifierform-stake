@@ -1,53 +1,32 @@
 <script lang="ts">
-  import { FloatGenerator } from '$lib/generator/FloatGenerator';
-  import { debouncer } from '$lib/debounce.svelte';
-  import type { Seed } from '$lib/types';
-  import { generateCardDeck } from '$lib/util/cards';
   import Card from '$lib/games/cards/Card.svelte';
   import Loader from '$lib/games/Loader.svelte';
+  import ScrollableContainer from '$lib/games/layout/ScrollableContainer.svelte';
+  import { useHiloCards } from '$lib/composables';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
-  const deck = generateCardDeck();
-
-  const seed = $derived<Seed>({
-    clientSeed: formValues.clientseed as string,
-    serverSeed: formValues.serverseed as string,
-    nonce: formValues.nonce as number
-  });
-
-  const chosenCardsDebounced = $derived.by(
-    debouncer(
-      () => seed,
-      (seed) => {
-        const floatGenerator = FloatGenerator(seed);
-        const cards = [];
-        for (let i = 0; i < 52; i++) {
-          cards.push(deck[Math.floor(floatGenerator.next().value * 52)]);
-        }
-        return cards;
-      },
-      350
-    )
-  );
+  const hilo = useHiloCards(() => formValues);
 </script>
 
-{#if chosenCardsDebounced.debouncing}
+{#if hilo.isCalculating}
   <Loader />
 {:else}
   <p data-testid="hilo-result" class="hidden text-center text-base">
-    {chosenCardsDebounced.value!.map(({ value, suit }) => `${value}-${suit}`).join(', ')}
+    {hilo.items!.map(({ chosen: { value, suit } }) => `${value}-${suit}`).join(', ')}
   </p>
 
   <div class="mt-5 mb-6">
     <p class="mb-3 text-center text-lg font-semibold text-blue-600 dark:text-blue-400">
       Order of cards
     </p>
-    <div class="flex gap-1.5 overflow-x-scroll pb-5">
-      {#each chosenCardsDebounced.value! as card, n (n)}
-        <div class="w-20 flex-none">
-          <Card {...card} />
-        </div>
-      {/each}
-    </div>
+    <ScrollableContainer innerClassName="pb-5">
+      <div class="flex gap-1.5">
+        {#each hilo.items! as card, n (n)}
+          <div class="w-20 flex-none">
+            <Card {...card.chosen} />
+          </div>
+        {/each}
+      </div>
+    </ScrollableContainer>
   </div>
 {/if}

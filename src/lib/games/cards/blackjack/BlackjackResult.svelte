@@ -1,70 +1,33 @@
 <script lang="ts">
-  import { FloatGenerator } from '$lib/generator/FloatGenerator';
-  import { debouncer } from '$lib/debounce.svelte';
-  import type { Seed, Card as TCard } from '$lib/types';
-  import { generateCardDeck } from '$lib/util/cards';
   import Card from '$lib/games/cards/Card.svelte';
   import Loader from '$lib/games/Loader.svelte';
-
-  type Result = {
-    initialDealer: TCard[];
-    initialPlayer: TCard[];
-    remaining: TCard[];
-  };
+  import ScrollableContainer from '$lib/games/layout/ScrollableContainer.svelte';
+  import { useBlackjackCards } from '$lib/composables';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
-  const deck = generateCardDeck();
-
-  const seed = $derived<Seed>({
-    clientSeed: formValues.clientseed as string,
-    serverSeed: formValues.serverseed as string,
-    nonce: formValues.nonce as number
-  });
-
-  const chosenCardsDebounced = $derived.by(
-    debouncer(
-      () => seed,
-      (seed) => {
-        const floatGenerator = FloatGenerator(seed);
-        const cards = [];
-        for (let i = 0; i < 52; i++) {
-          cards.push(deck[Math.floor(floatGenerator.next().value * 52)]);
-        }
-        return {
-          initialDealer: cards.splice(0, 2),
-          initialPlayer: cards.splice(0, 2),
-          remaining: cards
-        } satisfies Result;
-      },
-      350
-    )
-  );
+  const blackjack = useBlackjackCards(() => formValues);
 </script>
 
-{#if chosenCardsDebounced.debouncing}
+{#if blackjack.isCalculating}
   <Loader />
 {:else}
   <p data-testid="blackjack-dealer-result" class="hidden text-center text-base">
-    {chosenCardsDebounced
-      .value!.initialDealer.map(({ value, suit }) => `${value}-${suit}`)
-      .join(', ')}
+    {blackjack.result!.initialDealer.map(({ chosen: { value, suit } }) => `${value}-${suit}`).join(', ')}
   </p>
   <p data-testid="blackjack-player-result" class="hidden text-center text-base">
-    {chosenCardsDebounced
-      .value!.initialPlayer.map(({ value, suit }) => `${value}-${suit}`)
-      .join(', ')}
+    {blackjack.result!.initialPlayer.map(({ chosen: { value, suit } }) => `${value}-${suit}`).join(', ')}
   </p>
   <p data-testid="blackjack-remaining-result" class="hidden text-center text-base">
-    {chosenCardsDebounced.value!.remaining.map(({ value, suit }) => `${value}-${suit}`).join(', ')}
+    {blackjack.result!.remaining.map(({ chosen: { value, suit } }) => `${value}-${suit}`).join(', ')}
   </p>
 
-  <div class="mt-5 mb-6">
+  <div class="mb-6 mt-5">
     <p class="mb-3 text-center text-lg font-semibold text-blue-600 dark:text-blue-400">
       Initial player cards
     </p>
     <div class="grid grid-cols-2 gap-1 sm:gap-1.5">
-      {#each chosenCardsDebounced.value!.initialDealer as card, n (n)}
-        <Card {...card} />
+      {#each blackjack.result!.initialPlayer as card, n (n)}
+        <Card {...card.chosen} />
       {/each}
     </div>
   </div>
@@ -74,22 +37,24 @@
       Initial dealer cards
     </p>
     <div class="grid grid-cols-2 gap-1 sm:gap-1">
-      {#each chosenCardsDebounced.value!.initialPlayer as card, n (n)}
-        <Card {...card} />
+      {#each blackjack.result!.initialDealer as card, n (n)}
+        <Card {...card.chosen} />
       {/each}
     </div>
   </div>
 
   <div class="mb-6">
     <p class="mb-3 text-center text-lg font-semibold text-purple-600 dark:text-purple-400">
-      Remaing cards in deck
+      Remaining cards in deck
     </p>
-    <div class="flex gap-1.5 overflow-x-scroll pb-5">
-      {#each chosenCardsDebounced.value!.remaining as card, n (n)}
-        <div class="w-20 flex-none">
-          <Card {...card} />
-        </div>
-      {/each}
-    </div>
+    <ScrollableContainer innerClassName="pb-5">
+      <div class="flex gap-1.5">
+        {#each blackjack.result!.remaining as card, n (n)}
+          <div class="w-20 flex-none">
+            <Card {...card.chosen} />
+          </div>
+        {/each}
+      </div>
+    </ScrollableContainer>
   </div>
 {/if}

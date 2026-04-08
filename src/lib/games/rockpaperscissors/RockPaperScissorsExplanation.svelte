@@ -1,49 +1,42 @@
 <script lang="ts">
-  import { RockPaperScissorsOutcome, type Seed } from '$lib/types';
-  import { FloatGenerator } from '$lib/generator/FloatGenerator';
   import FloatGenerationStep from '$lib/games/FloatGenerationStep.svelte';
-  import { debouncer } from '$lib/debounce.svelte';
-  import ResultTabs from '$lib/games/ResultTabs.svelte';
   import RockPaperScissorsResultStep from '$lib/games/rockpaperscissors/RockPaperScissorsResultStep.svelte';
-  import { shuffle } from '$lib/util/shuffle-impl/shuffle';
   import Loader from '$lib/games/Loader.svelte';
+  import ResultTabs from '$lib/games/ResultTabs.svelte';
+  import ContentBlock from '../layout/ContentBlock.svelte';
+  import { useRpsOutcome } from '$lib/composables';
+  import { getRpsTabClass, getRpsTabSelectedClass } from '$lib/util/rps';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
-  const outcomes = Object.values(RockPaperScissorsOutcome);
-
   let resultIndex = $state(0);
-
-  let seed = $derived<Seed>({
-    clientSeed: formValues.clientseed as string,
-    serverSeed: formValues.serverseed as string,
-    nonce: formValues.nonce as number
-  });
-
-  const resultsDebounced = $derived.by(
-    debouncer(
-      () => seed,
-      (seed) => {
-        const floatGenerator = FloatGenerator(seed);
-        return shuffle(floatGenerator, outcomes, 20);
-      },
-      350
-    )
-  );
+  const rpsOutcome = useRpsOutcome(() => formValues);
 </script>
 
 <div class="mt-5 border-0 text-center dark:text-white">
   <div id="step-content" class="pb-4 text-left text-sm dark:bg-gray-900 dark:text-white">
-    {#if resultsDebounced.debouncing}
+    {#if rpsOutcome.isCalculating || !rpsOutcome.items}
       <Loader />
     {:else}
-      {@const results = resultsDebounced.value!}
+      <ContentBlock className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400">
+        <p class="font-medium">
+          <span class="text-blue-600 dark:text-blue-400">Rounds generated in the order shown below.</span>
+          Click a round to see how it was generated using Stake's provably fair algorithm.
+        </p>
+      </ContentBlock>
 
-      <ResultTabs {seed} items={results} bind:resultIndex tabWidthClass="w-15" />
+      <ResultTabs
+        seed={rpsOutcome.seed}
+        items={rpsOutcome.items!}
+        tabWidthClass="w-20"
+        tabClassModifier={(i) => getRpsTabClass(rpsOutcome.items![i].chosen)}
+        tabSelectedClassModifier={(i) => getRpsTabSelectedClass(rpsOutcome.items![i].chosen)}
+        bind:resultIndex
+      />
 
-      {@const result = results[resultIndex]}
+      {@const result = rpsOutcome.items[resultIndex]}
 
-      <FloatGenerationStep stepNumber={1} {resultIndex} {seed} float={result.float} />
+      <FloatGenerationStep stepNumber={1} {resultIndex} seed={rpsOutcome.seed!} float={result.float} />
       <RockPaperScissorsResultStep stepNumber={2} {...result} />
     {/if}
   </div>

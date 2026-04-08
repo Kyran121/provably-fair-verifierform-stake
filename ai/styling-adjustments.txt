@@ -1,0 +1,28 @@
+Games with clear and intuitive result/explanation sections:
+
+- Baccarat
+- Bars
+- Blackjack
+- Blue Samurai
+- Cases
+- Chicken
+- Crash
+- Darts
+- Diamonds
+- Dice
+- Hilo
+- Limbo
+- Mines
+- Moles
+- PrimeDice
+- Roulette
+- Slide
+- Video Poker
+
+Games needing a little tweak:
+
+- Moles 
+  - In Dark mode, in the result component, the R buttons need their hover style amended to match better with the dark theme. 
+  - In Dark mode, in the explanation component, the result tabs need their hover style amended to match better with the theme.
+
+All other games need their style and layout adjusting to be clear and intuitive, and consistent with the theme.

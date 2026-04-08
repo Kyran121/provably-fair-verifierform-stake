@@ -1,63 +1,42 @@
 <script lang="ts">
-  import { CoinFlip, type Item, type Seed } from '$lib/types';
-  import { FloatGenerator } from '$lib/generator/FloatGenerator';
   import FloatGenerationStep from '$lib/games/FloatGenerationStep.svelte';
-  import { debouncer } from '$lib/debounce.svelte';
   import FlipResultStep from '$lib/games/flip/FlipResultStep.svelte';
-  import ResultTabs from '$lib/games/ResultTabs.svelte';
   import Loader from '$lib/games/Loader.svelte';
+  import ResultTabs from '$lib/games/ResultTabs.svelte';
   import ContentBlock from '../layout/ContentBlock.svelte';
+  import { useFlipOutcome } from '$lib/composables';
+  import { getFlipTabClass, getFlipTabSelectedClass } from '$lib/util/flip';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
   let resultIndex = $state(0);
-
-  let seed = $derived<Seed>({
-    clientSeed: formValues.clientseed as string,
-    serverSeed: formValues.serverseed as string,
-    nonce: formValues.nonce as number
-  });
-
-  const flip = [CoinFlip.TAIL, CoinFlip.HEAD];
-
-  const flipsDebounced = $derived.by(
-    debouncer(
-      () => seed,
-      (seed) => {
-        const floatGenerator = FloatGenerator(seed);
-        const flips: Item<CoinFlip>[] = [];
-        for (let i = 0; i < 20; i++) {
-          const float = floatGenerator.next().value;
-          const chosenIndex = float <= 0.5 ? 0 : 1;
-          const chosen = flip[chosenIndex];
-          flips.push({ float, chosenIndex, chosen });
-        }
-        return flips;
-      },
-      350
-    )
-  );
+  const flipOutcome = useFlipOutcome(() => formValues);
 </script>
 
 <div class="mt-5 border-0 text-center dark:text-white">
   <div id="step-content" class="pb-4 text-left text-sm dark:bg-gray-900 dark:text-white">
-    {#if flipsDebounced.debouncing}
+    {#if flipOutcome.isCalculating || !flipOutcome.items}
       <Loader />
     {:else}
-      {@const items = flipsDebounced.value!}
-
-      <ContentBlock className="mb-7 p-2 text-center text-base text-gray-900 dark:text-white">
-        <p>
-          Flips made in the order shown below. Click a flip to find out how it was generated using
-          stake's provably fair algorithm
+      <ContentBlock className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400">
+        <p class="font-medium">
+          <span class="text-blue-600 dark:text-blue-400">Flips made in the order shown below.</span>
+          Click a flip to see how it was generated using Stake's provably fair algorithm.
         </p>
       </ContentBlock>
 
-      <ResultTabs {seed} {items} bind:resultIndex />
+      <ResultTabs
+        seed={flipOutcome.seed}
+        items={flipOutcome.items!}
+        tabWidthClass="w-20"
+        tabClassModifier={(i) => getFlipTabClass(flipOutcome.items![i].chosen)}
+        tabSelectedClassModifier={(i) => getFlipTabSelectedClass(flipOutcome.items![i].chosen)}
+        bind:resultIndex
+      />
 
-      {@const flip = items[resultIndex]}
+      {@const flip = flipOutcome.items[resultIndex]}
 
-      <FloatGenerationStep stepNumber={1} {resultIndex} {seed} float={flip.float} />
+      <FloatGenerationStep stepNumber={1} {resultIndex} seed={flipOutcome.seed!} float={flip.float} />
       <FlipResultStep stepNumber={2} {...flip} />
     {/if}
   </div>

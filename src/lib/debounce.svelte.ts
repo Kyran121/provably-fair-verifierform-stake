@@ -17,8 +17,17 @@ export function debouncer<T, U>(
   const update = debounce((v: T) => (current = { debouncing: false, value: action(v) }), delay);
 
   $effect(() => {
+    const v = getter();
+    // Force Svelte to track all enumerable properties of the value so that
+    // reactive getter objects (e.g. seed returned from useSeedParser) properly
+    // trigger re-computation when any field changes.
+    if (v !== null && typeof v === 'object') {
+      for (const key of Object.keys(v as object)) {
+        void (v as Record<string, unknown>)[key];
+      }
+    }
     untrack(() => (current.debouncing = true));
-    update(getter());
+    update(v);
   });
 
   return () => current;

@@ -1,57 +1,46 @@
 <script lang="ts">
-  import type { Seed } from '$lib/types';
-  import { FloatGenerator } from '$lib/generator/FloatGenerator';
   import FloatGenerationStep from '$lib/games/FloatGenerationStep.svelte';
-  import { debouncer } from '$lib/debounce.svelte';
-  import { fisherYates } from '$lib/util/shuffle-impl/fisherYates';
   import KenoResultStep from '$lib/games/keno/KenoResultStep.svelte';
-  import ResultTabs from '$lib/games/ResultTabs.svelte';
   import Loader from '$lib/games/Loader.svelte';
   import ContentBlock from '../layout/ContentBlock.svelte';
+  import { useKenoNumbers } from '$lib/composables';
+  import { getKenoTabClass, getKenoTabSelectedClass } from '$lib/util/keno';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
   let resultIndex = $state(0);
-
-  let seed = $derived<Seed>({
-    clientSeed: formValues.clientseed as string,
-    serverSeed: formValues.serverseed as string,
-    nonce: formValues.nonce as number
-  });
-
-  const fisherYateItemsDebounced = $derived.by(
-    debouncer(
-      () => seed,
-      (seed) => {
-        const floatGenerator = FloatGenerator(seed);
-        const kenoBoard = Array.from({ length: 40 }).map((_v, i) => i + 1);
-        const fisherYateItems = fisherYates(floatGenerator, kenoBoard, 10);
-        return fisherYateItems;
-      },
-      350
-    )
-  );
+  const keno = useKenoNumbers(() => formValues);
 </script>
 
 <div class="mt-8 border-0 text-center dark:text-white">
   <div id="step-content" class="pb-4 text-left text-sm dark:bg-gray-900 dark:text-white">
-    {#if fisherYateItemsDebounced.debouncing}
+    {#if keno.isCalculating || !keno.items}
       <Loader />
     {:else}
-      {@const items = fisherYateItemsDebounced.value!}
-
-      <ContentBlock className="mb-7 p-2 text-center text-base text-gray-900 dark:text-white">
-        <p>
-          Keno numbers drawn in the order shown below. Click a number to find out how it was
-          generated using stake's provably fair algorithm
+      <ContentBlock className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400">
+        <p class="font-medium">
+          <span class="text-blue-600 dark:text-blue-400">Keno numbers drawn in the order shown below.</span>
+          Click a number to see how it was generated using Stake's provably fair algorithm.
         </p>
       </ContentBlock>
 
-      <ResultTabs {seed} {items} bind:resultIndex />
+      <div class="mb-7 overflow-x-auto overflow-y-visible" style="padding: 4px 6px 0 4px;">
+        <div class="flex gap-2 pb-5" style="min-width: max-content;">
+          {#each keno.items as item, i}
+            <button
+              type="button"
+              class={i === resultIndex ? getKenoTabSelectedClass() : getKenoTabClass()}
+              onclick={() => (resultIndex = i)}
+            >
+              <span class="font-bold">{item.chosen}</span>
+            </button>
+          {/each}
+        </div>
+      </div>
 
-      {@const selectedItem = items[resultIndex]}
+      {@const selectedItem = keno.items[resultIndex]}
 
-      <FloatGenerationStep stepNumber={1} {resultIndex} {seed} float={selectedItem.float} />
+      <FloatGenerationStep stepNumber={1} {resultIndex} seed={keno.seed!} float={selectedItem.float} />
       <KenoResultStep stepNumber={2} {resultIndex} {...selectedItem} />
     {/if}
   </div>

@@ -1,55 +1,11 @@
 <script lang="ts">
   import { Gem, type Item } from '$lib/types';
+  import { GEM_COLORS } from '$lib/util/diamonds';
   import ContentBlock from '../layout/ContentBlock.svelte';
   import HighlightLink from '../layout/HighlightLink.svelte';
   import HighlightText from '../layout/HighlightText.svelte';
 
   const gems = Object.values(Gem);
-
-  const gemToColors: Record<Gem, { bg: string; border: string; ring: string; text: string }> = {
-    green: {
-      bg: 'bg-green-100 dark:bg-green-900/30',
-      border: 'border-green-500 dark:border-green-400',
-      ring: 'ring-green-500 dark:ring-green-400',
-      text: 'text-green-700 dark:text-green-400'
-    },
-    blue: {
-      bg: 'bg-blue-100 dark:bg-blue-900/30',
-      border: 'border-blue-500 dark:border-blue-400',
-      ring: 'ring-blue-500 dark:ring-blue-400',
-      text: 'text-blue-700 dark:text-blue-400'
-    },
-    purple: {
-      bg: 'bg-purple-100 dark:bg-purple-900/30',
-      border: 'border-purple-500 dark:border-purple-400',
-      ring: 'ring-purple-500 dark:ring-purple-400',
-      text: 'text-purple-700 dark:text-purple-400'
-    },
-    cyan: {
-      bg: 'bg-cyan-100 dark:bg-cyan-900/30',
-      border: 'border-cyan-500 dark:border-cyan-400',
-      ring: 'ring-cyan-500 dark:ring-cyan-400',
-      text: 'text-cyan-700 dark:text-cyan-400'
-    },
-    pink: {
-      bg: 'bg-pink-100 dark:bg-pink-900/30',
-      border: 'border-pink-500 dark:border-pink-400',
-      ring: 'ring-pink-500 dark:ring-pink-400',
-      text: 'text-pink-700 dark:text-pink-400'
-    },
-    yellow: {
-      bg: 'bg-yellow-100 dark:bg-yellow-900/30',
-      border: 'border-yellow-500 dark:border-yellow-400',
-      ring: 'ring-yellow-500 dark:ring-yellow-400',
-      text: 'text-yellow-700 dark:text-yellow-400'
-    },
-    red: {
-      bg: 'bg-red-100 dark:bg-red-900/30',
-      border: 'border-red-500 dark:border-red-400',
-      ring: 'ring-red-500 dark:ring-red-400',
-      text: 'text-red-700 dark:text-red-400'
-    }
-  };
 
   const {
     stepNumber,
@@ -143,11 +99,11 @@
         <div
           class={[
             'inline-flex min-w-[80px] flex-col items-center justify-center rounded border-2 p-3 shadow-lg',
-            gemToColors[chosen].bg,
-            gemToColors[chosen].border
+            GEM_COLORS[chosen].bg,
+            GEM_COLORS[chosen].border
           ]}
         >
-          <span class={['text-xl font-bold capitalize', gemToColors[chosen].text]}>{chosen}</span>
+          <span class={['text-xl font-bold capitalize', GEM_COLORS[chosen].text]}>{chosen}</span>
         </div>
       </div>
     </div>
