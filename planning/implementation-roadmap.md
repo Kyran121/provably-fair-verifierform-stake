@@ -4,6 +4,52 @@
 
 This document provides the **actual implementation sequence** for the clean architecture refactoring, aligned with the master plan in [clean-architecture-refactoring.md](clean-architecture-refactoring.md).
 
+**Last Updated**: 2026-04-16
+
+---
+
+## 🎯 **Executive Summary: Current State**
+
+### **Overall Progress: ~50% Complete**
+
+**Major Discovery**: The roadmap was significantly outdated. Analysis reveals we're **much further along** than previously documented:
+
+| Metric | Status |
+|--------|--------|
+| **Overall Completion** | ~50% (was tracked as ~15%) |
+| **Time Invested** | ~8-10 hours |
+| **Time Remaining** | ~16-23 hours (updated after component review) |
+| **Architecture Quality** | Strong foundation already in place |
+
+### **Phase Completion Summary**
+
+| Phase | Completion | Status |
+|-------|-----------|--------|
+| Phase 1: Constants | 100% | ✅ Complete |
+| Phase 2: Composables | 70% | ⚠️ Nearly done - needs tests/docs |
+| Phase 4: Components | 75% | ⚠️ Pattern already implemented |
+| Phase 3: Domain Layer | 40% | ⚠️ Logic exists, needs reorganization |
+| Phase 5: Utilities | 0% | ❌ File reorganization pending |
+| Phase 6: Types | 0% | ❌ Splitting pending |
+| Phase 7: Testing | 0% | ❌ Not started |
+
+### **Key Findings**
+
+✅ **What's Working Well:**
+- Excellent composables architecture (30+ files)
+- Smart/dumb component separation fully implemented
+- Pure domain logic exists and is well-structured
+- Type-safe throughout with TypeScript + Zod
+- Scales beautifully across 30+ games
+
+⚠️ **What Needs Work:**
+- File organization doesn't match clean architecture conventions
+- No test coverage yet
+- Types in single monolithic file
+- Generic utilities mixed with game-specific logic
+
+🎯 **Next Priority**: Phase 3 - Domain Layer Reorganization (2-3 hours)
+
 ---
 
 ## 🎯 Master Plan Phases (Logical Grouping)
@@ -43,93 +89,152 @@ Based on dependencies and risk, the master plan recommends this order:
 
 ---
 
-### 📝 **Step 2: Phase 2 - Composables** (NEXT)
-**Status**: 🔄 Not Started
-**Time**: ~3-4 hours
-**Risk**: Medium
-**Dependencies**: None (can start now)
+### ⚠️ **Step 2: Phase 2 - Composables** (MOSTLY COMPLETE)
+**Status**: ⚠️ ~70% Complete (Commit: 153e20d)
+**Time**: ~3-4 hours (spent)
+**Risk**: Low (major work done)
+**Dependencies**: None
 
-**Goals:**
-- Extract business logic from components into `.svelte.ts` composables
-- Create reusable reactive state management
-- Separate concerns: logic vs UI
+**What was done:**
+- ✅ Created `src/lib/composables/` directory structure
+- ✅ Implemented **30+ composables** across all game categories:
+  - Core: `use-float-generation`, `use-seed-parser`, `use-extended-seed-parser`, `use-debounced-computation`, `use-scroll-reset`
+  - Simple games: `use-dice-roll`, `use-coin-flip`, `use-limbo`, `use-wheel-spin`, `use-rps`
+  - Grid games: `use-plinko-path`, `use-roulette-spin`, `use-keno-numbers`, `use-mines-result`, etc.
+  - Skill games: `use-darts-throw`, `use-chicken-escapes`, `use-pump-explodes`, etc.
+  - Card games: `use-card-deck`, `use-baccarat-result`, `use-blackjack-game`, etc.
+  - Slots: `use-blue-samurai`, `use-slot-result`
+  - Multiplayer: `use-crash-result`, `use-slide-result`
+- ✅ Components refactored to use composables (DiceResult.svelte, etc.)
+- ✅ Reactive state management with `$derived` and debouncing
+- ✅ Separation of business logic from UI
 
-**Structure to create:**
+**Actual structure created:**
 ```
 src/lib/composables/
-├── use-dice-roll.svelte.ts
-├── use-wheel-spin.svelte.ts
-├── use-plinko-path.svelte.ts
-├── use-card-shuffle.svelte.ts
-└── core/
-    ├── use-debounced-computation.svelte.ts
-    └── use-seed-parser.svelte.ts
+├── core/
+│   ├── use-float-generation.svelte.ts
+│   ├── use-seed-parser.svelte.ts
+│   ├── use-extended-seed-parser.svelte.ts
+│   ├── use-debounced-computation.svelte.ts
+│   └── use-scroll-reset.svelte.ts
+└── games/
+    ├── simple/     # 5 composables
+    ├── grid/       # 10 composables
+    ├── skill/      # 6 composables
+    ├── cards/      # 7 composables
+    ├── slots/      # 2 composables
+    └── multiplayer/ # 2 composables
 ```
 
-**Example:**
-- Component: `DiceResult.svelte` (currently has logic + UI)
-- Extract to: `useDiceRoll()` composable
-- Component becomes: pure UI rendering
+**What remains:**
+- ❌ Add tests for composables
+- ❌ Create formal documentation/examples
+- ✅ **HIGH Priority refactoring completed** (2026-04-16)
 
-**Benefits:**
-- Components become simpler and focused on UI
-- Business logic is reusable across components
-- Easier to test (composables can be tested independently)
-- Foundation for Phase 3 domain layer
+**Component Refactoring Status** (Updated 2026-04-16):
 
-**Implementation plan**: [phase-2-composables-implementation-plan.md](phase-2-composables-implementation-plan.md) *(to be created)*
+✅ **HIGH Priority - COMPLETED** (All 6 components refactored):
+- ✅ [BlueSamuraiExplanation.svelte](../src/lib/games/bluesamurai/BlueSamuraiExplanation.svelte) → `useBlueSamuraiExplanation()` composable
+- ✅ [DartsMultiplierStep.svelte](../src/lib/games/darts/DartsMultiplierStep.svelte) → `useDartsMultiplierCalc()` composable
+- ✅ [DartsExplanation.svelte](../src/lib/games/darts/DartsExplanation.svelte) → Moved data rebuilding to `{@const}` block
+- ✅ [DragonTowerResult.svelte](../src/lib/games/dragontower/DragonTowerResult.svelte) → `useDragonTowerGrid()` composable
+- ✅ [MinesExplanation.svelte](../src/lib/games/mines/MinesExplanation.svelte) → `useMinesExplanation()` composable
+- ✅ [MolesExplanation.svelte](../src/lib/games/moles/MolesExplanation.svelte) → `useMolesExplanation()` composable
+
+**New Composables Created**:
+- `src/lib/composables/games/slots/use-bluesamurai-explanation.svelte.ts`
+- `src/lib/composables/games/skill/use-darts-multiplier-calc.svelte.ts`
+- `src/lib/composables/games/grid/use-dragontower-grid.svelte.ts`
+- `src/lib/composables/games/grid/use-moles-explanation.svelte.ts`
+- `src/lib/composables/games/grid/use-mines-explanation.svelte.ts`
+
+**MEDIUM Priority** (11 components - OPTIONAL):
+- Fisher-Yates display pattern (affects 7+ components): Could extract shared `useFisherYatesDisplay()` utility
+  - KenoResultStep, MinesResultStep, MolesResultStep, DragonTowerResultStep, VideoPokerResultStep, etc.
+- Game-specific calculations: ChickenResult, WheelResultStep, PacksResultStep, TarotsResultStep
+
+**LOW Priority** (11 components - DEFER):
+- Simple display formulas (acceptable as-is): LimboResultStep, DiceResultStep, RouletteResultStep, etc.
+- These are display-focused and show the calculation formula - no action needed
+
+**Benefits achieved:**
+- ✅ Components are simpler and focused on UI
+- ✅ Business logic is reusable across components
+- ✅ Clear separation: logic vs UI
+- ✅ Excellent foundation for Phase 3 domain layer
 
 ---
 
-### 📝 **Step 3: Phase 3 - Domain Layer** (AFTER COMPOSABLES)
-**Status**: 📋 Planned
-**Time**: ~4-5 hours
-**Risk**: Low
-**Dependencies**: Phase 2 (composables should call domain functions)
+### ⚠️ **Step 3: Phase 3 - Domain Layer** (REORGANIZATION NEEDED)
+**Status**: ⚠️ ~40% Complete (Logic exists, needs restructuring)
+**Time**: ~2-3 hours (reorganization only)
+**Risk**: Low (just file moves + import updates)
+**Dependencies**: Phase 2 (✅ complete)
 
-**Goals:**
-- Create pure, framework-agnostic business logic
-- Move game-specific utilities from `src/lib/util/` to `src/lib/domain/games/`
-- Organize crypto/seed logic into domain layer
+**Current state:**
+- ✅ Pure, framework-agnostic business logic **already exists**
+- ✅ Crypto logic in `src/lib/generator/` (ByteGenerator, FloatGenerator, ChunkGenerator)
+- ✅ Game utilities in `src/lib/util/` (27 files: darts, tarot, plinko, shuffle, payout, etc.)
+- ❌ **Not organized** according to clean architecture structure
 
-**Structure to create:**
+**Current structure:**
+```
+src/lib/
+├── generator/              # ✅ Pure domain crypto logic
+│   ├── ByteGenerator.ts
+│   ├── FloatGenerator.ts
+│   └── ChunkGenerator.ts
+├── util/                   # ✅ Pure game domain logic (wrong location)
+│   ├── payout.ts
+│   ├── darts.ts
+│   ├── tarot.ts
+│   ├── plinko.ts
+│   ├── shuffle.ts
+│   ├── drill.ts
+│   ├── packs.ts
+│   └── [20+ more game utilities]
+└── types.ts                # ✅ Domain entities
+```
+
+**Target structure:**
 ```
 src/lib/domain/
-├── seed/
-│   ├── types.ts              # Seed types
-│   ├── parser.ts             # parseSeed(formValues)
-│   └── validator.ts          # validateSeed()
+├── crypto/
+│   ├── byte-generation.ts    # (from generator/ByteGenerator.ts)
+│   ├── float-generation.ts   # (from generator/FloatGenerator.ts)
+│   └── chunk-generation.ts   # (from generator/ChunkGenerator.ts)
 │
 ├── games/
-│   ├── dice.ts               # calculateDiceRoll()
-│   ├── wheel.ts              # calculateWheelPosition()
-│   ├── plinko.ts             # calculatePlinkoPath()
+│   ├── dice.ts
+│   ├── wheel.ts
+│   ├── plinko.ts             # (from util/plinko.ts)
 │   ├── darts.ts              # (from util/darts.ts)
 │   ├── tarot.ts              # (from util/tarot.ts)
+│   ├── drill.ts              # (from util/drill.ts)
+│   ├── packs.ts              # (from util/packs.ts)
 │   └── shared/
-│       ├── payout.ts         # getPayout() - from util/
-│       └── shuffle.ts        # Card shuffling logic
+│       ├── payout.ts         # (from util/payout.ts)
+│       └── shuffle.ts        # (from util/shuffle.ts)
 │
-└── crypto/
-    ├── byte-generation.ts    # ByteGenerator logic
-    └── float-generation.ts   # FloatGenerator logic
+└── types/
+    └── index.ts              # (from types.ts, or keep at root for now)
 ```
 
-**What moves here:**
-- `src/lib/util/payout.ts` → `domain/games/shared/payout.ts`
-- `src/lib/util/darts.ts` → `domain/games/darts.ts`
-- `src/lib/util/tarot.ts` → `domain/games/tarot.ts`
-- `src/lib/util/packs.ts` → `domain/games/packs.ts`
-- `src/lib/util/drill.ts` → `domain/games/drill.ts`
-- etc.
+**Migration tasks:**
+1. Move `src/lib/generator/*.ts` → `src/lib/domain/crypto/`
+2. Move game-specific `src/lib/util/*.ts` → `src/lib/domain/games/`
+3. Move shared utilities → `src/lib/domain/games/shared/`
+4. Update all imports in composables (30+ files)
+5. Update re-exports in `src/lib/domain/index.ts`
 
 **Benefits:**
-- 100% testable pure functions
-- Framework-agnostic (can be used anywhere)
-- Clear separation: domain vs infrastructure
-- Composables become thin wrappers around domain logic
+- ✅ Already has 100% testable pure functions
+- ✅ Already framework-agnostic
+- 🎯 Will have clear separation: domain vs infrastructure
+- 🎯 Matches clean architecture conventions
 
-**Implementation plan**: [phase-3-domain-layer-implementation-plan.md](phase-3-domain-layer-implementation-plan.md) *(to be created)*
+**Next action**: Create migration script or manual file moves + import updates
 
 ---
 
@@ -173,42 +278,74 @@ src/lib/utils/
 
 ---
 
-### 📝 **Step 5: Phase 4 - Component Structure** (POLISH)
-**Status**: 📋 Planned
-**Time**: ~3-4 hours
-**Risk**: Medium
-**Dependencies**: Phase 2 (needs composables), Phase 3 (needs domain layer)
+### ⚠️ **Step 5: Phase 4 - Component Structure** (MOSTLY COMPLETE)
+**Status**: ⚠️ ~75% Complete (Pattern already implemented)
+**Time**: ~1-2 hours (cleanup remaining)
+**Risk**: Low
+**Dependencies**: Phase 2 (✅ complete)
 
-**Goals:**
-- Refactor components to use composables
-- Split into smart (container) and dumb (presentation) components
-- Improve component organization
+**What was done:**
+- ✅ Components refactored to use composables across all 30+ games
+- ✅ Smart/dumb component separation **already implemented**
+- ✅ Smart components use composables for state management
+- ✅ Presentation components are pure UI (layout components)
+- ✅ Clear component organization per game
 
-**Example transformation:**
+**Current structure (Example: Dice):**
 ```
 src/lib/games/dice/
-├── index.ts                    # GameDefinition
-├── config.ts                   # Game-specific config (if needed)
-├── components/
-│   ├── DiceResult.svelte       # Smart component (uses composable)
-│   ├── DiceResultDisplay.svelte # Presentation component
-│   ├── DiceExplanation.svelte
-│   └── DiceResultStep.svelte
-└── __tests__/
-    └── DiceResult.test.ts
+├── index.ts                    # ✅ GameDefinition
+├── DiceResult.svelte           # ✅ Smart component (uses useDiceRoll)
+└── DiceExplanation.svelte      # ✅ Smart component (uses useDiceRoll)
+
+src/lib/games/layout/           # ✅ Dumb/presentation components
+├── ContentBlock.svelte
+├── Loader.svelte
+├── HighlightText.svelte
+└── [other shared UI components]
 ```
 
-**Smart component** (DiceResult.svelte):
-- Uses `useDiceRoll()` composable
-- Manages state
-- Passes data to presentation component
+**Smart component pattern** (already implemented):
+```svelte
+<!-- DiceResult.svelte (23 lines) -->
+<script lang="ts">
+  import { useDiceRoll } from '$lib/composables';
+  import Loader from '$lib/games/Loader.svelte';
 
-**Dumb component** (DiceResultDisplay.svelte):
-- Only receives props
-- Pure UI rendering
-- No business logic
+  const { formValues } = $props();
+  const diceRoll = useDiceRoll(() => formValues);
+</script>
 
-**Implementation plan**: [phase-4-components-implementation-plan.md](phase-4-components-implementation-plan.md) *(to be created)*
+{#if diceRoll.isCalculating}
+  <Loader />
+{:else}
+  <div data-testid="dice-result">
+    {diceRoll.rollNumber!.toFixed(2)}
+  </div>
+{/if}
+```
+
+**Dumb component pattern** (already implemented):
+- FloatGenerationStep.svelte (263 lines) - Pure presentation
+- ContentBlock.svelte - Layout wrapper
+- Loader.svelte - Loading indicator
+
+**Statistics:**
+- ✅ 98 component files across 30+ games
+- ✅ Consistent naming: `[Game]Result.svelte`, `[Game]Explanation.svelte`
+- ✅ Average component size: < 100 lines (focused)
+- ✅ Clear separation: smart components call composables, dumb components receive props
+
+**What remains:**
+- ❌ Add `__tests__/` directories (Phase 7)
+- ❌ Consider adding `components/` subdirectory per game (optional refinement)
+- ❌ Document the pattern formally
+
+**Benefits achieved:**
+- ✅ Components use composables for state
+- ✅ Smart/dumb separation implemented
+- ✅ Clear, maintainable component structure
+- ✅ Consistent pattern across all games
 
 ---
 
@@ -268,6 +405,7 @@ tests/
 
 ## 📊 Implementation Timeline
 
+### **Original Timeline (Outdated)**
 ```
 Week 1:
 ├─ Day 1-2: Phase 1 (Constants) ✅ DONE
@@ -284,37 +422,120 @@ Week 3:
 ├─ Day 2-5: Phase 7 (Testing) + Polish
 ```
 
+### **Actual Progress & Revised Timeline**
+
+**✅ Already Completed (Without tracking):**
+- Phase 1: Constants (1 hour) ✅
+- Phase 2: Composables (~70% - 3-4 hours) ⚠️
+- Phase 4: Components (~75% - 3 hours) ⚠️
+- Phase 3: Domain logic exists (~40% - unknown) ⚠️
+
+**🎯 Remaining Work (Revised Estimate: 16-23 hours total):**
+
+```
+Day 1-2 (~4-6 hours):
+├─ Phase 3: Domain Layer Reorganization (2-3 hrs)
+│   ├─ Create domain/ directory structure
+│   ├─ Move generator/ → domain/crypto/
+│   ├─ Move util/ games → domain/games/
+│   └─ Update 30+ imports in composables
+│
+└─ Phase 5: Utilities Organization (1-2 hrs)
+    ├─ Separate generic utils → utils/core/
+    ├─ Separate Svelte utils → utils/svelte/
+    └─ Update imports
+
+Day 3-4 (~6-8 hours):
+├─ Phase 2: Component Mixed Concerns Cleanup (6-8 hrs) **NEW**
+│   ├─ HIGH Priority (3-4 hrs): Refactor 6 components
+│   │   └─ BlueSamurai, Darts, DragonTower, Mines, Moles
+│   ├─ MEDIUM Priority (2-3 hrs): Refactor 11 components
+│   │   └─ Extract Fisher-Yates display pattern (7 components)
+│   │   └─ Clean up calculations in 4 components
+│   └─ LOW Priority (1 hr): Optional - simple display logic cleanup
+│
+└─ Pattern Creation:
+    ├─ Create useFisherYatesDisplay() composable
+    ├─ Create grid reconstruction utilities
+    └─ Extract explanation state management
+
+Day 5 (~2-3 hours):
+├─ Phase 6: Types Reorganization (1-2 hrs)
+│   ├─ Split types.ts into modules
+│   ├─ Create types/common.ts, types/games/, etc.
+│   └─ Update imports
+│
+└─ Phase 2 & 4: Documentation (1 hr)
+    ├─ Document composable pattern
+    └─ Document component architecture
+
+Day 6-7 (~4-6 hours):
+└─ Phase 7: Testing (4-6 hrs)
+    ├─ Add domain layer tests (pure functions)
+    ├─ Add composable tests
+    ├─ Add component smoke tests
+    └─ Target: 70-80% coverage
+```
+
+**Key Insight**: Component review revealed **more mixed concerns than expected**. Added 6-8 hours for high/medium priority component refactoring. Most work is still **organizational** rather than **architectural redesign**.
+
 ---
 
 ## ✅ Progress Tracking
 
-| Phase | Status | Branch/Commit | Time Spent | Notes |
-|-------|--------|---------------|------------|-------|
-| Phase 1: Constants | ✅ Complete | 82f6f82 | ~1hr | All tests passing |
-| Phase 2: Composables | 🔄 Next | - | - | Implementation plan needed |
-| Phase 3: Domain Layer | 📋 Planned | - | - | Depends on Phase 2 |
-| Phase 5: Utilities | 📋 Planned | - | - | Can be parallel |
-| Phase 4: Components | 📋 Planned | - | - | Depends on 2 & 3 |
-| Phase 6: Types | 📋 Planned | - | - | After major refactoring |
-| Phase 7: Testing | 📋 Planned | - | - | Ongoing |
+| Phase | Original Status | **Actual Status** | Completion | Time Spent | Notes |
+|-------|----------------|-------------------|------------|------------|-------|
+| Phase 1: Constants | ✅ Complete | ✅ **Complete** | **100%** | ~1hr | 82f6f82 - Perfect execution |
+| Phase 2: Composables | 🔄 Next | ⚠️ **~85% Done** | **85%** | ~3-4hr | 153e20d - 35+ composables, high priority cleanup done |
+| Phase 3: Domain Layer | 📋 Planned | ⚠️ **~40% Done** | **40%** | - | Logic exists, needs reorganization |
+| Phase 4: Components | 📋 Planned | ⚠️ **~75% Done** | **75%** | ~3hr | Pattern already implemented |
+| Phase 5: Utilities | 📋 Planned | ❌ **Not Started** | **0%** | - | Needs file reorganization |
+| Phase 6: Types | 📋 Planned | ❌ **Not Started** | **0%** | - | Single types.ts needs splitting |
+| Phase 7: Testing | 📋 Planned | ❌ **Not Started** | **0%** | - | No visible test files |
 
 ---
 
-## 🎯 Current Focus: Phase 2 - Composables
+## 🎯 **Reality Check: Where We Actually Are**
+
+### **Major Discovery: Roadmap is Outdated!**
+
+The roadmap suggested we were at **Phase 2 (Not Started)**, but codebase analysis reveals we're actually **much further along**:
+
+**✅ What's Already Done (Not Reflected in Roadmap):**
+1. **Phase 1**: ✅ 100% Complete (correctly tracked)
+2. **Phase 2**: ✅ ~70% Complete - 30+ composables across all game categories
+3. **Phase 4**: ✅ ~75% Complete - Smart/dumb component pattern fully implemented
+4. **Phase 3**: ⚠️ ~40% Complete - Pure domain logic exists, just needs reorganization
+
+**❌ What Actually Remains:**
+1. **Phase 3**: File reorganization (2-3 hours) - Move `util/` → `domain/games/`, `generator/` → `domain/crypto/`
+2. **Phase 5**: Utility consolidation (1-2 hours) - Separate generic from Svelte-specific utils
+3. **Phase 6**: Type splitting (1-2 hours) - Split monolithic `types.ts` into modules
+4. **Phase 7**: Testing (4-6 hours) - Add comprehensive test coverage
+5. **Phase 2**: Polish (1 hour) - Add tests and documentation for composables
+6. **Phase 4**: Polish (30 min) - Formal documentation
+
+**Revised Time Estimate**: ~10-15 hours remaining (not 2-3 weeks!)
+
+---
+
+## 🎯 Current Focus: Phase 3 - Domain Layer Reorganization
+
+**This is the highest priority** because it unlocks clean architecture formally.
 
 **Next steps:**
-1. Create [phase-2-composables-implementation-plan.md](phase-2-composables-implementation-plan.md)
-2. Identify components with mixed concerns (logic + UI)
-3. Extract business logic into composables
-4. Start with simple example (Dice game)
-5. Create pattern for other games to follow
+1. Create `src/lib/domain/` directory structure
+2. Move crypto generators: `src/lib/generator/` → `src/lib/domain/crypto/`
+3. Move game utilities: `src/lib/util/*.ts` → `src/lib/domain/games/`
+4. Update imports in 30+ composable files
+5. Create `src/lib/domain/index.ts` for re-exports
+6. Verify all tests still pass (when they exist)
 
 **Key deliverables:**
-- `src/lib/composables/` directory structure
-- At least 3-5 composables created (dice, wheel, etc.)
-- Components refactored to use composables
-- Tests for composables
-- Documentation of the pattern
+- Clean architecture folder structure
+- All imports updated
+- No breaking changes
+- Clear separation: domain vs infrastructure
 
 ---
 

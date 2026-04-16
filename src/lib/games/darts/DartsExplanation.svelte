@@ -7,26 +7,22 @@
   import ResultTabs from '$lib/games/ResultTabs.svelte';
   import { useDartsThrow } from '$lib/composables';
 
-  let resultIndex = $state(0);
-
   const { formValues }: { formValues: Record<string, unknown> } = $props();
+
+  let resultIndex = $state(0);
   const dartsThrow = useDartsThrow(() => formValues);
   const dartsSeed = $derived(dartsThrow.seed as DartsSeed);
-  const floatItems = $derived(
-    dartsThrow.result
-      ? [
-          { float: dartsThrow.result.rotation, label: 'rotation' },
-          { float: dartsThrow.result.distance, label: 'distance' }
-        ]
-      : null
-  );
 </script>
 
 <div class="mt-5 border-0 text-center dark:text-white">
   <div id="step-content" class="pb-4 text-left text-sm dark:bg-gray-900 dark:text-white">
-    {#if dartsThrow.isCalculating || !dartsThrow.result || !floatItems}
+    {#if dartsThrow.isCalculating || !dartsThrow.result}
       <Loader />
     {:else}
+      {@const floatItems = [
+        { float: dartsThrow.result.rotation, label: 'rotation' },
+        { float: dartsThrow.result.distance, label: 'distance' }
+      ]}
       <!-- Header banner -->
       <ContentBlock
         className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400"

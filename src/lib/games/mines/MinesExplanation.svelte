@@ -4,13 +4,13 @@
   import ResultTabs from '$lib/games/ResultTabs.svelte';
   import Loader from '$lib/games/Loader.svelte';
   import ContentBlock from '../layout/ContentBlock.svelte';
-  import { useMinesPositions } from '$lib/composables';
+  import { useMinesPositions, useMinesExplanation } from '$lib/composables';
   import { getMinesTabClass, getMinesTabSelectedClass } from '$lib/util/mines';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
-  let resultIndex = $state(0);
   const mines = useMinesPositions(() => formValues);
+  const explanation = useMinesExplanation();
 </script>
 
 <div class="mt-8 border-0 text-center dark:text-white">
@@ -31,16 +31,16 @@
       <ResultTabs
         seed={mines.seed!}
         items={mines.items}
-        bind:resultIndex
+        bind:resultIndex={explanation.resultIndex}
         tabClassModifier={() => getMinesTabClass()}
         tabSelectedClassModifier={() => getMinesTabSelectedClass()}
         tabNameModifier={(chosen) => `<span class="block font-bold">${chosen}</span>`}
       />
 
-      {@const selectedItem = mines.items[resultIndex]}
+      {@const selectedItem = mines.items[explanation.resultIndex]}
 
-      <FloatGenerationStep stepNumber={1} {resultIndex} seed={mines.seed!} float={selectedItem.float} />
-      <MinesResultStep stepNumber={2} {resultIndex} {...selectedItem} />
+      <FloatGenerationStep stepNumber={1} resultIndex={explanation.resultIndex} seed={mines.seed!} float={selectedItem.float} />
+      <MinesResultStep stepNumber={2} resultIndex={explanation.resultIndex} {...selectedItem} />
     {/if}
   </div>
 </div>

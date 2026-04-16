@@ -1,11 +1,6 @@
 <script lang="ts">
-  import { DARTS_COLOR_TO_MULTI } from '$lib/config';
-  import {
-    DARTS_COLOR_LABELS,
-    WEDGE_BIN_COLORS,
-    getThresholdRows,
-    getMatchedRowIndex
-  } from '$lib/util/darts';
+  import { useDartsMultiplierCalc } from '$lib/composables';
+  import { DARTS_COLOR_LABELS } from '$lib/util/darts';
   import type { DartsDifficulty } from '$lib/types';
   import ContentBlock from '$lib/games/layout/ContentBlock.svelte';
   import HighlightLink from '$lib/games/layout/HighlightLink.svelte';
@@ -31,19 +26,8 @@
     contentBlockClassName?: string;
   } = $props();
 
-  const r = $derived(normalisedDistance * 1000);
-  const deg = $derived((((rotation % 1) + 1) % 1) * 360);
-  const wedgeBin = $derived(Math.floor(deg / 20));
-
+  const calc = useDartsMultiplierCalc(rotation, normalisedDistance, colorHex, difficulty);
   const colorLabel = $derived(DARTS_COLOR_LABELS[colorHex] ?? colorHex);
-
-  const isWedgeZone = $derived(
-    colorHex === '#fb6120' || colorHex === '#fb053f' || colorHex === '#fcc101'
-  );
-
-  const wedgeBinColors = $derived(WEDGE_BIN_COLORS[difficulty]);
-  const thresholdRows = $derived(getThresholdRows(difficulty, colorHex));
-  const matchedRowIndex = $derived(getMatchedRowIndex(difficulty, r));
 </script>
 
 <div class="mt-7 text-center">
@@ -80,7 +64,7 @@
         = <HighlightText>{normalisedDistance.toFixed(12)}</HighlightText> × 1000
       </p>
       <p class="leading-relaxed font-bold">
-        = <span class="text-blue-600 dark:text-blue-400">{r.toFixed(6)}</span>
+        = <span class="text-blue-600 dark:text-blue-400">{calc.r.toFixed(6)}</span>
       </p>
     </div>
 
@@ -90,14 +74,14 @@
         Determine Zone
       </p>
       <p class="mb-3 font-sans text-xs text-gray-500 dark:text-gray-400">
-        Checking r = <span class="font-bold text-blue-600 dark:text-blue-400">{r.toFixed(4)}</span>
+        Checking r = <span class="font-bold text-blue-600 dark:text-blue-400">{calc.r.toFixed(4)}</span>
         against radial thresholds for
         <span class="font-semibold text-gray-700 dark:text-gray-300">{difficulty}</span>:
       </p>
       <div class="flex flex-col gap-0.5 font-mono text-xs">
-        {#each thresholdRows as row, i (i)}
-          {@const isMatch = i === matchedRowIndex}
-          {@const keyword = i === 0 ? 'if' : i === thresholdRows.length - 1 ? 'else' : 'else if'}
+        {#each calc.thresholdRows as row, i (i)}
+          {@const isMatch = i === calc.matchedRowIndex}
+          {@const keyword = i === 0 ? 'if' : i === calc.thresholdRows.length - 1 ? 'else' : 'else if'}
           <div
             class={[
               'flex items-center gap-2 rounded px-2 py-1',
@@ -143,7 +127,7 @@
       </div>
     </div>
 
-    {#if isWedgeZone}
+    {#if calc.isWedgeZone}
       <!-- Wedge Angle -->
       <div class="mb-6 border-b border-gray-300 pb-4 dark:border-gray-600">
         <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">Wedge Angle</p>
@@ -160,7 +144,7 @@
           = (((<HighlightText>{rotation.toFixed(12)}</HighlightText> % 1) + 1) % 1) × 360
         </p>
         <p class="mb-4 leading-relaxed font-bold">
-          = <span class="text-blue-600 dark:text-blue-400">{deg.toFixed(6)}°</span>
+          = <span class="text-blue-600 dark:text-blue-400">{calc.deg.toFixed(6)}°</span>
         </p>
 
         <!-- bin calculation -->
@@ -172,10 +156,10 @@
         </p>
         <p class="leading-relaxed">bin = floor( deg / 20 )</p>
         <p class="leading-relaxed">
-          = floor( <HighlightText>{deg.toFixed(6)}</HighlightText> / 20 )
+          = floor( <HighlightText>{calc.deg.toFixed(6)}</HighlightText> / 20 )
         </p>
         <p class="mb-4 leading-relaxed font-bold">
-          = <span class="text-blue-600 dark:text-blue-400">{wedgeBin}</span>
+          = <span class="text-blue-600 dark:text-blue-400">{calc.wedgeBin}</span>
         </p>
 
         <!-- Bin grid -->
@@ -184,13 +168,13 @@
         </p>
         <p class="mb-2 font-sans text-xs text-gray-500 dark:text-gray-400">
           Each bin covers a 20° slice. Bin <span class="font-bold text-blue-600 dark:text-blue-400"
-            >{wedgeBin}</span
+            >{calc.wedgeBin}</span
           >
-          spans <span class="font-bold">{wedgeBin * 20}°–{wedgeBin * 20 + 20}°</span>:
+          spans <span class="font-bold">{calc.wedgeBin * 20}°–{calc.wedgeBin * 20 + 20}°</span>:
         </p>
         <div class="mb-3 grid grid-cols-9 gap-1">
-          {#each wedgeBinColors as binColor, i (i)}
-            {@const isCurrentBin = i === wedgeBin}
+          {#each calc.wedgeBinColors as binColor, i (i)}
+            {@const isCurrentBin = i === calc.wedgeBin}
             <div
               class={[
                 'flex flex-col items-center rounded border-2 px-0.5 py-1 transition-all',
@@ -210,8 +194,8 @@
 
         <!-- Result -->
         <p class="leading-relaxed">
-          bin <HighlightText>{wedgeBin}</HighlightText>
-          ({wedgeBin * 20}°–{wedgeBin * 20 + 20}°) →
+          bin <HighlightText>{calc.wedgeBin}</HighlightText>
+          ({calc.wedgeBin * 20}°–{calc.wedgeBin * 20 + 20}°) →
           <span class="inline-flex items-center gap-1.5">
             <span
               class="inline-block h-3 w-3 flex-shrink-0 rounded-sm border border-gray-300"

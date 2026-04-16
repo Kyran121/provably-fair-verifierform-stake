@@ -1,54 +1,14 @@
 <script lang="ts">
-  import { useBlueSamuraiRounds } from '$lib/composables';
+  import { useBlueSamuraiRounds, useBlueSamuraiExplanation } from '$lib/composables';
   import BlueSamuraiStep1 from '$lib/games/bluesamurai/components/BlueSamuraiStep1.svelte';
   import BlueSamuraiStep2 from '$lib/games/bluesamurai/components/BlueSamuraiStep2.svelte';
   import Loader from '$lib/games/Loader.svelte';
   import ContentBlock from '$lib/games/layout/ContentBlock.svelte';
-  import { buildFlatItems, buildBoardColumns } from '$lib/util/bluesamurai';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
-  let selectedRoundIndex = $state(0);
-  let selectedSymbolIndex = $state(0);
-
   const blueSamurai = useBlueSamuraiRounds(() => formValues);
-
-  const flatItems = $derived(blueSamurai.rounds ? buildFlatItems(blueSamurai.rounds) : []);
-  const selectedRound = $derived(blueSamurai.rounds?.[selectedRoundIndex]);
-  const selectedSymbol = $derived(selectedRound?.symbols[selectedSymbolIndex]);
-  const boardColumns = $derived(selectedRound ? buildBoardColumns(selectedRound, flatItems) : []);
-
-  const resultIndex = $derived.by(() => {
-    if (!selectedRound || !selectedSymbol) return 0;
-    return flatItems.findIndex(
-      (it) => it.round === selectedRound.round && it.symbol.index === selectedSymbolIndex
-    );
-  });
-
-  const isLockedSamurai = $derived(
-    !!(
-      selectedRound?.specialRound &&
-      selectedRound.stuckSamurais?.has(selectedSymbolIndex) &&
-      !selectedRound.newlyLockedSamurais?.has(selectedSymbolIndex)
-    )
-  );
-
-  // Clamp selectedSymbolIndex to a valid float-having symbol when the round changes
-  $effect(() => {
-    if (!selectedRound) return;
-    const sym = selectedRound.symbols[selectedSymbolIndex];
-    if (!sym?.float) {
-      const first = selectedRound.symbols.find((s) => s.float);
-      if (first) selectedSymbolIndex = first.index;
-    }
-  });
-
-  // Reset to first round / first symbol when seed results change
-  $effect(() => {
-    if (blueSamurai.rounds) {
-      selectedRoundIndex = 0;      selectedSymbolIndex = 0;
-    }
-  });
+  const explanation = useBlueSamuraiExplanation(blueSamurai.rounds);
 </script>
 
 <div class="mt-5 border-0 text-center dark:text-white">
@@ -97,23 +57,23 @@
         </ul>
       </ContentBlock>
 
-      {#if selectedRound && selectedSymbol}
-        {@const float = selectedSymbol.float!}
+      {#if explanation.selectedRound && explanation.selectedSymbol}
+        {@const float = explanation.selectedSymbol.float!}
 
         <BlueSamuraiStep1
           rounds={blueSamurai.rounds}
-          {selectedRoundIndex}
-          {selectedSymbolIndex}
-          {boardColumns}
-          {isLockedSamurai}
+          selectedRoundIndex={explanation.selectedRoundIndex}
+          selectedSymbolIndex={explanation.selectedSymbolIndex}
+          boardColumns={explanation.boardColumns}
+          isLockedSamurai={explanation.isLockedSamurai}
           {float}
-          {resultIndex}
+          resultIndex={explanation.resultIndex}
           seed={blueSamurai.seed}
-          onRoundChange={(i) => (selectedRoundIndex = i)}
-          onSymbolSelect={(i) => (selectedSymbolIndex = i)}
+          onRoundChange={(i) => (explanation.selectedRoundIndex = i)}
+          onSymbolSelect={(i) => (explanation.selectedSymbolIndex = i)}
         />
 
-        <BlueSamuraiStep2 {float} reelType={selectedSymbol.reelType} {isLockedSamurai} />
+        <BlueSamuraiStep2 {float} reelType={explanation.selectedSymbol.reelType} isLockedSamurai={explanation.isLockedSamurai} />
       {/if}
     {/if}
   </div>

@@ -46,3 +46,10 @@ export * from './slots/use-slot-result.svelte';
 // Multiplayer games
 export * from './multiplayer/use-crash-point.svelte';
 export * from './multiplayer/use-slide-point.svelte';
+
+// Explanation/display helpers
+export { useBlueSamuraiExplanation } from './slots/use-bluesamurai-explanation.svelte';
+export { useDartsMultiplierCalc } from './skill/use-darts-multiplier-calc.svelte';
+export { useDragonTowerGrid } from './grid/use-dragontower-grid.svelte';
+export { useMolesExplanation } from './grid/use-moles-explanation.svelte';
+export { useMinesExplanation } from './grid/use-mines-explanation.svelte';

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { useDragonTowerLevels } from '$lib/composables';
+  import { useDragonTowerLevels, useDragonTowerGrid } from '$lib/composables';
   import type { DragonTowerDifficulty } from '$lib/types';
   import { DRAGON_TOWER_COL_CLASS } from '$lib/util/dragontower';
   import eggIconWhite from '$lib/assets/dragontower/icons/egg-100x100-white.png';
@@ -11,22 +11,10 @@
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
   const dragonTower = useDragonTowerLevels(() => formValues);
+  const grid = useDragonTowerGrid(dragonTower.items, dragonTower.config.count);
 
   const difficulty = $derived(formValues.difficulty as DragonTowerDifficulty);
-
-  // Rebuild 9-row egg grid from flat FisherYates items
-  const results = $derived.by(() => {
-    if (!dragonTower.items) return null;
-    const rows: number[][] = [];
-    for (let row = 0; row < 9; row++) {
-      rows.push(
-        dragonTower.items
-          .slice(row * dragonTower.config.count, (row + 1) * dragonTower.config.count)
-          .map((item) => item.chosen)
-      );
-    }
-    return rows;
-  });
+  const results = $derived(grid.results);
 </script>
 
 {#if dragonTower.isCalculating}
