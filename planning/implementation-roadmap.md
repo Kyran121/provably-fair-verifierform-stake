@@ -149,10 +149,21 @@ src/lib/composables/
 - `src/lib/composables/games/grid/use-moles-explanation.svelte.ts`
 - `src/lib/composables/games/grid/use-mines-explanation.svelte.ts`
 
-**MEDIUM Priority** (11 components - OPTIONAL):
-- Fisher-Yates display pattern (affects 7+ components): Could extract shared `useFisherYatesDisplay()` utility
-  - KenoResultStep, MinesResultStep, MolesResultStep, DragonTowerResultStep, VideoPokerResultStep, etc.
-- Game-specific calculations: ChickenResult, WheelResultStep, PacksResultStep, TarotsResultStep
+✅ **MEDIUM Priority - COMPLETED** (8 components refactored):
+- ✅ KenoResultStep → `useFisherYatesDisplay(40)`
+- ✅ MinesResultStep → `useFisherYatesDisplay(25)`
+- ✅ MolesResultStep → `useFisherYatesDisplay(7)`
+- ✅ DragonTowerResultStep → `useFisherYatesDisplay(size)`
+- ✅ VideoPokerResultStep → `useFisherYatesCardsDisplay()`
+- ✅ ChickenResult → `useChickenResult()`
+- ✅ WheelResultStep → `useWheelResult()`
+- ✅ PlinkoExplanation → Fixed BG_COLOR comparison bug
+
+**New Composables**:
+- `use-fisheryates-display.svelte.ts` - Generic Fisher-Yates helper (reusable)
+- `use-fisheryates-cards-display.svelte.ts` - Card deck variant
+- `use-chicken-result.svelte.ts` - Death index & multiplier
+- `use-wheel-result.svelte.ts` - Payline lookup
 
 **LOW Priority** (11 components - DEFER):
 - Simple display formulas (acceptable as-is): LimboResultStep, DiceResultStep, RouletteResultStep, etc.
@@ -486,7 +497,7 @@ Day 6-7 (~4-6 hours):
 | Phase | Original Status | **Actual Status** | Completion | Time Spent | Notes |
 |-------|----------------|-------------------|------------|------------|-------|
 | Phase 1: Constants | ✅ Complete | ✅ **Complete** | **100%** | ~1hr | 82f6f82 - Perfect execution |
-| Phase 2: Composables | 🔄 Next | ⚠️ **~85% Done** | **85%** | ~3-4hr | 153e20d - 35+ composables, high priority cleanup done |
+| Phase 2: Composables | 🔄 Next | ✅ **~95% Done** | **95%** | ~5-6hr | 40+ composables, high+medium priority done |
 | Phase 3: Domain Layer | 📋 Planned | ⚠️ **~40% Done** | **40%** | - | Logic exists, needs reorganization |
 | Phase 4: Components | 📋 Planned | ⚠️ **~75% Done** | **75%** | ~3hr | Pattern already implemented |
 | Phase 5: Utilities | 📋 Planned | ❌ **Not Started** | **0%** | - | Needs file reorganization |

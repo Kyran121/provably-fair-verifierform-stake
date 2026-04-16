@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { FisherYatesItem } from '$lib/types';
+  import { useFisherYatesDisplay } from '$lib/composables';
   import ContentBlock from '../layout/ContentBlock.svelte';
   import HighlightLink from '../layout/HighlightLink.svelte';
   import HighlightText from '../layout/HighlightText.svelte';
@@ -16,11 +17,9 @@
     resultIndex: number;
   } & FisherYatesItem<number> = $props();
 
-  const { previousHoles, holesMinusPreviousMoles } = $derived.by(() => {
-    const holes = Array.from({ length: 7 }).map((_v, i) => i);
-    const previousHoles = chosenIndexes.slice(0, -1).map((i) => holes.splice(i, 1)[0]);
-    return { previousHoles, holesMinusPreviousMoles: holes };
-  });
+  const display = useFisherYatesDisplay(7, chosenIndexes);
+  const previousHoles = $derived(display.previousItems);
+  const holesMinusPreviousMoles = $derived(display.remainingItems);
 </script>
 
 <div class="mt-7 text-center">

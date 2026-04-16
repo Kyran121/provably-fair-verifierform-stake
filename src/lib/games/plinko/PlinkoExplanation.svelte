@@ -128,8 +128,7 @@
           {#each plinko.directions as { chosen }, n (n)}
             {#if chosen !== firstDirection.chosen}
               <span
-                class="inline-flex items-center justify-center rounded border-2 px-2 py-1 font-semibold {BG_COLOR ===
-                'bg-purple-500'
+                class="inline-flex items-center justify-center rounded border-2 px-2 py-1 font-semibold {BG_COLOR.includes('purple')
                   ? 'border-purple-400 bg-purple-50 text-purple-600 ring-2 ring-transparent dark:border-purple-500 dark:bg-purple-900/20 dark:text-purple-400'
                   : 'border-blue-400 bg-blue-50 text-blue-600 ring-2 ring-transparent dark:border-blue-500 dark:bg-blue-900/20 dark:text-blue-400'}"
               >

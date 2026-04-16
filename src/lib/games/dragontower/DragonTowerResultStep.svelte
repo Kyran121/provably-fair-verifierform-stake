@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { DragonTowerDifficultyConfig, FisherYatesItem } from '$lib/types';
+  import { useFisherYatesDisplay } from '$lib/composables';
   import ContentBlock from '../layout/ContentBlock.svelte';
   import HighlightLink from '../layout/HighlightLink.svelte';
   import HighlightText from '../layout/HighlightText.svelte';
@@ -18,11 +19,9 @@
     config: DragonTowerDifficultyConfig;
   } & FisherYatesItem<number> = $props();
 
-  const { previousEggIndexes, eggsMinusPreviousIndexes } = $derived.by(() => {
-    const eggIndexes = Array.from({ length: config.size }).map((_, i) => i);
-    const previousEggIndexes = chosenIndexes.slice(0, -1).map((i) => eggIndexes.splice(i, 1)[0]);
-    return { previousEggIndexes, eggsMinusPreviousIndexes: eggIndexes };
-  });
+  const display = useFisherYatesDisplay(config.size, chosenIndexes);
+  const previousEggIndexes = $derived(display.previousItems);
+  const eggsMinusPreviousIndexes = $derived(display.remainingItems);
 
   const currentLevel = $derived(Math.floor(resultIndex / config.count) + 1);
   const eggNumber = $derived((resultIndex % config.count) + 1);

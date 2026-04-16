@@ -1,8 +1,9 @@
 <script lang="ts">
   import type { Card, FisherYatesItem } from '$lib/types';
+  import { useFisherYatesCardsDisplay } from '$lib/composables';
   import CardDeckGrid from '$lib/games/cards/CardDeckGrid.svelte';
   import CardSuitIcon from '$lib/games/cards/CardSuitIcon.svelte';
-  import { generateCardDeck, CARD_COLOR_BLUE, type CardColor } from '$lib/util/cards';
+  import { CARD_COLOR_BLUE, type CardColor } from '$lib/util/cards';
   import HighlightLink from '$lib/games/layout/HighlightLink.svelte';
   import HighlightText from '$lib/games/layout/HighlightText.svelte';
   import ContentBlock from '$lib/games/layout/ContentBlock.svelte';
@@ -21,11 +22,9 @@
     color?: CardColor;
   } & FisherYatesItem<Card> = $props();
 
-  const { previousCards, deckMinusPreviousCards } = $derived.by(() => {
-    const deck = generateCardDeck();
-    const previousCards = chosenIndexes.slice(0, -1).map((i) => deck.splice(i, 1)[0]);
-    return { previousCards, deckMinusPreviousCards: deck };
-  });
+  const display = useFisherYatesCardsDisplay(chosenIndexes);
+  const previousCards = $derived(display.previousCards);
+  const deckMinusPreviousCards = $derived(display.remainingCards);
 </script>
 
 <div class="mt-7 text-center">

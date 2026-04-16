@@ -1,24 +1,14 @@
 <script lang="ts">
-  import { useChickenMultiplier } from '$lib/composables';
+  import { useChickenMultiplier, useChickenResult } from '$lib/composables';
   import Loader from '$lib/games/Loader.svelte';
   import ContentBlock from '$lib/games/layout/ContentBlock.svelte';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
   const chicken = useChickenMultiplier(() => formValues);
+  const result = useChickenResult(chicken.items, chicken.payline);
 
-  // The death index is the minimum chosen position across all Fisher-Yates draws.
-  // Stake uses 1-based positions, so we add 1 to each chosen value before finding min.
-  // payline[deathIndex - 1] is the max achievable multiplier.
-  const deathIndex = $derived(
-    chicken.items ? Math.min(...chicken.items.map((item) => item.chosen + 1)) : -1
-  );
-  const maxMulti = $derived(
-    deathIndex > chicken.payline.length
-      ? null
-      : deathIndex > 0
-        ? chicken.payline[deathIndex - 1]
-        : chicken.payline[0]
-  );
+  const deathIndex = $derived(result.deathIndex);
+  const maxMulti = $derived(result.maxMulti);
 </script>
 
 {#if chicken.isCalculating}

@@ -93,7 +93,7 @@
             <span class="w-10 flex-shrink-0 font-sans text-purple-600 dark:text-purple-400"
               >{keyword}</span
             >
-            {#if i < thresholdRows.length - 1}
+            {#if i < calc.thresholdRows.length - 1}
               <span class={isMatch ? 'text-gray-800 dark:text-gray-200' : ''}
                 >( {row.condition} )</span
               >

@@ -1,15 +1,17 @@
 <script lang="ts">
   import paylines from '$lib/assets/wheel-paylines.json';
   import type { WheelSeed } from '$lib/types';
+  import { useWheelResult } from '$lib/composables';
   import ContentBlock from '../layout/ContentBlock.svelte';
   import HighlightLink from '../layout/HighlightLink.svelte';
 
   const { stepNumber, seed, float }: { stepNumber: number; seed: WheelSeed; float: number } =
     $props();
 
-  const payline = $derived(paylines[seed.segments as unknown as keyof typeof paylines][seed.risk]);
-  const chosenIndex = $derived(Math.floor(float * seed.segments));
-  const chosen = $derived(payline[chosenIndex]);
+  const result = useWheelResult(seed, float, paylines);
+  const payline = $derived(result.payline);
+  const chosenIndex = $derived(result.chosenIndex);
+  const chosen = $derived(result.chosen);
 </script>
 
 <div class="mt-5 text-center">

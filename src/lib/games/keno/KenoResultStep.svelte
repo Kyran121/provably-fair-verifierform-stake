@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { FisherYatesItem } from '$lib/types';
+  import { useFisherYatesDisplay } from '$lib/composables';
   import ContentBlock from '../layout/ContentBlock.svelte';
   import HighlightLink from '../layout/HighlightLink.svelte';
   import HighlightText from '../layout/HighlightText.svelte';
@@ -16,11 +17,9 @@
     resultIndex: number;
   } & FisherYatesItem<number> = $props();
 
-  const { previousNumbers, kenoBoardMinusPreviousNumbers } = $derived.by(() => {
-    const kenoBoard = Array.from({ length: 40 }).map((_v, i) => i + 1);
-    const previousNumbers = chosenIndexes.slice(0, -1).map((i) => kenoBoard.splice(i, 1)[0]);
-    return { previousNumbers, kenoBoardMinusPreviousNumbers: kenoBoard };
-  });
+  const display = useFisherYatesDisplay(40, chosenIndexes);
+  const previousNumbers = $derived(display.previousItems);
+  const kenoBoardMinusPreviousNumbers = $derived(display.remainingItems);
 </script>
 
 <div class="mt-7 text-center">
