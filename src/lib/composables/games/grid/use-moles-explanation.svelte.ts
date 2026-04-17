@@ -1,8 +1,10 @@
 import type { FisherYatesItem } from '$lib/types';
 
 /** Moles explanation state - manages flat navigation across rounds */
-export function useMolesExplanation(rounds: FisherYatesItem<number>[][] | null, molesCount: number) {
+export function useMolesExplanation(getRounds: () => FisherYatesItem<number>[][] | null) {
   let flatIndex = $state(0);
+
+  const rounds = $derived(getRounds());
 
   // Flat list of all moles across all rounds
   const flatItems = $derived.by(() => {

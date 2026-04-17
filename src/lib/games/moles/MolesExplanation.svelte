@@ -5,36 +5,14 @@
   import Loader from '$lib/games/Loader.svelte';
   import ScrollableContainer from '$lib/games/layout/ScrollableContainer.svelte';
   import ContentBlock from '../layout/ContentBlock.svelte';
-  import { useMolesRounds } from '$lib/composables';
+  import { useMolesRounds, useMolesExplanation } from '$lib/composables';
   import { MOLES_TAB_CLASS, MOLES_TAB_SELECTED_CLASS } from '$lib/domain/games/moles';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
-  // flat index across all rounds
-  let flatIndex = $state(0);
-
   const moles = useMolesRounds(() => formValues);
   const molesSeed = $derived(moles.seed as MolesSeed);
-
-  // Flat list of all moles across all rounds
-  const flatItems = $derived.by(() => {
-    if (!moles.rounds) return [];
-    return moles.rounds.flatMap((items, roundIndex) =>
-      items.map((item, moleIndex) => ({ ...item, roundIndex, moleIndex }))
-    );
-  });
-
-  // Derive selected round + mole index from flat index
-  const selectedRound = $derived(flatItems[flatIndex]?.roundIndex ?? 0);
-  const resultIndex = $derived(flatItems[flatIndex]?.moleIndex ?? 0);
-  const globalResultIndex = $derived(flatIndex);
-
-  // Reset flat index when rounds change
-  $effect(() => {
-    if (moles.rounds) {
-      flatIndex = 0;
-    }
-  });
+  const explanation = useMolesExplanation(() => moles.rounds);
 </script>
 
 <div class="mt-8 border-0 text-center dark:text-white">
@@ -42,7 +20,7 @@
     {#if moles.isCalculating || !moles.rounds}
       <Loader />
     {:else}
-      {@const items = moles.rounds[selectedRound]}
+      {@const items = moles.rounds[explanation.selectedRound]}
 
       <ContentBlock
         className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400"
@@ -73,9 +51,9 @@
                     type="button"
                     class={[
                       'flex w-10 flex-col items-center justify-center overflow-visible rounded border p-1.5 text-sm font-medium transition-all',
-                      fi === flatIndex ? MOLES_TAB_SELECTED_CLASS : MOLES_TAB_CLASS
+                      fi === explanation.flatIndex ? MOLES_TAB_SELECTED_CLASS : MOLES_TAB_CLASS
                     ]}
-                    onclick={() => (flatIndex = fi)}
+                    onclick={() => (explanation.flatIndex = fi)}
                   >
                     <span class="block text-[10px]">({moleIndex + 1})</span>
                     <span class="block font-bold">{item.chosen}</span>
@@ -87,15 +65,15 @@
         </div>
       </ScrollableContainer>
 
-      {@const selectedItem = flatItems[flatIndex]}
+      {@const selectedItem = explanation.flatItems[explanation.flatIndex]}
 
       <FloatGenerationStep
         stepNumber={1}
-        resultIndex={globalResultIndex}
+        resultIndex={explanation.globalResultIndex}
         seed={moles.seed!}
         float={selectedItem.float}
       />
-      <MolesResultStep stepNumber={2} {resultIndex} {...selectedItem} />
+      <MolesResultStep stepNumber={2} resultIndex={explanation.resultIndex} {...selectedItem} />
     {/if}
   </div>
 </div>
