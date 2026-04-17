@@ -22,7 +22,7 @@
     color?: CardColor;
   } & FisherYatesItem<Card> = $props();
 
-  const display = useFisherYatesCardsDisplay(chosenIndexes);
+  const display = useFisherYatesCardsDisplay(() => chosenIndexes);
   const previousCards = $derived(display.previousCards);
   const deckMinusPreviousCards = $derived(display.remainingCards);
 </script>

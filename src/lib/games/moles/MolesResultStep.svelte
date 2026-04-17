@@ -17,7 +17,7 @@
     resultIndex: number;
   } & FisherYatesItem<number> = $props();
 
-  const display = useFisherYatesDisplay(7, chosenIndexes);
+  const display = useFisherYatesDisplay(() => 7, () => chosenIndexes);
   const previousHoles = $derived(display.previousItems);
   const holesMinusPreviousMoles = $derived(display.remainingItems);
 </script>

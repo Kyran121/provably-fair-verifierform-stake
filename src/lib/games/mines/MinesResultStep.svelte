@@ -18,7 +18,7 @@
     resultIndex: number;
   } & FisherYatesItem<number> = $props();
 
-  const display = useFisherYatesDisplay(25, chosenIndexes);
+  const display = useFisherYatesDisplay(() => 25, () => chosenIndexes);
   const previousNumbers = $derived(display.previousItems);
   const minesBoardMinusPreviousMines = $derived(display.remainingItems);
 </script>

@@ -17,7 +17,7 @@
     resultIndex: number;
   } & FisherYatesItem<number> = $props();
 
-  const display = useFisherYatesDisplay(40, chosenIndexes);
+  const display = useFisherYatesDisplay(() => 40, () => chosenIndexes);
   const previousNumbers = $derived(display.previousItems);
   const kenoBoardMinusPreviousNumbers = $derived(display.remainingItems);
 </script>

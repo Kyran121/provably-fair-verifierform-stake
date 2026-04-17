@@ -19,7 +19,7 @@
     config: DragonTowerDifficultyConfig;
   } & FisherYatesItem<number> = $props();
 
-  const display = useFisherYatesDisplay(config.size, chosenIndexes);
+  const display = useFisherYatesDisplay(() => config.size, () => chosenIndexes);
   const previousEggIndexes = $derived(display.previousItems);
   const eggsMinusPreviousIndexes = $derived(display.remainingItems);
 
