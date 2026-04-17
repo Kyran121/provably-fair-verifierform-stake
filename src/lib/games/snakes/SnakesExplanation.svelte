@@ -7,7 +7,7 @@
   import ContentBlock from '../layout/ContentBlock.svelte';
   import ScrollableContainer from '$lib/games/layout/ScrollableContainer.svelte';
   import { useSnakesSteps } from '$lib/composables';
-  import { getSnakesTabClass, getSnakesTabSelectedClass } from '$lib/util/snakes';
+  import { getSnakesTabClass, getSnakesTabSelectedClass } from '$lib/domain/games/snakes';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 

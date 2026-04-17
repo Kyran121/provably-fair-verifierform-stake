@@ -1,7 +1,7 @@
-import { FloatGenerator } from '$lib/generator/FloatGenerator';
+import { FloatGenerator } from '$lib/domain/crypto/float-generator';
 import { debouncer } from '$lib/debounce.svelte';
 import type { MolesSeed, FisherYatesItem } from '$lib/types';
-import { fisherYates } from '$lib/util/fisherYates';
+import { fisherYates } from '$lib/domain/games/shared/fisher-yates';
 
 /**
  * Moles rounds composable

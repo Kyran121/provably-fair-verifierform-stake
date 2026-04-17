@@ -1,6 +1,6 @@
-import { FloatGenerator } from '$lib/generator/FloatGenerator';
+import { FloatGenerator } from '$lib/domain/crypto/float-generator';
 import { debouncer } from '$lib/debounce.svelte';
-import { simulateRounds } from '$lib/util/bluesamurai';
+import { simulateRounds } from '$lib/domain/games/bluesamurai';
 
 /** Blue Samurai rounds composable - simulates slot rounds */
 export function useBlueSamuraiRounds(getFormValues: () => Record<string, unknown>) {

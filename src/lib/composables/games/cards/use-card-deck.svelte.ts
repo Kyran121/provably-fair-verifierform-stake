@@ -1,7 +1,7 @@
-import { FloatGenerator } from '$lib/generator/FloatGenerator';
+import { FloatGenerator } from '$lib/domain/crypto/float-generator';
 import { debouncer } from '$lib/debounce.svelte';
-import { generateCardDeck } from '$lib/util/cards';
-import { shuffle } from '$lib/util/shuffle';
+import { generateCardDeck } from '$lib/domain/games/cards';
+import { shuffle } from '$lib/domain/games/shared/shuffle';
 import type { Item } from '$lib/types';
 
 /**

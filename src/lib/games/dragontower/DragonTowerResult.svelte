@@ -1,7 +1,7 @@
 <script lang="ts">
   import { useDragonTowerLevels, useDragonTowerGrid } from '$lib/composables';
   import type { DragonTowerDifficulty } from '$lib/types';
-  import { DRAGON_TOWER_COL_CLASS } from '$lib/util/dragontower';
+  import { DRAGON_TOWER_COL_CLASS } from '$lib/domain/games/dragontower';
   import eggIconWhite from '$lib/assets/dragontower/icons/egg-100x100-white.png';
   import eggIconGray from '$lib/assets/dragontower/icons/egg-100x100-gray.png';
   import skullIconWhite from '$lib/assets/dragontower/icons/skull-100x100-white.png';

@@ -1,4 +1,4 @@
-import ByteGenerator from '$lib/generator/ByteGenerator';
+import ByteGenerator from '$lib/domain/crypto/byte-generator';
 import { describe, it, expect } from 'vitest';
 
 describe('StakeByteGenerator', () => {

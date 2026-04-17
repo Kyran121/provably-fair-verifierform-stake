@@ -5,7 +5,7 @@
     getRoundLabel,
     getRoundTriggerBadge,
     getRoundRetriggerBadgeClass
-  } from '$lib/util/bluesamurai';
+  } from '$lib/domain/games/bluesamurai';
 
   const {
     rounds,

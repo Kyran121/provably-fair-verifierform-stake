@@ -2,7 +2,7 @@
   import ContentBlock from '../layout/ContentBlock.svelte';
   import HighlightLink from '../layout/HighlightLink.svelte';
   import HighlightText from '../layout/HighlightText.svelte';
-  import { LIMBO_MAX_INT, LIMBO_HOUSE_EDGE } from '$lib/util/limbo';
+  import { LIMBO_MAX_INT, LIMBO_HOUSE_EDGE } from '$lib/domain/games/limbo';
 
   const { stepNumber, float }: { stepNumber: number; float: number } = $props();
   const floatInt = $derived(Math.floor(float * LIMBO_MAX_INT));

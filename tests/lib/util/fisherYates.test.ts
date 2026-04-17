@@ -1,5 +1,5 @@
-import { FloatGenerator } from '$lib/generator/FloatGenerator';
-import { fisherYates } from '$lib/util/fisherYates';
+import { FloatGenerator } from '$lib/domain/crypto/float-generator';
+import { fisherYates } from '$lib/domain/games/shared/fisher-yates';
 import { describe, test, expect } from 'vitest';
 
 describe('fisherYates', () => {

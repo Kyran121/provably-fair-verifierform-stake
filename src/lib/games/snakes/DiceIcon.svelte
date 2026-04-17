@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { DICE_ROLL_ICON } from '$lib/util/snakes';
+  import { DICE_ROLL_ICON } from '$lib/domain/games/snakes';
 
   const { roll }: { roll: number } = $props();
 </script>

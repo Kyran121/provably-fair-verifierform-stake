@@ -4,7 +4,7 @@
   import Loader from '$lib/games/Loader.svelte';
   import ContentBlock from '../layout/ContentBlock.svelte';
   import { useKenoNumbers } from '$lib/composables';
-  import { getKenoTabClass, getKenoTabSelectedClass } from '$lib/util/keno';
+  import { getKenoTabClass, getKenoTabSelectedClass } from '$lib/domain/games/keno';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 

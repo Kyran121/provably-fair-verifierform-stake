@@ -5,7 +5,7 @@
   import ResultTabs from '$lib/games/ResultTabs.svelte';
   import ContentBlock from '../layout/ContentBlock.svelte';
   import { useRpsOutcome } from '$lib/composables';
-  import { getRpsTabClass, getRpsTabSelectedClass } from '$lib/util/rps';
+  import { getRpsTabClass, getRpsTabSelectedClass } from '$lib/domain/games/rps';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 

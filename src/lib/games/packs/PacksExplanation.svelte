@@ -5,7 +5,7 @@
   import FloatGenerationStep from '../FloatGenerationStep.svelte';
   import PacksResultStep from './PacksResultStep.svelte';
   import { usePacksCards } from '$lib/composables';
-  import { getPacksTabClass, getPacksTabSelectedClass, getPacksRarityLabel } from '$lib/util/packs';
+  import { getPacksTabClass, getPacksTabSelectedClass, getPacksRarityLabel } from '$lib/domain/games/packs';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 

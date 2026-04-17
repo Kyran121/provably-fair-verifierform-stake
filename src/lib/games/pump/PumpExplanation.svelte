@@ -9,7 +9,7 @@
   import ContentBlock from '../layout/ContentBlock.svelte';
   import ScrollableContainer from '$lib/games/layout/ScrollableContainer.svelte';
   import { usePumpMultiplier } from '$lib/composables';
-  import { getPumpTabClass, getPumpTabSelectedClass } from '$lib/util/pump';
+  import { getPumpTabClass, getPumpTabSelectedClass } from '$lib/domain/games/pump';
   import { useScrollReset } from '$lib/composables/core';
   import { findHorizontalScrollAncestor } from '$lib/util/scroll';
 

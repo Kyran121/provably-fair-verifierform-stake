@@ -1,7 +1,7 @@
-import { FloatGenerator } from '$lib/generator/FloatGenerator';
+import { FloatGenerator } from '$lib/domain/crypto/float-generator';
 import { debouncer } from '$lib/debounce.svelte';
 import { Gem, type Item } from '$lib/types';
-import { shuffle } from '$lib/util/shuffle';
+import { shuffle } from '$lib/domain/games/shared/shuffle';
 
 const gems = Object.values(Gem);
 

@@ -4,7 +4,7 @@
   import ContentBlock from '../layout/ContentBlock.svelte';
   import FloatGenerationStep from '../FloatGenerationStep.svelte';
   import DrillResultStep from './DrillResultStep.svelte';
-  import { getDrillTabClass, getDrillTabSelectedClass } from '$lib/util/drill';
+  import { getDrillTabClass, getDrillTabSelectedClass } from '$lib/domain/games/drill';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 

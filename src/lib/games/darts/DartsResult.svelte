@@ -1,7 +1,7 @@
 <script lang="ts">
   import { useDartsThrow } from '$lib/composables';
   import type { DartsDifficulty } from '$lib/types';
-  import { DARTS_COLOR_LABELS, getDartsCssRotation } from '$lib/util/darts';
+  import { DARTS_COLOR_LABELS, getDartsCssRotation } from '$lib/domain/games/darts';
   import Loader from '$lib/games/Loader.svelte';
   import ContentBlock from '$lib/games/layout/ContentBlock.svelte';
   import dartboardEasy from '$lib/assets/darts/icons/dartboardEasy.svelte';

@@ -1,4 +1,4 @@
-import { FloatGenerator } from '$lib/generator/FloatGenerator';
+import { FloatGenerator } from '$lib/domain/crypto/float-generator';
 import { debouncer } from '$lib/debounce.svelte';
 import type { WheelSeed, Risk } from '$lib/types';
 import paylines from '$lib/assets/wheel-paylines.json';

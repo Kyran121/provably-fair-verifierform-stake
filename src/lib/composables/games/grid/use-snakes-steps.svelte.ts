@@ -1,9 +1,9 @@
-import { FloatGenerator } from '$lib/generator/FloatGenerator';
+import { FloatGenerator } from '$lib/domain/crypto/float-generator';
 import { debouncer } from '$lib/debounce.svelte';
 import type { SnakesSeed, SnakesDifficulty, Item } from '$lib/types';
 import paylines from '$lib/assets/snakes/snakes-paylines.json';
 import { SNAKES_MULTIPLIER_SHIFT_MAP } from '$lib/config';
-import { shuffle } from '$lib/util/shuffle';
+import { shuffle } from '$lib/domain/games/shared/shuffle';
 
 type Step = {
   die: number[];

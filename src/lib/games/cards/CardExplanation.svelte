@@ -10,7 +10,7 @@
     getCardTabClass,
     getCardTabSelectedClass,
     getCardTabName
-  } from '$lib/util/cards';
+  } from '$lib/domain/games/cards';
 
   const {
     formValues,

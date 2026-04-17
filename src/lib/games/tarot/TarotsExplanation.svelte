@@ -6,7 +6,7 @@
   import FloatGenerationStep from '../FloatGenerationStep.svelte';
   import TarotsResultStep from './TarotsResultStep.svelte';
   import { useTarotsCards } from '$lib/composables';
-  import { getTarotTabClass, getTarotTabSelectedClass } from '$lib/util/tarot';
+  import { getTarotTabClass, getTarotTabSelectedClass } from '$lib/domain/games/tarot';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 

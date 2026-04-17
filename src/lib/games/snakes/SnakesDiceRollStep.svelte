@@ -2,7 +2,7 @@
   import type { Item } from '$lib/types';
   import ContentBlock from '../layout/ContentBlock.svelte';
   import HighlightLink from '../layout/HighlightLink.svelte';
-  import { DICE_ROLL_OPTIONS } from '$lib/util/snakes';
+  import { DICE_ROLL_OPTIONS } from '$lib/domain/games/snakes';
 
   const {
     stepNumber,

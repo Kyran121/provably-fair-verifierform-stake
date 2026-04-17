@@ -1,8 +1,8 @@
-import { FloatGenerator } from '$lib/generator/FloatGenerator';
+import { FloatGenerator } from '$lib/domain/crypto/float-generator';
 import { debouncer } from '$lib/debounce.svelte';
 import type { BarsSeed, BarsDifficulty } from '$lib/types';
 import paylines from '$lib/assets/bars-paylines.json';
-import { getPayout } from '$lib/util/payout';
+import { getPayout } from '$lib/domain/games/shared/payout';
 
 /**
  * Bars payout composable

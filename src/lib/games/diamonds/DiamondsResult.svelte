@@ -1,7 +1,7 @@
 <script lang="ts">
   import { useDiamondsGems } from '$lib/composables';
   import { Gem } from '$lib/types';
-  import { GEM_COLORS } from '$lib/util/diamonds';
+  import { GEM_COLORS } from '$lib/domain/games/diamonds';
   import Loader from '$lib/games/Loader.svelte';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();

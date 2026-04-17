@@ -5,7 +5,7 @@
   import ResultTabs from '$lib/games/ResultTabs.svelte';
   import ContentBlock from '../layout/ContentBlock.svelte';
   import { useFlipOutcome } from '$lib/composables';
-  import { getFlipTabClass, getFlipTabSelectedClass } from '$lib/util/flip';
+  import { getFlipTabClass, getFlipTabSelectedClass } from '$lib/domain/games/flip';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 

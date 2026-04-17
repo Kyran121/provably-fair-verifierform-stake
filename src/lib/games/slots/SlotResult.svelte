@@ -5,7 +5,7 @@
   import ContentBlock from '../layout/ContentBlock.svelte';
   import { type Component } from 'svelte';
   import Loader from '$lib/games/Loader.svelte';
-  import { getSlotResultTabClass, getSlotResultTabSelectedClass } from '$lib/util/slots';
+  import { getSlotResultTabClass, getSlotResultTabSelectedClass } from '$lib/domain/games/slots';
   import { useSlotResult } from '$lib/composables';
 
   const {

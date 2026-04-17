@@ -9,7 +9,7 @@
   import ContentBlock from '../layout/ContentBlock.svelte';
   import ScrollableContainer from '$lib/games/layout/ScrollableContainer.svelte';
   import { useChickenMultiplier } from '$lib/composables';
-  import { getChickenTabClass, getChickenTabSelectedClass } from '$lib/util/chicken';
+  import { getChickenTabClass, getChickenTabSelectedClass } from '$lib/domain/games/chicken';
   import { useScrollReset } from '$lib/composables/core';
   import { findHorizontalScrollAncestor } from '$lib/util/scroll';
 

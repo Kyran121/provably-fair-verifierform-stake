@@ -5,7 +5,7 @@
   import ScrollableContainer from '$lib/games/layout/ScrollableContainer.svelte';
   import ContentBlock from '../layout/ContentBlock.svelte';
   import { useDragonTowerLevels } from '$lib/composables';
-  import { getDragonTowerTabClass, getDragonTowerTabSelectedClass } from '$lib/util/dragontower';
+  import { getDragonTowerTabClass, getDragonTowerTabSelectedClass } from '$lib/domain/games/dragontower';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 

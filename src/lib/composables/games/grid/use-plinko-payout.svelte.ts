@@ -1,7 +1,7 @@
-import { FloatGenerator } from '$lib/generator/FloatGenerator';
+import { FloatGenerator } from '$lib/domain/crypto/float-generator';
 import { debouncer } from '$lib/debounce.svelte';
 import type { PlinkoSeed, Risk, Item, Direction } from '$lib/types';
-import { getDirections, getPayline, getPayout } from '$lib/util/plinko';
+import { getDirections, getPayline, getPayout } from '$lib/domain/games/plinko';
 import paylines from '$lib/assets/plinko-paylines.json';
 
 /**

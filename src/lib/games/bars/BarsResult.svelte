@@ -1,7 +1,7 @@
 <script lang="ts">
   import { useBarsPayout } from '$lib/composables';
   import Loader from '$lib/games/Loader.svelte';
-  import { getBarsTileColors } from '$lib/util/bars';
+  import { getBarsTileColors } from '$lib/domain/games/bars';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
   const bars = useBarsPayout(() => formValues);

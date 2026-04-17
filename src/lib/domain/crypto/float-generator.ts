@@ -1,5 +1,5 @@
 import type { Seed } from '$lib/types';
-import ByteGenerator from '$lib/generator/ByteGenerator';
+import ByteGenerator from './byte-generator';
 
 /**
  * Generates floats for the provided seed

@@ -9,7 +9,7 @@
     getVideoPokerTabClass,
     getVideoPokerTabSelectedClass,
     getVideoPokerColor
-  } from '$lib/util/cards';
+  } from '$lib/domain/games/cards';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 

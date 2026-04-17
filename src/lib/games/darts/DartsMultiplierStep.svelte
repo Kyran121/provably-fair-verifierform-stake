@@ -1,6 +1,6 @@
 <script lang="ts">
   import { useDartsMultiplierCalc } from '$lib/composables';
-  import { DARTS_COLOR_LABELS } from '$lib/util/darts';
+  import { DARTS_COLOR_LABELS } from '$lib/domain/games/darts';
   import type { DartsDifficulty } from '$lib/types';
   import ContentBlock from '$lib/games/layout/ContentBlock.svelte';
   import HighlightLink from '$lib/games/layout/HighlightLink.svelte';

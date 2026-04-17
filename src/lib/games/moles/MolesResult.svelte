@@ -3,7 +3,7 @@
   import MolesBoard from '$lib/games/moles/MolesBoard.svelte';
   import Loader from '$lib/games/Loader.svelte';
   import ContentBlock from '$lib/games/layout/ContentBlock.svelte';
-  import { MOLES_ROUND_CLASS, MOLES_ROUND_SELECTED_CLASS } from '$lib/util/moles';
+  import { MOLES_ROUND_CLASS, MOLES_ROUND_SELECTED_CLASS } from '$lib/domain/games/moles';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
   const moles = useMolesRounds(() => formValues);

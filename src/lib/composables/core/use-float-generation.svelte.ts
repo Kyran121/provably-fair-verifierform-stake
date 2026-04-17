@@ -1,4 +1,4 @@
-import { FloatGenerator } from '$lib/generator/FloatGenerator';
+import { FloatGenerator } from '$lib/domain/crypto/float-generator';
 import type { Seed } from '$lib/types';
 
 /**

@@ -1,7 +1,7 @@
-import { FloatGenerator } from '$lib/generator/FloatGenerator';
+import { FloatGenerator } from '$lib/domain/crypto/float-generator';
 import { debouncer } from '$lib/debounce.svelte';
 import type { DartsSeed, DartsDifficulty, DartsColor } from '$lib/types';
-import { colorForDart, multiForDart } from '$lib/util/darts';
+import { colorForDart, multiForDart } from '$lib/domain/games/darts';
 import paylines from '$lib/assets/darts/darts-paylines.json';
 
 export interface DartsResult {

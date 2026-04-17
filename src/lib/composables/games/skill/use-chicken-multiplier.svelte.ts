@@ -1,7 +1,7 @@
-import { FloatGenerator } from '$lib/generator/FloatGenerator';
+import { FloatGenerator } from '$lib/domain/crypto/float-generator';
 import { debouncer } from '$lib/debounce.svelte';
 import type { ChickenSeed, ChickenDifficulty, FisherYatesItem } from '$lib/types';
-import { fisherYates } from '$lib/util/fisherYates';
+import { fisherYates } from '$lib/domain/games/shared/fisher-yates';
 import { CHICKEN_DIFFICULTY_TO_SLICE } from '$lib/config';
 import paylines from '$lib/assets/chicken-paylines.json';
 

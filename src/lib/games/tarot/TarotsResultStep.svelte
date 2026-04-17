@@ -4,7 +4,7 @@
 	import TarotsCard from './TarotsCard.svelte';
 	import HighlightLink from '../layout/HighlightLink.svelte';
 	import type { TarotCard, TarotArcanaType, TarotDifficulty } from '$lib/types';
-	import { getCards } from '$lib/util/tarot';
+	import { getCards } from '$lib/domain/games/tarot';
 	import { useTableScrollReset } from '$lib/composables/core';
 
 	const {

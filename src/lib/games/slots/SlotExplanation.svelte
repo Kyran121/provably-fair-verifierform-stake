@@ -7,7 +7,7 @@
   import { type Component } from 'svelte';
   import SymbolOrderSlotBoard from '$lib/games/slots/SymbolOrderSlotBoard.svelte';
   import Loader from '$lib/games/Loader.svelte';
-  import { getSlotTabClass, getSlotTabSelectedClass } from '$lib/util/slots';
+  import { getSlotTabClass, getSlotTabSelectedClass } from '$lib/domain/games/slots';
   import ContentBlock from '../layout/ContentBlock.svelte';
 
   const {

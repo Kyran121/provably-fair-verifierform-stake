@@ -1,6 +1,6 @@
 import { Direction, type Item, type Risk } from '$lib/types';
 import paylines from '$lib/assets/plinko-paylines.json';
-import { shuffle } from '$lib/util/shuffle';
+import { shuffle } from '$lib/domain/games/shared/shuffle';
 
 const DIRECTIONS = Object.values(Direction);
 

@@ -4,21 +4,21 @@
 
 This document provides the **actual implementation sequence** for the clean architecture refactoring, aligned with the master plan in [clean-architecture-refactoring.md](clean-architecture-refactoring.md).
 
-**Last Updated**: 2026-04-16
+**Last Updated**: 2026-04-17
 
 ---
 
 ## 🎯 **Executive Summary: Current State**
 
-### **Overall Progress: ~50% Complete**
+### **Overall Progress: ~65% Complete**
 
 **Major Discovery**: The roadmap was significantly outdated. Analysis reveals we're **much further along** than previously documented:
 
 | Metric | Status |
 |--------|--------|
-| **Overall Completion** | ~50% (was tracked as ~15%) |
-| **Time Invested** | ~8-10 hours |
-| **Time Remaining** | ~16-23 hours (updated after component review) |
+| **Overall Completion** | ~65% (was tracked as ~15%) |
+| **Time Invested** | ~10-12 hours |
+| **Time Remaining** | ~10-15 hours (updated after Phase 3 completion) |
 | **Architecture Quality** | Strong foundation already in place |
 
 ### **Phase Completion Summary**
@@ -26,9 +26,9 @@ This document provides the **actual implementation sequence** for the clean arch
 | Phase | Completion | Status |
 |-------|-----------|--------|
 | Phase 1: Constants | 100% | ✅ Complete |
-| Phase 2: Composables | 70% | ⚠️ Nearly done - needs tests/docs |
+| Phase 2: Composables | 95% | ✅ Complete - only needs tests/docs |
+| Phase 3: Domain Layer | 100% | ✅ Complete - reorganized & tested |
 | Phase 4: Components | 75% | ⚠️ Pattern already implemented |
-| Phase 3: Domain Layer | 40% | ⚠️ Logic exists, needs reorganization |
 | Phase 5: Utilities | 0% | ❌ File reorganization pending |
 | Phase 6: Types | 0% | ❌ Splitting pending |
 | Phase 7: Testing | 0% | ❌ Not started |
@@ -48,7 +48,7 @@ This document provides the **actual implementation sequence** for the clean arch
 - Types in single monolithic file
 - Generic utilities mixed with game-specific logic
 
-🎯 **Next Priority**: Phase 3 - Domain Layer Reorganization (2-3 hours)
+🎯 **Next Priority**: Phase 5 - Utilities Organization (1-2 hours) OR Phase 6 - Types Reorganization (1-2 hours)
 
 ---
 
@@ -177,75 +177,62 @@ src/lib/composables/
 
 ---
 
-### ⚠️ **Step 3: Phase 3 - Domain Layer** (REORGANIZATION NEEDED)
-**Status**: ⚠️ ~40% Complete (Logic exists, needs restructuring)
-**Time**: ~2-3 hours (reorganization only)
+### ✅ **Step 3: Phase 3 - Domain Layer** (COMPLETED)
+**Status**: ✅ Complete (Commit: TBD)
+**Time**: ~2 hours
 **Risk**: Low (just file moves + import updates)
 **Dependencies**: Phase 2 (✅ complete)
 
-**Current state:**
-- ✅ Pure, framework-agnostic business logic **already exists**
-- ✅ Crypto logic in `src/lib/generator/` (ByteGenerator, FloatGenerator, ChunkGenerator)
-- ✅ Game utilities in `src/lib/util/` (27 files: darts, tarot, plinko, shuffle, payout, etc.)
-- ❌ **Not organized** according to clean architecture structure
+**What was done:**
+- ✅ Created `src/lib/domain/` directory structure
+- ✅ Moved `src/lib/generator/` → `src/lib/domain/crypto/` (2 files)
+- ✅ Moved game-specific `src/lib/util/` → `src/lib/domain/games/` (20 files)
+- ✅ Moved shared utilities → `src/lib/domain/games/shared/` (3 files)
+- ✅ Updated all imports in composables, components, and tests (70+ files)
+- ✅ Created `src/lib/domain/index.ts` for re-exports
+- ✅ Renamed files to kebab-case convention (ByteGenerator → byte-generator)
+- ✅ All checks pass (0 errors, 0 warnings)
 
-**Current structure:**
-```
-src/lib/
-├── generator/              # ✅ Pure domain crypto logic
-│   ├── ByteGenerator.ts
-│   ├── FloatGenerator.ts
-│   └── ChunkGenerator.ts
-├── util/                   # ✅ Pure game domain logic (wrong location)
-│   ├── payout.ts
-│   ├── darts.ts
-│   ├── tarot.ts
-│   ├── plinko.ts
-│   ├── shuffle.ts
-│   ├── drill.ts
-│   ├── packs.ts
-│   └── [20+ more game utilities]
-└── types.ts                # ✅ Domain entities
-```
-
-**Target structure:**
+**Final structure:**
 ```
 src/lib/domain/
 ├── crypto/
-│   ├── byte-generation.ts    # (from generator/ByteGenerator.ts)
-│   ├── float-generation.ts   # (from generator/FloatGenerator.ts)
-│   └── chunk-generation.ts   # (from generator/ChunkGenerator.ts)
+│   ├── byte-generator.ts      # Pure crypto: HMAC-SHA256 byte generation
+│   └── float-generator.ts     # Pure crypto: Byte-to-float conversion
 │
 ├── games/
-│   ├── dice.ts
-│   ├── wheel.ts
-│   ├── plinko.ts             # (from util/plinko.ts)
-│   ├── darts.ts              # (from util/darts.ts)
-│   ├── tarot.ts              # (from util/tarot.ts)
-│   ├── drill.ts              # (from util/drill.ts)
-│   ├── packs.ts              # (from util/packs.ts)
-│   └── shared/
-│       ├── payout.ts         # (from util/payout.ts)
-│       └── shuffle.ts        # (from util/shuffle.ts)
+│   ├── shared/
+│   │   ├── fisher-yates.ts    # Fisher-Yates shuffle algorithm
+│   │   ├── payout.ts          # Generic payout calculation
+│   │   └── shuffle.ts         # Generic shuffle without removal
+│   │
+│   ├── bars.ts, bluesamurai.ts, cards.ts, chicken.ts
+│   ├── darts.ts, diamonds.ts, dragontower.ts, drill.ts
+│   ├── flip.ts, keno.ts, limbo.ts, mines.ts
+│   ├── moles.ts, packs.ts, plinko.ts, pump.ts
+│   └── rps.ts, slots.ts, snakes.ts, tarot.ts
 │
-└── types/
-    └── index.ts              # (from types.ts, or keep at root for now)
+└── index.ts                   # Re-exports for crypto & shared utilities
 ```
 
-**Migration tasks:**
-1. Move `src/lib/generator/*.ts` → `src/lib/domain/crypto/`
-2. Move game-specific `src/lib/util/*.ts` → `src/lib/domain/games/`
-3. Move shared utilities → `src/lib/domain/games/shared/`
-4. Update all imports in composables (30+ files)
-5. Update re-exports in `src/lib/domain/index.ts`
+**Remaining in src/lib/util/:**
+- `array.ts` - Generic array utilities (Phase 5)
+- `color.ts` - Generic color utilities (Phase 5)
+- `scroll.ts` - Svelte-specific scroll utilities (Phase 5)
 
-**Benefits:**
-- ✅ Already has 100% testable pure functions
-- ✅ Already framework-agnostic
-- 🎯 Will have clear separation: domain vs infrastructure
-- 🎯 Matches clean architecture conventions
+**Benefits achieved:**
+- ✅ Clear separation: domain vs infrastructure
+- ✅ Matches clean architecture conventions
+- ✅ All domain logic in centralized location
+- ✅ 100% testable pure functions
+- ✅ Framework-agnostic business logic
+- ✅ Easier to navigate and understand codebase
 
-**Next action**: Create migration script or manual file moves + import updates
+**Files updated:**
+- 31 composable files
+- 40+ component files
+- 3 test files
+- All imports now point to `$lib/domain/`
 
 ---
 
@@ -497,8 +484,8 @@ Day 6-7 (~4-6 hours):
 | Phase | Original Status | **Actual Status** | Completion | Time Spent | Notes |
 |-------|----------------|-------------------|------------|------------|-------|
 | Phase 1: Constants | ✅ Complete | ✅ **Complete** | **100%** | ~1hr | 82f6f82 - Perfect execution |
-| Phase 2: Composables | 🔄 Next | ✅ **~95% Done** | **95%** | ~5-6hr | 40+ composables, high+medium priority done |
-| Phase 3: Domain Layer | 📋 Planned | ⚠️ **~40% Done** | **40%** | - | Logic exists, needs reorganization |
+| Phase 2: Composables | 🔄 Next | ✅ **Complete** | **95%** | ~5-6hr | de37090, 9953066 - High+medium priority done |
+| Phase 3: Domain Layer | 📋 Planned | ✅ **Complete** | **100%** | ~2hr | TBD - Full reorganization complete |
 | Phase 4: Components | 📋 Planned | ⚠️ **~75% Done** | **75%** | ~3hr | Pattern already implemented |
 | Phase 5: Utilities | 📋 Planned | ❌ **Not Started** | **0%** | - | Needs file reorganization |
 | Phase 6: Types | 📋 Planned | ❌ **Not Started** | **0%** | - | Single types.ts needs splitting |

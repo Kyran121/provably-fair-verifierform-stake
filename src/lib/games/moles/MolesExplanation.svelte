@@ -6,7 +6,7 @@
   import ScrollableContainer from '$lib/games/layout/ScrollableContainer.svelte';
   import ContentBlock from '../layout/ContentBlock.svelte';
   import { useMolesRounds } from '$lib/composables';
-  import { MOLES_TAB_CLASS, MOLES_TAB_SELECTED_CLASS } from '$lib/util/moles';
+  import { MOLES_TAB_CLASS, MOLES_TAB_SELECTED_CLASS } from '$lib/domain/games/moles';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 

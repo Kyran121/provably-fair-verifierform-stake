@@ -5,7 +5,7 @@
     getDisplayIcon,
     reelNoIndex,
     reelWithIndex
-  } from '$lib/util/bluesamurai';
+  } from '$lib/domain/games/bluesamurai';
   import BlueSamuraiIcon from '$lib/games/bluesamurai/components/BlueSamuraiIcon.svelte';
   import BlueSamuraiRoundBadges from '$lib/games/bluesamurai/components/BlueSamuraiRoundBadges.svelte';
 

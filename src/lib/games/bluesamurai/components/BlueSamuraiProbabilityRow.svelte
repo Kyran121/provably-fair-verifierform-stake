@@ -1,7 +1,7 @@
 <script lang="ts">
   import { BlueSamuraiReelType } from '$lib/types';
   import probabilities from '$lib/assets/bluesamurai/bluesamurai-probabilities.json';
-  import { getProbabilityColClass, getProbabilitySummedCellClass } from '$lib/util/bluesamurai';
+  import { getProbabilityColClass, getProbabilitySummedCellClass } from '$lib/domain/games/bluesamurai';
 
   const {
     reelType,

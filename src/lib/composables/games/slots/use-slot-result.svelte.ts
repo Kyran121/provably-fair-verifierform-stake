@@ -1,6 +1,6 @@
-import { FloatGenerator } from '$lib/generator/FloatGenerator';
+import { FloatGenerator } from '$lib/domain/crypto/float-generator';
 import { debouncer } from '$lib/debounce.svelte';
-import { simulateRounds } from '$lib/util/slots';
+import { simulateRounds } from '$lib/domain/games/slots';
 
 /**
  * Generic slot result composable for ScarabSpins and TomeOfLife

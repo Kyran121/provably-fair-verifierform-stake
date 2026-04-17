@@ -5,7 +5,7 @@
   import Loader from '$lib/games/Loader.svelte';
   import ContentBlock from '../layout/ContentBlock.svelte';
   import { useMinesPositions, useMinesExplanation } from '$lib/composables';
-  import { getMinesTabClass, getMinesTabSelectedClass } from '$lib/util/mines';
+  import { getMinesTabClass, getMinesTabSelectedClass } from '$lib/domain/games/mines';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 

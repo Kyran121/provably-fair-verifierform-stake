@@ -6,7 +6,7 @@
   import ContentBlock from '../layout/ContentBlock.svelte';
   import BarsResultStep from './BarsResultStep.svelte';
   import { useBarsPayout } from '$lib/composables';
-  import { getBarsTabClass, getBarsTabSelectedClass, getBarsTabName } from '$lib/util/bars';
+  import { getBarsTabClass, getBarsTabSelectedClass, getBarsTabName } from '$lib/domain/games/bars';
 
   let resultIndex = $state(0);
 

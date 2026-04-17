@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getMinesCellClass } from '$lib/util/mines';
+  import { getMinesCellClass } from '$lib/domain/games/mines';
   import diamondIcon from '$lib/assets/mines/icons/diamond-50x50.png';
   import mineIcon from '$lib/assets/mines/icons/bomb-50x50.png';
   import diamondIconGray from '$lib/assets/mines/icons/diamond-50x50-gray.png';

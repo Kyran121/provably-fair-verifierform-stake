@@ -1,4 +1,4 @@
-import { FloatGenerator } from '$lib/generator/FloatGenerator';
+import { FloatGenerator } from '$lib/domain/crypto/float-generator';
 import { describe, it, expect } from 'vitest';
 
 describe('StakeFloatGenerator', () => {

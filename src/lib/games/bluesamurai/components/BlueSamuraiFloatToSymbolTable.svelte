@@ -10,7 +10,7 @@
     innerSummedByIndex,
     outerSummedByIndex,
     getProbabilityColClass
-  } from '$lib/util/bluesamurai';
+  } from '$lib/domain/games/bluesamurai';
   import bigDecimal from 'js-big-decimal';
   import { useTableScrollReset } from '$lib/composables/core';
 

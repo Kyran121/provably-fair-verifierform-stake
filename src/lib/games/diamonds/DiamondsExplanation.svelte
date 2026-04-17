@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Gem } from '$lib/types';
-  import { getGemTabClass, getGemTabSelectedClass } from '$lib/util/diamonds';
+  import { getGemTabClass, getGemTabSelectedClass } from '$lib/domain/games/diamonds';
   import FloatGenerationStep from '$lib/games/FloatGenerationStep.svelte';
   import DiamondsResultStep from '$lib/games/diamonds/DiamondsResultStep.svelte';
   import ResultTabs from '$lib/games/ResultTabs.svelte';

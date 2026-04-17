@@ -1,7 +1,7 @@
-import { FloatGenerator } from '$lib/generator/FloatGenerator';
+import { FloatGenerator } from '$lib/domain/crypto/float-generator';
 import { debouncer } from '$lib/debounce.svelte';
-import { fisherYates } from '$lib/util/fisherYates';
-import { generateCardDeck } from '$lib/util/cards';
+import { fisherYates } from '$lib/domain/games/shared/fisher-yates';
+import { generateCardDeck } from '$lib/domain/games/cards';
 import type { FisherYatesItem } from '$lib/types';
 
 /** Video poker cards composable - uses Fisher-Yates to select 10 cards, preserving floats */

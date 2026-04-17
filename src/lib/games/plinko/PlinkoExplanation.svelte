@@ -7,7 +7,7 @@
   import HighlightText from '../layout/HighlightText.svelte';
   import { usePlinkoPayout } from '$lib/composables';
   import { BG_COLOR } from '$lib/config';
-  import { getPlinkoTabClass, getPlinkoTabSelectedClass } from '$lib/util/plinko';
+  import { getPlinkoTabClass, getPlinkoTabSelectedClass } from '$lib/domain/games/plinko';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 

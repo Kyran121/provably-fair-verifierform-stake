@@ -1,5 +1,4 @@
-import { generateCardDeck } from '$lib/util/cards';
-import type { Card } from '$lib/types';
+import { generateCardDeck } from '$lib/domain/games/cards';
 
 /** Fisher-Yates display helper for card decks */
 export function useFisherYatesCardsDisplay(chosenIndexes: number[]) {

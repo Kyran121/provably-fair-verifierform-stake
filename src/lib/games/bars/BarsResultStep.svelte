@@ -4,7 +4,7 @@
   import ContentBlock from '../layout/ContentBlock.svelte';
   import HighlightLink from '../layout/HighlightLink.svelte';
   import PayoutTable from '../layout/PayoutTable.svelte';
-  import { getBarsTileColors } from '$lib/util/bars';
+  import { getBarsTileColors } from '$lib/domain/games/bars';
 
   const {
     stepNumber,

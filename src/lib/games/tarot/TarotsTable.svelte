@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ContentBlock from '../layout/ContentBlock.svelte';
-	import { getCards } from '$lib/util/tarot';
+	import { getCards } from '$lib/domain/games/tarot';
 	import { TarotDifficulty, TarotArcanaType } from '$lib/types';
 	import type { TarotCard } from '$lib/types';
 

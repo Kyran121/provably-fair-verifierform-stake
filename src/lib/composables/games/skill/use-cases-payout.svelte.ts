@@ -1,8 +1,8 @@
-import { FloatGenerator } from '$lib/generator/FloatGenerator';
+import { FloatGenerator } from '$lib/domain/crypto/float-generator';
 import { debouncer } from '$lib/debounce.svelte';
 import type { CasesSeed, CasesDifficulty } from '$lib/types';
 import paylines from '$lib/assets/cases-paylines.json';
-import { getPayout } from '$lib/util/payout';
+import { getPayout } from '$lib/domain/games/shared/payout';
 
 /**
  * Cases payout composable

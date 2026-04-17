@@ -1,6 +1,6 @@
-import { FloatGenerator } from '$lib/generator/FloatGenerator';
+import { FloatGenerator } from '$lib/domain/crypto/float-generator';
 import { debouncer } from '$lib/debounce.svelte';
-import { findCard } from '$lib/util/packs';
+import { findCard } from '$lib/domain/games/packs';
 import type { PacksCard } from '$lib/types';
 
 /** Packs cards composable - generates 5 random pack cards, preserving float for each */

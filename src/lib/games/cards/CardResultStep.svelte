@@ -2,7 +2,7 @@
   import type { Card, Item } from '$lib/types';
   import CardDeckGrid from '$lib/games/cards/CardDeckGrid.svelte';
   import CardSuitIcon from '$lib/games/cards/CardSuitIcon.svelte';
-  import { generateCardDeck, CARD_COLOR_BLUE, type CardColor } from '$lib/util/cards';
+  import { generateCardDeck, CARD_COLOR_BLUE, type CardColor } from '$lib/domain/games/cards';
   import HighlightLink from '$lib/games/layout/HighlightLink.svelte';
   import HighlightText from '$lib/games/layout/HighlightText.svelte';
   import ContentBlock from '../layout/ContentBlock.svelte';

@@ -1,8 +1,8 @@
-import { FloatGenerator } from '$lib/generator/FloatGenerator';
+import { FloatGenerator } from '$lib/domain/crypto/float-generator';
 import { debouncer } from '$lib/debounce.svelte';
 import type { TarotSeed, TarotDifficulty, TarotCard, TarotArcanaType } from '$lib/types';
 import { TarotArcanaType as ArcanaType } from '$lib/types';
-import { findCard } from '$lib/util/tarot';
+import { findCard } from '$lib/domain/games/tarot';
 
 /** Tarot cards composable - generates 3 cards (minor, major, minor), preserving float for each */
 export function useTarotsCards(getFormValues: () => Record<string, unknown>) {

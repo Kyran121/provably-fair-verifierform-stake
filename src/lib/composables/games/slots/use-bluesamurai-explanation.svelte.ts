@@ -1,4 +1,4 @@
-import { buildFlatItems, buildBoardColumns } from '$lib/util/bluesamurai';
+import { buildFlatItems, buildBoardColumns } from '$lib/domain/games/bluesamurai';
 import type { BlueSamuraiRound } from '$lib/types';
 
 /** Blue Samurai explanation state management */
