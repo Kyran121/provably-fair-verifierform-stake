@@ -7,7 +7,7 @@
     textClass,
     widthClass,
     bgColorClass,
-    position = IndicatorPosition.BOTTOM_RIGHT
+    position = IndicatorPosition.BOTTOM_RIGHT,
   }: {
     text: string | number;
     textClass?: string;
@@ -23,7 +23,7 @@
     position === IndicatorPosition.BOTTOM_RIGHT ? 'right-0 bottom-0' : 'top-0 left-0',
     textClass ?? 'text-center text-sm',
     bgColorClass ?? BG_COLOR,
-    widthClass ?? 'w-10'
+    widthClass ?? 'w-10',
   ]}
 >
   <!-- eslint-disable-next-line svelte/no-at-html-tags -->

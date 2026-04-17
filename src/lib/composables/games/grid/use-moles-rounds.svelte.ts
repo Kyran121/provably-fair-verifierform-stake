@@ -23,7 +23,7 @@ export function useMolesRounds(getFormValues: () => Record<string, unknown>) {
     clientSeed: getFormValues().clientseed as string,
     serverSeed: getFormValues().serverseed as string,
     nonce: getFormValues().nonce as number,
-    molesCount: getFormValues().molescount as number
+    molesCount: getFormValues().molescount as number,
   });
 
   const result = $derived.by(
@@ -56,6 +56,6 @@ export function useMolesRounds(getFormValues: () => Record<string, unknown>) {
     },
     get isCalculating() {
       return result.debouncing;
-    }
+    },
   };
 }

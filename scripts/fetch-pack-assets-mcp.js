@@ -12,7 +12,7 @@ function waitForEnter(message = 'Press ENTER when ready... ') {
   return new Promise((resolve) => {
     const rl = readline.createInterface({
       input: process.stdin,
-      output: process.stdout
+      output: process.stdout,
     });
 
     rl.question(message, () => {
@@ -31,7 +31,7 @@ const ASSET_PATH_NONCES = [
   248, 279, 286, 311, 316, 319, 326, 331, 343, 359, 363, 364, 397, 411, 420, 426, 430, 438, 481,
   499, 512, 554, 608, 629, 634, 639, 658, 750, 759, 824, 974, 1008, 1013, 1136, 1143, 1279, 1338,
   1372, 1438, 1647, 1677, 1684, 1743, 1807, 1838, 1937, 2130, 2269, 2323, 3178, 3261, 3623, 6731,
-  6963, 8544, 15487, 29639, 34266, 38891, 39866, 45326, 48283, 130624, 147753, 2024111
+  6963, 8544, 15487, 29639, 34266, 38891, 39866, 45326, 48283, 130624, 147753, 2024111,
 ];
 
 const CLIENT_SEED = '2Gb-U__XyD';
@@ -45,7 +45,7 @@ async function main() {
   const transport = new StdioClientTransport({
     command: 'npx',
     args: ['@playwright/mcp@latest'],
-    stderr: 'pipe'
+    stderr: 'pipe',
   });
 
   const client = new Client(
@@ -62,7 +62,7 @@ async function main() {
     console.log('📖 Opening Stake Packs calculation page...');
     await client.callTool({
       name: 'browser_navigate',
-      arguments: { url: TARGET_URL }
+      arguments: { url: TARGET_URL },
     });
 
     console.log('✅ Page opened\n');
@@ -181,8 +181,8 @@ async function main() {
               svgs: allSvgs
             };
           }, { nonces: ${JSON.stringify(ASSET_PATH_NONCES)} });
-        }`
-      }
+        }`,
+      },
     });
 
     // Parse the result
@@ -236,8 +236,8 @@ async function main() {
             );
             return results;
           }, ${JSON.stringify(assets.imgs)});
-        }`
-      }
+        }`,
+      },
     });
 
     const dlText = downloadResult.content[0].text;

@@ -18,9 +18,13 @@
     {#if rpsOutcome.isCalculating || !rpsOutcome.items}
       <Loader />
     {:else}
-      <ContentBlock className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400">
+      <ContentBlock
+        className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400"
+      >
         <p class="font-medium">
-          <span class="text-blue-600 dark:text-blue-400">Rounds generated in the order shown below.</span>
+          <span class="text-blue-600 dark:text-blue-400">
+            Rounds generated in the order shown below.
+          </span>
           Click a round to see how it was generated using Stake's provably fair algorithm.
         </p>
       </ContentBlock>
@@ -36,7 +40,12 @@
 
       {@const result = rpsOutcome.items[resultIndex]}
 
-      <FloatGenerationStep stepNumber={1} {resultIndex} seed={rpsOutcome.seed!} float={result.float} />
+      <FloatGenerationStep
+        stepNumber={1}
+        {resultIndex}
+        seed={rpsOutcome.seed!}
+        float={result.float}
+      />
       <RockPaperScissorsResultStep stepNumber={2} {...result} />
     {/if}
   </div>

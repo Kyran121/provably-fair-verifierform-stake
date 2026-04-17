@@ -42,16 +42,16 @@
         className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400"
       >
         <p class="font-medium">
-          <span class="text-blue-600 dark:text-blue-400"
-            >Crash point is determined by Fisher-Yates shuffle.</span
-          >
+          <span class="text-blue-600 dark:text-blue-400">
+            Crash point is determined by Fisher-Yates shuffle.
+          </span>
           The minimum random index chosen is the max safe payline index.
         </p>
       </ContentBlock>
 
       <!-- Step 1 -->
       <ContentBlock className="mb-6 p-5">
-        <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">
+        <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">
           Step 1 — Indexes Array
         </p>
         <p class="mb-3 text-gray-700 dark:text-gray-300">Create an array with 20 indexes</p>
@@ -68,7 +68,7 @@
 
       <!-- Step 2 -->
       <ContentBlock className="mb-6 p-5">
-        <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">
+        <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">
           Step 2 — Fisher-Yates Shuffle
         </p>
         <p class="mb-3 text-gray-700 dark:text-gray-300">
@@ -83,9 +83,11 @@
                   'inline-block rounded px-2 py-0.5 text-xs font-medium',
                   difficulty === chickenSeed.difficulty
                     ? BG_COLOR + ' text-white dark:text-white'
-                    : 'bg-gray-200 text-gray-500 dark:bg-gray-700 dark:text-gray-400'
-                ]}>{difficulty} — {sliceVal}</span
+                    : 'bg-gray-200 text-gray-500 dark:bg-gray-700 dark:text-gray-400',
+                ]}
               >
+                {difficulty} — {sliceVal}
+              </span>
             {/each}
           </span>
         </p>
@@ -131,7 +133,7 @@
 
       <!-- Step 3 -->
       <ContentBlock className="mb-6 p-5">
-        <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">
+        <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">
           Step 3 — Max Payout Index
         </p>
         <p class="mb-1 text-gray-700 dark:text-gray-300">
@@ -140,7 +142,7 @@
         <p class="mb-4 text-xs text-gray-500 dark:text-gray-400">
           The payline below shows all multipliers with their 1-based indexes
         </p>
-        <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">
+        <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">
           Random Indexes (1-based)
         </p>
         <div class="mb-4 flex flex-wrap gap-1 font-mono text-xs">
@@ -152,7 +154,7 @@
             </span>
           {/each}
         </div>
-        <p class="mb-2 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">Result</p>
+        <p class="mb-2 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">Result</p>
         <div class="mb-4 flex items-center gap-2 font-mono text-xs">
           <span class="text-gray-500 dark:text-gray-400">maxPayoutIndex =</span>
           <span
@@ -165,7 +167,7 @@
         <!-- Payline visualization -->
         <div class="mt-6">
           <div class="mb-2 flex items-center justify-between">
-            <p class="font-sans text-xs uppercase text-gray-500 dark:text-gray-400">
+            <p class="font-sans text-xs text-gray-500 uppercase dark:text-gray-400">
               Payline Visualization
             </p>
             <button
@@ -174,11 +176,12 @@
                 'rounded border border-purple-300 bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 transition-all hover:border-purple-400 hover:bg-purple-100 dark:border-purple-700 dark:bg-purple-900/20 dark:text-purple-300 dark:hover:border-purple-600 dark:hover:bg-purple-900/40',
                 scrollReset.showResetButton
                   ? 'visible opacity-100'
-                  : 'pointer-events-none invisible opacity-0'
+                  : 'pointer-events-none invisible opacity-0',
               ]}
               onclick={scrollReset.scrollToTarget}
             >
-              <span class="mr-1">↻</span> Reset Scroll
+              <span class="mr-1">↻</span>
+              Reset Scroll
             </button>
           </div>
           <ScrollableContainer innerClassName="pt-2 pb-4">
@@ -190,13 +193,14 @@
                     class="flex w-auto flex-col items-center justify-center rounded border-2 border-green-500 bg-green-50 px-2 py-2 text-center ring-2 ring-green-400 transition-all dark:border-green-400 dark:bg-green-900/30 dark:ring-green-500"
                     bind:this={selectedEl}
                   >
-                    <span class="text-[10px] font-semibold text-green-600 dark:text-green-400"
-                      >{i + 1}</span
-                    >
+                    <span class="text-[10px] font-semibold text-green-600 dark:text-green-400">
+                      {i + 1}
+                    </span>
                     <span
                       class="text-xs font-bold whitespace-nowrap text-green-800 dark:text-green-300"
-                      >{multi.toFixed(2)}x</span
                     >
+                      {multi.toFixed(2)}x
+                    </span>
                   </div>
                 {:else}
                   <div
@@ -205,8 +209,9 @@
                     <span class="text-[10px] text-gray-400 dark:text-gray-500">{i + 1}</span>
                     <span
                       class="text-xs font-bold whitespace-nowrap text-gray-600 dark:text-gray-400"
-                      >{multi.toFixed(2)}x</span
                     >
+                      {multi.toFixed(2)}x
+                    </span>
                   </div>
                 {/if}
               {/each}

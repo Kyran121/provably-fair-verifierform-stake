@@ -28,7 +28,7 @@
     king,
     ace,
     wild,
-    scatter
+    scatter,
   };
 
   const { icon }: { icon: ScarabSpinsTomeOfLifeIcon } = $props();

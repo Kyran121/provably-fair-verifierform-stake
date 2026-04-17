@@ -26,7 +26,7 @@
     s9,
     scatter,
     wild,
-    samurai
+    samurai,
   };
 
   const { icon }: { icon: BlueSamuraiIcon } = $props();

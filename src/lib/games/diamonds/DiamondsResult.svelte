@@ -22,7 +22,7 @@
           'flex h-10 w-full items-center justify-center rounded border-2 font-semibold capitalize',
           GEM_COLORS[gem].bg,
           GEM_COLORS[gem].border,
-          GEM_COLORS[gem].text
+          GEM_COLORS[gem].text,
         ]}
       >
         {gem}

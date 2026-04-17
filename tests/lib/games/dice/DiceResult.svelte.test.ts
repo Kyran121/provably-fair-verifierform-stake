@@ -16,20 +16,20 @@ describe('DiceResult', () => {
       'ec75fca98de6f2d9',
       '735249f062ac025044a8523aa92e034803f02d6b75129abc97e8b1be19aab9b4',
       20,
-      '93.08'
+      '93.08',
     ],
     [
       'ec75fca98de6f2d9',
       '735249f062ac025044a8523aa92e034803f02d6b75129abc97e8b1be19aab9b4',
       21,
-      '0.61'
+      '0.61',
     ],
     [
       'ec75fca98de6f2d9',
       '735249f062ac025044a8523aa92e034803f02d6b75129abc97e8b1be19aab9b4',
       22,
-      '71.73'
-    ]
+      '71.73',
+    ],
   ])(
     'renders the correct results (clientseed=%s, serverseed=%s, nonce=%s, result=%s)',
     async (clientseed, serverseed, nonce, result) => {
@@ -37,7 +37,7 @@ describe('DiceResult', () => {
         nonce,
         clientseed,
         serverseed,
-        game: 'dice'
+        game: 'dice',
       } as Record<string, unknown>;
 
       const screen = render(DiceResult, { formValues });

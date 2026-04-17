@@ -11,5 +11,5 @@ export const SNAKES_MULTIPLIER_SHIFT_MAP: Record<SnakesDifficulty, { [multi: num
   medium: { 1.11: 1.2 },
   hard: { 1.38: 1.5 },
   expert: { 3.82: 4 },
-  master: { 17.64: 18 }
+  master: { 17.64: 18 },
 };

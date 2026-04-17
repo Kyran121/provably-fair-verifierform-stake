@@ -9,7 +9,7 @@ import { SHA256 } from '@stablelib/sha256';
 export function useSlidePoint(getFormValues: () => Record<string, unknown>) {
   const seed = $derived<SlideSeed>({
     slideHash: getFormValues().slidehash as string,
-    blockHash: getFormValues().blockhash as string
+    blockHash: getFormValues().blockhash as string,
   });
 
   const result = $derived.by(
@@ -39,6 +39,6 @@ export function useSlidePoint(getFormValues: () => Record<string, unknown>) {
     },
     get isCalculating() {
       return result.debouncing;
-    }
+    },
   };
 }

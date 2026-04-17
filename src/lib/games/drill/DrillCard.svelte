@@ -10,20 +10,20 @@
       // Blue drill
       bg: 'bg-blue-100 dark:bg-blue-900/30',
       border: 'border-blue-400 dark:border-blue-500',
-      text: 'text-blue-700 dark:text-blue-400'
+      text: 'text-blue-700 dark:text-blue-400',
     },
     {
       // Yellow drill
       bg: 'bg-yellow-100 dark:bg-yellow-900/30',
       border: 'border-yellow-400 dark:border-yellow-500',
-      text: 'text-yellow-700 dark:text-yellow-400'
+      text: 'text-yellow-700 dark:text-yellow-400',
     },
     {
       // Green drill
       bg: 'bg-green-100 dark:bg-green-900/30',
       border: 'border-green-400 dark:border-green-500',
-      text: 'text-green-700 dark:text-green-400'
-    }
+      text: 'text-green-700 dark:text-green-400',
+    },
   ];
 
   const colors = $derived(colorSchemes[drillIndex % 3]);
@@ -35,7 +35,7 @@
     'flex h-32 w-full flex-col items-center justify-center rounded-lg border-2 transition-all',
     colors.bg,
     colors.border,
-    colors.text
+    colors.text,
   ]}
 >
   <!-- Jackhammer Icon - gray for light mode, white for dark mode -->

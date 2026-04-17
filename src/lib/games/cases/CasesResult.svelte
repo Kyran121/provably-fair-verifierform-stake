@@ -14,9 +14,9 @@
     <div
       class="inline-flex min-w-[100px] flex-col items-center justify-center rounded border-2 border-green-500 bg-green-50 px-6 py-4 shadow-lg dark:border-green-400 dark:bg-green-900/20"
     >
-      <span class="text-3xl font-bold text-gray-800 dark:text-gray-100"
-        >{cases.result!.payout.toFixed(2)}x</span
-      >
+      <span class="text-3xl font-bold text-gray-800 dark:text-gray-100">
+        {cases.result!.payout.toFixed(2)}x
+      </span>
     </div>
   </div>
 {/if}

@@ -15,19 +15,20 @@ import type { Seed } from '$lib/types';
  */
 export function useSeedParser(getFormValues: () => Record<string, unknown>) {
   // Handle cases where formValues is passed directly instead of as a getter
-  const formValuesGetter = typeof getFormValues === 'function'
-    ? getFormValues
-    : () => getFormValues as unknown as Record<string, unknown>;
+  const formValuesGetter =
+    typeof getFormValues === 'function'
+      ? getFormValues
+      : () => getFormValues as unknown as Record<string, unknown>;
 
   const seed = $derived<Seed>({
     clientSeed: formValuesGetter().clientseed as string,
     serverSeed: formValuesGetter().serverseed as string,
-    nonce: formValuesGetter().nonce as number
+    nonce: formValuesGetter().nonce as number,
   });
   return {
     get current() {
       return seed;
-    }
+    },
   };
 }
 
@@ -46,19 +47,20 @@ export function useExtendedSeedParser<T extends Seed>(
   additionalFields: (fv: Record<string, unknown>) => Omit<T, keyof Seed>
 ) {
   // Handle cases where formValues is passed directly instead of as a getter
-  const formValuesGetter = typeof getFormValues === 'function'
-    ? getFormValues
-    : () => getFormValues as unknown as Record<string, unknown>;
+  const formValuesGetter =
+    typeof getFormValues === 'function'
+      ? getFormValues
+      : () => getFormValues as unknown as Record<string, unknown>;
 
   const seed = $derived<T>({
     clientSeed: formValuesGetter().clientseed as string,
     serverSeed: formValuesGetter().serverseed as string,
     nonce: formValuesGetter().nonce as number,
-    ...additionalFields(formValuesGetter())
+    ...additionalFields(formValuesGetter()),
   } as T);
   return {
     get current() {
       return seed;
-    }
+    },
   };
 }

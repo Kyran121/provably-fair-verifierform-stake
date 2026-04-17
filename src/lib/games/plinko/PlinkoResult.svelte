@@ -18,9 +18,9 @@
       >
         <div class="flex flex-col items-center gap-1">
           <span class="text-xs font-medium text-green-600 dark:text-green-400">Payout</span>
-          <span class="text-2xl font-bold text-green-800 dark:text-green-300"
-            >{plinko.payout}x</span
-          >
+          <span class="text-2xl font-bold text-green-800 dark:text-green-300">
+            {plinko.payout}x
+          </span>
         </div>
       </div>
     </div>

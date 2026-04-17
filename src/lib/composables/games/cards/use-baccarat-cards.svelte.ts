@@ -10,7 +10,7 @@ export function useBaccaratCards(getFormValues: () => Record<string, unknown>) {
     return {
       initialPlayer: itemsCopy.splice(0, 2),
       initialBanker: itemsCopy.splice(0, 2),
-      decider: itemsCopy.splice(0, 2)
+      decider: itemsCopy.splice(0, 2),
     };
   });
 
@@ -26,6 +26,6 @@ export function useBaccaratCards(getFormValues: () => Record<string, unknown>) {
     },
     get isCalculating() {
       return cardDeck.isCalculating;
-    }
+    },
   };
 }

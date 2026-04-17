@@ -1,5 +1,9 @@
 <script lang="ts">
-  import { getRoundTabClass, getRoundTabSelectedClass, getBlueSamuraiSummary } from '$lib/domain/games/bluesamurai';
+  import {
+    getRoundTabClass,
+    getRoundTabSelectedClass,
+    getBlueSamuraiSummary,
+  } from '$lib/domain/games/bluesamurai';
   import ResultTabs from '$lib/games/ResultTabs.svelte';
   import BlueSamuraiBoard from '$lib/games/bluesamurai/components/BlueSamuraiBoard.svelte';
   import Loader from '$lib/games/Loader.svelte';

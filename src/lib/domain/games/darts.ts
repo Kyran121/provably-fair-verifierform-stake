@@ -7,7 +7,7 @@ export const DARTS_COLOR_LABELS: Record<string, string> = {
   '#fcc101': 'Yellow',
   '#fb6120': 'Orange',
   '#213843': 'Light Gray',
-  '#0e202c': 'Dark Gray'
+  '#0e202c': 'Dark Gray',
 };
 
 /** Per-difficulty wedge bin → hex color (18 bins × 4 difficulties) */
@@ -30,7 +30,7 @@ export const WEDGE_BIN_COLORS: Record<DartsDifficulty, string[]> = {
     '#fcc101',
     '#fb6120',
     '#fcc101',
-    '#fb053f'
+    '#fb053f',
   ],
   [DartsDifficulty.MEDIUM]: [
     '#fcc101',
@@ -50,7 +50,7 @@ export const WEDGE_BIN_COLORS: Record<DartsDifficulty, string[]> = {
     '#fcc101',
     '#fb6120',
     '#fcc101',
-    '#fb053f'
+    '#fb053f',
   ],
   [DartsDifficulty.HARD]: [
     '#fcc101',
@@ -70,7 +70,7 @@ export const WEDGE_BIN_COLORS: Record<DartsDifficulty, string[]> = {
     '#fcc101',
     '#fb6120',
     '#fcc101',
-    '#fb053f'
+    '#fb053f',
   ],
   [DartsDifficulty.EXPERT]: [
     '#fcc101',
@@ -90,8 +90,8 @@ export const WEDGE_BIN_COLORS: Record<DartsDifficulty, string[]> = {
     '#fcc101',
     '#fcc101',
     '#fb6120',
-    '#fcc101'
-  ]
+    '#fcc101',
+  ],
 };
 
 export type ThresholdRow = { label: string; condition: string; color: string; isWedge?: boolean };
@@ -103,7 +103,7 @@ export function getThresholdRows(diff: DartsDifficulty, wedgeColor: string): Thr
       { label: 'Dark Gray', condition: '62.5 < r ≤ 275', color: '#0e202c' },
       { label: 'Light Gray', condition: '275 < r ≤ 375', color: '#213843' },
       { label: 'Wedge', condition: '375 < r < 450', color: wedgeColor, isWedge: true },
-      { label: 'Dark Gray', condition: 'r ≥ 450', color: '#0e202c' }
+      { label: 'Dark Gray', condition: 'r ≥ 450', color: '#0e202c' },
     ];
   if (diff === DartsDifficulty.MEDIUM)
     return [
@@ -111,7 +111,7 @@ export function getThresholdRows(diff: DartsDifficulty, wedgeColor: string): Thr
       { label: 'Dark Gray', condition: '50 < r ≤ 225', color: '#0e202c' },
       { label: 'Light Gray', condition: '225 < r ≤ 350', color: '#213843' },
       { label: 'Wedge', condition: '350 < r < 400', color: wedgeColor, isWedge: true },
-      { label: 'Dark Gray', condition: 'r ≥ 400', color: '#0e202c' }
+      { label: 'Dark Gray', condition: 'r ≥ 400', color: '#0e202c' },
     ];
   if (diff === DartsDifficulty.HARD)
     return [
@@ -119,7 +119,7 @@ export function getThresholdRows(diff: DartsDifficulty, wedgeColor: string): Thr
       { label: 'Dark Gray', condition: '30 < r ≤ 200', color: '#0e202c' },
       { label: 'Light Gray', condition: '200 < r ≤ 330', color: '#213843' },
       { label: 'Wedge', condition: '330 < r < 375', color: wedgeColor, isWedge: true },
-      { label: 'Dark Gray', condition: 'r ≥ 375', color: '#0e202c' }
+      { label: 'Dark Gray', condition: 'r ≥ 375', color: '#0e202c' },
     ];
   // expert
   return [
@@ -127,7 +127,7 @@ export function getThresholdRows(diff: DartsDifficulty, wedgeColor: string): Thr
     { label: 'Dark Gray', condition: '10 < r ≤ 250', color: '#0e202c' },
     { label: 'Light Gray', condition: '250 < r ≤ 355', color: '#213843' },
     { label: 'Wedge', condition: '355 < r < 375', color: wedgeColor, isWedge: true },
-    { label: 'Dark Gray', condition: 'r ≥ 375', color: '#0e202c' }
+    { label: 'Dark Gray', condition: 'r ≥ 375', color: '#0e202c' },
   ];
 }
 

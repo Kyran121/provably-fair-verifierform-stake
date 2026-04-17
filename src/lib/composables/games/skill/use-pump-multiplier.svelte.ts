@@ -20,7 +20,7 @@ export function usePumpMultiplier(getFormValues: () => Record<string, unknown>) 
     clientSeed: getFormValues().clientseed as string,
     serverSeed: getFormValues().serverseed as string,
     nonce: getFormValues().nonce as number,
-    difficulty: getFormValues().difficulty as PumpDifficulty
+    difficulty: getFormValues().difficulty as PumpDifficulty,
   });
 
   const payline = $derived(paylines[seed.difficulty]);
@@ -50,6 +50,6 @@ export function usePumpMultiplier(getFormValues: () => Record<string, unknown>) 
     },
     get isCalculating() {
       return result.debouncing;
-    }
+    },
   };
 }

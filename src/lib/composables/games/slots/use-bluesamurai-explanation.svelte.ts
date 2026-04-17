@@ -78,6 +78,6 @@ export function useBlueSamuraiExplanation(getRounds: () => BlueSamuraiRound[] | 
     },
     get isLockedSamurai() {
       return isLockedSamurai;
-    }
+    },
   };
 }

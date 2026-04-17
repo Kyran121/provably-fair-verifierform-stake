@@ -24,7 +24,12 @@
         </p>
       </ContentBlock>
 
-      <FloatGenerationStep stepNumber={1} resultIndex={0} seed={roulette.seed!} float={roulette.float!} />
+      <FloatGenerationStep
+        stepNumber={1}
+        resultIndex={0}
+        seed={roulette.seed!}
+        float={roulette.float!}
+      />
       <RouletteResultStep stepNumber={2} float={roulette.float!} />
     {/if}
   </div>

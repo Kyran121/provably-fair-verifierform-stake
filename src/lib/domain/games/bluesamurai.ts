@@ -4,7 +4,7 @@ import {
   BlueSamuraiReelType,
   BlueSamuraiRetriggerType,
   type BlueSamuraiRound,
-  type BlueSamuraiSymbol
+  type BlueSamuraiSymbol,
 } from '$lib/types';
 import { OrderedSet } from 'immutable';
 import bigDecimal from 'js-big-decimal';
@@ -219,7 +219,7 @@ function buildColumn(
       round.stuckSamurais?.has(s.index) &&
       !round.newlyLockedSamurais?.has(s.index)
     ),
-    isOuter
+    isOuter,
   }));
 }
 
@@ -241,7 +241,7 @@ export function buildBoardColumns(
     col(symbols.slice(3, 7), false),
     col(symbols.slice(7, 11), false),
     col(symbols.slice(11, 15), false),
-    col(symbols.slice(15), true)
+    col(symbols.slice(15), true),
   ];
 }
 
@@ -447,7 +447,7 @@ function findSymbol(float: number, reelType: BlueSamuraiReelType): SymbolData {
       return {
         symbol: summed[i].symbol,
         min: summed[i - 1]?.max ?? new bigDecimal(0),
-        max: summed[i].max
+        max: summed[i].max,
       };
     }
   }
@@ -540,7 +540,7 @@ export function simulateRounds(
       stuckSamurais: specialRound ? stuckSamurais : undefined,
       newlyLockedSamurais: specialRound ? stuckSamurais.subtract(stuckSamuraisBefore) : undefined,
       totalBonusRounds,
-      symbols
+      symbols,
     });
 
     if (!specialRound) bonusSpin++;

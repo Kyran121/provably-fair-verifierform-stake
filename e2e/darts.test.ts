@@ -31,7 +31,7 @@ test('dart test cases', async ({ page }) => {
       rotation,
       distance,
       pixelColor,
-      multiplier
+      multiplier,
     } = testCase;
 
     // fill client seed

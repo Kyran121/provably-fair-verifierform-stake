@@ -10,7 +10,7 @@ export function useBlackjackCards(getFormValues: () => Record<string, unknown>) 
     return {
       initialDealer: itemsCopy.splice(0, 2),
       initialPlayer: itemsCopy.splice(0, 2),
-      remaining: itemsCopy
+      remaining: itemsCopy,
     };
   });
 
@@ -26,6 +26,6 @@ export function useBlackjackCards(getFormValues: () => Record<string, unknown>) 
     },
     get isCalculating() {
       return cardDeck.isCalculating;
-    }
+    },
   };
 }

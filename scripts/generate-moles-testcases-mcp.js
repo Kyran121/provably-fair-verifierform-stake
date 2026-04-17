@@ -24,7 +24,7 @@ function parseArgs() {
   const params = {
     clientSeed: null,
     serverSeed: null,
-    noncesPerMoleCount: 5
+    noncesPerMoleCount: 5,
   };
 
   for (const arg of args) {
@@ -51,7 +51,7 @@ function waitForEnter(message = 'Press ENTER when ready... ') {
   return new Promise((resolve) => {
     const rl = readline.createInterface({
       input: process.stdin,
-      output: process.stdout
+      output: process.stdout,
     });
 
     rl.question(message, () => {
@@ -76,18 +76,18 @@ async function generateMolesTestCases() {
   const transport = new StdioClientTransport({
     command: 'npx',
     args: ['@playwright/mcp@latest'],
-    stderr: 'pipe' // Pipe stderr so we can suppress it selectively
+    stderr: 'pipe', // Pipe stderr so we can suppress it selectively
   });
 
   const client = new Client(
     {
       name: 'moles-testcase-generator',
-      version: '1.0.0'
+      version: '1.0.0',
     },
     {
       capabilities: {
-        tools: {}
-      }
+        tools: {},
+      },
     }
   );
 
@@ -100,7 +100,7 @@ async function generateMolesTestCases() {
     console.log('📖 Opening Stake Moles calculation page...');
     await client.callTool({
       name: 'browser_navigate',
-      arguments: { url }
+      arguments: { url },
     });
 
     console.log('✅ Page opened\n');
@@ -211,8 +211,8 @@ async function generateMolesTestCases() {
             moleCounts: [1, 2, 3, 4, 5, 6],
             noncesPerMoleCount: ${params.noncesPerMoleCount}
           });
-        }`
-      }
+        }`,
+      },
     });
 
     // Extract and process all results
@@ -263,7 +263,7 @@ async function generateMolesTestCases() {
         serverSeed: params.serverSeed,
         nonce: item.nonce,
         molesCount: item.molesCount,
-        result: item.result
+        result: item.result,
       });
       successCount++;
     }

@@ -17,7 +17,9 @@
 
   <div class="text-center">
     <p class="mb-3 text-sm text-gray-500 dark:text-gray-400">First 20 rounds</p>
-    <p class="mb-4 text-xs text-gray-400 dark:text-gray-500">Each round shows position and outcome</p>
+    <p class="mb-4 text-xs text-gray-400 dark:text-gray-500">
+      Each round shows position and outcome
+    </p>
 
     <div class="mb-5 flex flex-wrap justify-center gap-1.5">
       {#each results! as result, i (i)}
@@ -28,7 +30,7 @@
               ? 'border-gray-500 bg-gray-100 text-gray-700 dark:border-gray-400 dark:bg-gray-800 dark:text-gray-300'
               : result === RockPaperScissorsOutcome.PAPER
                 ? 'border-blue-400 bg-blue-50 text-blue-700 dark:border-blue-500 dark:bg-blue-900/20 dark:text-blue-400'
-                : 'border-red-400 bg-red-50 text-red-700 dark:border-red-500 dark:bg-red-900/20 dark:text-red-400'
+                : 'border-red-400 bg-red-50 text-red-700 dark:border-red-500 dark:bg-red-900/20 dark:text-red-400',
           ]}
         >
           <span class="block text-[10px] opacity-70">({i + 1})</span>

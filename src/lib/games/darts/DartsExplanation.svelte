@@ -21,16 +21,16 @@
     {:else}
       {@const floatItems = [
         { float: dartsThrow.result.rotation, label: 'rotation' },
-        { float: dartsThrow.result.distance, label: 'distance' }
+        { float: dartsThrow.result.distance, label: 'distance' },
       ]}
       <!-- Header banner -->
       <ContentBlock
         className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400"
       >
         <p class="font-medium">
-          <span class="text-blue-600 dark:text-blue-400"
-            >Dart position is determined by 2 floats.</span
-          >
+          <span class="text-blue-600 dark:text-blue-400">
+            Dart position is determined by 2 floats.
+          </span>
           The first sets the rotation, the second sets the distance from centre.
         </p>
       </ContentBlock>

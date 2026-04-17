@@ -13,7 +13,12 @@
     {#if diceRoll.isCalculating}
       <Loader />
     {:else}
-      <FloatGenerationStep stepNumber={1} resultIndex={0} seed={diceRoll.seed!} float={diceRoll.float!} />
+      <FloatGenerationStep
+        stepNumber={1}
+        resultIndex={0}
+        seed={diceRoll.seed!}
+        float={diceRoll.float!}
+      />
       <DiceResultStep stepNumber={2} float={diceRoll.float!} />
     {/if}
   </div>

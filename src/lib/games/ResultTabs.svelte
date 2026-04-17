@@ -16,7 +16,7 @@
     gradientFromColor,
     gradientViaColor,
     gradientFromColorDark,
-    gradientViaColorDark
+    gradientViaColorDark,
   }: {
     seed: unknown;
     items: { chosen: unknown }[];
@@ -78,15 +78,16 @@
                 : BTN_BG_COLOR_SELECTED
               : tabClassModifier
                 ? tabClassModifier(n)
-                : BTN_BG_COLOR
+                : BTN_BG_COLOR,
           ]}
           data-resultindex={n}
           onclick={handleResultClick}
-          ><span class="block whitespace-nowrap text-xs">({n + 1})</span>{#if isCard(chosen)}<span class="block"
-              >{chosen.value}</span
-            ><span class="block"
-              ><CardSuitIcon suit={chosen.suit} small={true} dark={grayCardIcon} /></span
-            >{:else if tabNameModifier}<!-- eslint-disable-next-line svelte/no-at-html-tags -->{@html tabNameModifier(
+        >
+          <span class="block text-xs whitespace-nowrap">({n + 1})</span>
+          {#if isCard(chosen)}<span class="block">{chosen.value}</span>
+            <span class="block">
+              <CardSuitIcon suit={chosen.suit} small={true} dark={grayCardIcon} />
+            </span>{:else if tabNameModifier}<!-- eslint-disable-next-line svelte/no-at-html-tags -->{@html tabNameModifier(
               chosen,
               n
             )}{:else}{chosen}{/if}

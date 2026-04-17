@@ -10,5 +10,5 @@ export const PUMP_DIFFICULTY_TO_SLICE: Record<PumpDifficulty, number> = {
   easy: 1,
   medium: 3,
   hard: 5,
-  expert: 10
+  expert: 10,
 };

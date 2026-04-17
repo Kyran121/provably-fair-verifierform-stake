@@ -15,9 +15,9 @@
   <p class="mb-2 text-2xl font-semibold">Step {stepNumber}</p>
   <p class="mb-2 text-lg">Transform number into crash point multiplier</p>
   <p class="mb-5 text-sm text-gray-500 dark:text-gray-400">
-    See <HighlightLink href="https://bitcointalk.org/index.php?topic=5162888.0"
-      >bitcointalk post</HighlightLink
-    > for game result formula
+    See <HighlightLink href="https://bitcointalk.org/index.php?topic=5162888.0">
+      bitcointalk post
+    </HighlightLink> for game result formula
   </p>
 
   <ContentBlock className="p-6 text-left font-mono text-sm">
@@ -53,14 +53,15 @@
       </p>
       <p class="leading-relaxed">crashPoint</p>
       <p class="leading-relaxed">
-        = floor(max(1, <HighlightText>&lbrace;maxInt&rbrace;</HighlightText> / (<HighlightText
-          >&lbrace;int&rbrace;</HighlightText
-        >
+        = floor(max(1, <HighlightText>&lbrace;maxInt&rbrace;</HighlightText> / (<HighlightText>
+          &lbrace;int&rbrace;
+        </HighlightText>
         + 1) * (1 - <HighlightText>&lbrace;houseEdge&rbrace;</HighlightText>)) * 100) / 100
       </p>
       <p class="leading-relaxed">
-        = floor(max(1, <HighlightText>2 ** 32</HighlightText> / (<HighlightText>{int}</HighlightText
-        >
+        = floor(max(1, <HighlightText>2 ** 32</HighlightText> / (<HighlightText>
+          {int}
+        </HighlightText>
         + 1) * (1 - <HighlightText>0.01</HighlightText>)) * 100) / 100
       </p>
       <p class="leading-relaxed font-bold">

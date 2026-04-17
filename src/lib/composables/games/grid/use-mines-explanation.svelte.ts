@@ -8,6 +8,6 @@ export function useMinesExplanation() {
     },
     set resultIndex(value: number) {
       resultIndex = value;
-    }
+    },
   };
 }

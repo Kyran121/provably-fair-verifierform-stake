@@ -15,7 +15,7 @@
     club: dark ? grayClubIcon : clubIcon,
     spade: dark ? graySpadeIcon : spadeIcon,
     diamond: dark ? grayDiamondIcon : diamondIcon,
-    heart: dark ? grayHeartIcon : heartIcon
+    heart: dark ? grayHeartIcon : heartIcon,
   };
 </script>
 

@@ -33,16 +33,16 @@
         className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-orange-500 dark:border-orange-400"
       >
         <p class="font-medium">
-          <span class="text-orange-600 dark:text-orange-400"
-            >Snakes outcome is determined by dice rolls and payline positions.</span
-          >
+          <span class="text-orange-600 dark:text-orange-400">
+            Snakes outcome is determined by dice rolls and payline positions.
+          </span>
           The pawn moves through the payline based on dice sums, landing on multipliers or snakes.
         </p>
       </ContentBlock>
 
       <!-- Step 1 -->
       <ContentBlock className="mb-6 p-5">
-        <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">
+        <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">
           Step 1 — Generate Dice Rolls
         </p>
         <p class="mb-3 text-gray-700 dark:text-gray-300">
@@ -69,7 +69,7 @@
                       'flex w-12 flex-col items-center justify-center overflow-visible rounded border p-1.5 text-sm font-medium transition-all',
                       rollIndex === resultIndex
                         ? getSnakesTabSelectedClass(rollIndex)
-                        : getSnakesTabClass(rollIndex)
+                        : getSnakesTabClass(rollIndex),
                     ]}
                     onclick={() => (resultIndex = rollIndex)}
                   >
@@ -96,7 +96,7 @@
 
       <!-- Step 2 -->
       <ContentBlock className="mb-6 p-5">
-        <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">
+        <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">
           Step 2 — Calculate Turn Outcomes
         </p>
         <p class="mb-3 text-gray-700 dark:text-gray-300">
@@ -108,7 +108,7 @@
         </p>
 
         <!-- Multiplier shift map -->
-        <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">
+        <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">
           Multiplier Shifts by Difficulty
         </p>
         <div class="mb-6 grid grid-cols-5 gap-2 text-xs">
@@ -129,7 +129,7 @@
         </div>
 
         <!-- Calculation -->
-        <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">Calculation</p>
+        <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">Calculation</p>
         <ContentBlock className="p-4 text-left font-mono text-sm">
           <!-- Initial payline -->
           <div class="mb-6 border-b border-gray-300 pb-4 dark:border-gray-600">
@@ -140,7 +140,7 @@
               payline = [
               {#each snakes.payline as multi, n (n)}
                 <span
-                  class="mb-1 mr-1 inline-block rounded border-2 border-gray-200 bg-gray-50 px-2 py-1 text-xs font-semibold text-gray-600 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400"
+                  class="mr-1 mb-1 inline-block rounded border-2 border-gray-200 bg-gray-50 px-2 py-1 text-xs font-semibold text-gray-600 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400"
                 >
                   ({n + 1}) {multi.toFixed(2)}x
                 </span>
@@ -161,10 +161,10 @@
                   {#each snakes.payline as multi, nn (nn)}
                     <span
                       class={[
-                        'mb-1 mr-1 inline-block rounded border-2 px-2 py-1 text-xs font-semibold',
+                        'mr-1 mb-1 inline-block rounded border-2 px-2 py-1 text-xs font-semibold',
                         multi in snakes.multiShiftMap
                           ? 'border-orange-500 bg-orange-50 text-orange-700 dark:border-orange-400 dark:bg-orange-900/30 dark:text-orange-400'
-                          : 'border-gray-200 bg-gray-50 text-gray-600 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400'
+                          : 'border-gray-200 bg-gray-50 text-gray-600 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400',
                       ]}
                     >
                       ({nn + 1}) {(snakes.multiShiftMap[multi] || multi).toFixed(2)}x
@@ -176,7 +176,11 @@
             {/if}
 
             <!-- Turn calculation -->
-            <div class="mb-4 {n < chunk(snakes.rolls, 2).length - 1 ? 'border-b border-gray-300 pb-4 dark:border-gray-600' : ''}">
+            <div
+              class="mb-4 {n < chunk(snakes.rolls, 2).length - 1
+                ? 'border-b border-gray-300 pb-4 dark:border-gray-600'
+                : ''}"
+            >
               <p class="mb-1 leading-relaxed">
                 turn{n + 1} = payline[{roll1.chosen} + {roll2.chosen} - 1]
               </p>

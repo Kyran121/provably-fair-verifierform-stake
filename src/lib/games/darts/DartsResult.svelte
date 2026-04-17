@@ -19,14 +19,14 @@
     'bg-[#fcc101]',
     'bg-[#fb6120]',
     'bg-[#fb053f]',
-    'bg-[#24e700]'
+    'bg-[#24e700]',
   ];
 
   const DIFFICULTY_TO_DARTBOARD: Record<DartsDifficulty, Component> = {
     easy: dartboardEasy,
     medium: dartboardMedium,
     hard: dartboardHard,
-    expert: dartboardExpert
+    expert: dartboardExpert,
   };
 </script>
 
@@ -48,19 +48,19 @@
     <!-- Stats row -->
     <div class="mb-4 flex flex-wrap gap-x-6 gap-y-2 font-mono text-sm">
       <span class="text-gray-500 dark:text-gray-400">
-        rotation = <span class="font-bold text-purple-600 dark:text-purple-400"
-          >{dartResult.rotation.toFixed(6)}</span
-        >
+        rotation = <span class="font-bold text-purple-600 dark:text-purple-400">
+          {dartResult.rotation.toFixed(6)}
+        </span>
       </span>
       <span class="text-gray-500 dark:text-gray-400">
-        distance = <span class="font-bold text-purple-600 dark:text-purple-400"
-          >{dartResult.distance.toFixed(6)}</span
-        >
+        distance = <span class="font-bold text-purple-600 dark:text-purple-400">
+          {dartResult.distance.toFixed(6)}
+        </span>
       </span>
       <span class="text-gray-500 dark:text-gray-400">
-        norm. dist = <span class="font-bold text-purple-600 dark:text-purple-400"
-          >{dartResult.normalisedDistance.toFixed(6)}</span
-        >
+        norm. dist = <span class="font-bold text-purple-600 dark:text-purple-400">
+          {dartResult.normalisedDistance.toFixed(6)}
+        </span>
       </span>
     </div>
 
@@ -115,7 +115,7 @@
           <div
             class={[
               'text-md relative flex-1 rounded-md px-3 py-2 text-center font-medium dark:text-white',
-              isActive ? `${bgClass} text-white` : ''
+              isActive ? `${bgClass} text-white` : '',
             ]}
           >
             {multi}x

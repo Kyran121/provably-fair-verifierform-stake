@@ -7,7 +7,7 @@
   const {
     float,
     reelType,
-    isLockedSamurai
+    isLockedSamurai,
   }: {
     float: number;
     reelType: BlueSamuraiReelType;
@@ -21,7 +21,7 @@
   </p>
   {#if isLockedSamurai}
     <div class="mb-6 border-b border-gray-300 pb-4 dark:border-gray-600">
-      <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">How It Works</p>
+      <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">How It Works</p>
       <p class="mb-4 text-sm text-amber-700 dark:text-amber-400">
         ⚠️ This position is locked — the float-to-symbol lookup is shown for transparency only. The
         symbol is fixed as 🔒 Samurai regardless of the result below.
@@ -29,22 +29,24 @@
     </div>
   {:else}
     <div class="mb-6 border-b border-gray-300 pb-4 dark:border-gray-600">
-      <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">How It Works</p>
+      <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">How It Works</p>
       <p class="mb-4 text-sm text-gray-700 dark:text-gray-300">
         Each symbol has a probability of appearing. These are accumulated left-to-right into a
-        <span class="font-semibold">summed</span> value per reel type (<span
-          class={TEXT_HIGHLIGHT_COLOR}>{reelType}</span
-        >
+        <span class="font-semibold">summed</span>
+        value per reel type (
+        <span class={TEXT_HIGHLIGHT_COLOR}>{reelType}</span>
         reel here). The float is matched to the
-        <span class="font-semibold">first symbol</span> whose summed value exceeds it — shown in the highlighted
-        column below, where the float sits between the previous summed (lower bound) and this symbol's
-        summed (upper bound).
+        <span class="font-semibold">first symbol</span>
+        whose summed value exceeds it — shown in the highlighted column below, where the float sits between
+        the previous summed (lower bound) and this symbol's summed (upper bound).
       </p>
     </div>
   {/if}
 
   <div>
-    <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">Probability Table</p>
+    <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">
+      Probability Table
+    </p>
     <BlueSamuraiFloatToSymbolTable {float} {reelType} />
   </div>
 </ContentBlock>

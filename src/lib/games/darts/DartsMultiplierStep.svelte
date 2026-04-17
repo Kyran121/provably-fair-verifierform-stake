@@ -14,7 +14,7 @@
     colorHex,
     multi,
     difficulty,
-    contentBlockClassName = 'p-4'
+    contentBlockClassName = 'p-4',
   }: {
     stepNumber: number;
     rotation: number;
@@ -34,7 +34,8 @@
   <p class="mb-2 text-2xl font-semibold">Step {stepNumber}</p>
   <p class="mb-2 text-lg">Determine dart zone and multiplier</p>
   <p class="mb-5 text-sm text-gray-500 dark:text-gray-400">
-    See <span class="font-bold">Darts</span> section on the
+    See <span class="font-bold">Darts</span>
+    section on the
     <HighlightLink href="https://stake.com/provably-fair/game-events">game events</HighlightLink> page
   </p>
 
@@ -74,40 +75,45 @@
         Determine Zone
       </p>
       <p class="mb-3 font-sans text-xs text-gray-500 dark:text-gray-400">
-        Checking r = <span class="font-bold text-blue-600 dark:text-blue-400">{calc.r.toFixed(4)}</span>
+        Checking r = <span class="font-bold text-blue-600 dark:text-blue-400">
+          {calc.r.toFixed(4)}
+        </span>
         against radial thresholds for
-        <span class="font-semibold text-gray-700 dark:text-gray-300">{difficulty}</span>:
+        <span class="font-semibold text-gray-700 dark:text-gray-300">{difficulty}</span>
+        :
       </p>
       <div class="flex flex-col gap-0.5 font-mono text-xs">
         {#each calc.thresholdRows as row, i (i)}
           {@const isMatch = i === calc.matchedRowIndex}
-          {@const keyword = i === 0 ? 'if' : i === calc.thresholdRows.length - 1 ? 'else' : 'else if'}
+          {@const keyword =
+            i === 0 ? 'if' : i === calc.thresholdRows.length - 1 ? 'else' : 'else if'}
           <div
             class={[
               'flex items-center gap-2 rounded px-2 py-1',
               isMatch
                 ? 'bg-green-50 ring-1 ring-green-400 dark:bg-green-900/20 dark:ring-green-500'
-                : 'text-gray-500 dark:text-gray-400'
+                : 'text-gray-500 dark:text-gray-400',
             ]}
           >
-            <span class="w-10 flex-shrink-0 font-sans text-purple-600 dark:text-purple-400"
-              >{keyword}</span
-            >
+            <span class="w-10 flex-shrink-0 font-sans text-purple-600 dark:text-purple-400">
+              {keyword}
+            </span>
             {#if i < calc.thresholdRows.length - 1}
-              <span class={isMatch ? 'text-gray-800 dark:text-gray-200' : ''}
-                >( {row.condition} )</span
-              >
+              <span class={isMatch ? 'text-gray-800 dark:text-gray-200' : ''}>
+                ( {row.condition} )
+              </span>
             {:else}
-              <span class="font-sans text-gray-400 italic dark:text-gray-500">// outside board</span
-              >
+              <span class="font-sans text-gray-400 italic dark:text-gray-500">
+                // outside board
+              </span>
             {/if}
             <span class="ml-auto flex flex-shrink-0 items-center gap-1.5">
               {#if row.isWedge}
                 <span class="font-sans text-gray-400 italic dark:text-gray-500">wedge band</span>
                 {#if isMatch}
-                  <span class="font-sans font-bold text-green-600 dark:text-green-400"
-                    >✓ see below</span
-                  >
+                  <span class="font-sans font-bold text-green-600 dark:text-green-400">
+                    ✓ see below
+                  </span>
                 {/if}
               {:else}
                 <span
@@ -167,10 +173,12 @@
           Bin colour map ({difficulty})
         </p>
         <p class="mb-2 font-sans text-xs text-gray-500 dark:text-gray-400">
-          Each bin covers a 20° slice. Bin <span class="font-bold text-blue-600 dark:text-blue-400"
-            >{calc.wedgeBin}</span
-          >
-          spans <span class="font-bold">{calc.wedgeBin * 20}°–{calc.wedgeBin * 20 + 20}°</span>:
+          Each bin covers a 20° slice. Bin <span class="font-bold text-blue-600 dark:text-blue-400">
+            {calc.wedgeBin}
+          </span>
+          spans
+          <span class="font-bold">{calc.wedgeBin * 20}°–{calc.wedgeBin * 20 + 20}°</span>
+          :
         </p>
         <div class="mb-3 grid grid-cols-9 gap-1">
           {#each calc.wedgeBinColors as binColor, i (i)}
@@ -180,7 +188,7 @@
                 'flex flex-col items-center rounded border-2 px-0.5 py-1 transition-all',
                 isCurrentBin
                   ? 'border-blue-500 ring-2 ring-blue-400 dark:border-blue-400 dark:ring-blue-500'
-                  : 'border-gray-200 ring-2 ring-transparent dark:border-gray-700'
+                  : 'border-gray-200 ring-2 ring-transparent dark:border-gray-700',
               ]}
             >
               <span class="mb-0.5 text-[10px] leading-none font-normal opacity-70">{i}</span>

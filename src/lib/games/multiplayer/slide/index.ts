@@ -8,7 +8,7 @@ export const gameDefinition: GameDefinition = {
   name: 'Slide',
   schema: z.object({
     slidehash: z.string(),
-    blockhash: z.string()
+    blockhash: z.string(),
   }),
   controls: [
     {
@@ -16,16 +16,16 @@ export const gameDefinition: GameDefinition = {
       name: 'slidehash',
       label: 'Slide Hash',
       type: 'text',
-      required: true
+      required: true,
     },
     {
       id: 'blockhash',
       name: 'blockhash',
       label: 'Block Hash',
       type: 'select',
-      options: SLIDE_SEEDS
-    }
+      options: SLIDE_SEEDS,
+    },
   ],
   ResultComponent: SlideResult,
-  ExplanationComponent: SlideExplanation
+  ExplanationComponent: SlideExplanation,
 };

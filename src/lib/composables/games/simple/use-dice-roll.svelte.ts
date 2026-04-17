@@ -27,7 +27,7 @@ export function useDiceRoll(getFormValues: () => Record<string, unknown>) {
   const seed = $derived({
     clientSeed: getFormValues().clientseed as string,
     serverSeed: getFormValues().serverseed as string,
-    nonce: getFormValues().nonce as number
+    nonce: getFormValues().nonce as number,
   });
 
   const result = $derived.by(
@@ -55,6 +55,6 @@ export function useDiceRoll(getFormValues: () => Record<string, unknown>) {
     },
     get isCalculating() {
       return result.debouncing;
-    }
+    },
   };
 }

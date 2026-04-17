@@ -11,13 +11,16 @@
     float,
     chosen,
     chosenIndex,
-    chosenIndexes
+    chosenIndexes,
   }: {
     stepNumber: number;
     resultIndex: number;
   } & FisherYatesItem<number> = $props();
 
-  const display = useFisherYatesDisplay(() => 40, () => chosenIndexes);
+  const display = useFisherYatesDisplay(
+    () => 40,
+    () => chosenIndexes
+  );
   const previousNumbers = $derived(display.previousItems);
   const kenoBoardMinusPreviousNumbers = $derived(display.remainingItems);
 </script>
@@ -26,7 +29,8 @@
   <p class="mb-2 text-2xl font-semibold">Step {stepNumber}</p>
   <p class="mb-2 text-lg">Transform float into keno number using Fisher-Yates</p>
   <p class="mb-5 text-sm text-gray-500 dark:text-gray-400">
-    See <span class="font-bold">Keno</span> section on the
+    See <span class="font-bold">Keno</span>
+    section on the
     <HighlightLink href="https://stake.com/provably-fair/game-events">game events</HighlightLink> page
   </p>
 
@@ -70,7 +74,7 @@
               'inline-flex flex-col items-center justify-center rounded border-2 py-1 transition-all',
               n === chosenIndex
                 ? 'border-purple-500 bg-purple-100 text-purple-700 ring-2 ring-purple-400 dark:border-purple-400 dark:bg-purple-900/30 dark:text-purple-400 dark:ring-purple-500'
-                : 'border-gray-200 bg-gray-50 text-gray-500 ring-2 ring-transparent dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400'
+                : 'border-gray-200 bg-gray-50 text-gray-500 ring-2 ring-transparent dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400',
             ]}
           >
             <span class="text-[10px] leading-none font-normal opacity-70">{n}</span>
@@ -93,13 +97,14 @@
       </p>
       <p class="leading-relaxed">
         kenoNumberIndex = floor(<HighlightText>&lbrace;float&rbrace;</HighlightText> * (<HighlightText
-          >&lbrace;kenoSquares&rbrace;</HighlightText
-        > - <HighlightText>&lbrace;resultIndex&rbrace;</HighlightText>))
+        >
+          &lbrace;kenoSquares&rbrace;
+        </HighlightText> - <HighlightText>&lbrace;resultIndex&rbrace;</HighlightText>))
       </p>
       <p class="leading-relaxed">
-        = floor(<HighlightText>{float.toFixed(12)}</HighlightText> * (<HighlightText
-          >40</HighlightText
-        > - <HighlightText>{resultIndex}</HighlightText>))
+        = floor(<HighlightText>{float.toFixed(12)}</HighlightText> * (<HighlightText>
+          40
+        </HighlightText> - <HighlightText>{resultIndex}</HighlightText>))
       </p>
       <p class="leading-relaxed font-bold">
         = <span class="text-blue-600 dark:text-blue-400">{chosenIndex}</span>

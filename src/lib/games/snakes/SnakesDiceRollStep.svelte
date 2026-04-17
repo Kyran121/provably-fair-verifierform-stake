@@ -9,7 +9,7 @@
     float,
     chosen,
     chosenIndex,
-    contentBlockClassName = 'p-4'
+    contentBlockClassName = 'p-4',
   }: {
     stepNumber: number;
     contentBlockClassName?: string;
@@ -27,19 +27,17 @@
     <div class="mb-6 border-b border-gray-300 pb-4 dark:border-gray-600">
       <p class="mb-2 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">Constants</p>
       <p class="leading-relaxed">
-        rollOptions = <span class="font-bold text-blue-600 dark:text-blue-400"
-          >[ {DICE_ROLL_OPTIONS.join(', ')} ]</span
-        >
+        rollOptions = <span class="font-bold text-blue-600 dark:text-blue-400">
+          [ {DICE_ROLL_OPTIONS.join(', ')} ]
+        </span>
       </p>
       <p class="leading-relaxed">
-        numberOfRollOptions = <span class="font-bold text-blue-600 dark:text-blue-400"
-          >{DICE_ROLL_OPTIONS.length}</span
-        >
+        numberOfRollOptions = <span class="font-bold text-blue-600 dark:text-blue-400">
+          {DICE_ROLL_OPTIONS.length}
+        </span>
       </p>
       <p class="leading-relaxed">
-        float = <span class="font-bold text-blue-600 dark:text-blue-400"
-          >{float.toFixed(12)}</span
-        >
+        float = <span class="font-bold text-blue-600 dark:text-blue-400">{float.toFixed(12)}</span>
       </p>
     </div>
 
@@ -50,20 +48,20 @@
       </p>
       <p class="leading-relaxed">chosenIndex</p>
       <p class="leading-relaxed">
-        = floor(<span class="font-bold text-blue-600 dark:text-blue-400">&lbrace;float&rbrace;</span
-        >
+        = floor(
+        <span class="font-bold text-blue-600 dark:text-blue-400">&lbrace;float&rbrace;</span>
         *
-        <span class="font-bold text-blue-600 dark:text-blue-400"
-          >&lbrace;numberOfRollOptions&rbrace;</span
-        >)
+        <span class="font-bold text-blue-600 dark:text-blue-400">
+          &lbrace;numberOfRollOptions&rbrace;
+        </span>
+        )
       </p>
       <p class="leading-relaxed">
-        = floor(<span class="font-bold text-blue-600 dark:text-blue-400"
-          >{float.toFixed(12)}</span
-        >
-        * <span class="font-bold text-blue-600 dark:text-blue-400"
-          >{DICE_ROLL_OPTIONS.length}</span
-        >)
+        = floor(
+        <span class="font-bold text-blue-600 dark:text-blue-400">{float.toFixed(12)}</span>
+        *
+        <span class="font-bold text-blue-600 dark:text-blue-400">{DICE_ROLL_OPTIONS.length}</span>
+        )
       </p>
       <p class="leading-relaxed">
         = <span class="font-bold text-blue-600 dark:text-blue-400">{chosenIndex}</span>
@@ -77,14 +75,14 @@
       </p>
       <p class="leading-relaxed">rollNumber</p>
       <p class="leading-relaxed">
-        = <span class="font-bold text-blue-600 dark:text-blue-400"
-          >&lbrace;rollOptions[chosenIndex]&rbrace;</span
-        >
+        = <span class="font-bold text-blue-600 dark:text-blue-400">
+          &lbrace;rollOptions[chosenIndex]&rbrace;
+        </span>
       </p>
       <p class="leading-relaxed">
-        = <span class="font-bold text-blue-600 dark:text-blue-400"
-          >&lbrace;rollOptions[{chosenIndex}]&rbrace;</span
-        >
+        = <span class="font-bold text-blue-600 dark:text-blue-400">
+          &lbrace;rollOptions[{chosenIndex}]&rbrace;
+        </span>
       </p>
       <p class="mt-2 leading-relaxed font-bold">
         = <span class="text-green-600 dark:text-green-400">{chosen}</span>
@@ -93,7 +91,8 @@
   </ContentBlock>
 
   <p class="mt-4 text-xs text-gray-500 dark:text-gray-400">
-    See <span class="font-bold">Snakes</span> section on the
+    See <span class="font-bold">Snakes</span>
+    section on the
     <HighlightLink href="https://stake.com/provably-fair/game-events">game events</HighlightLink> page
   </p>
 </div>

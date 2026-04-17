@@ -11,13 +11,16 @@
     float,
     chosen,
     chosenIndex,
-    chosenIndexes
+    chosenIndexes,
   }: {
     stepNumber: number;
     resultIndex: number;
   } & FisherYatesItem<number> = $props();
 
-  const display = useFisherYatesDisplay(() => 7, () => chosenIndexes);
+  const display = useFisherYatesDisplay(
+    () => 7,
+    () => chosenIndexes
+  );
   const previousHoles = $derived(display.previousItems);
   const holesMinusPreviousMoles = $derived(display.remainingItems);
 </script>
@@ -26,7 +29,8 @@
   <p class="mb-2 text-2xl font-semibold">Step {stepNumber}</p>
   <p class="mb-2 text-lg">Transform float into mole position</p>
   <p class="mb-5 text-sm text-gray-500 dark:text-gray-400">
-    See <span class="font-bold">Moles</span> section on the
+    See <span class="font-bold">Moles</span>
+    section on the
     <HighlightLink href="https://stake.com/provably-fair/game-events">game events</HighlightLink> page
   </p>
 
@@ -73,7 +77,7 @@
               'inline-flex flex-col items-center justify-center rounded border px-2.5 py-1 font-semibold transition-all',
               n === chosenIndex
                 ? 'border-green-500 bg-green-100 text-green-700 ring-2 ring-green-400 dark:border-green-400 dark:bg-green-900/30 dark:text-green-400 dark:ring-green-500'
-                : 'border-gray-300 bg-gray-50 text-gray-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400'
+                : 'border-gray-300 bg-gray-50 text-gray-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400',
             ]}
           >
             <span class="text-[11px] leading-none font-normal opacity-60">{n}</span>
@@ -98,14 +102,14 @@
       </p>
       <p class="leading-relaxed">moleIndex</p>
       <p class="leading-relaxed">
-        = floor(<HighlightText>&lbrace;float&rbrace;</HighlightText> * (<HighlightText
-          >&lbrace;holes&rbrace;</HighlightText
-        > - <HighlightText>&lbrace;resultIndex&rbrace;</HighlightText>))
+        = floor(<HighlightText>&lbrace;float&rbrace;</HighlightText> * (<HighlightText>
+          &lbrace;holes&rbrace;
+        </HighlightText> - <HighlightText>&lbrace;resultIndex&rbrace;</HighlightText>))
       </p>
       <p class="leading-relaxed">
-        = floor(<HighlightText>{float.toFixed(12)}</HighlightText> * (<HighlightText
-          >7</HighlightText
-        > - <HighlightText>{resultIndex}</HighlightText>))
+        = floor(<HighlightText>{float.toFixed(12)}</HighlightText> * (<HighlightText>
+          7
+        </HighlightText> - <HighlightText>{resultIndex}</HighlightText>))
       </p>
       <p class="mb-4 leading-relaxed font-bold">
         = <span class="text-blue-600 dark:text-blue-400">{chosenIndex}</span>

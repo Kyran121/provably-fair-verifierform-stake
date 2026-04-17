@@ -41,6 +41,6 @@ export function useDartsMultiplierCalc(
     },
     get matchedRowIndex() {
       return matchedRowIndex;
-    }
+    },
   };
 }

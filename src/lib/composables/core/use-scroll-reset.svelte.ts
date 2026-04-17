@@ -89,7 +89,7 @@ export function useScrollReset(
     get showResetButton() {
       return showResetButton;
     },
-    scrollToTarget
+    scrollToTarget,
   };
 }
 

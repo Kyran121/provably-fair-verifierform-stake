@@ -20,7 +20,7 @@ export const CARD_COLOR_BLUE: CardColor = {
   resultBg: 'bg-blue-50 dark:bg-blue-900/20',
   label: 'blue',
   unselected:
-    'border-blue-400 dark:border-blue-700 bg-blue-100 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/40'
+    'border-blue-400 dark:border-blue-700 bg-blue-100 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/40',
 };
 
 export const CARD_COLOR_GREEN: CardColor = {
@@ -32,7 +32,7 @@ export const CARD_COLOR_GREEN: CardColor = {
   resultBg: 'bg-green-50 dark:bg-green-900/20',
   label: 'green',
   unselected:
-    'border-green-400 dark:border-green-700 bg-green-100 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/40'
+    'border-green-400 dark:border-green-700 bg-green-100 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/40',
 };
 
 export const CARD_COLOR_PURPLE: CardColor = {
@@ -44,7 +44,7 @@ export const CARD_COLOR_PURPLE: CardColor = {
   resultBg: 'bg-purple-50 dark:bg-purple-900/20',
   label: 'purple',
   unselected:
-    'border-purple-400 dark:border-purple-700 bg-purple-100 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/40'
+    'border-purple-400 dark:border-purple-700 bg-purple-100 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/40',
 };
 
 const TAB_BASE =

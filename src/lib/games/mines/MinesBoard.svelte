@@ -17,7 +17,7 @@
     <div
       class={[
         'flex flex-col items-center justify-center rounded p-1.5 transition-all',
-        getMinesCellClass(col, chosenMinesLookup, highlightedMine)
+        getMinesCellClass(col, chosenMinesLookup, highlightedMine),
       ]}
     >
       <span class="text-xs leading-none font-bold">{col}</span>

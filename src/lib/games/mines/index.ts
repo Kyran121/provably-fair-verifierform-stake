@@ -1,6 +1,6 @@
 import {
   CLIENT_SEED_SERVER_SEED_NONCE_CONTROLS,
-  CLIENT_SEED_SERVER_SEED_NONCE_SCHEMA
+  CLIENT_SEED_SERVER_SEED_NONCE_SCHEMA,
 } from '$lib/controlSetup';
 import MinesExplanation from '$lib/games/mines/MinesExplanation.svelte';
 import MinesResult from '$lib/games/mines/MinesResult.svelte';
@@ -10,7 +10,7 @@ import type { GameDefinition } from 'provably-fair-verifierform-lib';
 export const gameDefinition: GameDefinition = {
   name: 'Mines',
   schema: CLIENT_SEED_SERVER_SEED_NONCE_SCHEMA.extend({
-    mines: z.number().min(1).max(24)
+    mines: z.number().min(1).max(24),
   }),
   controls: [
     ...CLIENT_SEED_SERVER_SEED_NONCE_CONTROLS,
@@ -23,10 +23,10 @@ export const gameDefinition: GameDefinition = {
       default: 13,
       attrs: {
         min: 1,
-        max: 24
-      }
-    }
+        max: 24,
+      },
+    },
   ],
   ResultComponent: MinesResult,
-  ExplanationComponent: MinesExplanation
+  ExplanationComponent: MinesExplanation,
 };

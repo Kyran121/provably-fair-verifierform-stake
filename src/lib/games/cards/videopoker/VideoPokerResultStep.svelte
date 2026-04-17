@@ -15,7 +15,7 @@
     chosen,
     chosenIndex,
     chosenIndexes,
-    color = CARD_COLOR_BLUE
+    color = CARD_COLOR_BLUE,
   }: {
     stepNumber: number;
     resultIndex: number;
@@ -31,7 +31,8 @@
   <p class="mb-2 text-2xl font-semibold">Step {stepNumber}</p>
   <p class="mb-2 text-lg">Transform float into card</p>
   <p class="mb-5 text-sm text-gray-500 dark:text-gray-400">
-    See <span class="font-bold">Video Poker</span> section on the
+    See <span class="font-bold">Video Poker</span>
+    section on the
     <HighlightLink href="https://stake.com/provably-fair/game-events">game events</HighlightLink> page
   </p>
 
@@ -65,9 +66,9 @@
               <span class="text-[11px] text-gray-500 dark:text-gray-400">({n})</span>
               <span class="font-semibold">{value}</span>
               <span class="hidden dark:inline"><CardSuitIcon {suit} small={true} /></span>
-              <span class="inline dark:hidden"
-                ><CardSuitIcon {suit} small={true} dark={true} /></span
-              >
+              <span class="inline dark:hidden">
+                <CardSuitIcon {suit} small={true} dark={true} />
+              </span>
             </span>
           {/each}
         </div>
@@ -97,15 +98,15 @@
       </p>
       <p class="leading-relaxed">cardIndex</p>
       <p class="leading-relaxed">
-        = floor(<HighlightText>&lbrace;float&rbrace;</HighlightText> * (<HighlightText
-          >&lbrace;deckSize&rbrace;</HighlightText
-        >
+        = floor(<HighlightText>&lbrace;float&rbrace;</HighlightText> * (<HighlightText>
+          &lbrace;deckSize&rbrace;
+        </HighlightText>
         - <HighlightText>&lbrace;resultIndex&rbrace;</HighlightText>))
       </p>
       <p class="leading-relaxed">
-        = floor(<HighlightText>{float.toFixed(12)}</HighlightText> * (<HighlightText
-          >52</HighlightText
-        >
+        = floor(<HighlightText>{float.toFixed(12)}</HighlightText> * (<HighlightText>
+          52
+        </HighlightText>
         - <HighlightText>{resultIndex}</HighlightText>))
       </p>
       <p class="leading-relaxed font-bold">
@@ -132,12 +133,12 @@
         >
           <span class="mb-1 text-[10px] text-gray-600 dark:text-gray-400">Index {chosenIndex}</span>
           <span class="text-2xl font-bold">{chosen.value}</span>
-          <span class="mt-1 hidden dark:inline"
-            ><CardSuitIcon suit={chosen.suit} small={false} /></span
-          >
-          <span class="mt-1 inline dark:hidden"
-            ><CardSuitIcon suit={chosen.suit} small={false} dark={true} /></span
-          >
+          <span class="mt-1 hidden dark:inline">
+            <CardSuitIcon suit={chosen.suit} small={false} />
+          </span>
+          <span class="mt-1 inline dark:hidden">
+            <CardSuitIcon suit={chosen.suit} small={false} dark={true} />
+          </span>
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@
   const rows = [
     [0, 1],
     [2, 3, 4],
-    [5, 6]
+    [5, 6],
   ];
 </script>
 
@@ -26,7 +26,7 @@
         <div
           class={[
             'flex flex-col items-center justify-center rounded p-2 transition-all',
-            getColorClass(hole)
+            getColorClass(hole),
           ]}
         >
           <span class="text-xs leading-none font-bold">{hole}</span>

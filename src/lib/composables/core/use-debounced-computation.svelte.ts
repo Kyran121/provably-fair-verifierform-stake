@@ -34,6 +34,6 @@ export function useDebouncedComputation<T, U>(
     },
     get isComputing() {
       return result.debouncing;
-    }
+    },
   };
 }

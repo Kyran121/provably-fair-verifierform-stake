@@ -12,7 +12,7 @@
 
   const {
     formValues,
-    IconComponent
+    IconComponent,
   }: {
     formValues: Record<string, unknown>;
     IconComponent: Component<{ icon: ScarabSpinsTomeOfLifeIcon }>;
@@ -39,9 +39,9 @@
     className="mt-5 mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-indigo-500 dark:border-indigo-400"
   >
     <p class="font-medium">
-      <span class="text-indigo-600 dark:text-indigo-400"
-        >Slot outcome is determined by 5 floats that map to reel positions.</span
-      >
+      <span class="text-indigo-600 dark:text-indigo-400">
+        Slot outcome is determined by 5 floats that map to reel positions.
+      </span>
       Each reel's center position is calculated using Stake's provably fair algorithm.
     </p>
   </ContentBlock>
@@ -51,20 +51,21 @@
     <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">How It Works</p>
     <div class="space-y-3 text-sm text-gray-700 dark:text-gray-300">
       <p>
-        Slot features <span class="font-semibold">5 reels</span> of symbols. The first 4 reels each contain
-        30 symbols, while the final reel contains 41 symbols.
+        Slot features <span class="font-semibold">5 reels</span>
+        of symbols. The first 4 reels each contain 30 symbols, while the final reel contains 41 symbols.
       </p>
       <p>
-        For every round, <span class="font-semibold">5 floats</span> are generated—one for each
-        reel—to determine the central position of that reel. The visible slot shows the symbol at
-        the central position plus the symbols immediately above and below it. If the central
-        position is at a boundary (top or bottom), it
-        <span class="font-semibold">cycles to the opposite end</span> of the reel.
+        For every round, <span class="font-semibold">5 floats</span>
+        are generated—one for each reel—to determine the central position of that reel. The visible slot
+        shows the symbol at the central position plus the symbols immediately above and below it. If
+        the central position is at a boundary (top or bottom), it
+        <span class="font-semibold">cycles to the opposite end</span>
+        of the reel.
       </p>
       <p>
-        When <span class="font-semibold">3 scatter symbols</span> appear in a round, a bonus round is
-        triggered, awarding 15 additional spins. If any bonus rounds also result in 3 scatters, another
-        15 spins are granted—up to a maximum of 180 total rounds.
+        When <span class="font-semibold">3 scatter symbols</span>
+        appear in a round, a bonus round is triggered, awarding 15 additional spins. If any bonus rounds
+        also result in 3 scatters, another 15 spins are granted—up to a maximum of 180 total rounds.
       </p>
     </div>
   </ContentBlock>
@@ -87,7 +88,7 @@
         {#each { length: Math.ceil(floats.length / 5) } as _, spinIndex}
           <div class="flex flex-col gap-1">
             <span
-              class="mb-1 text-center font-sans text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wide uppercase"
+              class="mb-1 text-center font-sans text-xs font-semibold tracking-wide text-gray-500 uppercase dark:text-gray-400"
             >
               Spin {spinIndex + 1}
             </span>
@@ -99,7 +100,7 @@
                   type="button"
                   class={[
                     'flex w-10 flex-col items-center justify-center overflow-visible rounded border p-1.5 text-sm font-medium transition-all',
-                    fi === resultIndex ? getSlotTabSelectedClass(fi) : getSlotTabClass(fi)
+                    fi === resultIndex ? getSlotTabSelectedClass(fi) : getSlotTabClass(fi),
                   ]}
                   onclick={() => (resultIndex = fi)}
                 >

@@ -19,6 +19,6 @@ export function useWheelResult(
     },
     get chosen() {
       return chosen;
-    }
+    },
   };
 }

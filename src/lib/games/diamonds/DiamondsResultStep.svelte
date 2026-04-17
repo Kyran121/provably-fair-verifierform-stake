@@ -11,7 +11,7 @@
     stepNumber,
     float,
     chosen,
-    chosenIndex
+    chosenIndex,
   }: {
     stepNumber: number;
   } & Item<Gem> = $props();
@@ -21,7 +21,8 @@
   <p class="mb-2 text-2xl font-semibold">Step {stepNumber}</p>
   <p class="mb-2 text-lg">Transform float into gem</p>
   <p class="mb-5 text-sm text-gray-500 dark:text-gray-400">
-    formula taken from <span class="font-bold">Diamonds</span> section on the
+    formula taken from <span class="font-bold">Diamonds</span>
+    section on the
     <HighlightLink href="https://stake.com/provably-fair/game-events">game events</HighlightLink> page
   </p>
 
@@ -44,7 +45,7 @@
               'inline-block rounded border px-2 py-1 text-xs transition-all',
               n === chosenIndex
                 ? 'border-purple-500 bg-purple-100 font-bold ring-2 ring-purple-500 dark:border-purple-400 dark:bg-purple-900/30 dark:ring-purple-400'
-                : 'border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-800'
+                : 'border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-800',
             ]}
           >
             <span class="text-[10px] text-gray-500 dark:text-gray-400">({n})</span>
@@ -100,7 +101,7 @@
           class={[
             'inline-flex min-w-[80px] flex-col items-center justify-center rounded border-2 p-3 shadow-lg',
             GEM_COLORS[chosen].bg,
-            GEM_COLORS[chosen].border
+            GEM_COLORS[chosen].border,
           ]}
         >
           <span class={['text-xl font-bold capitalize', GEM_COLORS[chosen].text]}>{chosen}</span>

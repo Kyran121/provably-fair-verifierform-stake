@@ -23,9 +23,9 @@
         className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400"
       >
         <p class="font-medium">
-          <span class="text-blue-600 dark:text-blue-400"
-            >Multis generated in the order shown below.</span
-          >
+          <span class="text-blue-600 dark:text-blue-400">
+            Multis generated in the order shown below.
+          </span>
           Click a multi to find out how it was generated using Stake's provably fair algorithm.
         </p>
       </ContentBlock>
@@ -33,20 +33,31 @@
       <ResultTabs
         seed={bars.seed!}
         items={bars.result.results.map((item) => ({
-          chosen: `${item.multi.toFixed(2)}x`
+          chosen: `${item.multi.toFixed(2)}x`,
         }))}
         bind:resultIndex
         tabClassModifier={(n) =>
-          getBarsTabClass(bars.result!.results[n].multiNotDivided, bars.result!.results[n].isSelected)}
+          getBarsTabClass(
+            bars.result!.results[n].multiNotDivided,
+            bars.result!.results[n].isSelected
+          )}
         tabSelectedClassModifier={(n) =>
-          getBarsTabSelectedClass(bars.result!.results[n].multiNotDivided, bars.result!.results[n].isSelected)}
+          getBarsTabSelectedClass(
+            bars.result!.results[n].multiNotDivided,
+            bars.result!.results[n].isSelected
+          )}
         tabNameModifier={(chosen, n) =>
           getBarsTabName(chosen as string, bars.result!.results[n].isSelected)}
       />
 
       {@const selectedItem = bars.result.results[resultIndex]}
 
-      <FloatGenerationStep stepNumber={1} {resultIndex} seed={bars.seed!} float={selectedItem.float} />
+      <FloatGenerationStep
+        stepNumber={1}
+        {resultIndex}
+        seed={bars.seed!}
+        float={selectedItem.float}
+      />
       <BarsResultStep stepNumber={2} seed={bars.seed! as BarsSeed} {...selectedItem} />
     {/if}
   </div>

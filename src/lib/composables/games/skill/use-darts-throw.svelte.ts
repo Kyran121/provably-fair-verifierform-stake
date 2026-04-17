@@ -31,7 +31,7 @@ export function useDartsThrow(getFormValues: () => Record<string, unknown>) {
     clientSeed: getFormValues().clientseed as string,
     serverSeed: getFormValues().serverseed as string,
     nonce: getFormValues().nonce as number,
-    difficulty: getFormValues().difficulty as DartsDifficulty
+    difficulty: getFormValues().difficulty as DartsDifficulty,
   });
 
   const multis = $derived(paylines[seed.difficulty]);
@@ -52,7 +52,7 @@ export function useDartsThrow(getFormValues: () => Record<string, unknown>) {
           distance,
           normalisedDistance,
           colorHex,
-          multi
+          multi,
         } satisfies DartsResult;
       },
       (getFormValues().delay as number) || 350
@@ -71,6 +71,6 @@ export function useDartsThrow(getFormValues: () => Record<string, unknown>) {
     },
     get isCalculating() {
       return result.debouncing;
-    }
+    },
   };
 }

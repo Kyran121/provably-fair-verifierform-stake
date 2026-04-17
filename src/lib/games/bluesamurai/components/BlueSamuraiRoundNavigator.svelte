@@ -4,13 +4,13 @@
     getRoundBadgeClass,
     getRoundLabel,
     getRoundTriggerBadge,
-    getRoundRetriggerBadgeClass
+    getRoundRetriggerBadgeClass,
   } from '$lib/domain/games/bluesamurai';
 
   const {
     rounds,
     selectedRoundIndex,
-    onchange
+    onchange,
   }: {
     rounds: BlueSamuraiRound[];
     selectedRoundIndex: number;
@@ -36,7 +36,7 @@
     <span
       class={[
         'rounded border-2 px-3 py-1 text-xs font-semibold',
-        getRoundBadgeClass(selectedRound)
+        getRoundBadgeClass(selectedRound),
       ]}
     >
       {getRoundLabel(selectedRound)}

@@ -15,6 +15,6 @@ export function useFisherYatesCardsDisplay(getChosenIndexes: () => number[]) {
     },
     get remainingCards() {
       return result.remainingCards;
-    }
+    },
   };
 }

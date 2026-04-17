@@ -13,7 +13,7 @@ export const DICE_ROLL_ICON: Record<number, string> = {
   3: rollThreeIcon,
   4: rollFourIcon,
   5: rollFiveIcon,
-  6: rollSixIcon
+  6: rollSixIcon,
 };
 
 /** Returns the tab class for a snakes roll tab by index (alternates per turn pair). */

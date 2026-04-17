@@ -6,7 +6,7 @@
     stepNumber,
     resultIndex,
     float,
-    contentBlockClassName = 'p-4'
+    contentBlockClassName = 'p-4',
   }: {
     stepNumber: number;
     resultIndex: number;
@@ -32,9 +32,7 @@
         reelSize = <span class="font-bold text-blue-600 dark:text-blue-400">{reelSize}</span>
       </p>
       <p class="leading-relaxed">
-        float = <span class="font-bold text-blue-600 dark:text-blue-400"
-          >{float.toFixed(12)}</span
-        >
+        float = <span class="font-bold text-blue-600 dark:text-blue-400">{float.toFixed(12)}</span>
       </p>
     </div>
 
@@ -45,17 +43,18 @@
       </p>
       <p class="leading-relaxed">reelPosition</p>
       <p class="leading-relaxed">
-        = floor(<span class="font-bold text-blue-600 dark:text-blue-400">&lbrace;float&rbrace;</span
-        >
+        = floor(
+        <span class="font-bold text-blue-600 dark:text-blue-400">&lbrace;float&rbrace;</span>
         *
-        <span class="font-bold text-blue-600 dark:text-blue-400">&lbrace;reelSize&rbrace;</span>) +
-        1
+        <span class="font-bold text-blue-600 dark:text-blue-400">&lbrace;reelSize&rbrace;</span>
+        ) + 1
       </p>
       <p class="leading-relaxed">
-        = floor(<span class="font-bold text-blue-600 dark:text-blue-400"
-          >{float.toFixed(12)}</span
-        >
-        * <span class="font-bold text-blue-600 dark:text-blue-400">{reelSize}</span>) + 1
+        = floor(
+        <span class="font-bold text-blue-600 dark:text-blue-400">{float.toFixed(12)}</span>
+        *
+        <span class="font-bold text-blue-600 dark:text-blue-400">{reelSize}</span>
+        ) + 1
       </p>
       <p class="mt-2 leading-relaxed font-bold">
         = <span class="text-green-600 dark:text-green-400">{reelPosition + 1}</span>
@@ -64,7 +63,8 @@
   </ContentBlock>
 
   <p class="mt-4 text-xs text-gray-500 dark:text-gray-400">
-    See <span class="font-bold">Scarab Spin / Tome of Life</span> section on the
+    See <span class="font-bold">Scarab Spin / Tome of Life</span>
+    section on the
     <HighlightLink href="https://stake.com/provably-fair/game-events">game events</HighlightLink> page
   </p>
 </div>

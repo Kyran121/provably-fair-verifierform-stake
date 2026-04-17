@@ -7,12 +7,12 @@ const config = {
   preprocess: vitePreprocess(),
   kit: {
     adapter: adapter({
-      fallback: 'index.html'
+      fallback: 'index.html',
     }),
     paths: {
-      base: dev ? '' : process.env.BASE_PATH || ''
-    }
-  }
+      base: dev ? '' : process.env.BASE_PATH || '',
+    },
+  },
 };
 
 export default config;

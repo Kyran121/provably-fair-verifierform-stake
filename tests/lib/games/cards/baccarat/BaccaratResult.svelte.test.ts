@@ -18,7 +18,7 @@ describe('BaccaratResult', () => {
       20,
       'A-diamond, Q-club',
       '4-heart, 9-spade',
-      '8-club, J-club'
+      '8-club, J-club',
     ],
     [
       'ec75fca98de6f2d9',
@@ -26,7 +26,7 @@ describe('BaccaratResult', () => {
       21,
       '2-diamond, J-heart',
       'Q-heart, A-club',
-      'Q-diamond, 8-club'
+      'Q-diamond, 8-club',
     ],
     [
       'ec75fca98de6f2d9',
@@ -34,8 +34,8 @@ describe('BaccaratResult', () => {
       22,
       'J-heart, Q-heart',
       '8-spade, 4-heart',
-      'Q-spade, 7-club'
-    ]
+      'Q-spade, 7-club',
+    ],
   ])(
     'renders the correct results (clientseed=%s, serverseed=%s, nonce=%s, initialPlayer=%s, initialBanker=%s, decider=%s)',
     async (
@@ -50,7 +50,7 @@ describe('BaccaratResult', () => {
         nonce,
         clientseed,
         serverseed,
-        game: 'baccarat'
+        game: 'baccarat',
       } as Record<string, unknown>;
 
       const screen = render(BaccaratResult, { formValues });

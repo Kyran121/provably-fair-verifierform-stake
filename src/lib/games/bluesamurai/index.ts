@@ -1,6 +1,6 @@
 import {
   CLIENT_SEED_SERVER_SEED_NONCE_CONTROLS,
-  CLIENT_SEED_SERVER_SEED_NONCE_SCHEMA
+  CLIENT_SEED_SERVER_SEED_NONCE_SCHEMA,
 } from '$lib/controlSetup';
 import type { GameDefinition } from 'provably-fair-verifierform-lib';
 import BlueSamuraiResult from '$lib/games/bluesamurai/BlueSamuraiResult.svelte';
@@ -11,5 +11,5 @@ export const gameDefinition: GameDefinition = {
   schema: CLIENT_SEED_SERVER_SEED_NONCE_SCHEMA,
   controls: CLIENT_SEED_SERVER_SEED_NONCE_CONTROLS,
   ResultComponent: BlueSamuraiResult,
-  ExplanationComponent: BlueSamuraiExplanation
+  ExplanationComponent: BlueSamuraiExplanation,
 };

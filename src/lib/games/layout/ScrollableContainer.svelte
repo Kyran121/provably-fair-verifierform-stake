@@ -10,7 +10,7 @@
     gradientFromColor = 'from-white/95',
     gradientViaColor = 'via-white/80',
     gradientFromColorDark = 'dark:from-gray-900/95',
-    gradientViaColorDark = 'dark:via-gray-900/80'
+    gradientViaColorDark = 'dark:via-gray-900/80',
   }: {
     children?: import('svelte').Snippet;
     className?: string;
@@ -92,7 +92,7 @@
         gradientFromColor,
         gradientViaColor,
         gradientFromColorDark,
-        gradientViaColorDark
+        gradientViaColorDark,
       ]}
       style="left: {scrollButtonLeftOffset}"
     >
@@ -101,7 +101,7 @@
         class={[
           'pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full shadow-lg ring-1 transition-all',
           'bg-white ring-gray-200 hover:bg-gray-50 hover:ring-gray-300 active:bg-gray-100 dark:bg-gray-800 dark:ring-gray-600 dark:hover:bg-gray-700 dark:hover:ring-gray-500 dark:active:bg-gray-600',
-          'cursor-pointer'
+          'cursor-pointer',
         ]}
         onmousedown={() => startHold('left')}
         onmouseup={stopHold}
@@ -141,7 +141,7 @@
         gradientFromColor,
         gradientViaColor,
         gradientFromColorDark,
-        gradientViaColorDark
+        gradientViaColorDark,
       ]}
     >
       <button
@@ -149,7 +149,7 @@
         class={[
           'pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full shadow-lg ring-1 transition-all',
           'bg-white ring-gray-200 hover:bg-gray-50 hover:ring-gray-300 active:bg-gray-100 dark:bg-gray-800 dark:ring-gray-600 dark:hover:bg-gray-700 dark:hover:ring-gray-500 dark:active:bg-gray-600',
-          'cursor-pointer'
+          'cursor-pointer',
         ]}
         onmousedown={() => startHold('right')}
         onmouseup={stopHold}

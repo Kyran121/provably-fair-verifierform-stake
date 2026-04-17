@@ -24,12 +24,14 @@ export function useWheelSpin(getFormValues: () => Record<string, unknown>) {
     serverSeed: getFormValues().serverseed as string,
     nonce: getFormValues().nonce as number,
     risk: getFormValues().risk as Risk,
-    segments: getFormValues().segments as number
+    segments: getFormValues().segments as number,
   });
 
   const payline = $derived(paylines[seed.segments as unknown as keyof typeof paylines][seed.risk]);
 
-  const distinctPayline = $derived([...new Set(payline.slice(0))].sort((a, b) => (a as number) - (b as number)));
+  const distinctPayline = $derived(
+    [...new Set(payline.slice(0))].sort((a, b) => (a as number) - (b as number))
+  );
 
   const result = $derived.by(
     debouncer(
@@ -59,6 +61,6 @@ export function useWheelSpin(getFormValues: () => Record<string, unknown>) {
     },
     get isCalculating() {
       return result.debouncing;
-    }
+    },
   };
 }

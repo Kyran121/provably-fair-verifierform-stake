@@ -14,7 +14,7 @@
     float,
     chosen,
     chosenIndex,
-    color = CARD_COLOR_BLUE
+    color = CARD_COLOR_BLUE,
   }: {
     stepNumber: number;
     color?: CardColor;
@@ -25,7 +25,8 @@
   <p class="mb-2 text-2xl font-semibold">Step {stepNumber}</p>
   <p class="mb-2 text-lg">Transform float into card</p>
   <p class="mb-5 text-sm text-gray-500 dark:text-gray-400">
-    See <span class="font-bold">Blackjack, Hilo & Baccarat</span> section on the
+    See <span class="font-bold">Blackjack, Hilo & Baccarat</span>
+    section on the
     <HighlightLink href="https://stake.com/provably-fair/game-events">game events</HighlightLink> page
   </p>
 
@@ -92,12 +93,12 @@
         >
           <span class="mb-1 text-[10px] text-gray-600 dark:text-gray-400">Index {chosenIndex}</span>
           <span class="text-2xl font-bold">{chosen.value}</span>
-          <span class="mt-1 hidden dark:inline"
-            ><CardSuitIcon suit={chosen.suit} small={false} /></span
-          >
-          <span class="mt-1 inline dark:hidden"
-            ><CardSuitIcon suit={chosen.suit} small={false} dark={true} /></span
-          >
+          <span class="mt-1 hidden dark:inline">
+            <CardSuitIcon suit={chosen.suit} small={false} />
+          </span>
+          <span class="mt-1 inline dark:hidden">
+            <CardSuitIcon suit={chosen.suit} small={false} dark={true} />
+          </span>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import {
   CLIENT_SEED_SERVER_SEED_NONCE_CONTROLS,
-  CLIENT_SEED_SERVER_SEED_NONCE_SCHEMA
+  CLIENT_SEED_SERVER_SEED_NONCE_SCHEMA,
 } from '$lib/controlSetup';
 import type { GameDefinition } from 'provably-fair-verifierform-lib';
 import { z } from 'zod';
@@ -12,7 +12,7 @@ export const gameDefinition: GameDefinition = {
   schema: CLIENT_SEED_SERVER_SEED_NONCE_SCHEMA.extend({
     difficulty: z.enum(['easy', 'medium', 'hard', 'expert']),
     barcount: z.number().min(1).max(5),
-    selectedbars: z.string().optional()
+    selectedbars: z.string().optional(),
   }),
   controls: [
     ...CLIENT_SEED_SERVER_SEED_NONCE_CONTROLS,
@@ -21,7 +21,7 @@ export const gameDefinition: GameDefinition = {
       name: 'difficulty',
       label: 'Difficulty',
       type: 'select',
-      options: ['easy', 'medium', 'hard', 'expert']
+      options: ['easy', 'medium', 'hard', 'expert'],
     },
     {
       id: 'barcount',
@@ -32,8 +32,8 @@ export const gameDefinition: GameDefinition = {
       default: 1,
       attrs: {
         min: 1,
-        max: 5
-      }
+        max: 5,
+      },
     },
     {
       id: 'selectedbars',
@@ -42,9 +42,9 @@ export const gameDefinition: GameDefinition = {
       type: 'text',
       required: false,
       syncToUrl: true,
-      hide: () => true
-    }
+      hide: () => true,
+    },
   ],
   ResultComponent: BarsResult,
-  ExplanationComponent: BarsExplanation
+  ExplanationComponent: BarsExplanation,
 };

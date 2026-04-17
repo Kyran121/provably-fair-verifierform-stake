@@ -20,6 +20,6 @@ export function usePaylineResult(
     },
     get maxMulti() {
       return maxMulti;
-    }
+    },
   };
 }

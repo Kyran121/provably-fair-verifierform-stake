@@ -11,7 +11,7 @@
     chosen,
     chosenIndex,
     chosenIndexes,
-    contentBlockClassName = 'p-4'
+    contentBlockClassName = 'p-4',
   }: {
     stepNumber: number;
     resultIndex: number;
@@ -31,7 +31,8 @@
   <p class="mb-2 text-2xl font-semibold">Step {stepNumber}</p>
   <p class="mb-2 text-lg">Use float to get random index</p>
   <p class="mb-7 text-sm text-gray-500 dark:text-gray-400">
-    See <span class="font-bold">Pump</span> section on the
+    See <span class="font-bold">Pump</span>
+    section on the
     <HighlightLink href="https://stake.com/provably-fair/game-events">game events</HighlightLink> page
   </p>
 
@@ -43,9 +44,9 @@
         indexesRemaining = <span class="font-bold text-blue-600 dark:text-blue-400">25</span>
       </p>
       <p class="leading-relaxed">
-        previousIndexCount = <span class="font-bold text-blue-600 dark:text-blue-400"
-          >{resultIndex}</span
-        >
+        previousIndexCount = <span class="font-bold text-blue-600 dark:text-blue-400">
+          {resultIndex}
+        </span>
       </p>
     </div>
 
@@ -83,7 +84,7 @@
               'inline-flex flex-col items-center justify-center rounded border-2 py-1 transition-all',
               n === chosenIndex
                 ? 'border-green-500 bg-green-100 text-green-700 ring-2 ring-green-400 dark:border-green-400 dark:bg-green-900/30 dark:text-green-400 dark:ring-green-500'
-                : 'border-gray-200 bg-gray-50 text-gray-500 ring-2 ring-transparent dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400'
+                : 'border-gray-200 bg-gray-50 text-gray-500 ring-2 ring-transparent dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400',
             ]}
           >
             <span class="text-[10px] leading-none font-normal opacity-70">{n}</span>
@@ -103,14 +104,14 @@
       </p>
       <p class="mt-2 leading-relaxed">chosen</p>
       <p class="leading-relaxed">
-        = floor(<HighlightText>&lbrace;float&rbrace;</HighlightText> * (<HighlightText
-          >&lbrace;indexesRemaining&rbrace;</HighlightText
-        > - <HighlightText>&lbrace;previousIndexCount&rbrace;</HighlightText>))
+        = floor(<HighlightText>&lbrace;float&rbrace;</HighlightText> * (<HighlightText>
+          &lbrace;indexesRemaining&rbrace;
+        </HighlightText> - <HighlightText>&lbrace;previousIndexCount&rbrace;</HighlightText>))
       </p>
       <p class="leading-relaxed">
-        = floor(<HighlightText>{float.toFixed(12)}</HighlightText> * (<HighlightText
-          >25</HighlightText
-        > - <HighlightText>{resultIndex}</HighlightText>))
+        = floor(<HighlightText>{float.toFixed(12)}</HighlightText> * (<HighlightText>
+          25
+        </HighlightText> - <HighlightText>{resultIndex}</HighlightText>))
       </p>
       <p class="leading-relaxed font-bold">
         = <span class="text-blue-600 dark:text-blue-400">{chosenIndex}</span>

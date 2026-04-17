@@ -7,6 +7,6 @@
     $props();
 </script>
 
-<a class={twMerge(TEXT_HIGHLIGHT_COLOR, 'hover:underline', className)} target="_blank" {href}
-  >{@render children()}</a
->
+<a class={twMerge(TEXT_HIGHLIGHT_COLOR, 'hover:underline', className)} target="_blank" {href}>
+  {@render children()}
+</a>

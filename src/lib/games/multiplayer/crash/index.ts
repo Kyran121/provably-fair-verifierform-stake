@@ -7,7 +7,7 @@ import type { GameDefinition } from 'provably-fair-verifierform-lib';
 export const gameDefinition: GameDefinition = {
   name: 'Crash',
   schema: z.object({
-    gamehash: z.string()
+    gamehash: z.string(),
   }),
   controls: [
     {
@@ -15,7 +15,7 @@ export const gameDefinition: GameDefinition = {
       name: 'gamehash',
       label: 'Game Hash',
       type: 'text',
-      required: true
+      required: true,
     },
     {
       id: 'blockhash',
@@ -25,10 +25,10 @@ export const gameDefinition: GameDefinition = {
       disabled: true,
       syncToUrl: false,
       attrs: {
-        value: CRASH_SEED
-      }
-    }
+        value: CRASH_SEED,
+      },
+    },
   ],
   ResultComponent: CrashResult,
-  ExplanationComponent: CrashExplanation
+  ExplanationComponent: CrashExplanation,
 };

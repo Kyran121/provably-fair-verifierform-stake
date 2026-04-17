@@ -18,7 +18,9 @@
     {#if flipOutcome.isCalculating || !flipOutcome.items}
       <Loader />
     {:else}
-      <ContentBlock className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400">
+      <ContentBlock
+        className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400"
+      >
         <p class="font-medium">
           <span class="text-blue-600 dark:text-blue-400">Flips made in the order shown below.</span>
           Click a flip to see how it was generated using Stake's provably fair algorithm.
@@ -36,7 +38,12 @@
 
       {@const flip = flipOutcome.items[resultIndex]}
 
-      <FloatGenerationStep stepNumber={1} {resultIndex} seed={flipOutcome.seed!} float={flip.float} />
+      <FloatGenerationStep
+        stepNumber={1}
+        {resultIndex}
+        seed={flipOutcome.seed!}
+        float={flip.float}
+      />
       <FlipResultStep stepNumber={2} {...flip} />
     {/if}
   </div>

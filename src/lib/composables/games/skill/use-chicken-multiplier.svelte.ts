@@ -20,7 +20,7 @@ export function useChickenMultiplier(getFormValues: () => Record<string, unknown
     clientSeed: getFormValues().clientseed as string,
     serverSeed: getFormValues().serverseed as string,
     nonce: getFormValues().nonce as number,
-    difficulty: getFormValues().difficulty as ChickenDifficulty
+    difficulty: getFormValues().difficulty as ChickenDifficulty,
   });
 
   const payline = $derived(paylines[seed.difficulty]);
@@ -50,6 +50,6 @@ export function useChickenMultiplier(getFormValues: () => Record<string, unknown
     },
     get isCalculating() {
       return result.debouncing;
-    }
+    },
   };
 }

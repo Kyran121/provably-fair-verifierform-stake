@@ -7,12 +7,12 @@ import devtoolsJson from 'vite-plugin-devtools-json';
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit(), devtoolsJson()],
   build: {
-    sourcemap: true
+    sourcemap: true,
   },
   server: {
     fs: {
-      allow: ['./provably-fair-verifierform-lib']
-    }
+      allow: ['./provably-fair-verifierform-lib'],
+    },
   },
   test: {
     workspace: [
@@ -25,8 +25,8 @@ export default defineConfig({
           clearMocks: true,
           include: ['tests/**/*.svelte.{test,spec}.{js,ts}'],
           exclude: ['tests/lib/server/**'],
-          setupFiles: ['./tests/setup/setup-client.ts']
-        }
+          setupFiles: ['./tests/setup/setup-client.ts'],
+        },
       },
       {
         extends: './vite.config.ts',
@@ -35,9 +35,9 @@ export default defineConfig({
           //testTimeout: 100_000, (to run gen tests)
           environment: 'node',
           include: ['tests/**/*.{test,spec}.{js,ts}'],
-          exclude: ['tests/**/*.svelte.{test,spec}.{js,ts}', 'tests/**/gen/**']
-        }
-      }
+          exclude: ['tests/**/*.svelte.{test,spec}.{js,ts}', 'tests/**/gen/**'],
+        },
+      },
     ],
     coverage: {
       enabled: true,
@@ -46,8 +46,8 @@ export default defineConfig({
       exclude: [
         '**/src/lib/assets/**',
         '**/src/lib/games/**',
-        '!**/src/lib/games/**/*Result.svelte'
-      ]
-    }
-  }
+        '!**/src/lib/games/**/*Result.svelte',
+      ],
+    },
+  },
 });

@@ -11,7 +11,10 @@
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
   const dragonTower = useDragonTowerLevels(() => formValues);
-  const grid = useDragonTowerGrid(() => dragonTower.items, () => dragonTower.config.count);
+  const grid = useDragonTowerGrid(
+    () => dragonTower.items,
+    () => dragonTower.config.count
+  );
 
   const difficulty = $derived(formValues.difficulty as DragonTowerDifficulty);
   const results = $derived(grid.results);
@@ -27,9 +30,9 @@
   <div class="text-center">
     <p class="mb-3 text-sm text-gray-500 dark:text-gray-400">Egg positions by level</p>
     <p class="mb-4 text-xs text-gray-400 dark:text-gray-500">
-      Difficulty: <span class="font-semibold text-gray-600 capitalize dark:text-gray-300"
-        >{difficulty}</span
-      >
+      Difficulty: <span class="font-semibold text-gray-600 capitalize dark:text-gray-300">
+        {difficulty}
+      </span>
     </p>
 
     <div class="space-y-2">
@@ -50,7 +53,7 @@
                     'relative flex h-12 items-center justify-center rounded border-2 transition-all',
                     isEgg
                       ? 'border-green-400 bg-green-50 dark:border-green-500 dark:bg-green-900/20'
-                      : 'border-red-400 bg-red-50 dark:border-red-500 dark:bg-red-900/20'
+                      : 'border-red-400 bg-red-50 dark:border-red-500 dark:bg-red-900/20',
                   ]}
                 >
                   {#if isEgg}

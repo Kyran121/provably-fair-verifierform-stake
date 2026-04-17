@@ -1,7 +1,10 @@
 <script lang="ts">
   import { BlueSamuraiReelType } from '$lib/types';
   import probabilities from '$lib/assets/bluesamurai/bluesamurai-probabilities.json';
-  import { getProbabilityColClass, getProbabilitySummedCellClass } from '$lib/domain/games/bluesamurai';
+  import {
+    getProbabilityColClass,
+    getProbabilitySummedCellClass,
+  } from '$lib/domain/games/bluesamurai';
 
   const {
     reelType,
@@ -10,7 +13,7 @@
     probabilityKey,
     matchedIndex,
     isActive,
-    float
+    float,
   }: {
     reelType: BlueSamuraiReelType;
     activeReelType: BlueSamuraiReelType | undefined;
@@ -34,7 +37,7 @@
     <td
       class={[
         'p-2 transition-opacity',
-        isActiveRow ? getProbabilityColClass(n, matchedIndex, isActive) : 'opacity-30'
+        isActiveRow ? getProbabilityColClass(n, matchedIndex, isActive) : 'opacity-30',
       ]}
     >
       {#if probabilityKey === 'inner'}
@@ -61,7 +64,7 @@
       class={[
         'p-2 font-mono transition-all',
         isActiveRow ? getProbabilityColClass(n, matchedIndex, isActive) : 'opacity-30',
-        getProbabilitySummedCellClass(n, matchedIndex, isActive, isActiveRow)
+        getProbabilitySummedCellClass(n, matchedIndex, isActive, isActiveRow),
       ]}
     >
       {#if entry}

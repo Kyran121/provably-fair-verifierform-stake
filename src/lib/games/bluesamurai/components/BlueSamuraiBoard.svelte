@@ -4,7 +4,7 @@
     getCellBorderClass,
     getDisplayIcon,
     reelNoIndex,
-    reelWithIndex
+    reelWithIndex,
   } from '$lib/domain/games/bluesamurai';
   import BlueSamuraiIcon from '$lib/games/bluesamurai/components/BlueSamuraiIcon.svelte';
   import BlueSamuraiRoundBadges from '$lib/games/bluesamurai/components/BlueSamuraiRoundBadges.svelte';
@@ -39,7 +39,7 @@
         <div
           class={[
             'relative mb-1 rounded border-2',
-            getCellBorderClass(icon, index, round, focused)
+            getCellBorderClass(icon, index, round, focused),
           ]}
         >
           <BlueSamuraiIcon icon={getDisplayIcon(icon, index, round)} />

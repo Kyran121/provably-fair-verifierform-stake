@@ -1,6 +1,6 @@
 import {
   CLIENT_SEED_SERVER_SEED_NONCE_CONTROLS,
-  CLIENT_SEED_SERVER_SEED_NONCE_SCHEMA
+  CLIENT_SEED_SERVER_SEED_NONCE_SCHEMA,
 } from '$lib/controlSetup';
 import type { GameDefinition } from 'provably-fair-verifierform-lib';
 import MolesResult from './MolesResult.svelte';
@@ -10,7 +10,7 @@ import { z } from 'zod';
 export const gameDefinition: GameDefinition = {
   name: 'Moles',
   schema: CLIENT_SEED_SERVER_SEED_NONCE_SCHEMA.extend({
-    molescount: z.number().min(1).max(6)
+    molescount: z.number().min(1).max(6),
   }),
   controls: [
     ...CLIENT_SEED_SERVER_SEED_NONCE_CONTROLS,
@@ -23,10 +23,10 @@ export const gameDefinition: GameDefinition = {
       default: 3,
       attrs: {
         min: 1,
-        max: 6
-      }
-    }
+        max: 6,
+      },
+    },
   ],
   ResultComponent: MolesResult,
-  ExplanationComponent: MolesExplanation
+  ExplanationComponent: MolesExplanation,
 };

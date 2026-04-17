@@ -18,7 +18,7 @@
     seed,
     float,
     hideStepNumber = false,
-    contentBlockClassName = 'p-4'
+    contentBlockClassName = 'p-4',
   }: FloatExplanationStepProps = $props();
 
   const round = $derived(Math.floor(resultIndex / HEX_CHARS_PER_FLOAT));
@@ -44,9 +44,11 @@
       {/if}
       <p class="mb-2 text-lg">Extract float based on client seed, server seed, and nonce</p>
       <p class="mb-7 text-sm text-gray-500 dark:text-gray-400">
-        Refer to scripts on the <HighlightLink href="https://stake.com/provably-fair/implementation"
-          >implementation</HighlightLink
+        Refer to scripts on the <HighlightLink
+          href="https://stake.com/provably-fair/implementation"
         >
+          implementation
+        </HighlightLink>
         and
         <HighlightLink href="https://stake.com/provably-fair/conversions">conversion</HighlightLink>
         pages
@@ -58,8 +60,9 @@
       <div class="mb-6 border-b border-gray-300 pb-4 dark:border-gray-600">
         <p class="mb-2 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">Constants</p>
         <p class="leading-relaxed">
-          resultIndex = <span class="font-bold text-blue-600 dark:text-blue-400">{resultIndex}</span
-          >
+          resultIndex = <span class="font-bold text-blue-600 dark:text-blue-400">
+            {resultIndex}
+          </span>
         </p>
         <p class="leading-relaxed">HMAC_OUTPUT_LENGTH = {HMAC_OUTPUT_LENGTH}</p>
         <p class="leading-relaxed">HEX_CHARS_PER_FLOAT = {HEX_CHARS_PER_FLOAT}</p>
@@ -115,9 +118,9 @@
           key &nbsp;= <HighlightText>&lbrace;serverseed&rbrace;</HighlightText>
         </p>
         <p class="indent-8 leading-relaxed">
-          data = <HighlightText
-            >&lbrace;clientseed&rbrace;:&lbrace;nonce&rbrace;:&lbrace;round&rbrace;</HighlightText
-          >
+          data = <HighlightText>
+            &lbrace;clientseed&rbrace;:&lbrace;nonce&rbrace;:&lbrace;round&rbrace;
+          </HighlightText>
         </p>
         <p class="indent-4 leading-relaxed">)</p>
         <p class="mt-2 leading-relaxed">= hmac_sha256(</p>
@@ -161,10 +164,11 @@
         </p>
         <p class="indent-4 leading-relaxed">)</p>
         <p class="mt-2 rounded bg-gray-100 p-2 text-xs leading-relaxed break-all dark:bg-gray-800">
-          = <span class="text-gray-400">{hmac.substring(0, cursor)}</span><HighlightText
-            className="text-base font-bold"
-            >{hmac.substring(cursor, cursor + HEX_CHARS_PER_FLOAT)}</HighlightText
-          ><span class="text-gray-400">{hmac.substring(cursor + HEX_CHARS_PER_FLOAT)}</span>
+          = <span class="text-gray-400">{hmac.substring(0, cursor)}</span>
+          <HighlightText className="text-base font-bold">
+            {hmac.substring(cursor, cursor + HEX_CHARS_PER_FLOAT)}
+          </HighlightText>
+          <span class="text-gray-400">{hmac.substring(cursor + HEX_CHARS_PER_FLOAT)}</span>
         </p>
       </div>
     </ContentBlock>
@@ -185,8 +189,9 @@
                 <th
                   scope="col"
                   class="px-4 py-3 text-center font-semibold text-gray-900 sm:px-6 dark:text-white"
-                  >Byte {i + 1}</th
                 >
+                  Byte {i + 1}
+                </th>
               {/each}
             </tr>
           </thead>
@@ -197,26 +202,30 @@
               <th
                 scope="row"
                 class="px-4 py-4 font-semibold whitespace-nowrap text-gray-900 sm:px-6 dark:text-white"
-                >Hex</th
               >
+                Hex
+              </th>
               {#each hexes! as hex}
                 <td
                   class="px-4 py-4 text-center font-mono font-bold text-blue-600 sm:px-6 dark:text-blue-400"
-                  >{hex}</td
                 >
+                  {hex}
+                </td>
               {/each}
             </tr>
             <tr class="bg-green-50 dark:bg-green-900/10">
               <th
                 scope="row"
                 class="px-4 py-4 font-semibold whitespace-nowrap text-gray-900 sm:px-6 dark:text-white"
-                >Byte</th
               >
+                Byte
+              </th>
               {#each bytes! as byte}
                 <td
                   class="px-4 py-4 text-center font-mono font-bold text-green-600 sm:px-6 dark:text-green-400"
-                  >{byte}</td
                 >
+                  {byte}
+                </td>
               {/each}
             </tr>
           </tbody>
@@ -235,13 +244,15 @@
             {#each bytes! as byte, i}
               <tr class="border-b border-gray-300 dark:border-gray-700">
                 <td class="w-8 px-4 py-3 text-center">{i === 0 ? '' : '+'}</td>
-                <td class="px-4 py-3 font-bold text-purple-600 dark:text-purple-400"
-                  >{(byte / 256 ** (i + 1)).toFixed(12)}</td
-                >
+                <td class="px-4 py-3 font-bold text-purple-600 dark:text-purple-400">
+                  {(byte / 256 ** (i + 1)).toFixed(12)}
+                </td>
                 <td class="px-6 py-3 text-gray-600 dark:text-gray-400">
-                  (<span class="font-bold">{('' + byte).padStart(3, '0')}</span> / 256<sup
-                    >{i + 1}</sup
-                  >)
+                  (
+                  <span class="font-bold">{('' + byte).padStart(3, '0')}</span>
+                  / 256
+                  <sup>{i + 1}</sup>
+                  )
                 </td>
               </tr>
             {/each}
@@ -249,9 +260,9 @@
               class="border-t-2 border-green-500 bg-green-50 font-bold dark:border-green-600 dark:bg-green-900/10"
             >
               <td class="px-4 py-3 text-center text-lg">=</td>
-              <td class="px-4 py-3 text-lg text-green-600 dark:text-green-400"
-                >{float.toFixed(12)}</td
-              >
+              <td class="px-4 py-3 text-lg text-green-600 dark:text-green-400">
+                {float.toFixed(12)}
+              </td>
               <td class="px-6 py-3 text-sm text-gray-600 dark:text-gray-400">Final Float</td>
             </tr>
           </tbody>

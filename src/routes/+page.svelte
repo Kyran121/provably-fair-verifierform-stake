@@ -63,7 +63,7 @@
     tarot: tarotGameDefinition,
     tomeoflife: tomeOfLifeGameDefinition,
     videopoker: videoPokerGameDefinition,
-    wheel: wheelGameDefinition
+    wheel: wheelGameDefinition,
   };
 </script>
 

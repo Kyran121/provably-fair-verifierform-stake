@@ -12,8 +12,8 @@ const TILE_COLOR_TIERS: { minExclusive: number; colors: BarsTileColors }[] = [
       bg: 'bg-yellow-100 dark:bg-yellow-900/30',
       border: 'border-yellow-500 dark:border-yellow-400',
       ring: 'ring-yellow-500 dark:ring-yellow-400',
-      text: 'text-yellow-700 dark:text-yellow-400'
-    }
+      text: 'text-yellow-700 dark:text-yellow-400',
+    },
   },
   {
     minExclusive: 1,
@@ -21,16 +21,16 @@ const TILE_COLOR_TIERS: { minExclusive: number; colors: BarsTileColors }[] = [
       bg: 'bg-green-100 dark:bg-green-900/30',
       border: 'border-green-500 dark:border-green-400',
       ring: 'ring-green-500 dark:ring-green-400',
-      text: 'text-green-700 dark:text-green-400'
-    }
-  }
+      text: 'text-green-700 dark:text-green-400',
+    },
+  },
 ];
 
 const TILE_COLOR_DEFAULT: BarsTileColors = {
   bg: 'bg-gray-100 dark:bg-gray-800',
   border: 'border-gray-400 dark:border-gray-500',
   ring: 'ring-gray-400 dark:ring-gray-500',
-  text: 'text-gray-600 dark:text-gray-400'
+  text: 'text-gray-600 dark:text-gray-400',
 };
 
 export function getBarsTileColors(value: number): BarsTileColors {

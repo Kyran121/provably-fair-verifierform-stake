@@ -11,5 +11,5 @@ export const DRAGON_TOWER_LEVEL_MAP: Record<DragonTowerDifficulty, DragonTowerDi
   medium: { count: 2, size: 3 },
   hard: { count: 1, size: 2 },
   expert: { count: 1, size: 3 },
-  master: { count: 1, size: 4 }
+  master: { count: 1, size: 4 },
 };

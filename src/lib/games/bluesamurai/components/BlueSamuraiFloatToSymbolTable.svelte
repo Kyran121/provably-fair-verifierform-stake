@@ -9,14 +9,14 @@
     outerTileProbabilitySummed,
     innerSummedByIndex,
     outerSummedByIndex,
-    getProbabilityColClass
+    getProbabilityColClass,
   } from '$lib/domain/games/bluesamurai';
   import bigDecimal from 'js-big-decimal';
   import { useTableScrollReset } from '$lib/composables/core';
 
   const {
     float,
-    reelType
+    reelType,
   }: {
     float?: number;
     reelType?: BlueSamuraiReelType;
@@ -65,11 +65,12 @@
           'rounded border border-purple-300 bg-purple-50 px-3 py-1 text-xs font-medium text-purple-700 transition-all hover:border-purple-400 hover:bg-purple-100 dark:border-purple-700 dark:bg-purple-900/20 dark:text-purple-300 dark:hover:border-purple-600 dark:hover:bg-purple-900/40',
           scrollReset.showResetButton
             ? 'visible opacity-100'
-            : 'pointer-events-none invisible opacity-0'
+            : 'pointer-events-none invisible opacity-0',
         ]}
         onclick={scrollReset.scrollToTarget}
       >
-        <span class="mr-1">↻</span> Reset Scroll
+        <span class="mr-1">↻</span>
+        Reset Scroll
       </button>
     </div>
   {/if}
@@ -89,7 +90,7 @@
                 data-col={n}
                 class={[
                   'p-1 pt-2 pb-2 transition-opacity',
-                  getProbabilityColClass(n, matchedIndex, isActive)
+                  getProbabilityColClass(n, matchedIndex, isActive),
                 ]}
               >
                 <div class="mx-auto w-12 bg-gray-300 dark:bg-gray-600">
@@ -133,8 +134,9 @@
       </span>
       <span class="flex items-center gap-1.5">
         <span class="inline-block h-3 w-3 rounded-sm bg-green-200 dark:bg-green-700"></span>
-        prev. summed / <span class="font-bold text-purple-700 dark:text-purple-300">float</span> / summed
-        ✓ — float falls in this range
+        prev. summed /
+        <span class="font-bold text-purple-700 dark:text-purple-300">float</span>
+        / summed ✓ — float falls in this range
       </span>
     </div>
   {/if}

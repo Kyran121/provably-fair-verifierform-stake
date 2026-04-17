@@ -8,7 +8,7 @@
   import {
     getVideoPokerTabClass,
     getVideoPokerTabSelectedClass,
-    getVideoPokerColor
+    getVideoPokerColor,
   } from '$lib/domain/games/cards';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
@@ -27,8 +27,9 @@
         className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400"
       >
         <p class="font-medium">
-          <span class="text-blue-600 dark:text-blue-400">Cards drawn in the order shown below.</span
-          >
+          <span class="text-blue-600 dark:text-blue-400">
+            Cards drawn in the order shown below.
+          </span>
           Click a card to find out how it was generated using Stake's provably fair algorithm.
         </p>
       </ContentBlock>
@@ -45,7 +46,12 @@
 
       {@const selectedItem = videoPoker.items[resultIndex]}
 
-      <FloatGenerationStep stepNumber={1} {resultIndex} seed={videoPoker.seed} float={selectedItem.float} />
+      <FloatGenerationStep
+        stepNumber={1}
+        {resultIndex}
+        seed={videoPoker.seed}
+        float={selectedItem.float}
+      />
       <VideoPokerResultStep
         stepNumber={2}
         {resultIndex}

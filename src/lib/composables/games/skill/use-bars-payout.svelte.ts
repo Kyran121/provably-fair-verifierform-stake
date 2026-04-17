@@ -21,7 +21,7 @@ export function useBarsPayout(getFormValues: () => Record<string, unknown>) {
     nonce: getFormValues().nonce as number,
     difficulty: getFormValues().difficulty as BarsDifficulty,
     barCount: getFormValues().barcount as number,
-    selectedBars: getFormValues().selectedbars as string | undefined
+    selectedBars: getFormValues().selectedbars as string | undefined,
   });
 
   const result = $derived.by(
@@ -58,7 +58,7 @@ export function useBarsPayout(getFormValues: () => Record<string, unknown>) {
           results,
           totalPayout,
           hasSelection: selectedBarsSet.size > 0,
-          selectedCount: parsedBars.length
+          selectedCount: parsedBars.length,
         };
       },
       350
@@ -74,6 +74,6 @@ export function useBarsPayout(getFormValues: () => Record<string, unknown>) {
     },
     get isCalculating() {
       return result.debouncing;
-    }
+    },
   };
 }

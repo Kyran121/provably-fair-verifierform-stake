@@ -17,8 +17,10 @@
       <span class="mb-1 text-xs text-gray-500 dark:text-gray-400">Roulette number</span>
       <span
         data-testid="roulette-result"
-        class="text-2xl font-bold text-green-600 dark:text-green-400">{roulette.chosenNumber!}</span
+        class="text-2xl font-bold text-green-600 dark:text-green-400"
       >
+        {roulette.chosenNumber!}
+      </span>
     </div>
   </div>
   <RouletteBoard chosenNumber={roulette.chosenNumber!} />

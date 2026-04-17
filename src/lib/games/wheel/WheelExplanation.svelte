@@ -20,16 +20,16 @@
         className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-amber-500 dark:border-amber-400"
       >
         <p class="font-medium">
-          <span class="text-amber-600 dark:text-amber-400"
-            >Wheel outcome is determined by a float mapped to wheel segments.</span
-          >
+          <span class="text-amber-600 dark:text-amber-400">
+            Wheel outcome is determined by a float mapped to wheel segments.
+          </span>
           Each segment contains a multiplier value based on the selected risk level.
         </p>
       </ContentBlock>
 
       <!-- Step 1 -->
       <ContentBlock className="mb-6 p-5">
-        <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">
+        <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">
           Step 1 — Generate Float
         </p>
         <p class="mb-3 text-gray-700 dark:text-gray-300">

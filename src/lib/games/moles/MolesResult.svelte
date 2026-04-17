@@ -37,7 +37,7 @@
             type="button"
             class={[
               'rounded border px-3.5 py-1.5 text-sm font-medium transition-all',
-              selectedRound === roundIndex ? MOLES_ROUND_SELECTED_CLASS : MOLES_ROUND_CLASS
+              selectedRound === roundIndex ? MOLES_ROUND_SELECTED_CLASS : MOLES_ROUND_CLASS,
             ]}
             onclick={() => (selectedRound = roundIndex)}
           >

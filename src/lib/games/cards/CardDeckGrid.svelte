@@ -7,7 +7,7 @@
     cards,
     chosenIndex,
     color,
-    label
+    label,
   }: {
     cards: Card[];
     chosenIndex: number;
@@ -27,7 +27,7 @@
           'flex min-w-0 flex-col items-center justify-center rounded border p-1.5 transition-all',
           n === chosenIndex
             ? `z-10 scale-110 font-bold shadow-lg ring-2 ${color.border} ${color.bg} ${color.ring}`
-            : 'border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-800'
+            : 'border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-800',
         ]}
         disabled
       >

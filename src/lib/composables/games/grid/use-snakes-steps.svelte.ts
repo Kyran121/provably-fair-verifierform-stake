@@ -35,7 +35,7 @@ export function useSnakesSteps(getFormValues: () => Record<string, unknown>) {
     clientSeed: getFormValues().clientseed as string,
     serverSeed: getFormValues().serverseed as string,
     nonce: getFormValues().nonce as number,
-    difficulty: getFormValues().difficulty as SnakesDifficulty
+    difficulty: getFormValues().difficulty as SnakesDifficulty,
   });
 
   const payline = $derived(paylines[seed.difficulty]);
@@ -69,7 +69,7 @@ export function useSnakesSteps(getFormValues: () => Record<string, unknown>) {
 
         return {
           rolls,
-          result: { best: Math.floor(best * 100) / 100, steps } satisfies SnakesResult
+          result: { best: Math.floor(best * 100) / 100, steps } satisfies SnakesResult,
         };
       },
       350
@@ -94,6 +94,6 @@ export function useSnakesSteps(getFormValues: () => Record<string, unknown>) {
     },
     get isCalculating() {
       return result.debouncing;
-    }
+    },
   };
 }

@@ -12,14 +12,14 @@ const minorArcanaByDifficulty = {
   easy: minorArcanaEasy,
   medium: minorArcanaMedium,
   hard: minorArcanaHard,
-  expert: minorArcanaExpert
+  expert: minorArcanaExpert,
 };
 
 const majorArcanaByDifficulty = {
   easy: majorArcanaEasy,
   medium: majorArcanaMedium,
   hard: majorArcanaHard,
-  expert: majorArcanaExpert
+  expert: majorArcanaExpert,
 };
 
 export function findCard(

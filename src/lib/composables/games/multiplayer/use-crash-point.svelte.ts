@@ -9,14 +9,16 @@ import { CRASH_SEED } from '$lib/config';
 /** Crash point composable - calculates crash multiplier from game hash, exposing seed and hmac */
 export function useCrashPoint(getFormValues: () => Record<string, unknown>) {
   const seed = $derived<CrashSeed>({
-    gameHash: getFormValues().gamehash as string
+    gameHash: getFormValues().gamehash as string,
   });
 
   const result = $derived.by(
     debouncer(
       () => seed,
       (seed) => {
-        const hmac = toHex(createHmac(SHA256, toUInt8Array(seed.gameHash), toUInt8Array(CRASH_SEED)));
+        const hmac = toHex(
+          createHmac(SHA256, toUInt8Array(seed.gameHash), toUInt8Array(CRASH_SEED))
+        );
         const int = parseInt(hmac.substring(0, 8), 16);
         const crashPoint = Math.floor(Math.max(1, (2 ** 32 / (int + 1)) * (1 - 0.01)) * 100) / 100;
         return { hmac, crashPoint };
@@ -37,6 +39,6 @@ export function useCrashPoint(getFormValues: () => Record<string, unknown>) {
     },
     get isCalculating() {
       return result.debouncing;
-    }
+    },
   };
 }

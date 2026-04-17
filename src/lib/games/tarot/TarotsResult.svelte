@@ -35,7 +35,7 @@
   </ContentBlock>
 
   <ContentBlock className="mt-4 p-4">
-    <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">Cards Drawn</p>
+    <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">Cards Drawn</p>
     <div class="grid grid-cols-3 gap-3">
       {#each tarots.items! as { card, arcanaType }, i (i)}
         <TarotsCard {arcanaType} multiplier={card.multiplier} />

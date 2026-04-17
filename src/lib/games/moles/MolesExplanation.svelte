@@ -26,10 +26,10 @@
         className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400"
       >
         <p class="font-medium">
-          <span class="text-blue-600 dark:text-blue-400"
-            >Each round generates {molesSeed.molesCount} mole{molesSeed.molesCount > 1 ? 's' : ''} using
-            Fisher-Yates shuffle.</span
-          >
+          <span class="text-blue-600 dark:text-blue-400">
+            Each round generates {molesSeed.molesCount} mole{molesSeed.molesCount > 1 ? 's' : ''} using
+            Fisher-Yates shuffle.
+          </span>
           Click a mole tab to see how it was generated using Stake's provably fair algorithm.
         </p>
       </ContentBlock>
@@ -51,7 +51,7 @@
                     type="button"
                     class={[
                       'flex w-10 flex-col items-center justify-center overflow-visible rounded border p-1.5 text-sm font-medium transition-all',
-                      fi === explanation.flatIndex ? MOLES_TAB_SELECTED_CLASS : MOLES_TAB_CLASS
+                      fi === explanation.flatIndex ? MOLES_TAB_SELECTED_CLASS : MOLES_TAB_CLASS,
                     ]}
                     onclick={() => (explanation.flatIndex = fi)}
                   >

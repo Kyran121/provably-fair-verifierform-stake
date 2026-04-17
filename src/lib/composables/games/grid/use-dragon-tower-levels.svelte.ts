@@ -24,7 +24,7 @@ export function useDragonTowerLevels(getFormValues: () => Record<string, unknown
     clientSeed: getFormValues().clientseed as string,
     serverSeed: getFormValues().serverseed as string,
     nonce: getFormValues().nonce as number,
-    difficulty: getFormValues().difficulty as DragonTowerDifficulty
+    difficulty: getFormValues().difficulty as DragonTowerDifficulty,
   });
 
   const config = $derived(DRAGON_TOWER_LEVEL_MAP[seed.difficulty]);
@@ -60,6 +60,6 @@ export function useDragonTowerLevels(getFormValues: () => Record<string, unknown
     },
     get isCalculating() {
       return result.debouncing;
-    }
+    },
   };
 }

@@ -7,14 +7,14 @@ export interface MinesSeed extends Seed {
 
 export enum Direction {
   LEFT = 'L',
-  RIGHT = 'R'
+  RIGHT = 'R',
 }
 
 export type Risk = 'low' | 'medium' | 'high';
 
 export enum BlueSamuraiRetriggerType {
   SPECIAL = 'special',
-  BONUS = 'bonus'
+  BONUS = 'bonus',
 }
 
 export interface BlueSamuraiRound {
@@ -41,12 +41,12 @@ export interface BlueSamuraiSymbol {
 
 export enum IndicatorPosition {
   BOTTOM_LEFT,
-  BOTTOM_RIGHT
+  BOTTOM_RIGHT,
 }
 
 export enum BlueSamuraiReelType {
   INNER = 'inner',
-  OUTER = 'outer'
+  OUTER = 'outer',
 }
 
 export enum BlueSamuraiIcon {
@@ -61,7 +61,7 @@ export enum BlueSamuraiIcon {
   S9 = 's9',
   SCATTER = 'scatter',
   SAMURAI = 'samurai',
-  WILD = 'wild'
+  WILD = 'wild',
 }
 
 export enum ScarabSpinsTomeOfLifeIcon {
@@ -77,7 +77,7 @@ export enum ScarabSpinsTomeOfLifeIcon {
   KING = 'king',
   ACE = 'ace',
   WILD = 'wild',
-  SCATTER = 'scatter'
+  SCATTER = 'scatter',
 }
 
 export interface ScarabSpinsTomeOfLifeRound {
@@ -91,7 +91,7 @@ export interface ScarabSpinsTomeOfLifeRound {
 
 export enum CoinFlip {
   HEAD = 'heads',
-  TAIL = 'tails'
+  TAIL = 'tails',
 }
 
 export enum DartsColor {
@@ -100,14 +100,14 @@ export enum DartsColor {
   YELLOW = '#fcc101',
   ORANGE = '#fb6120',
   LIGHT_GRAY = '#213843',
-  DARK_GRAY = '#0e202c'
+  DARK_GRAY = '#0e202c',
 }
 
 export enum DartsDifficulty {
   EASY = 'easy',
   MEDIUM = 'medium',
   HARD = 'hard',
-  EXPERT = 'expert'
+  EXPERT = 'expert',
 }
 
 export interface DartsSeed extends Seed {
@@ -118,7 +118,7 @@ export enum CasesDifficulty {
   EASY = 'easy',
   MEDIUM = 'medium',
   HARD = 'hard',
-  EXPERT = 'expert'
+  EXPERT = 'expert',
 }
 
 export interface CasesSeed extends Seed {
@@ -129,7 +129,7 @@ export enum BarsDifficulty {
   EASY = 'easy',
   MEDIUM = 'medium',
   HARD = 'hard',
-  EXPERT = 'expert'
+  EXPERT = 'expert',
 }
 
 export interface BarsSeed extends Seed {
@@ -143,7 +143,7 @@ export enum SnakesDifficulty {
   MEDIUM = 'medium',
   HARD = 'hard',
   EXPERT = 'expert',
-  MASTER = 'master'
+  MASTER = 'master',
 }
 
 export interface SnakesSeed extends Seed {
@@ -154,7 +154,7 @@ export enum PumpDifficulty {
   EASY = 'easy',
   MEDIUM = 'medium',
   HARD = 'hard',
-  EXPERT = 'expert'
+  EXPERT = 'expert',
 }
 
 export interface PumpSeed extends Seed {
@@ -165,7 +165,7 @@ export enum ChickenDifficulty {
   EASY = 'easy',
   MEDIUM = 'medium',
   HARD = 'hard',
-  EXPERT = 'expert'
+  EXPERT = 'expert',
 }
 
 export interface ChickenSeed extends Seed {
@@ -182,7 +182,7 @@ export enum DragonTowerDifficulty {
   MEDIUM = 'medium',
   HARD = 'hard',
   EXPERT = 'expert',
-  MASTER = 'master'
+  MASTER = 'master',
 }
 
 export interface DragonTowerSeed extends Seed {
@@ -246,7 +246,7 @@ export enum CardSuit {
   DIAMOND = 'diamond',
   HEART = 'heart',
   SPADE = 'spade',
-  CLUB = 'club'
+  CLUB = 'club',
 }
 
 export enum Gem {
@@ -256,7 +256,7 @@ export enum Gem {
   RED = 'red',
   CYAN = 'cyan',
   PINK = 'pink',
-  BLUE = 'blue'
+  BLUE = 'blue',
 }
 
 export type Card = {
@@ -267,7 +267,7 @@ export type Card = {
 export enum RockPaperScissorsOutcome {
   ROCK = 'rock',
   PAPER = 'paper',
-  SCISSORS = 'scissors'
+  SCISSORS = 'scissors',
 }
 
 export type RGB = [number, number, number];
@@ -282,7 +282,7 @@ export enum TarotDifficulty {
   EASY = 'easy',
   MEDIUM = 'medium',
   HARD = 'hard',
-  EXPERT = 'expert'
+  EXPERT = 'expert',
 }
 
 export interface TarotSeed extends Seed {
@@ -296,7 +296,7 @@ export type TarotCard = {
 
 export enum TarotArcanaType {
   MINOR = 'minor',
-  MAJOR = 'major'
+  MAJOR = 'major',
 }
 
 // Drill

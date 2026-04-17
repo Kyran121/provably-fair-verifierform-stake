@@ -10,7 +10,7 @@
 
   const {
     formValues,
-    IconComponent
+    IconComponent,
   }: {
     formValues: Record<string, unknown>;
     IconComponent: Component<{ icon: ScarabSpinsTomeOfLifeIcon }>;
@@ -34,7 +34,7 @@
 
   {#if bonusRound}
     <ContentBlock className="mb-4 p-4">
-      <p class="mb-3 text-center font-sans text-xs uppercase text-gray-500 dark:text-gray-400">
+      <p class="mb-3 text-center font-sans text-xs text-gray-500 uppercase dark:text-gray-400">
         Bonus Round ({spinCount - 1} additional spins)
       </p>
 

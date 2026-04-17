@@ -10,7 +10,7 @@
   const {
     floats,
     resultIndex,
-    IconComponent
+    IconComponent,
   }: {
     floats: number[];
     resultIndex: number;
@@ -56,8 +56,14 @@
   }
 
   function stopHold(n: number) {
-    if (holdTimeouts[n] !== null) { clearTimeout(holdTimeouts[n]!); holdTimeouts[n] = null; }
-    if (holdIntervals[n] !== null) { clearInterval(holdIntervals[n]!); holdIntervals[n] = null; }
+    if (holdTimeouts[n] !== null) {
+      clearTimeout(holdTimeouts[n]!);
+      holdTimeouts[n] = null;
+    }
+    if (holdIntervals[n] !== null) {
+      clearInterval(holdIntervals[n]!);
+      holdIntervals[n] = null;
+    }
   }
 
   function resetAllScrollPositions() {
@@ -100,13 +106,13 @@
 </script>
 
 <ContentBlock className="mt-5 mb-7 p-5">
-  <p class="mb-3 text-center font-sans text-xs uppercase text-gray-500 dark:text-gray-400">
+  <p class="mb-3 text-center font-sans text-xs text-gray-500 uppercase dark:text-gray-400">
     Symbol Ordering
   </p>
   <p class="mb-6 text-center text-sm text-gray-700 dark:text-gray-300">
-    View the complete symbol ordering for each reel. The highlighted position shows the center position
-    for the selected spin. Use the <span class="font-semibold">↑ ↓</span> arrows on each reel to scroll
-    through its symbols.
+    View the complete symbol ordering for each reel. The highlighted position shows the center
+    position for the selected spin. Use the <span class="font-semibold">↑ ↓</span>
+    arrows on each reel to scroll through its symbols.
   </p>
   <div class="mb-5 flex justify-center">
     <button
@@ -131,13 +137,13 @@
                 'pointer-events-none absolute top-0 z-20 flex w-full items-start justify-center bg-gradient-to-b to-transparent',
                 nn === focusedReelIndex
                   ? 'from-indigo-50/95 via-indigo-50/80 dark:from-indigo-900/30 dark:via-indigo-900/20'
-                  : 'from-gray-50/95 via-gray-50/80 dark:from-gray-800/95 dark:via-gray-800/80'
+                  : 'from-gray-50/95 via-gray-50/80 dark:from-gray-800/95 dark:via-gray-800/80',
               ]}
               style="height: 2.5rem;"
             >
               <button
                 type="button"
-                class="pointer-events-auto mt-2 flex h-7 w-7 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-gray-200 transition-all hover:bg-gray-50 hover:ring-gray-300 dark:bg-gray-800 dark:ring-gray-600 dark:hover:bg-gray-700 cursor-pointer"
+                class="pointer-events-auto mt-2 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full bg-white shadow-md ring-1 ring-gray-200 transition-all hover:bg-gray-50 hover:ring-gray-300 dark:bg-gray-800 dark:ring-gray-600 dark:hover:bg-gray-700"
                 onmousedown={() => startHold(nn, 'up')}
                 onmouseup={() => stopHold(nn)}
                 onmouseleave={() => stopHold(nn)}
@@ -146,8 +152,18 @@
                 ontouchcancel={() => stopHold(nn)}
                 aria-label="Scroll up"
               >
-                <svg class="h-4 w-4 text-gray-700 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 15l7-7 7 7" />
+                <svg
+                  class="h-4 w-4 text-gray-700 dark:text-gray-200"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="3"
+                    d="M5 15l7-7 7 7"
+                  />
                 </svg>
               </button>
             </div>
@@ -156,10 +172,10 @@
           <!-- Reel content -->
           <div
             class={[
-              'h-65 flex-none overflow-y-auto overflow-x-hidden rounded border-2 pr-2',
+              'h-65 flex-none overflow-x-hidden overflow-y-auto rounded border-2 pr-2',
               nn === focusedReelIndex
                 ? 'border-indigo-500 bg-indigo-50 dark:border-indigo-400 dark:bg-indigo-900/20'
-                : 'border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-800'
+                : 'border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-800',
             ]}
             bind:this={reelRefs[nn]}
           >
@@ -197,13 +213,13 @@
                 'pointer-events-none absolute bottom-0 z-20 flex w-full items-end justify-center bg-gradient-to-t to-transparent',
                 nn === focusedReelIndex
                   ? 'from-indigo-50/95 via-indigo-50/80 dark:from-indigo-900/30 dark:via-indigo-900/20'
-                  : 'from-gray-50/95 via-gray-50/80 dark:from-gray-800/95 dark:via-gray-800/80'
+                  : 'from-gray-50/95 via-gray-50/80 dark:from-gray-800/95 dark:via-gray-800/80',
               ]}
               style="height: 2.5rem;"
             >
               <button
                 type="button"
-                class="pointer-events-auto mb-2 flex h-7 w-7 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-gray-200 transition-all hover:bg-gray-50 hover:ring-gray-300 dark:bg-gray-800 dark:ring-gray-600 dark:hover:bg-gray-700 cursor-pointer"
+                class="pointer-events-auto mb-2 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full bg-white shadow-md ring-1 ring-gray-200 transition-all hover:bg-gray-50 hover:ring-gray-300 dark:bg-gray-800 dark:ring-gray-600 dark:hover:bg-gray-700"
                 onmousedown={() => startHold(nn, 'down')}
                 onmouseup={() => stopHold(nn)}
                 onmouseleave={() => stopHold(nn)}
@@ -212,8 +228,18 @@
                 ontouchcancel={() => stopHold(nn)}
                 aria-label="Scroll down"
               >
-                <svg class="h-4 w-4 text-gray-700 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
+                <svg
+                  class="h-4 w-4 text-gray-700 dark:text-gray-200"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="3"
+                    d="M19 9l-7 7-7-7"
+                  />
                 </svg>
               </button>
             </div>

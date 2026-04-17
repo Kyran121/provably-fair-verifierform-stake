@@ -12,16 +12,22 @@
   <Loader />
 {:else}
   <p data-testid="blackjack-dealer-result" class="hidden text-center text-base">
-    {blackjack.result!.initialDealer.map(({ chosen: { value, suit } }) => `${value}-${suit}`).join(', ')}
+    {blackjack
+      .result!.initialDealer.map(({ chosen: { value, suit } }) => `${value}-${suit}`)
+      .join(', ')}
   </p>
   <p data-testid="blackjack-player-result" class="hidden text-center text-base">
-    {blackjack.result!.initialPlayer.map(({ chosen: { value, suit } }) => `${value}-${suit}`).join(', ')}
+    {blackjack
+      .result!.initialPlayer.map(({ chosen: { value, suit } }) => `${value}-${suit}`)
+      .join(', ')}
   </p>
   <p data-testid="blackjack-remaining-result" class="hidden text-center text-base">
-    {blackjack.result!.remaining.map(({ chosen: { value, suit } }) => `${value}-${suit}`).join(', ')}
+    {blackjack
+      .result!.remaining.map(({ chosen: { value, suit } }) => `${value}-${suit}`)
+      .join(', ')}
   </p>
 
-  <div class="mb-6 mt-5">
+  <div class="mt-5 mb-6">
     <p class="mb-3 text-center text-lg font-semibold text-blue-600 dark:text-blue-400">
       Initial player cards
     </p>

@@ -16,20 +16,20 @@ describe('LimboResult', () => {
       'ec75fca98de6f2d9',
       '735249f062ac025044a8523aa92e034803f02d6b75129abc97e8b1be19aab9b4',
       20,
-      '1.06x'
+      '1.06x',
     ],
     [
       'ec75fca98de6f2d9',
       '735249f062ac025044a8523aa92e034803f02d6b75129abc97e8b1be19aab9b4',
       21,
-      '160.05x'
+      '160.05x',
     ],
     [
       'ec75fca98de6f2d9',
       '735249f062ac025044a8523aa92e034803f02d6b75129abc97e8b1be19aab9b4',
       22,
-      '1.38x'
-    ]
+      '1.38x',
+    ],
   ])(
     'renders the correct results (clientseed=%s, serverseed=%s, nonce=%s, result=%s)',
     async (clientseed, serverseed, nonce, result) => {
@@ -37,7 +37,7 @@ describe('LimboResult', () => {
         nonce,
         clientseed,
         serverseed,
-        game: 'limbo'
+        game: 'limbo',
       } as Record<string, unknown>;
 
       const screen = render(LimboResult, { formValues });

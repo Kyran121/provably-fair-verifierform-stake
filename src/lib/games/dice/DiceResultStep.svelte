@@ -11,7 +11,8 @@
   <p class="mb-2 text-2xl font-semibold">Step {stepNumber}</p>
   <p class="mb-2 text-lg">Transform float into roll number</p>
   <p class="mb-5 text-sm text-gray-500 dark:text-gray-400">
-    formula taken from <span class="font-bold">Dice Roll</span> section on the
+    formula taken from <span class="font-bold">Dice Roll</span>
+    section on the
     <HighlightLink href="https://stake.com/provably-fair/game-events">game events</HighlightLink> page
   </p>
 

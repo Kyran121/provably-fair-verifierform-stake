@@ -24,9 +24,9 @@
         className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400"
       >
         <p class="font-medium">
-          <span class="text-blue-600 dark:text-blue-400"
-            >Three drills generated in order shown below.</span
-          >
+          <span class="text-blue-600 dark:text-blue-400">
+            Three drills generated in order shown below.
+          </span>
           Click a drill to see how its multiplier was calculated using Stake's provably fair algorithm.
         </p>
         <div class="mt-4 text-left text-sm text-gray-600 dark:text-gray-400">

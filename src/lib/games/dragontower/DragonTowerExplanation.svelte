@@ -5,7 +5,10 @@
   import ScrollableContainer from '$lib/games/layout/ScrollableContainer.svelte';
   import ContentBlock from '../layout/ContentBlock.svelte';
   import { useDragonTowerLevels } from '$lib/composables';
-  import { getDragonTowerTabClass, getDragonTowerTabSelectedClass } from '$lib/domain/games/dragontower';
+  import {
+    getDragonTowerTabClass,
+    getDragonTowerTabSelectedClass,
+  } from '$lib/domain/games/dragontower';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
@@ -15,7 +18,7 @@
   // Group items by level (9 levels)
   const levelGroups = $derived.by(() => {
     if (!dragonTower.items) return [];
-    const groups: typeof dragonTower.items[] = [];
+    const groups: (typeof dragonTower.items)[] = [];
     for (let level = 0; level < 9; level++) {
       groups.push(
         dragonTower.items.slice(
@@ -44,11 +47,11 @@
         className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400"
       >
         <p class="font-medium">
-          <span class="text-blue-600 dark:text-blue-400"
-            >Each level generates {dragonTower.config.count} safe egg{dragonTower.config.count > 1
+          <span class="text-blue-600 dark:text-blue-400">
+            Each level generates {dragonTower.config.count} safe egg{dragonTower.config.count > 1
               ? 's'
-              : ''} using Fisher-Yates shuffle.</span
-          >
+              : ''} using Fisher-Yates shuffle.
+          </span>
           Click an egg tab to see how it was generated using Stake's provably fair algorithm.
         </p>
       </ContentBlock>
@@ -72,7 +75,7 @@
                       'flex w-10 flex-col items-center justify-center overflow-visible rounded border-2 p-1.5 text-sm font-medium transition-all',
                       fi === flatIndex
                         ? getDragonTowerTabSelectedClass(levelIndex + 1)
-                        : getDragonTowerTabClass(levelIndex + 1)
+                        : getDragonTowerTabClass(levelIndex + 1),
                     ]}
                     onclick={() => (flatIndex = fi)}
                   >
@@ -94,7 +97,12 @@
         seed={dragonTower.seed!}
         float={selectedItem.float}
       />
-      <DragonTowerResultStep stepNumber={2} resultIndex={flatIndex} config={dragonTower.config} {...selectedItem} />
+      <DragonTowerResultStep
+        stepNumber={2}
+        resultIndex={flatIndex}
+        config={dragonTower.config}
+        {...selectedItem}
+      />
     {/if}
   </div>
 </div>

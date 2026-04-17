@@ -18,7 +18,7 @@ export function useCasesPayout(getFormValues: () => Record<string, unknown>) {
     clientSeed: getFormValues().clientseed as string,
     serverSeed: getFormValues().serverseed as string,
     nonce: getFormValues().nonce as number,
-    difficulty: getFormValues().difficulty as CasesDifficulty
+    difficulty: getFormValues().difficulty as CasesDifficulty,
   });
 
   const result = $derived.by(
@@ -43,6 +43,6 @@ export function useCasesPayout(getFormValues: () => Record<string, unknown>) {
     },
     get isCalculating() {
       return result.debouncing;
-    }
+    },
   };
 }

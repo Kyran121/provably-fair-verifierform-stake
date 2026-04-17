@@ -33,7 +33,7 @@ function parseArgs() {
   const params = {
     clientSeed: null,
     serverSeed: null,
-    nonces: 200
+    nonces: 200,
   };
 
   for (const arg of args) {
@@ -60,7 +60,7 @@ function waitForEnter(message = 'Press ENTER when ready... ') {
   return new Promise((resolve) => {
     const rl = readline.createInterface({
       input: process.stdin,
-      output: process.stdout
+      output: process.stdout,
     });
 
     rl.question(message, () => {
@@ -84,18 +84,18 @@ async function generateDartsTestCases() {
   const transport = new StdioClientTransport({
     command: 'npx',
     args: ['@playwright/mcp@latest'],
-    stderr: 'pipe'
+    stderr: 'pipe',
   });
 
   const client = new Client(
     {
       name: 'darts-testcase-generator',
-      version: '1.0.0'
+      version: '1.0.0',
     },
     {
       capabilities: {
-        tools: {}
-      }
+        tools: {},
+      },
     }
   );
 
@@ -107,7 +107,7 @@ async function generateDartsTestCases() {
     console.log('📖 Opening Stake Darts calculation page...');
     await client.callTool({
       name: 'browser_navigate',
-      arguments: { url }
+      arguments: { url },
     });
 
     console.log('✅ Page opened\n');
@@ -323,8 +323,8 @@ async function generateDartsTestCases() {
               expert: { '#0e202c': 0.1, '#213843': 0.5, '#fcc101': 4.8, '#fb6120': 9.6, '#fb053f': 42,  '#24e700': 500 }
             }
           });
-        }`
-      }
+        }`,
+      },
     });
 
     // ── Parse result ───────────────────────────────────────────────────────────

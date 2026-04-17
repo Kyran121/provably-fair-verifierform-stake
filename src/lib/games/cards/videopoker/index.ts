@@ -1,6 +1,6 @@
 import {
   CLIENT_SEED_SERVER_SEED_NONCE_CONTROLS,
-  CLIENT_SEED_SERVER_SEED_NONCE_SCHEMA
+  CLIENT_SEED_SERVER_SEED_NONCE_SCHEMA,
 } from '$lib/controlSetup';
 import VideoPokerExplanation from '$lib/games/cards/videopoker/VideoPokerExplanation.svelte';
 import VideoPokerResult from '$lib/games/cards/videopoker/VideoPokerResult.svelte';
@@ -11,5 +11,5 @@ export const gameDefinition: GameDefinition = {
   schema: CLIENT_SEED_SERVER_SEED_NONCE_SCHEMA,
   controls: CLIENT_SEED_SERVER_SEED_NONCE_CONTROLS,
   ResultComponent: VideoPokerResult,
-  ExplanationComponent: VideoPokerExplanation
+  ExplanationComponent: VideoPokerExplanation,
 };

@@ -11,7 +11,8 @@
   <p class="mb-2 text-2xl font-semibold">Step {stepNumber}</p>
   <p class="mb-2 text-lg">Transform float into roulette number</p>
   <p class="mb-5 text-sm text-gray-500 dark:text-gray-400">
-    Formula taken from <span class="font-bold">Roulette Roll</span> section on the
+    Formula taken from <span class="font-bold">Roulette Roll</span>
+    section on the
     <HighlightLink href="https://stake.com/provably-fair/game-events">game events</HighlightLink> page
   </p>
 
@@ -51,9 +52,9 @@
         <div
           class="inline-flex min-w-[80px] flex-col items-center justify-center rounded border-2 border-green-500 bg-green-50 px-6 py-4 shadow-lg dark:border-green-400 dark:bg-green-900/20"
         >
-          <span class="mb-1 font-sans text-xs text-gray-500 dark:text-gray-400"
-            >Roulette number</span
-          >
+          <span class="mb-1 font-sans text-xs text-gray-500 dark:text-gray-400">
+            Roulette number
+          </span>
           <span class="text-2xl font-bold text-green-600 dark:text-green-400">{chosenNumber}</span>
         </div>
       </div>

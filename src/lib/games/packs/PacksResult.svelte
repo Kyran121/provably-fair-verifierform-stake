@@ -20,9 +20,9 @@
   <div class="text-center">
     <p class="mb-3 text-sm text-gray-500 dark:text-gray-400">Three cards drawn from pack</p>
     <p class="mb-4 text-xs text-gray-400 dark:text-gray-500">
-      Total multiplier: <span class="font-semibold text-blue-600 dark:text-blue-400"
-        >{totalMulti.toFixed(2)}x</span
-      >
+      Total multiplier: <span class="font-semibold text-blue-600 dark:text-blue-400">
+        {totalMulti.toFixed(2)}x
+      </span>
     </p>
 
     <div class="grid grid-cols-3 gap-3">

@@ -4,7 +4,7 @@
   const {
     maxMulti,
     deathMulti,
-    deathLabel = 'Death point'
+    deathLabel = 'Death point',
   }: { maxMulti: number | null; deathMulti: number | null; deathLabel?: string } = $props();
 </script>
 
@@ -32,17 +32,17 @@
     <div
       class="flex flex-1 items-center justify-center rounded border-2 border-green-500 bg-green-50 px-4 py-3 text-center ring-2 ring-green-400 dark:border-green-400 dark:bg-green-900/30 dark:ring-green-500"
     >
-      <span class="text-lg font-bold text-green-800 dark:text-green-300"
-        >{maxMulti?.toFixed(2)}x</span
-      >
+      <span class="text-lg font-bold text-green-800 dark:text-green-300">
+        {maxMulti?.toFixed(2)}x
+      </span>
     </div>
     {#if deathMulti !== null}
       <div
         class="flex flex-1 items-center justify-center rounded border-2 border-red-400 bg-red-50 px-4 py-3 text-center ring-2 ring-red-300 dark:border-red-500 dark:bg-red-900/20 dark:ring-red-500"
       >
-        <span class="text-lg font-bold text-red-600 dark:text-red-400"
-          >{deathMulti.toFixed(2)}x</span
-        >
+        <span class="text-lg font-bold text-red-600 dark:text-red-400">
+          {deathMulti.toFixed(2)}x
+        </span>
       </div>
     {/if}
   </div>

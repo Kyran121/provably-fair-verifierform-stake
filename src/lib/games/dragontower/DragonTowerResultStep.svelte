@@ -12,14 +12,17 @@
     float,
     chosen,
     chosenIndex,
-    chosenIndexes
+    chosenIndexes,
   }: {
     stepNumber: number;
     resultIndex: number;
     config: DragonTowerDifficultyConfig;
   } & FisherYatesItem<number> = $props();
 
-  const display = useFisherYatesDisplay(() => config.size, () => chosenIndexes);
+  const display = useFisherYatesDisplay(
+    () => config.size,
+    () => chosenIndexes
+  );
   const previousEggIndexes = $derived(display.previousItems);
   const eggsMinusPreviousIndexes = $derived(display.remainingItems);
 
@@ -31,7 +34,8 @@
   <p class="mb-2 text-2xl font-semibold">Step {stepNumber}</p>
   <p class="mb-2 text-lg">Transform float into egg position</p>
   <p class="mb-5 text-sm text-gray-500 dark:text-gray-400">
-    See <span class="font-bold">Dragon Tower</span> section on the
+    See <span class="font-bold">Dragon Tower</span>
+    section on the
     <HighlightLink href="https://stake.com/provably-fair/game-events">game events</HighlightLink> page
   </p>
 
@@ -46,8 +50,9 @@
         rowSize = <span class="font-bold text-blue-600 dark:text-blue-400">{config.size}</span>
       </p>
       <p class="leading-relaxed">
-        eggsToChoose = <span class="font-bold text-blue-600 dark:text-blue-400">{config.count}</span
-        >
+        eggsToChoose = <span class="font-bold text-blue-600 dark:text-blue-400">
+          {config.count}
+        </span>
       </p>
     </div>
 
@@ -85,7 +90,7 @@
               'inline-flex flex-col items-center justify-center rounded border-2 py-1 transition-all',
               n === chosenIndex
                 ? 'border-green-500 bg-green-100 text-green-700 ring-2 ring-green-400 dark:border-green-400 dark:bg-green-900/30 dark:text-green-400 dark:ring-green-500'
-                : 'border-gray-200 bg-gray-50 text-gray-500 ring-2 ring-transparent dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400'
+                : 'border-gray-200 bg-gray-50 text-gray-500 ring-2 ring-transparent dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400',
             ]}
           >
             <span class="text-[10px] leading-none font-normal opacity-70">{n}</span>
@@ -110,15 +115,15 @@
       </p>
       <p class="leading-relaxed">eggIndex</p>
       <p class="leading-relaxed">
-        = floor(<HighlightText>&lbrace;float&rbrace;</HighlightText> * (<HighlightText
-          >&lbrace;rowSize&rbrace;</HighlightText
-        > - (<HighlightText>&lbrace;resultIndex&rbrace;</HighlightText> %
+        = floor(<HighlightText>&lbrace;float&rbrace;</HighlightText> * (<HighlightText>
+          &lbrace;rowSize&rbrace;
+        </HighlightText> - (<HighlightText>&lbrace;resultIndex&rbrace;</HighlightText> %
         <HighlightText>&lbrace;eggsToChoose&rbrace;</HighlightText>)))
       </p>
       <p class="leading-relaxed">
-        = floor(<HighlightText>{float.toFixed(12)}</HighlightText> * (<HighlightText
-          >{config.size}</HighlightText
-        > - (<HighlightText>{resultIndex}</HighlightText> %
+        = floor(<HighlightText>{float.toFixed(12)}</HighlightText> * (<HighlightText>
+          {config.size}
+        </HighlightText> - (<HighlightText>{resultIndex}</HighlightText> %
         <HighlightText>{config.count}</HighlightText>)))
       </p>
       <p class="mb-4 leading-relaxed font-bold">

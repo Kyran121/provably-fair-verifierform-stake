@@ -17,7 +17,9 @@
         <div class="text-sm font-medium">Total Payout Multiplier</div>
         <div class="text-3xl font-bold">{bars.result!.totalPayout.toFixed(2)}x</div>
         <div class="mt-1 text-xs opacity-90">
-          Sum of {bars.result!.selectedCount} selected bar{bars.result!.selectedCount === 1 ? '' : 's'}
+          Sum of {bars.result!.selectedCount} selected bar{bars.result!.selectedCount === 1
+            ? ''
+            : 's'}
         </div>
       </div>
     {/if}
@@ -32,15 +34,16 @@
             colors.bg,
             colors.border,
             colors.text,
-            isSelected ? 'font-bold ring-2 ' + colors.border : 'opacity-75'
+            isSelected ? 'font-bold ring-2 ' + colors.border : 'opacity-75',
           ]}
         >
           {multi.toFixed(2)}x
           {#if isSelected}
             <span
               class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-blue-500 text-xs text-white shadow-md ring-2 ring-white dark:ring-gray-900"
-              >✓</span
             >
+              ✓
+            </span>
           {/if}
         </div>
       {/each}

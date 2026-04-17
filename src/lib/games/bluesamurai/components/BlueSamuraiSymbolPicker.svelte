@@ -7,7 +7,7 @@
     boardColumns,
     selectedSymbolIndex,
     selectedRound,
-    onselect
+    onselect,
   }: {
     boardColumns: BoardCell[][];
     selectedSymbolIndex: number;
@@ -32,9 +32,9 @@
                 ? [
                     'border-transparent',
                     getRoundSelectedRing(selectedRound),
-                    'z-10 scale-105 bg-white shadow-md dark:bg-gray-700'
+                    'z-10 scale-105 bg-white shadow-md dark:bg-gray-700',
                   ]
-                : 'border-gray-200 bg-gray-50 opacity-70 hover:border-gray-400 hover:opacity-90 dark:border-gray-700 dark:bg-gray-800'
+                : 'border-gray-200 bg-gray-50 opacity-70 hover:border-gray-400 hover:opacity-90 dark:border-gray-700 dark:bg-gray-800',
             ]}
             onclick={() => onselect(cell.symbolIndex)}
             title={cell.locked
@@ -48,9 +48,9 @@
               {cell.floatIndex}
             </span>
             {#if cell.locked}
-              <span class="pointer-events-none absolute top-0 right-0 text-[8px] leading-none"
-                >🔒</span
-              >
+              <span class="pointer-events-none absolute top-0 right-0 text-[8px] leading-none">
+                🔒
+              </span>
             {/if}
           </button>
         {:else}

@@ -17,6 +17,6 @@ export function useFisherYatesDisplay(
     },
     get remainingItems() {
       return result.remainingItems;
-    }
+    },
   };
 }

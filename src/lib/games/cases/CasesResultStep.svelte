@@ -9,7 +9,7 @@
     stepNumber,
     seed,
     float,
-    payout
+    payout,
   }: { stepNumber: number; seed: CasesSeed; float: number; payout: number } = $props();
 
   const payline = $derived(paylines[seed.difficulty]);
@@ -19,7 +19,8 @@
   <p class="mb-2 text-2xl font-semibold">Step {stepNumber}</p>
   <p class="mb-2 text-lg">Use float to discover winning case from payout table</p>
   <p class="mb-5 text-sm text-gray-500 dark:text-gray-400">
-    see <span class="font-bold">Cases</span> section on the
+    see <span class="font-bold">Cases</span>
+    section on the
     <HighlightLink href="https://stake.com/provably-fair/game-events">game events</HighlightLink> page
   </p>
 

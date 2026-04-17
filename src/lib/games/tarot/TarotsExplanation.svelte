@@ -26,16 +26,16 @@
         className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-purple-500 dark:border-purple-400"
       >
         <p class="font-medium">
-          <span class="text-purple-600 dark:text-purple-400"
-            >Tarot cards are selected using float values mapped to correlation tables.</span
-          >
+          <span class="text-purple-600 dark:text-purple-400">
+            Tarot cards are selected using float values mapped to correlation tables.
+          </span>
           Each card has a multiplier determined by the difficulty and arcana type.
         </p>
       </ContentBlock>
 
       <!-- Step 1 -->
       <ContentBlock className="mb-6 p-5">
-        <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">
+        <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">
           Step 1 — Generate Cards
         </p>
         <p class="mb-3 text-gray-700 dark:text-gray-300">

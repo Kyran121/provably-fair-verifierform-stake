@@ -5,7 +5,11 @@
   import FloatGenerationStep from '../FloatGenerationStep.svelte';
   import PacksResultStep from './PacksResultStep.svelte';
   import { usePacksCards } from '$lib/composables';
-  import { getPacksTabClass, getPacksTabSelectedClass, getPacksRarityLabel } from '$lib/domain/games/packs';
+  import {
+    getPacksTabClass,
+    getPacksTabSelectedClass,
+    getPacksRarityLabel,
+  } from '$lib/domain/games/packs';
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
@@ -18,9 +22,13 @@
     {#if packs.isCalculating || !packs.items}
       <Loader />
     {:else}
-      <ContentBlock className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400">
+      <ContentBlock
+        className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400"
+      >
         <p class="font-medium">
-          <span class="text-blue-600 dark:text-blue-400">Cards selected in the order shown below.</span>
+          <span class="text-blue-600 dark:text-blue-400">
+            Cards selected in the order shown below.
+          </span>
           Click a card to see how it was selected using Stake's provably fair algorithm.
         </p>
       </ContentBlock>
@@ -32,7 +40,9 @@
             {@const rarityLabel = getPacksRarityLabel(cardId)}
             <button
               type="button"
-              class={resultIndex === index ? getPacksTabSelectedClass(cardId) : getPacksTabClass(cardId)}
+              class={resultIndex === index
+                ? getPacksTabSelectedClass(cardId)
+                : getPacksTabClass(cardId)}
               onclick={() => (resultIndex = index)}
             >
               <span class="text-xs font-medium">{rarityLabel}</span>
@@ -44,7 +54,12 @@
 
       {@const selectedItem = packs.items[resultIndex]}
 
-      <FloatGenerationStep stepNumber={1} {resultIndex} seed={packs.seed!} float={selectedItem.float} />
+      <FloatGenerationStep
+        stepNumber={1}
+        {resultIndex}
+        seed={packs.seed!}
+        float={selectedItem.float}
+      />
       <PacksResultStep float={selectedItem.float} card={selectedItem.card} />
     {/if}
   </div>

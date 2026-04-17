@@ -39,7 +39,12 @@
 
       {@const selectedItem = diamonds.items[resultIndex]}
 
-      <FloatGenerationStep stepNumber={1} {resultIndex} seed={diamonds.seed!} float={selectedItem.float} />
+      <FloatGenerationStep
+        stepNumber={1}
+        {resultIndex}
+        seed={diamonds.seed!}
+        float={selectedItem.float}
+      />
       <DiamondsResultStep stepNumber={2} {...selectedItem} />
     {/if}
   </div>

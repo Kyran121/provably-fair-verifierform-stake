@@ -25,11 +25,11 @@ export function usePlinkoPayout(getFormValues: () => Record<string, unknown>) {
     serverSeed: getFormValues().serverseed as string,
     nonce: getFormValues().nonce as number,
     risk: getFormValues().risk as Risk,
-    rows: getFormValues().rows as number
+    rows: getFormValues().rows as number,
   });
 
   const payline = $derived([
-    ...new Set(paylines[seed.rows as unknown as keyof typeof paylines][seed.risk])
+    ...new Set(paylines[seed.rows as unknown as keyof typeof paylines][seed.risk]),
   ]);
 
   const result = $derived.by(
@@ -64,6 +64,6 @@ export function usePlinkoPayout(getFormValues: () => Record<string, unknown>) {
     },
     get isCalculating() {
       return result.debouncing;
-    }
+    },
   };
 }

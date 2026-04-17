@@ -20,9 +20,9 @@
         className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400"
       >
         <p class="font-medium">
-          <span class="text-blue-600 dark:text-blue-400"
-            >Each reel position is generated from a float.</span
-          >
+          <span class="text-blue-600 dark:text-blue-400">
+            Each reel position is generated from a float.
+          </span>
           Special rounds use 12 floats; all other rounds use 18.
         </p>
       </ContentBlock>
@@ -73,7 +73,11 @@
           onSymbolSelect={(i) => (explanation.selectedSymbolIndex = i)}
         />
 
-        <BlueSamuraiStep2 {float} reelType={explanation.selectedSymbol.reelType} isLockedSamurai={explanation.isLockedSamurai} />
+        <BlueSamuraiStep2
+          {float}
+          reelType={explanation.selectedSymbol.reelType}
+          isLockedSamurai={explanation.isLockedSamurai}
+        />
       {/if}
     {/if}
   </div>

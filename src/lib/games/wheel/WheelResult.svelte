@@ -17,16 +17,14 @@
       >
         <div class="flex flex-col items-center gap-1">
           <span class="text-xs font-medium text-green-600 dark:text-green-400">Payout</span>
-          <span class="text-2xl font-bold text-green-800 dark:text-green-300"
-            >{wheel.payout}x</span
-          >
+          <span class="text-2xl font-bold text-green-800 dark:text-green-300">{wheel.payout}x</span>
         </div>
       </div>
     </div>
   </ContentBlock>
 
   <ContentBlock className="mt-4 p-4">
-    <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">Wheel Segments</p>
+    <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">Wheel Segments</p>
     <div class="grid auto-cols-auto grid-flow-col gap-2">
       {#each wheel.payline as multi, n (n)}
         <div
@@ -34,7 +32,7 @@
             'flex flex-col items-center justify-center rounded border-2 px-3 py-2',
             multi === wheel.payout!
               ? 'border-green-500 bg-green-50 font-bold text-green-800 ring-2 ring-green-400 dark:border-green-400 dark:bg-green-900/30 dark:text-green-300 dark:ring-green-500'
-              : 'border-gray-300 bg-gray-100 text-gray-600 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400'
+              : 'border-gray-300 bg-gray-100 text-gray-600 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400',
           ]}
         >
           <span class="text-[10px] text-gray-500 dark:text-gray-500">{n}</span>

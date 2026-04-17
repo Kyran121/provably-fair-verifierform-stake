@@ -13,7 +13,7 @@ export const DARTS_COLOR_TO_MULTI: Record<DartsDifficulty, Record<DartsColor, nu
     '#fb6120': 1.5,
     '#fcc101': 1.2,
     '#213843': 0.8,
-    '#0e202c': 0.5
+    '#0e202c': 0.5,
   },
   medium: {
     '#24e700': 16,
@@ -21,7 +21,7 @@ export const DARTS_COLOR_TO_MULTI: Record<DartsDifficulty, Record<DartsColor, nu
     '#fb6120': 3.1,
     '#fcc101': 1.3,
     '#213843': 0.6,
-    '#0e202c': 0.4
+    '#0e202c': 0.4,
   },
   hard: {
     '#24e700': 63,
@@ -29,7 +29,7 @@ export const DARTS_COLOR_TO_MULTI: Record<DartsDifficulty, Record<DartsColor, nu
     '#fb6120': 3.6,
     '#fcc101': 2.5,
     '#213843': 0.5,
-    '#0e202c': 0.2
+    '#0e202c': 0.2,
   },
   expert: {
     '#24e700': 500,
@@ -37,6 +37,6 @@ export const DARTS_COLOR_TO_MULTI: Record<DartsDifficulty, Record<DartsColor, nu
     '#fb6120': 9.6,
     '#fcc101': 4.8,
     '#213843': 0.5,
-    '#0e202c': 0.1
-  }
+    '#0e202c': 0.1,
+  },
 };

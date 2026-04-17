@@ -117,7 +117,7 @@ export async function scrollToCenterVertically(
     // Set up observers to detect when element becomes visible
     await waitForVisibility(targetElement, container, {
       signal: controller.signal,
-      checkInterval
+      checkInterval,
     });
 
     // Element is now visible - perform scroll
@@ -136,7 +136,7 @@ export async function scrollToCenterVertically(
 
     container.scrollTo({
       top: scrollAmount,
-      behavior
+      behavior,
     });
   }
 }
@@ -164,7 +164,7 @@ function waitForVisibility(
       childList: true,
       subtree: true,
       attributes: true,
-      attributeFilter: ['style', 'class']
+      attributeFilter: ['style', 'class'],
     });
 
     // Set up intersection observer for visibility changes
@@ -177,7 +177,7 @@ function waitForVisibility(
       },
       {
         root: container,
-        threshold: 0.01
+        threshold: 0.01,
       }
     );
     intersectionObserver.observe(element);

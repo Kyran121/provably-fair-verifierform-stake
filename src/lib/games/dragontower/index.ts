@@ -1,6 +1,6 @@
 import {
   CLIENT_SEED_SERVER_SEED_NONCE_CONTROLS,
-  CLIENT_SEED_SERVER_SEED_NONCE_SCHEMA
+  CLIENT_SEED_SERVER_SEED_NONCE_SCHEMA,
 } from '$lib/controlSetup';
 import DragonTowerResult from '$lib/games/dragontower/DragonTowerResult.svelte';
 import { z } from 'zod';
@@ -10,7 +10,7 @@ import DragonTowerExplanation from '$lib/games/dragontower/DragonTowerExplanatio
 export const gameDefinition: GameDefinition = {
   name: 'Dragon Tower',
   schema: CLIENT_SEED_SERVER_SEED_NONCE_SCHEMA.extend({
-    difficulty: z.enum(['easy', 'medium', 'hard', 'expert', 'master'])
+    difficulty: z.enum(['easy', 'medium', 'hard', 'expert', 'master']),
   }),
   controls: [
     ...CLIENT_SEED_SERVER_SEED_NONCE_CONTROLS,
@@ -19,9 +19,9 @@ export const gameDefinition: GameDefinition = {
       name: 'difficulty',
       label: 'Difficulty',
       type: 'select',
-      options: ['easy', 'medium', 'hard', 'expert', 'master']
-    }
+      options: ['easy', 'medium', 'hard', 'expert', 'master'],
+    },
   ],
   ResultComponent: DragonTowerResult,
-  ExplanationComponent: DragonTowerExplanation
+  ExplanationComponent: DragonTowerExplanation,
 };

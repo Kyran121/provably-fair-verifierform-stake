@@ -46,7 +46,7 @@
   </ContentBlock>
 
   <ContentBlock className="mt-4 p-4">
-    <p class="mb-3 font-sans text-xs uppercase text-gray-500 dark:text-gray-400">Turn Results</p>
+    <p class="mb-3 font-sans text-xs text-gray-500 uppercase dark:text-gray-400">Turn Results</p>
     <div class="grid grid-cols-5 gap-1 sm:gap-1.5">
       {#each steps as { die, result: stepResult }, n (n)}
         <div>
@@ -55,7 +55,7 @@
               'flex h-15 w-full items-center justify-center rounded-t border-2',
               stepResult === 0
                 ? 'border-red-500 bg-red-100 dark:border-red-400 dark:bg-red-900/30'
-                : 'border-gray-300 bg-gray-100 dark:border-gray-600 dark:bg-gray-800'
+                : 'border-gray-300 bg-gray-100 dark:border-gray-600 dark:bg-gray-800',
             ]}
           >
             {#if stepResult === 0}
@@ -68,7 +68,9 @@
               </p>
             {/if}
           </div>
-          <div class="grid grid-cols-2 rounded-b border-2 border-t-0 border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-800">
+          <div
+            class="grid grid-cols-2 rounded-b border-2 border-t-0 border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-800"
+          >
             {#each die as roll, n (n)}
               <div>
                 <DiceIcon {roll} />

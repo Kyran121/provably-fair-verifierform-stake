@@ -9,7 +9,7 @@
     float,
     isWinner,
     getRowClass = () => '',
-    getTextClass = () => ''
+    getTextClass = () => '',
   }: {
     payline: PayoutRow[];
     float: number;
@@ -35,12 +35,14 @@
   <table class="w-full overflow-x-auto">
     <thead>
       <tr class="border-b border-gray-300 dark:border-gray-600">
-        <th class="py-2 pr-6 text-left font-sans text-xs text-gray-500 uppercase dark:text-gray-400"
-          >Min Bound</th
+        <th
+          class="py-2 pr-6 text-left font-sans text-xs text-gray-500 uppercase dark:text-gray-400"
         >
-        <th class="py-2 text-left font-sans text-xs text-gray-500 uppercase dark:text-gray-400"
-          >Multiplier</th
-        >
+          Min Bound
+        </th>
+        <th class="py-2 text-left font-sans text-xs text-gray-500 uppercase dark:text-gray-400">
+          Multiplier
+        </th>
       </tr>
     </thead>
     <tbody>

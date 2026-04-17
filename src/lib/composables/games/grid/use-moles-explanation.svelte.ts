@@ -44,6 +44,6 @@ export function useMolesExplanation(getRounds: () => FisherYatesItem<number>[][]
     },
     get globalResultIndex() {
       return globalResultIndex;
-    }
+    },
   };
 }

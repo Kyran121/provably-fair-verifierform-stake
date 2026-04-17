@@ -19,12 +19,17 @@
         className="mb-7 p-5 text-center text-base text-gray-900 dark:text-white border-l-4 border-blue-500 dark:border-blue-400"
       >
         <p class="font-medium">
-          <span class="text-blue-600 dark:text-blue-400">Follow the steps below</span> to see how your
-          case result was determined using Stake's provably fair algorithm.
+          <span class="text-blue-600 dark:text-blue-400">Follow the steps below</span>
+          to see how your case result was determined using Stake's provably fair algorithm.
         </p>
       </ContentBlock>
 
-      <FloatGenerationStep stepNumber={1} resultIndex={0} seed={cases.seed!} float={cases.result.float} />
+      <FloatGenerationStep
+        stepNumber={1}
+        resultIndex={0}
+        seed={cases.seed!}
+        float={cases.result.float}
+      />
       <CasesResultStep
         stepNumber={2}
         seed={cases.seed! as CasesSeed}

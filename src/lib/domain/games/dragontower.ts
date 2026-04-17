@@ -5,7 +5,7 @@ export const DRAGON_TOWER_COL_CLASS: Record<DragonTowerDifficulty, string> = {
   medium: 'grid-cols-3',
   hard: 'grid-cols-2',
   expert: 'grid-cols-3',
-  master: 'grid-cols-4'
+  master: 'grid-cols-4',
 };
 
 // Tab styling
@@ -23,15 +23,15 @@ const DRAGON_TOWER_COLORS: DragonTowerTabColors[] = [
     bg: 'bg-green-50 dark:bg-green-900/20',
     border: 'border-green-400 dark:border-green-500',
     ring: 'ring-green-500 dark:ring-green-400',
-    text: 'text-green-700 dark:text-green-400'
+    text: 'text-green-700 dark:text-green-400',
   },
   {
     // Odd levels (darker green)
     bg: 'bg-green-100 dark:bg-green-900/30',
     border: 'border-green-500 dark:border-green-400',
     ring: 'ring-green-600 dark:ring-green-300',
-    text: 'text-green-800 dark:text-green-300'
-  }
+    text: 'text-green-800 dark:text-green-300',
+  },
 ];
 
 const TAB_BASE =
