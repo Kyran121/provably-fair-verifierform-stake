@@ -53,5 +53,5 @@ export { useDartsMultiplierCalc } from './skill/use-darts-multiplier-calc.svelte
 export { useDragonTowerGrid } from './grid/use-dragontower-grid.svelte';
 export { useMolesExplanation } from './grid/use-moles-explanation.svelte';
 export { useMinesExplanation } from './grid/use-mines-explanation.svelte';
-export { useChickenResult } from './skill/use-chicken-result.svelte';
+export { usePaylineResult } from './skill/use-payline-result.svelte';
 export { useWheelResult } from './simple/use-wheel-result.svelte';

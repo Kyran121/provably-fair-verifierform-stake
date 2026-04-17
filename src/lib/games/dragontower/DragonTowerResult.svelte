@@ -11,7 +11,7 @@
 
   const { formValues }: { formValues: Record<string, unknown> } = $props();
   const dragonTower = useDragonTowerLevels(() => formValues);
-  const grid = useDragonTowerGrid(dragonTower.items, dragonTower.config.count);
+  const grid = useDragonTowerGrid(() => dragonTower.items, () => dragonTower.config.count);
 
   const difficulty = $derived(formValues.difficulty as DragonTowerDifficulty);
   const results = $derived(grid.results);
