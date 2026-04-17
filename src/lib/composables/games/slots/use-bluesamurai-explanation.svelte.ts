@@ -2,10 +2,11 @@ import { buildFlatItems, buildBoardColumns } from '$lib/domain/games/bluesamurai
 import type { BlueSamuraiRound } from '$lib/types';
 
 /** Blue Samurai explanation state management */
-export function useBlueSamuraiExplanation(rounds: BlueSamuraiRound[] | null) {
+export function useBlueSamuraiExplanation(getRounds: () => BlueSamuraiRound[] | null) {
   let selectedRoundIndex = $state(0);
   let selectedSymbolIndex = $state(0);
 
+  const rounds = $derived(getRounds());
   const flatItems = $derived(rounds ? buildFlatItems(rounds) : []);
   const selectedRound = $derived(rounds?.[selectedRoundIndex]);
   const selectedSymbol = $derived(selectedRound?.symbols[selectedSymbolIndex]);
@@ -26,21 +27,24 @@ export function useBlueSamuraiExplanation(rounds: BlueSamuraiRound[] | null) {
     )
   );
 
+  // Reset to first round and first valid symbol when seed results change
+  $effect(() => {
+    if (rounds && rounds.length > 0) {
+      selectedRoundIndex = 0;
+      // Find the first symbol with a float in the first round
+      const firstRound = rounds[0];
+      const firstValidSymbol = firstRound.symbols.find((s) => s.float !== undefined);
+      selectedSymbolIndex = firstValidSymbol ? firstValidSymbol.index : 0;
+    }
+  });
+
   // Clamp selectedSymbolIndex to a valid float-having symbol when the round changes
   $effect(() => {
     if (!selectedRound) return;
     const sym = selectedRound.symbols[selectedSymbolIndex];
     if (!sym?.float) {
-      const first = selectedRound.symbols.find((s) => s.float);
+      const first = selectedRound.symbols.find((s) => s.float !== undefined);
       if (first) selectedSymbolIndex = first.index;
-    }
-  });
-
-  // Reset to first round / first symbol when seed results change
-  $effect(() => {
-    if (rounds) {
-      selectedRoundIndex = 0;
-      selectedSymbolIndex = 0;
     }
   });
 

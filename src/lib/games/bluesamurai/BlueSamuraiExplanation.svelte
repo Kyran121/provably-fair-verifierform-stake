@@ -8,7 +8,7 @@
   const { formValues }: { formValues: Record<string, unknown> } = $props();
 
   const blueSamurai = useBlueSamuraiRounds(() => formValues);
-  const explanation = useBlueSamuraiExplanation(blueSamurai.rounds);
+  const explanation = useBlueSamuraiExplanation(() => blueSamurai.rounds);
 </script>
 
 <div class="mt-5 border-0 text-center dark:text-white">
@@ -57,8 +57,8 @@
         </ul>
       </ContentBlock>
 
-      {#if explanation.selectedRound && explanation.selectedSymbol}
-        {@const float = explanation.selectedSymbol.float!}
+      {#if explanation.selectedRound && explanation.selectedSymbol && explanation.selectedSymbol.float !== undefined}
+        {@const float = explanation.selectedSymbol.float}
 
         <BlueSamuraiStep1
           rounds={blueSamurai.rounds}
