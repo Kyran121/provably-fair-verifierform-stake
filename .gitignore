@@ -1,6 +1,10 @@
 test-results
 node_modules
 
+# Planning and AI notes
+/ai
+/planning
+
 # Output
 .output
 .vercel

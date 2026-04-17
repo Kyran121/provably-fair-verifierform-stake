@@ -1,7 +1,0 @@
-Observations:
-- Can we reuse ResultTabs for Flip/RPS (check other games)- I can see ResultTab markup being recreated.
-- Fix Moles Dark styling for result tabs/round selection
-- Appropriate hover styling for result tabs for all games
-- Make horizontally scrollable containers more intuitive
-- Blue Samurai - remove legend for bonus/special spins
-- Blue Samurai - make result summary smarter (Bonus/Bonus with Special etc.)
